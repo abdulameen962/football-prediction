@@ -1,0 +1,20 @@
+{% extends 'predictions/layout.html' %}
+{% block title %} User type {% endblock  %}
+{% block og_title %} User type {% endblock  %}
+{% block body %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<h1>Choose types</h1>
+<a href="{% url 'complete_signup' 'freemium' %}" class="btn btn-primary text-white">Freemium user<a>
+<a href="{% url 'complete_signup' 'premium' %}" class="btn btn-primary text-white">Premium user<a>
+{% endblock  %}

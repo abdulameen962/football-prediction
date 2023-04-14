@@ -1,0 +1,147 @@
+@import 'mixins';
+@import "rules";
+body {
+    @include mpb;
+    overflow-x: hidden;
+}
+
+* {
+    @include mp;
+}
+
+nav {
+    width: 100%;
+    div.collapse {
+        display: flex;
+        justify-content: flex-end;
+        @include respond(tab) {
+            justify-content: flex-start;
+        }
+    }
+    li.nav-drop {
+        @include respond(tab) {
+            position: relative;
+        }
+    }
+    a.nav-drop {
+        @include respond(tab) {
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 80px;
+        }
+    }
+    span.nav-mix {
+        margin-right: 10px;
+        @include respond(tab) {
+            margin: 0px 10px 0px 0px;
+            display: block;
+        }
+    }
+    &.mainnav {
+        a.navbar-brand {
+            img {
+                max-width: 60px;
+                max-height: 40px;
+                object-fit: cover;
+            }
+            span {
+                margin-left: 10px;
+                @extend .font;
+                @extend .font-weight;
+                line-height: 1.308em;
+                font-size: 25px;
+                color: $dark;
+            }
+        }
+    }
+    &.nav-position {
+        @include mp;
+        width: 100%;
+        @include flex(no);
+        background: $white;
+        z-index: 4;
+    }
+    div.container-fluid {
+        @include flex(no);
+        justify-content: space-between;
+        @include respond(phone) {
+            padding-left: 12px;
+        }
+        a.navbar-brand {
+            @include flex(no);
+            @include transition;
+            &:hover {
+                transform: scale(0.95);
+            }
+        }
+        padding-top: 35px;
+        padding-bottom: 35px;
+        @include respond(tab) {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        div.responsive-nav {
+            @include flex(no);
+            justify-content: space-between;
+        }
+        div {
+            ul {
+                li.nav-li {
+                    margin-right: 35px;
+                }
+                li {
+                    list-style-type: none;
+                    @include transition;
+                    margin-right: 35px;
+                    a {
+                        color: rgba($dark, 0.7);
+                        font-size: 16px;
+                        vertical-align: middle;
+                        text-decoration: none;
+                        @extend .font;
+                        &:hover {
+                            @include linkhover;
+                        }
+                        &#navbarDropdown {
+                            margin-right: 30px;
+                        }
+                    }
+                    @include respond(tab) {
+                        padding: 0px 0px 0px 0px;
+                    }
+                }
+                li.link_show {
+                    display: none;
+                    @include respond(phone) {
+                        display: block;
+                    }
+                }
+            }
+        }
+        a {
+            &.contact1 {
+                display: none;
+                margin-right: 35px;
+                @include respond(tab) {
+                    display: block;
+                }
+                @include respond(phone) {
+                    display: none;
+                }
+            }
+            &.contact2 {
+                margin-left: 35px;
+                @include respond(tab) {
+                    display: none;
+                }
+            }
+            &.contact-responsive {
+                display: none;
+                @include respond(lphone) {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

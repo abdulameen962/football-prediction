@@ -1,0 +1,103 @@
+{% extends 'predictions/layout.html' %}
+{% block title %} Premium plan payment {% endblock  %}
+{% block og_title %} Premium plan payment {% endblock  %}
+{% block body %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<a href="https://sandbox-flw-web-v3.herokuapp.com/pay/predict-football" class="btn btn-primary text-white">Add your subscription</a>
+<a href="{% url 'activate_subscription' %}" class="btn btn-primary text-white">Reactivate your subscription</a>
+<a href="{% url 'freemium' %}" class="btn btn-primary text-white">Go to freemium account</a>
+{% endblock  %}
+{% comment %} {% block script %}
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+<script>
+  function makePayment(pkey,tx_ref,email,name,phone,plan) {
+    FlutterwaveCheckout({
+      public_key: pkey,
+      tx_ref: tx_ref,
+      payment_plan: plan,
+      payment_options: "card, mobilemoneyghana, ussd",
+      amount: 15,
+      currency: "USD",
+      redirect_url: "{{current_site}}/confirm-payment",
+      callback: function(payment) {
+        // Send AJAX verification request to backend
+        verifyTransactionOnBackend(payment.id);
+      },
+      onclose: function(incomplete) {
+        if (incomplete || window.verified === false) {
+          document.querySelector("#payment-failed").style.display = 'block';
+        } else {
+          document.querySelector("form").style.display = 'none';
+          if (window.verified == true) {
+            document.querySelector("#payment-success").style.display = 'block';
+          } else {
+            document.querySelector("#payment-pending").style.display = 'block';
+          }
+        }
+      },
+      customer: {
+        email: email,
+        phone_number: phone,
+        name: name,
+      },
+      customizations: {
+        title: "Football prediction payment",
+        description: "Payment for an Football prediction",
+        logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+      },
+    });
+  }
+
+  function verifyTransactionOnBackend(transactionId) {
+    // Let's just pretend the request was successful
+    setTimeout(function() {
+      window.verified = true;
+    }, 200);
+  }
+  var form = document.getElementById("email_form")
+  form.onsubmit = (event) => {
+    event.preventDefault()
+    var csrf = document.querySelector("[name='csrfmiddlewaretoken']").value;
+    var email = document.querySelector("[name='email']").value;
+    var plan = document.querySelector("[name='payment_type']").value;
+    var phone = document.querySelector("[name='tel']").value;
+    fetch(`/confirm-payment/`,{
+      method : "POST",
+      headers: {
+        "X-CSRFToken": csrf,
+      },
+      body : JSON.stringify({
+        "email": email,
+      })
+    })
+    .then(response => response.json().then(details => {
+      if (response.status == 201) {
+          console.log(details)
+          if (plan == "monthly") {
+            makePayment(details.pkey,details.tx_ref,details.email,details.name,phone,34951)
+          }
+          else if(plan == "yearly"){
+            makePayment(details.pkey,details.tx_ref,details.email,details.name,phone,34951)
+          }
+      } else {
+        console.log(details)
+      }
+    }))
+    .catch(error => {
+      console.log(error)
+    })
+  }
+</script>
+
+{% endblock  %} {% endcomment %}
