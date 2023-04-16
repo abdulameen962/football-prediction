@@ -1,0 +1,13 @@
+@import "mixins";
+div.home-main {
+    div.buttons {
+        a:not([class="primary-button"]) {
+            margin-left: 20px;
+            font-size: 18px;
+            color: $dark;
+            @include respond(phone) {
+                font-size: 16px;
+            }
+        }
+    }
+}

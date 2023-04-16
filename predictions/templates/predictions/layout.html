@@ -32,9 +32,11 @@
         <div class="container-fluid resize">
             <a class="navbar-brand" href="/"><span>Predictions</span></a>
             <div class="responsive-nav">
-                {% comment %} {% if user.is_authenticated and user.is_email_verified %}
-                <a class="header-button contact1" href="{% url 'predictions:logout' %}">Log Out</a> {% else %}
-                <a class="header-button contact1" href="{% url 'predictions:login' %}">Log In</a> {% endif %} {% endcomment %}
+                {% if user.is_authenticated %}
+                    <a class="header-button contact1" href="{% url 'account_logout' %}">Log Out</a> 
+                {% else %}
+                    <a class="header-button contact1" href="{% url 'account_login' %}">Log In</a> 
+                {% endif %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,61 +44,67 @@
             <div class="navbar-collapse collapse" id="navbarNavDropdown">
                 <ul class="nav-ul navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="/">Home</a>
                         </li>
-                    {% comment %} {% if user.is_authenticated and user.is_email_verified %} 
-                        {% if user.role == "Doctor" %}
+                    {% if user.is_authenticated %} 
+                        {% if user.type == "freemium" %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'predictions:doctor' %}">Home</a>
+                                <a class="nav-link" href="{% url 'freemium' %}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'predictions:available' %}">Availability</a>
+                                <a class="nav-link" href="{% url 'premium_payment' %}">Activate Premium</a>
                             </li>
-                        {% elif user.role == "Patient"%}
+                        {% elif user.role == "premium"%}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'predictions:patient' %}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'predictions:patient_appointment' %}">Appointments</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'predictions:pharmacy' %}">Pharmacy</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'predictions:cart' %}">Cart</a>
+                                <a class="nav-link" href="{% url 'premium' %}">Home</a>
                             </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'predictions:profile' %}">Profile</a>
+                            <a class="nav-link" href="#">Predictions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="messages-check" href="{% url 'predictions:messages' %}">Messages</a>
+                            <a class="nav-link" href="#">Watchlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Live scores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="messages-check" href="#">Notifications</a>
                         </li>
                         <li class="nav-item link_show">
-                            <a class="nav-link" href="{% url 'predictions:logout' %}">Logout</a>
+                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'predictions:index' %}#about">About</a>
+                            <a class="nav-link" href="{% url 'index' %}">How it works</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'predictions:index' %}#services">Services</a>
+                            <a class="nav-link" href="{% url 'index' %}">Membership</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'predictions:index' %}#testimonials">Testimonials</a>
+                            <a class="nav-link" href="{% url 'index' %}">Predictions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'predictions:register' %}">Register</a>
+                            <a class="nav-link" href="{% url 'index' %}">Matches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                         </li>
                         <li class="nav-item link_show">
-                            <a class="nav-link" href="{% url 'predictions:login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                         </li>
-                    {% endif %} {% endcomment %}
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
+                    </li>
                 </ul>
-                {% comment %} {% if user.is_authenticated and user.is_email_verified %}
-                    <a class="header-button contact2" href="{% url 'predictions:logout' %}">Log Out</a> {% else %}
-                    <a class="header-button contact2" href="{% url 'predictions:login' %}">Log In</a> 
-                {% endif %} {% endcomment %}
+                {% if user.is_authenticated %}
+                    <a class="header-button contact2" href="{% url 'account_logout' %}">Log Out</a> {% else %}
+                    <a class="header-button contact2" href="{% url 'account_login' %}">Log In</a> 
+                {% endif %}
             </div>
         </div>
     </nav>

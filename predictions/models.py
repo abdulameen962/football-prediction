@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import UserManager
 from django.urls import reverse
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 class PublishedManager(models.Manager):
@@ -29,16 +31,17 @@ class User(AbstractUser):
     premium_user = PremiumManager()
 
 
+STATE_CHOICES = (
+    ("published","PUBLISHED"),
+    ("draft","DRAFT"),
+)
+
 class Blog(models.Model):
-    STATE_CHOICES = (
-        ("published","PUBLISHED"),
-        ("draft","DRAFT"),
-    )
 
     title = models.CharField(max_length=200)
     slug = models.SlugField(blank=True,null=True,max_length=200)
     body = models.TextField()
-    published = models.DateTimeField(auto_now_add=False)
+    published = models.DateTimeField(default=timezone.now)
     state = models.CharField(choices=STATE_CHOICES, max_length=50)
     created = models.DateTimeField(auto_now_add=False)
     author = models.ForeignKey(User,on_delete=models.PROTECT)
@@ -55,13 +58,55 @@ class Blog(models.Model):
     class Meta:
         ordering = ("-created",)
 
+class League(models.Model):
+    code = models.CharField(max_length=5)
+    league = models.CharField(max_length=50)
+    logo = CloudinaryField("image")
+
+    def __str__(self):
+        return f"{self.league}({self.code})"
+
+class Prediction(models.Model):
+    TIP_CHOICES = (
+        ("home","HOME"),
+        ("away","AWAY"),
+        ("draw","DRAW"),
+    )
+
+    league = models.ForeignKey(League, on_delete=models.PROTECT,related_name="prediction")
+    type = models.CharField(choices=STATE_CHOICES, max_length=50)
+    published = models.DateTimeField(auto_now_add=False)
+    updated = models.DateTimeField(default=timezone.now)
+    home = models.CharField(max_length=50)
+    away = models.CharField(max_length=50)
+    correct_score = models.CharField(max_length=50)
+    send_mail = models.BooleanField(default=True)
+    tip = models.CharField(choices=TIP_CHOICES,max_length=50)
+    objects = models.Manager()
+
+    def __str__(self):
+        return f"{self.league.league}"
+
+
+    class Meta:
+        ordering = ("-updated",)
+        verbose_name = "Prediction"
+        verbose_name_plural = "Predictions"
+
 
 class FreemiumProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.PROTECT)
+    user = models.OneToOneField(User,on_delete=models.PROTECT,related_name="freemium")
+    watchlist = models.ManyToManyField(League,related_name="freemium_leagues",blank=True,default=None)
 
+    def __str__(self):
+        return f"{self.user.username}"
 
 class PremiumProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.PROTECT)
+    user = models.OneToOneField(User,on_delete=models.PROTECT,related_name="premium")
     activated = models.BooleanField(default=False)
+    watchlist = models.ManyToManyField(League,related_name="premium_leagues",blank=True,default=None)
+
+    def __str__(self):
+        return f"{self.user.username}"
 
     

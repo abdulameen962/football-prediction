@@ -57,24 +57,24 @@ a.header-button {
   color: white;
   text-decoration: none;
   border-radius: 80px;
-  color: rgba(255, 0, 0, 0.8);
+  color: rgba(41, 44, 50, 0.6);
   background: white;
-  transition: all 0.3s ease;
-  box-shadow: 8px 17px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E7E9EE;
   transition: all 0.3s ease; }
   a.header-button:hover {
-    box-shadow: none;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05); }
+    transform: translateY(-5px); }
 
 div.buttons {
   width: 100%; }
   div.buttons a.secondary-button {
     color: #292C32;
-    margin-left: 30px; }
+    margin-left: 30px;
+    font-size: 18px; }
     @media screen and (min-width: 0em) and (max-width: 479px) {
       div.buttons a.secondary-button {
         margin: 0;
-        margin-top: 20px; } }
+        margin-top: 20px;
+        font-size: 16px; } }
   @media screen and (min-width: 0em) and (max-width: 479px) {
     div.buttons {
       display: flex;
@@ -89,10 +89,9 @@ div.buttons {
   transition: all 0.3s ease;
   text-decoration: none;
   border-radius: 80px;
-  color: rgba(255, 0, 0, 0.8);
-  background: white;
-  transition: all 0.3s ease;
-  box-shadow: 8px 17px 20px rgba(0, 0, 0, 0.05); }
+  background: #EF9F00;
+  color: white;
+  transition: all 0.3s ease; }
   @media screen and (min-width: 0px) and (max-width: 991px) {
     .primary-button {
       padding: 15px 40px;
@@ -108,8 +107,7 @@ div.buttons {
       width: 100%;
       text-align: center; } }
   .primary-button:hover {
-    box-shadow: none;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05); }
+    box-shadow: none; }
 
 .secondary-button {
   padding: 14px 34px;
@@ -118,9 +116,9 @@ div.buttons {
   transition: all 0.3s ease;
   text-decoration: none;
   border-radius: 80px;
-  background: transparent;
-  color: #292C32;
-  border: 1px solid #292C32; }
+  color: rgba(41, 44, 50, 0.6);
+  background: white;
+  border: 1px solid #E7E9EE; }
   @media screen and (min-width: 0px) and (max-width: 991px) {
     .secondary-button {
       padding: 15px 40px;
@@ -136,9 +134,7 @@ div.buttons {
       width: 100%;
       text-align: center; } }
   .secondary-button:hover {
-    transform: translateY(-5px);
-    border: 1px solid #0d6efd;
-    color: #0d6efd; }
+    transform: translateY(-5px); }
 
 div.resize {
   max-width: 1200px;
@@ -270,6 +266,30 @@ input {
 
 textarea {
   font-size: 16px; }
+
+.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
+  font-family: regular; }
+
+.font-weight, a.header-button, h1, h2, h3, h4, h5, h6, button, nav.mainnav a.navbar-brand span {
+  font-weight: 700; }
+
+div.main-extend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 110px 0px; }
+  @media screen and (min-width: 0em) and (max-width: 479px) {
+    div.main-extend {
+      padding: 80px 0px; } }
+
+div.home-main div.buttons a:not([class="primary-button"]) {
+  margin-left: 20px;
+  font-size: 18px;
+  color: #292C32; }
+  @media screen and (min-width: 0em) and (max-width: 479px) {
+    div.home-main div.buttons a:not([class="primary-button"]) {
+      font-size: 16px; } }
 
 body {
   margin: 0;

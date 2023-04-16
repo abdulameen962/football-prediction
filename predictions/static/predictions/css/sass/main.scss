@@ -1,5 +1,6 @@
 @import 'mixins';
 @import "rules";
+@import "home";
 body {
     @include mpb;
     overflow-x: hidden;

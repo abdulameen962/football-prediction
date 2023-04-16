@@ -16,77 +16,15 @@ from django.conf import settings
 from django.contrib import admin
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from rave_python import Rave,Misc,RaveExceptions
 from allauth.account.signals import email_confirmed,email_confirmation_sent
 from django.template.defaultfilters import slugify
 import time
 from .models import *
-from .flutterwave import checkPayment
+from .flutterwave import checkPayment,rave
+from .signals import *
 
 admin.site.login = login_required(admin.site.login)
-#signal for login,welcome email and create profile
-@receiver(pre_save,sender=Blog)
-def blog_handler(sender,instance,**kwargs):
-    instance.slug = (slugify(instance.title))
-
-@receiver(post_save,sender=User)
-def user_handler(sender, instance,**kwargs):
-    #check if user has a type,if he doesn't send an email,if he does create appropriate profile
-    try:
-        emailuser = EmailAddress.objects.get(user=instance)
-        if instance.type != "" and emailuser.verified:
-            if instance.type == "freemium":
-                #create freemium profile
-                try:
-                    FreemiumProfile.objects.get(user=instance)
-                except FreemiumProfile.DoesNotExist:
-                    FreemiumProfile.objects.create(user=instance)
-            elif instance.type == "premium":
-                #create premium profile
-                try:
-                    PremiumProfile.objects.get(user=instance)
-                except PremiumProfile.DoesNotExist:
-                    PremiumProfile.objects.create(user=instance)
-
-        elif instance.type == "" and emailuser.verified == False:
-            #send the email
-            html_message = render_to_string("predictions/welcome-mail.html",{"username":instance.username})
-            plain_message = strip_tags(html_message)
-            #check if the user has an email address
-            if instance.email != "":
-                send_mail(message=plain_message, from_email=settings.EMAIL_HOST_USER,subject=f"Welcome to Frankly Prediction {instance.username}",recipient_list=[instance.email],fail_silently=False,html_message=html_message)
-            else:
-                return ""
-
-    except EmailAddress.DoesNotExist:
-        #signed in through socials
-        emailuser = ""
-
-#signal for change from freemium to premium
-@receiver(pre_save,sender=PremiumProfile)
-def premium_profile_handler(sender,instance,**kwargs):
-    #if the user had a freemium acccount,delete it
-    user = instance.user
-    try:
-        freemium = FreemiumProfile.objects.get(user=user)
-        #here to transfer details
-
-        # freemium.delete()
-    except FreemiumProfile.DoesNotExist:
-        freemium = ""
-
-#signal for change from premium to freemium
-@receiver(pre_delete,sender=PremiumProfile)
-def premium_profile_delete_handler(sender,instance,**kwargs):
-    #to create a freemium account for user
-    user = instance.user
-    try:
-        freemium = FreemiumProfile.objects.get(user=user)
-        #here to transfer details
-    except FreemiumProfile.DoesNotExist:
-        FreemiumProfile.objects.create(user=user)
-
-    freemium = FreemiumProfile.objects.get(user=user)
-    #transfer details
 
 def index(request):
     user = request.user
@@ -199,6 +137,10 @@ class BlogDetail(View):
 #     else:
 #         return HttpResponseRedirect(reverse("index"))
 
+def user_save(user,type):
+    if user.type != type:
+        user.type = type
+        user.save()
 
 @login_required(login_url="account_login")
 @verified_email_required
@@ -206,12 +148,10 @@ def complete_signup(request,method):
     user = request.user
     if user.type != "":
         if method == "freemium":
-            user.type = method
-            user.save()
+            user_save(user,method)
             return HttpResponseRedirect(reverse("freemium"))
         elif method == "premium":
-            user.type = method
-            user.save()
+            user_save(user,method)
             return HttpResponseRedirect(reverse("premium_payment"))
         else:
             messages.error(request,"Invalid type method,pls retry or contact support")
@@ -230,6 +170,7 @@ def premium_payment(request):
         if userprofile.activated == False:
             return render(request,"predictions/premium_signup.html")
         else:
+            user_save(user,"premium")
             return HttpResponseRedirect(reverse("premium"))
     else:
          return HttpResponseRedirect(reverse("index"))
@@ -249,8 +190,7 @@ def confirm_payment(request):
             try:
                userprofile = PremiumProfile.objects.get(user=user)
             except PremiumProfile.DoesNotExist:
-                user.type = "premium"
-                user.save()
+                user_save(user,"premium")
                 userprofile = PremiumProfile.objects.get(user=user)
             userprofile.activated = True
             userprofile.save()
@@ -283,8 +223,7 @@ def cancel_subscription(request):
 
                         if status:
                             userprofile.activated = False
-                            user.type = "freemium"
-                            user.save()
+                            user_save(user,"freemium")
                             userprofile.save()
                             messages.success(request,"Your subscription has been cancelled and you have been turned to a freemium user")
                             return HttpResponseRedirect(reverse("freemium"))
@@ -307,26 +246,25 @@ def activate_subscription(request):
             res = res["data"]
             res = res["plansubscriptions"]
             status = False
+            if user.type == "premium":
+                userprofile = PremiumProfile.objects.get(user=user)
+                if userprofile.activated:
+                    return HttpResponseRedirect(reverse("premium"))
             for plan in res:
                 customer = plan["customer"]
-                if user.email == customer["customer_email"] and plan["status"] != "active":
+                if user.email == customer["customer_email"] and plan["status"] == "cancelled":
                     rave.Subscriptions.activate(plan["id"])
                     status = True
 
             if status:
                 #get premium profile
-                user.type = "premium"
-                user.save()
+                user_save(user,"premium")
                 userprofile = PremiumProfile.objects.get(user=user)
                 userprofile.activated = True
                 userprofile.save()
                 messages.success(request,"You have been reactivated as a premium user")
                 return HttpResponseRedirect(reverse("premium"))
             else:
-                if user.type == "premium":
-                    userprofile = PremiumProfile.objects.get(user=user)
-                    if userprofile.activated:
-                        return HttpResponseRedirect(reverse("premium"))
                 return HttpResponseRedirect(reverse("premium_payment"))
     except RaveExceptions.PlanStatusError as e:
         print(e.err)

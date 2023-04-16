@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 load_dotenv()
 
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django.contrib.sites",
     "predictions",
+    'cloudinary',
 
     'allauth',
     'allauth.account',
@@ -119,29 +123,42 @@ SOCIALACCOUNT_PROVIDERS = {
         },
         'OAUTH_PKCE_ENABLED': True,
         'APP': {
-            'client_id': '664887382931-65kikh46ep03ghhbekohrs31e3vbqq71.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': os.environ.get('GOOGLE_CLIENT_ID'),
+            'secret': os.environ.get("GOOGLE_CLIENT_SECRET"),
             'key': ''
         }
     },
     'instagram': {
         "VERIFIED_EMAIL": True,
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
         'APP': {
-            'client_id': '200960736002952',
-            'secret': '456',
+            'client_id': os.environ.get("INSTA_CLIENT_ID"),
+            'secret': os.environ.get("INSTA_CLIENT_SECRET"),
             'key': ''
         }
     },
     'facebook': {
         "VERIFIED_EMAIL": True,
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
         'APP': {
-            'client_id': '1710289146066816',
-            'secret': 'ce42f8e586b21188b61449ff26879327',
+            'client_id': os.environ.get("FB_CLIENT_ID"),
+            'secret': os.environ.get("FB_CLIENT_SECRET"),
             'key': ''
         }
     },
 }
 
+cloudinary.config( 
+  cloud_name = os.environ.get('cloud_name'), 
+  api_key = os.environ.get('api_key'), 
+  api_secret = os.environ.get('api_secret')
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -167,7 +184,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 

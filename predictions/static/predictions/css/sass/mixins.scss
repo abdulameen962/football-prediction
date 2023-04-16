@@ -73,13 +73,11 @@
 }
 
 @mixin secondarybutton {
-    background: transparent;
-    color: $dark;
-    @include border($dark);
+    color: rgba($dark, 0.6);
+    background: $white;
+    @include border($lightgrey);
     &:hover {
         transform: translateY(-5px);
-        @include border($blue);
-        color: $blue;
     }
 }
 
@@ -91,13 +89,13 @@
 }
 
 @mixin primarybtn {
-    color: rgba($red, 0.8);
-    background: $white;
+    background: $orangeback;
+    color: $white;
     @include transition;
-    box-shadow: 8px 17px 20px rgba(0, 0, 0, .05);
+    // box-shadow: 8px 17px 20px rgba(0, 0, 0, .05);
     &:hover {
         box-shadow: none;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, .05);
+        // box-shadow: 5px 5px 10px rgba(0, 0, 0, .05);
     }
 }
 
@@ -342,12 +340,14 @@ $dark: #292C32;
 $blue: #343472;
 $white: rgb(255, 255, 255);
 $orangeheader: #FFA90F;
+$orangeback: #EF9F00;
 $greyback: #FBF9F8;
 $lightblue:#E8E9FD;
 $blueborder: #E7E9EE;
 $darkgrey: #F8F7F2;
 $whitegrey:#f8f9fa;
 $lightgrey: #E7E9EE;
+$bordergrey: rgba($grey, 0.5);
 $red: red;
 $orange:#eeca86;
 $purple: #302cff;
