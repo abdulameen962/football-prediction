@@ -1,4 +1,4 @@
-.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
+.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
   font-family: regular; }
 
 .font-weight, a.header-button, h1, h2, h3, h4, h5, h6, button, nav.mainnav a.navbar-brand span {
@@ -14,7 +14,7 @@ div.main-extend {
     div.main-extend {
       padding: 80px 0px; } }
 
-.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
+.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
   font-family: regular; }
 
 .font-weight, a.header-button, h1, h2, h3, h4, h5, h6, button, nav.mainnav a.navbar-brand span {
@@ -267,7 +267,7 @@ input {
 textarea {
   font-size: 16px; }
 
-.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
+.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
   font-family: regular; }
 
 .font-weight, a.header-button, h1, h2, h3, h4, h5, h6, button, nav.mainnav a.navbar-brand span {
@@ -283,13 +283,84 @@ div.main-extend {
     div.main-extend {
       padding: 80px 0px; } }
 
-div.home-main div.buttons a:not([class="primary-button"]) {
-  margin-left: 20px;
-  font-size: 18px;
-  color: #292C32; }
-  @media screen and (min-width: 0em) and (max-width: 479px) {
-    div.home-main div.buttons a:not([class="primary-button"]) {
-      font-size: 16px; } }
+div.home-main p {
+  margin: 10px 0px 20px; }
+
+div.home-main div.text {
+  padding-top: 70px; }
+  div.home-main div.text div.buttons a {
+    cursor: pointer; }
+  div.home-main div.text div.buttons a:not([class="primary-button"]) {
+    margin-left: 25px;
+    font-size: 18px;
+    color: #292C32; }
+    @media screen and (min-width: 0em) and (max-width: 479px) {
+      div.home-main div.text div.buttons a:not([class="primary-button"]) {
+        font-size: 16px; } }
+    div.home-main div.text div.buttons a:not([class="primary-button"]):hover {
+      padding: 14px 34px;
+      font-size: 18px;
+      line-height: 1.389em;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      border-radius: 80px;
+      color: rgba(41, 44, 50, 0.6);
+      background: white;
+      border: 1px solid #E7E9EE;
+      color: #292C32; }
+      @media screen and (min-width: 0px) and (max-width: 991px) {
+        div.home-main div.text div.buttons a:not([class="primary-button"]):hover {
+          padding: 15px 40px;
+          font-size: 16px;
+          line-height: 1.125em; } }
+      @media screen and (min-width: 0px) and (max-width: 740px) {
+        div.home-main div.text div.buttons a:not([class="primary-button"]):hover {
+          padding: 15px 34px;
+          font-size: 16px;
+          line-height: 1.125em; } }
+      @media screen and (min-width: 0em) and (max-width: 479px) {
+        div.home-main div.text div.buttons a:not([class="primary-button"]):hover {
+          width: 100%;
+          text-align: center; } }
+      div.home-main div.text div.buttons a:not([class="primary-button"]):hover:hover {
+        transform: translateY(-5px); }
+
+div.home-main div.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  div.home-main div.image picture {
+    display: block;
+    max-width: 100%;
+    object-fit: cover; }
+
+div.triangle {
+  position: absolute;
+  left: 0;
+  top: 500px; }
+
+div.works {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 40px 0px; }
+  div.works div.work-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 600px; }
+    div.works div.work-header p {
+      text-align: center; }
+  div.works div.work-grid {
+    margin: 40px 0px;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0px 30px;
+    gap: 30px 35px; }
 
 body {
   margin: 0;
@@ -330,7 +401,6 @@ nav {
     max-height: 40px;
     object-fit: cover; }
   nav.mainnav a.navbar-brand span {
-    margin-left: 10px;
     line-height: 1.308em;
     font-size: 25px;
     color: #292C32; }

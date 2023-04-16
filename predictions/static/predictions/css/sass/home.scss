@@ -1,13 +1,61 @@
 @import "mixins";
 div.home-main {
-    div.buttons {
-        a:not([class="primary-button"]) {
-            margin-left: 20px;
-            font-size: 18px;
-            color: $dark;
-            @include respond(phone) {
-                font-size: 16px;
+    p {
+        margin: 10px 0px 20px;
+    }
+    div.text {
+        padding-top: 70px;
+        div.buttons {
+            a {
+                cursor: pointer;
             }
+            a:not([class="primary-button"]) {
+                margin-left: 25px;
+                font-size: 18px;
+                color: $dark;
+                @include respond(phone) {
+                    font-size: 16px;
+                }
+                &:hover {
+                    @include defaultbutton;
+                    @include secondarybutton;
+                    color: $dark;
+                }
+            }
+        }
+    }
+    div.image {
+        @include flex(yes);
+        picture {
+            display: block;
+            // width: 500px;
+            max-width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+div.triangle {
+    position: absolute;
+    left: 0;
+    top: 500px;
+}
+
+div.works {
+    @include flex(yes);
+    margin: 40px 0px;
+    div.work {
+        &-header {
+            @include flex(yes);
+            width: 600px;
+            p {
+                text-align: center;
+            }
+        }
+        &-grid {
+            margin: 40px 0px;
+            @include grid(3);
+            gap: 30px 35px;
         }
     }
 }

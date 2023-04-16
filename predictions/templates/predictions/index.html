@@ -1,9 +1,10 @@
 {% extends 'predictions/layout.html' %}
+{% load static %}
 {% block title %} Predictions home{% endblock  %}
 {% block og_title %} Predictions home{% endblock  %}
 {% block body %}
 <div class="row home-main">
-    <div class="text col-sm-12 col-md-12 col-lg-6">
+    <div class="text col-sm-12 col-md-12 col-lg-5">
         <h1> Lorem ipsum dinor </h1>
         <p> Enim vero quod ipsam illum molestiae eos assumenda quibusdam voluptate sequi, quo distinctio doloribus laborum maxime nisi in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores inventore ab </p>
         <div class="buttons">
@@ -11,8 +12,31 @@
             <a href="#" class="none-button">Learn more</a>
         </div>
     </div>
-<div class="image col-sm-12 col-md-12 col-lg-6">
-
+    <div class="image col-sm-12 col-md-12 col-lg-7">
+        <picture>
+            <source media="(min-width:650px)" srcset="{% static 'predictions/css/images/home-background.svg' %}">
+            <source media="(min-width:320px)" srcset="{% static 'predictions/css/images/home-background.svg' %}">
+            <img src="{% static 'predictions/css/images/home-background.svg' %}" alt="Home background">
+        </picture>
+    </div>
 </div>
+<div class="triangle">
+    <svg width="241" height="421" viewBox="0 0 241 421" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="172" y="172.301" width="50" height="50" rx="15" transform="rotate(-60 172 172.301)" fill="#FFACAC"/>
+        <path d="M164.135 170.974C169.242 174.866 173.501 180.588 176.468 187.542C179.435 194.497 181 202.428 181 210.508C181 218.588 179.435 226.52 176.468 233.474C173.501 240.429 169.242 246.151 164.135 250.043L-52.7976 415.43C-57.7529 419.203 -63.3315 421.12 -68.984 420.994C-74.6365 420.868 -80.1677 418.702 -85.0328 414.711C-89.8979 410.719 -93.9289 405.039 -96.7288 398.23C-99.5286 391.421 -101.001 383.718 -101 375.88V45.1061C-100.999 37.2666 -99.5246 29.5628 -96.7221 22.754C-93.9196 15.9452 -89.8856 10.2663 -85.0179 6.27726C-80.1502 2.28818 -74.6168 0.126537 -68.963 0.00538854C-63.3092 -0.11576 -57.7302 1.80777 -52.7759 5.58639L164.135 170.974Z" fill="#03B962"/>
+    </svg>                          
 </div>
+<div class="works">
+   <div class="work-header">
+        <h2>How it works</h2>
+        <p>molestiae eos assumenda quibusdam voluptate sequi, quo distinctio doloribus laborum maxime nisi in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores</p>
+   </div>
+   <div class="work-grid">
+      <works :works="works"></works>
+   </div>
+</div>
+{% endblock  %}
+{% block script %}
+    <script src="{% static 'predictions/js/vue.js' %}"></script>
+    <script src="{% static 'predictions/js/script.js' %}"></script>
 {% endblock  %}
