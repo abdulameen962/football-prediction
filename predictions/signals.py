@@ -54,7 +54,16 @@ def premium_profile_handler(sender,instance,**kwargs):
     try:
         freemium = FreemiumProfile.objects.get(user=user)
         #here to transfer details
-        freemium.watchlist = instance.watchlist
+        #remove all present ones
+        if len(freemium.watchlist.all()) > 0:
+            for watch in freemium.watchlist.all():
+                freemium.watchlist.remove(watch)
+            
+
+        if len(instance.watchlist.all()) > 0:
+            for watch in instance.watchlist.all():
+                freemium.watchlist.add(watch)
+
         # freemium.delete()
     except FreemiumProfile.DoesNotExist:
         freemium = ""
@@ -99,3 +108,5 @@ def prediction_mail_handler(sender,instance,**kwargs):
 
     if len(emails) > 0:
         send_mass_mail(subject=f"New prediction dropped for {instance.league.league}",message=plain_message, from_email=settings.EMAIL_HOST_USER,recipient_list=emails, fail_silently=False,html_message=html_message)
+
+

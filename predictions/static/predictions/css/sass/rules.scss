@@ -22,6 +22,45 @@ img {
     width: auto;
 }
 
+div.table-container {
+    @include mp;
+    table.table {
+        padding: 15px 0px 0px 0px;
+        &>thead {
+            border-bottom: 1px solid $lightgrey;
+            tr {
+                th {
+                    border: none;
+                    padding: $tdpadding;
+                }
+            }
+        }
+        &>tbody {
+            tr {
+                border-bottom: 1px solid $lightgrey;
+                @include transition;
+                cursor: pointer;
+                &:hover {
+                    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05);
+                }
+                td {
+                    padding: $tdpadding;
+                    vertical-align: middle;
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        box-shadow: $imagestand;
+                    }
+                    span {
+                        padding-left: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
 a.header-button {
     padding: 16px 26px;
     line-height: 1.125em;

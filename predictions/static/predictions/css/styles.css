@@ -1,4 +1,4 @@
-.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
+.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]), div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
   font-family: regular; }
 
 .font-weight, a.header-button, h1, h2, h3, h4, h5, h6, button, nav.mainnav a.navbar-brand span {
@@ -14,7 +14,24 @@ div.main-extend {
     div.main-extend {
       padding: 80px 0px; } }
 
-.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
+.form-control, p input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; }
+
+.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]), div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
   font-family: regular; }
 
 .font-weight, a.header-button, h1, h2, h3, h4, h5, h6, button, nav.mainnav a.navbar-brand span {
@@ -29,6 +46,23 @@ div.main-extend {
   @media screen and (min-width: 0em) and (max-width: 479px) {
     div.main-extend {
       padding: 80px 0px; } }
+
+.form-control, p input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; }
 
 @font-face {
   font-family: regular;
@@ -50,6 +84,33 @@ ul {
 img {
   height: auto;
   width: auto; }
+
+div.table-container {
+  margin: 0;
+  padding: 0; }
+  div.table-container table.table {
+    padding: 15px 0px 0px 0px; }
+    div.table-container table.table > thead {
+      border-bottom: 1px solid #E7E9EE; }
+      div.table-container table.table > thead tr th {
+        border: none;
+        padding: 10px 25px; }
+    div.table-container table.table > tbody tr {
+      border-bottom: 1px solid #E7E9EE;
+      transition: all 0.3s ease;
+      cursor: pointer; }
+      div.table-container table.table > tbody tr:hover {
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05); }
+      div.table-container table.table > tbody tr td {
+        padding: 10px 25px;
+        vertical-align: middle; }
+        div.table-container table.table > tbody tr td img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05); }
+        div.table-container table.table > tbody tr td span {
+          padding-left: 8px; }
 
 a.header-button {
   padding: 16px 26px;
@@ -267,7 +328,7 @@ input {
 textarea {
   font-size: 16px; }
 
-.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
+.font, a.header-button, .primary-button, .secondary-button, h1, h2, h3, h4, h5, h6, p, button, .subtitle, a, input, textarea, div.home-main div.text div.buttons a:not([class="primary-button"]), div.home-main div.text div.buttons a:not([class="primary-button"]):hover, nav.mainnav a.navbar-brand span, nav div.container-fluid div ul li a {
   font-family: regular; }
 
 .font-weight, a.header-button, h1, h2, h3, h4, h5, h6, button, nav.mainnav a.navbar-brand span {
@@ -283,11 +344,34 @@ div.main-extend {
     div.main-extend {
       padding: 80px 0px; } }
 
+.form-control, p input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; }
+
 div.home-main p {
   margin: 10px 0px 20px; }
+  @media screen and (min-width: 0em) and (max-width: 479px) {
+    div.home-main p {
+      margin: 0px 0px 20px; } }
 
 div.home-main div.text {
   padding-top: 70px; }
+  @media screen and (min-width: 0px) and (max-width: 991px) {
+    div.home-main div.text {
+      padding-top: 20px; } }
   div.home-main div.text div.buttons a {
     cursor: pointer; }
   div.home-main div.text div.buttons a:not([class="primary-button"]) {
@@ -296,7 +380,35 @@ div.home-main div.text {
     color: #292C32; }
     @media screen and (min-width: 0em) and (max-width: 479px) {
       div.home-main div.text div.buttons a:not([class="primary-button"]) {
-        font-size: 16px; } }
+        font-size: 16px;
+        margin-left: 0px;
+        padding: 14px 34px;
+        font-size: 18px;
+        line-height: 1.389em;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border-radius: 80px;
+        color: rgba(41, 44, 50, 0.6);
+        background: white;
+        border: 1px solid #E7E9EE;
+        margin-top: 20px; } }
+  @media screen and (min-width: 0em) and (max-width: 479px) and (min-width: 0px) and (max-width: 991px) {
+    div.home-main div.text div.buttons a:not([class="primary-button"]) {
+      padding: 15px 40px;
+      font-size: 16px;
+      line-height: 1.125em; } }
+  @media screen and (min-width: 0em) and (max-width: 479px) and (min-width: 0px) and (max-width: 740px) {
+    div.home-main div.text div.buttons a:not([class="primary-button"]) {
+      padding: 15px 34px;
+      font-size: 16px;
+      line-height: 1.125em; } }
+  @media screen and (min-width: 0em) and (max-width: 479px) and (min-width: 0em) and (max-width: 479px) {
+    div.home-main div.text div.buttons a:not([class="primary-button"]) {
+      width: 100%;
+      text-align: center; } }
+    @media screen and (min-width: 0em) and (max-width: 479px) {
+        div.home-main div.text div.buttons a:not([class="primary-button"]):hover {
+          transform: translateY(-5px); } }
     div.home-main div.text div.buttons a:not([class="primary-button"]):hover {
       padding: 14px 34px;
       font-size: 18px;
@@ -330,15 +442,29 @@ div.home-main div.image {
   justify-content: center;
   align-items: center;
   flex-direction: column; }
+  @media screen and (min-width: 0px) and (max-width: 991px) {
+    div.home-main div.image {
+      margin-top: 35px; } }
   div.home-main div.image picture {
     display: block;
     max-width: 100%;
     object-fit: cover; }
+    @media screen and (min-width: 0em) and (max-width: 479px) {
+      div.home-main div.image picture {
+        padding-right: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center; } }
 
 div.triangle {
   position: absolute;
   left: 0;
   top: 500px; }
+  div.triangle svg {
+    width: 241px; }
+    @media screen and (min-width: 0px) and (max-width: 991px) {
+      div.triangle svg {
+        display: none; } }
 
 div.works {
   display: flex;
@@ -346,21 +472,228 @@ div.works {
   align-items: center;
   flex-direction: column;
   margin: 40px 0px; }
-  div.works div.work-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 600px; }
-    div.works div.work-header p {
-      text-align: center; }
   div.works div.work-grid {
     margin: 40px 0px;
     display: grid;
     justify-content: space-between;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0px 30px;
-    gap: 30px 35px; }
+    gap: 30px 75px; }
+    @media screen and (min-width: 0px) and (max-width: 991px) {
+      div.works div.work-grid {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0px 30px; } }
+    @media screen and (min-width: 0em) and (max-width: 479px) {
+      div.works div.work-grid {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 0px 30px;
+        margin: 10px 0px; } }
+    div.works div.work-grid div.step {
+      position: relative; }
+      div.works div.work-grid div.step div.work-single {
+        position: relative; }
+        div.works div.work-grid div.step div.work-single div.image {
+          width: 100%; }
+          div.works div.work-grid div.step div.work-single div.image img {
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%; }
+        div.works div.work-grid div.step div.work-single div.text {
+          margin-top: 15px; }
+      div.works div.work-grid div.step2 {
+        padding-top: 60px; }
+        @media screen and (min-width: 0px) and (max-width: 991px) {
+          div.works div.work-grid div.step2 {
+            padding-top: 0px; } }
+      div.works div.work-grid div.step3 {
+        padding-top: 120px; }
+        @media screen and (min-width: 0px) and (max-width: 991px) {
+          div.works div.work-grid div.step3 {
+            padding-top: 0px; } }
+
+div.predictions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  div.predictions div.predict-table {
+    width: 100%;
+    margin: 40px 0px; }
+    @media screen and (min-width: 0em) and (max-width: 479px) {
+      div.predictions div.predict-table {
+        margin: 15px 0px; } }
+    div.predictions div.predict-table div.league div.table-container {
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+      background: white;
+      padding: 20px 15px;
+      padding-left: 0px;
+      padding-right: 0px;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+      margin-top: 10px; }
+      div.predictions div.predict-table div.league div.table-container svg {
+        transform: scale(0.9); }
+    div.predictions div.predict-table div.league h3 img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%; }
+    div.predictions div.predict-table div.more {
+      margin-top: 20px; }
+
+div.headers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 700px; }
+  @media screen and (min-width: 0px) and (max-width: 740px) {
+    div.headers {
+      width: auto; } }
+  div.headers p {
+    text-align: center; }
+    @media screen and (min-width: 0em) and (max-width: 479px) {
+      div.headers p {
+        margin: 0;
+        padding: 0; } }
+
+div.membership {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 30px 0px; }
+  @media screen and (min-width: 0em) and (max-width: 479px) {
+    div.membership {
+      margin: 40px 0px; } }
+  div.membership div.membership_body {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0px 30px;
+    gap: 20px 30px;
+    margin: 30px 0px; }
+    @media screen and (min-width: 0px) and (max-width: 991px) {
+      div.membership div.membership_body {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0px 30px; } }
+    @media screen and (min-width: 0em) and (max-width: 479px) {
+      div.membership div.membership_body {
+        display: grid;
+        justify-content: space-between;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 0px 30px;
+        gap: 30px; } }
+    div.membership div.membership_body div.member-single {
+      background: rgba(128, 128, 128, 0.03);
+      border-radius: 20px;
+      padding: 30px 25px;
+      transition: all 0.3s ease;
+      cursor: pointer; }
+      div.membership div.membership_body div.member-single:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05); }
+      div.membership div.membership_body div.member-single:hover {
+        transform: translateY(-5px);
+        box-shadow: 5px 0px 15px rgba(128, 128, 128, 0.03); }
+      div.membership div.membership_body div.member-single div.member-single-main div.title {
+        margin: 0px 0px 15px 0px; }
+        div.membership div.membership_body div.member-single div.member-single-main div.title div.left div.title-image {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+          @media screen and (min-width: 0px) and (max-width: 740px) {
+            div.membership div.membership_body div.member-single div.member-single-main div.title div.left div.title-image {
+              justify-content: flex-start; } }
+          div.membership div.membership_body div.member-single div.member-single-main div.title div.left div.title-image svg {
+            width: 40px;
+            height: 40px; }
+        @media screen and (min-width: 0em) and (max-width: 479px) {
+          div.membership div.membership_body div.member-single div.member-single-main div.title div.left div.title-header {
+            margin: 0;
+            padding: 0; } }
+        div.membership div.membership_body div.member-single div.member-single-main div.title div.left div.title-header h4 {
+          margin: 0;
+          padding: 0; }
+        div.membership div.membership_body div.member-single div.member-single-main div.title div.left div.title-header p {
+          margin: 0;
+          padding: 0;
+          font-size: 13px; }
+        div.membership div.membership_body div.member-single div.member-single-main div.title div.right {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column; }
+          @media screen and (min-width: 0px) and (max-width: 740px) {
+            div.membership div.membership_body div.member-single div.member-single-main div.title div.right {
+              align-items: flex-start;
+              margin: 0;
+              padding: 0; } }
+          div.membership div.membership_body div.member-single div.member-single-main div.title div.right span {
+            font-size: 24px;
+            font-weight: 500; }
+      div.membership div.membership_body div.member-single div.member-single-main div.text {
+        margin: 35px 0px 0px 0px; }
+        div.membership div.membership_body div.member-single div.member-single-main div.text ul li {
+          margin: 15px 0px;
+          list-style-image: url("./images/checkbox.svg"); }
+  div.membership div.cta {
+    padding: 15px 0px; }
+
+footer {
+  border-top: 1px solid #E7E9EE; }
+  footer ul {
+    justify-content: center;
+    margin: 20px 0px; }
+    footer ul li a {
+      text-decoration: none;
+      color: #292C32; }
+      footer ul li a:hover {
+        text-decoration: underline;
+        color: #292C32; }
+  footer ul.social-links li {
+    padding: 0px 8px;
+    display: inline-block; }
+    footer ul.social-links li a {
+      background: #FFFFFF;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.02);
+      width: 41px;
+      height: 41px;
+      transition: all 0.3s ease;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      footer ul.social-links li a:hover {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); }
+  footer div.footer-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px 0px 0px 0px; }
+    footer div.footer-main p {
+      margin: 0;
+      padding: 0; }
+
+p label {
+  font-size: 18px; }
+
+p input:not([type="checkbox"]) {
+  display: block; }
+
+p button[type="submit"] {
+  font-size: 20px;
+  padding: 10px 25px; }
 
 body {
   margin: 0;

@@ -1,61 +1,293 @@
-@import "mixins";
-div.home-main {
-    p {
-        margin: 10px 0px 20px;
-    }
-    div.text {
-        padding-top: 70px;
-        div.buttons {
-            a {
-                cursor: pointer;
-            }
-            a:not([class="primary-button"]) {
-                margin-left: 25px;
-                font-size: 18px;
-                color: $dark;
-                @include respond(phone) {
-                    font-size: 16px;
-                }
-                &:hover {
-                    @include defaultbutton;
-                    @include secondarybutton;
-                    color: $dark;
-                }
-            }
-        }
-    }
-    div.image {
+    @import "mixins";
+    @mixin headermiddle {
         @include flex(yes);
-        picture {
-            display: block;
-            // width: 500px;
-            max-width: 100%;
-            object-fit: cover;
+        width: 700px;
+        @include respond(lphone) {
+            width: auto;
         }
-    }
-}
-
-div.triangle {
-    position: absolute;
-    left: 0;
-    top: 500px;
-}
-
-div.works {
-    @include flex(yes);
-    margin: 40px 0px;
-    div.work {
-        &-header {
-            @include flex(yes);
-            width: 600px;
-            p {
-                text-align: center;
+        p {
+            text-align: center;
+            @include respond(phone) {
+                @include mp;
             }
         }
-        &-grid {
-            margin: 40px 0px;
-            @include grid(3);
-            gap: 30px 35px;
+    }
+    
+    div.home-main {
+        p {
+            margin: 10px 0px 20px;
+            @include respond(phone) {
+                margin: 0px 0px 20px;
+            }
+        }
+        div.text {
+            padding-top: 70px;
+            @include respond(tab) {
+                padding-top: 20px;
+            }
+            div.buttons {
+                a {
+                    cursor: pointer;
+                }
+                a:not([class="primary-button"]) {
+                    margin-left: 25px;
+                    font-size: 18px;
+                    color: $dark;
+                    @include respond(phone) {
+                        font-size: 16px;
+                        margin-left: 0px;
+                        @include defaultbutton;
+                        @include secondarybutton;
+                        margin-top: 20px;
+                    }
+                    &:hover {
+                        @include defaultbutton;
+                        @include secondarybutton;
+                        color: $dark;
+                    }
+                }
+            }
+        }
+        div.image {
+            @include flex(yes);
+            @include respond(tab) {
+                margin-top: 35px;
+            }
+            picture {
+                display: block;
+                max-width: 100%;
+                object-fit: cover;
+                @include respond(phone) {
+                    padding-right: 30px;
+                    @include flex(no);
+                }
+            }
         }
     }
-}
+    
+    div.triangle {
+        position: absolute;
+        left: 0;
+        top: 500px;
+        svg {
+            width: 241px;
+            @include respond(tab) {
+                display: none;
+            }
+        }
+    }
+    
+    div.works {
+        @include flex(yes);
+        margin: 40px 0px;
+        div.work {
+            &-grid {
+                margin: 40px 0px;
+                @include grid(3);
+                gap: 30px 75px;
+                @include respond(tab) {
+                    @include grid(2);
+                }
+                @include respond(phone) {
+                    @include grid(1);
+                    margin: 10px 0px;
+                }
+                div.step {
+                    position: relative;
+                    div.work-single {
+                        position: relative;
+                        div.image {
+                            width: 100%;
+                            img {
+                                width: 100%;
+                                min-width: 100%;
+                                max-width: 100%;
+                            }
+                        }
+                        div.text {
+                            margin-top: 15px;
+                        }
+                    }
+                    &2 {
+                        padding-top: 60px;
+                        @include respond(tab) {
+                            padding-top: 0px;
+                        }
+                    }
+                    &3 {
+                        padding-top: 120px;
+                        @include respond(tab) {
+                            padding-top: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    div.predictions {
+        @include flex(yes);
+        div.predict-table {
+            width: 100%;
+            margin: 40px 0px;
+            @include respond(phone) {
+                margin: 15px 0px;
+            }
+            div.league {
+                div.table-container {
+                    @include patientbottom;
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    margin-bottom: 0px;
+                    padding-bottom: 0px;
+                    margin-top: 10px;
+                    svg {
+                        transform: scale(0.9);
+                    }
+                }
+                h3 {
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+            div.more {
+                margin-top: 20px;
+            }
+        }
+    }
+    
+    div.headers {
+        @include headermiddle;
+    }
+    
+    div.membership {
+        @include flex(yes);
+        justify-content: flex-start;
+        margin: 30px 0px;
+        @include respond(phone) {
+            margin: 40px 0px;
+        }
+        & &_body {
+            @include grid(3);
+            gap: 20px 30px;
+            margin: 30px 0px;
+            @include respond(tab) {
+                @include grid(2);
+            }
+            @include respond(phone) {
+                @include grid(1);
+                gap: 30px;
+            }
+            div.member-single {
+                background: rgba(grey, 0.03);
+                border-radius: 20px;
+                padding: 30px 25px;
+                @include transition;
+                cursor: pointer;
+                @include pbtnhover;
+                // @include iconshadow
+                &:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 5px 0px 15px rgba(grey, 0.03);
+                }
+                div.member-single-main {
+                    div.title {
+                        margin: 0px 0px 15px 0px;
+                        div.left {
+                            div.title-image {
+                                @include mp;
+                                @include flex(no);
+                                @include respond(lphone) {
+                                    justify-content: flex-start;
+                                }
+                                svg {
+                                    width: 40px;
+                                    height: 40px;
+                                }
+                            }
+                            div.title-header {
+                                @include respond(phone) {
+                                    @include mp;
+                                }
+                                h4 {
+                                    @include mp;
+                                }
+                                p {
+                                    @include mp;
+                                    font-size: 13px;
+                                }
+                            }
+                        }
+                        div.right {
+                            @include flex(yes);
+                            @include respond(lphone) {
+                                align-items: flex-start;
+                                @include mp;
+                            }
+                            span {
+                                font-size: 24px;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                    div.text {
+                        margin: 35px 0px 0px 0px;
+                        ul {
+                            li {
+                                margin: 15px 0px;
+                                list-style-image: url("./images/checkbox.svg");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        div.cta {
+            padding: 15px 0px;
+        }
+    }
+    
+    footer {
+        border-top: 1px solid $lightgrey;
+        ul {
+            justify-content: center;
+            margin: 20px 0px;
+            li {
+                a {
+                    @include link;
+                    &:hover {
+                        text-decoration: underline;
+                        color: $dark;
+                    }
+                }
+            }
+        }
+        ul.social-links {
+            li {
+                padding: 0px 8px;
+                display: inline-block;
+                a {
+                    background: #FFFFFF;
+                    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.02);
+                    width: 41px;
+                    height: 41px;
+                    @include transition;
+                    border-radius: 50%;
+                    @include flex(no);
+                    &:hover {
+                        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+                    }
+                }
+            }
+        }
+        div.footer-main {
+            @include flex(yes);
+            margin: 40px 0px 0px 0px;
+            p {
+                @include mp;
+            }
+        }
+    }

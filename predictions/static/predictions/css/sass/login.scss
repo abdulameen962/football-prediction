@@ -1,0 +1,13 @@
+p {
+    label {
+        font-size: 18px;
+    }
+    input:not([type="checkbox"]) {
+        display: block;
+        @extend .form-control;
+    }
+    button[type="submit"] {
+        font-size: 20px;
+        padding: 10px 25px;
+    }
+}

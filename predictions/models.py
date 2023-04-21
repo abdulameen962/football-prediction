@@ -20,11 +20,12 @@ class PremiumManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(type="premium")
 
+
+TYPE_CHOICES = (
+    ("freemium","FREEMIUM"),
+    ("premium","PREMIUM"),
+)
 class User(AbstractUser):
-    TYPE_CHOICES = (
-        ("freemium","FREEMIUM"),
-        ("premium","PREMIUM"),
-    )
     type = models.CharField(choices=TYPE_CHOICES,max_length=20)
     objects = UserManager()
     freemium_user = FreemiumManager()
@@ -45,6 +46,8 @@ class Blog(models.Model):
     state = models.CharField(choices=STATE_CHOICES, max_length=50)
     created = models.DateTimeField(auto_now_add=False)
     author = models.ForeignKey(User,on_delete=models.PROTECT)
+    cover_image = CloudinaryField("image",default=None,null=True)
+    additonal_image = CloudinaryField("image",default=None,null=True)
     objects = models.Manager()
     new_manager = PublishedManager()
     
@@ -74,7 +77,7 @@ class Prediction(models.Model):
     )
 
     league = models.ForeignKey(League, on_delete=models.PROTECT,related_name="prediction")
-    type = models.CharField(choices=STATE_CHOICES, max_length=50)
+    type = models.CharField(choices=TYPE_CHOICES, max_length=50,default="freemium")
     published = models.DateTimeField(auto_now_add=False)
     updated = models.DateTimeField(default=timezone.now)
     home = models.CharField(max_length=50)

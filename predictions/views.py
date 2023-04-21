@@ -25,7 +25,18 @@ from .flutterwave import checkPayment,rave
 from .signals import *
 
 admin.site.login = login_required(admin.site.login)
+leagues = League.objects.all()
+predictionstable = []
+if len(leagues) > 0:
+    for league in leagues:
+        leaguepredictions = league.prediction.all()
+        if len(leaguepredictions) > 0:
+            mainleague = {"league":league,"predictions":[]}
+            for prediction in leaguepredictions:
+                if prediction.type == "freemium":
+                        mainleague["predictions"].append(prediction)
 
+            predictionstable.append(mainleague)
 def index(request):
     user = request.user
 
@@ -56,7 +67,27 @@ def index(request):
             return HttpResponseRedirect(reverse("not_verified"))
 
     else:
-        return render(request,"predictions/index.html")
+        #get leagues and tables
+        leagues = League.objects.all()
+        predictionstable = []
+        if len(leagues) > 0:
+            for league in leagues:
+                leaguepredictions = league.prediction.all()
+                if len(leaguepredictions) > 0:
+                    mainleague = {"league":league,"predictions":[]}
+                    for prediction in leaguepredictions:
+                        if prediction.type == "freemium":
+                                mainleague["predictions"].append(prediction)
+
+                    predictionstable.append(mainleague)
+
+        #limit the amount of predictions for a user
+        if len(predictionstable) > 3:
+            predictionstable = [predictionstable[0],predictionstable[1],predictionstable[2],predictionstable[3]]
+        
+        return render(request,"predictions/index.html",{
+            "predictionstable": predictionstable,
+        })
 
 
 @login_required(login_url="account_login")
