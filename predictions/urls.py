@@ -14,7 +14,6 @@ urlpatterns = [
     path("not-verified/",views.not_verified,name="not_verified"),
     path("premium/",views.Premiumview,name="premium"),
     path("blogs/<str:slug>/",views.BlogDetail.as_view(),name="blog_detail"),
-    # path("not-verified/",views.not_verified,name="not_verified"),
     path("complete-signup/<str:method>/",views.complete_signup,name="complete_signup"),
     path("premium-payment/",views.premium_payment,name="premium_payment"),
     path("confirm-payment/",views.confirm_payment,name="confirm_payment"),

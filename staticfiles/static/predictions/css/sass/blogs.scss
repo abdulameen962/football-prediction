@@ -1,0 +1,202 @@
+div.blogs {
+    @include flex(yes);
+    margin-top: 30px;
+    div.blog-header {
+        p.subtitle {
+            font-size: 18px;
+        }
+        h1 {
+            text-align: center;
+        }
+    }
+    div.blog_main {
+        ul.tags {
+            @include flex(no);
+            margin-top: 20px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            li {
+                list-style-type: none;
+                margin: 8px 8px 8px 0px;
+                @include defaultbutton;
+                @include secondarybutton;
+                background: transparent;
+                padding: 12px 20px;
+                width: auto;
+                @include respond(phone) {
+                    width: auto;
+                }
+            }
+        }
+        margin-top: 40px;
+        width: 100%;
+        p.author {
+            padding-left: 0px;
+        }
+        a {
+            @include link;
+        }
+        div.blogs_grid {
+            @include grid(3);
+            gap: 60px 45px;
+            overflow: hidden;
+            @include respond(tab) {
+                @include grid(2);
+                gap: 40px 30px;
+            }
+            @include respond(phone) {
+                @include grid(1);
+                gap: 30px 0px;
+            }
+            &>div:nth-of-type(1) {
+                grid-column: 1 / span 3;
+                position: relative;
+                @include respond(tab) {
+                    grid-column: 1 / span 2;
+                }
+                @include respond(lphone) {
+                    grid-column: 1;
+                }
+                div.image {
+                    img {
+                        @include mp;
+                    }
+                }
+                div.text {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    background: rgba($dark, .3);
+                    height: 100%;
+                    width: 100%;
+                    @include flex(yes);
+                    justify-content: flex-end;
+                    align-items: flex-start;
+                    border-radius: 5px;
+                    padding: 20px 0px;
+                    @include respond(lphone) {
+                        position: relative;
+                        background: none;
+                        display: block;
+                    }
+                    div.text_main {
+                        width: 85%;
+                        padding: 0px 0px 0px 35px;
+                        @include respond(lphone) {
+                            width: auto;
+                            padding: 0px;
+                        }
+                        a {
+                            color: $white;
+                            @include respond(lphone) {
+                                color: $dark;
+                            }
+                            h3 {
+                                span {
+                                    display: none;
+                                }
+                            }
+                            ul {
+                                li {
+                                    background: transparent;
+                                    color: $white;
+                                    @include respond(phone) {
+                                        color: $dark;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &>div:not(:nth-of-type(1)) {
+                @include mp;
+                width: 100%;
+                div.text {
+                    padding: 15px 0px;
+                    h3 {
+                        span {
+                            float: right;
+                        }
+                    }
+                }
+            }
+        }
+        img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+}
+
+nav.pagination {
+    margin: 20px 0px;
+    ul.pagination {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        li.previous a,
+        li.next a {
+            border: none;
+            color: $dark;
+            @include transition;
+            &:hover,
+            &:active,
+            &:focus {
+                border: none;
+                background: none;
+                color: $dark;
+                transform: scale(1.05);
+            }
+        }
+        li.previous {
+            span {
+                margin-right: 8px;
+            }
+        }
+        li.next {
+            span {
+                margin-left: 8px;
+            }
+        }
+        div.numbers {
+            @include flex(no);
+            li {
+                a {
+                    color: $dark;
+                    border: none;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background: $dark;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+div.blog_detail_main {
+    @include flex(yes);
+    justify-content: flex-start;
+    div.blog-detail {
+        width: 750px;
+        max-width: 100%;
+        h2 {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            width: 100%;
+            margin: 10px 0px;
+        }
+        div.blog_detail_body {
+            padding-top: 25px;
+        }
+        p.author {
+            text-align: center;
+        }
+    }
+}

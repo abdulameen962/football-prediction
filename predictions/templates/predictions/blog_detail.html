@@ -8,6 +8,14 @@
 {% endblock  %}
 {% block type_content %}  blog{% endblock  %}
 {% block body %}
-<h1> {{ blog.title }} </h1>
-<p> {{ blog.body }} </p>
+<div class="blog_detail_main">
+    <div class="blog-detail">
+        <h2> {{ blog.title }} </h2>
+        <p class="author subtitle"> {{ blog.author.first_name }} {{ blog.author.last_name }}. {{ blog.created }}</p>
+        <img src="{{ blog.cover_image.url }}" alt="{{ blog.title }}"/>
+        <div class="blog_detail_body">
+            <p> {{ blog.body }} </p>
+        </div>
+    </div>
+</div>
 {% endblock  %}

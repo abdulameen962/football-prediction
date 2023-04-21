@@ -11,7 +11,27 @@ from django.core.mail import send_mail,send_mass_mail
 
 @receiver(pre_save,sender=Blog)
 def blog_handler(sender,instance,**kwargs):
-    instance.slug = (slugify(instance.title))
+
+    #check if the blog exists and the number
+    # text=""
+    # numbers=""
+    count = 0
+    # for i in instance.title:
+    #     if(i.isdigit()):
+    #         numbers+=i
+    #     else:
+    #         text+=i
+
+    blogs = Blog.objects.all()
+    for blog in blogs:
+        if instance.title in blog.title:
+            count += 1
+
+    if count > 0:
+        instance.title = f"{instance.title} {count}"
+        instance.slug = (slugify(instance.title))
+    else:
+        instance.slug = (slugify(instance.title))
 
 @receiver(post_save,sender=User)
 def user_handler(sender, instance,**kwargs):

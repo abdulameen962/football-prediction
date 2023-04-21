@@ -1,0 +1,472 @@
+@mixin mp {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin mpb {
+    @include mp;
+    box-sizing: border-box;
+    position: relative;
+}
+
+@mixin bradius {
+    border-radius: 10px;
+}
+
+@mixin background {
+    box-shadow: 0px 4px 10px rgba(41, 44, 50, 0.03);
+    @include bradius;
+    @include border(#E7E9EE);
+}
+
+@mixin backgroundimage($svg) {
+    background-image: url($svg);
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+
+@mixin h4 {
+    @extend .font;
+    @extend .font-weight;
+    font-size: 22px;
+    line-height: 1.091em;
+    @include respond(tab) {
+        font-size: 20px;
+    }
+    @include respond(lphone) {
+        font-size: 18px;
+    }
+    @include respond(phone) {}
+}
+
+@mixin subtext {
+    background: $blue;
+    padding-top: 110px;
+    padding-bottom: 110px;
+    position: relative;
+    color: $white;
+    overflow: hidden;
+}
+
+@mixin defaultbutton {
+    padding: 14px 34px;
+    font-size: 18px;
+    line-height: 1.389em;
+    @extend .font;
+    @include transition;
+    text-decoration: none;
+    border-radius: 80px;
+    @include respond(tab) {
+        padding: 15px 40px;
+        font-size: 16px;
+        line-height: 1.125em;
+    }
+    @include respond(lphone) {
+        padding: 15px 34px;
+        font-size: 16px;
+        line-height: 1.125em;
+    }
+    @include respond(phone) {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@mixin secondarybutton {
+    color: rgba($dark, 0.6);
+    background: $white;
+    @include border($lightgrey);
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+@mixin glass {
+    background: rgba($white, .1);
+    backdrop-filter: blur(30px);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+@mixin primarybtn {
+    background: $orangeback;
+    color: $white;
+    @include transition;
+    // box-shadow: 8px 17px 20px rgba(0, 0, 0, .05);
+    &:hover {
+        box-shadow: none;
+        // box-shadow: 5px 5px 10px rgba(0, 0, 0, .05);
+    }
+}
+
+@mixin pbtnhover {
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, .05);
+    }
+}
+
+@mixin sbtnhover {
+    &:hover {
+        transform: translateY(-5px);
+        @include border($orange);
+    }
+}
+
+@mixin iconhover {
+    transform: scale(1.1);
+    @include purple(.8, c);
+}
+
+@mixin border($color) {
+    border: 1px solid $color;
+}
+
+@mixin link {
+    text-decoration: none;
+    color: $dark;
+}
+
+@mixin flex($what) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @if $what=="yes" {
+        flex-direction: column;
+    }
+}
+
+@mixin transition {
+    transition: all 0.3s ease;
+}
+
+@mixin doctorsearchimg {
+    border-radius: 15px;
+    max-width: 100%;
+    min-width: 250px;
+    box-shadow: $imagestand;
+    @include respond(tab) {
+        min-width: 260px;
+    }
+    @include respond(lphone) {
+        min-width: 220px;
+    }
+}
+
+@mixin skillchange {
+    display: inline-block;
+    list-style-type: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: $orangeheader;
+    color: $white;
+    margin: 8px 10px 8px 0px;
+    font-size: 18px;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.8;
+    }
+    @include respond(lphone) {
+        font-size: 16px;
+    }
+}
+
+@mixin listMain {
+    list-style-type: none;
+    cursor: pointer;
+    padding: 10px 23px;
+}
+
+.font {
+    font-family: regular;
+}
+
+.font-weight {
+    font-weight: 700;
+}
+
+@mixin iconshadow($background, $boxshadow) {
+    background: $background;
+    box-shadow: -4px -1px 0px 3px $boxshadow;
+    border-radius: 5px;
+    transform: rotate(-20deg);
+}
+
+@mixin linkhover {
+    color: $orange;
+    transition: all 0.5s ease;
+}
+
+@mixin max-width {
+    max-width: 580px;
+}
+
+@mixin grid($number) {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat( $number, minmax(0, 1fr));
+    gap: 0px 30px;
+}
+
+@mixin image {
+    position: absolute;
+    width: auto;
+    height: auto;
+}
+
+@mixin post {
+    @include background;
+    background: white;
+    padding: 20px 25px;
+    // @include border(blue);
+    width: 100%;
+    &>h4 {
+        &>a {
+            @include h4;
+        }
+        padding-bottom: 20px;
+    }
+    p {
+        font-size: 18px;
+        line-height: 30px;
+        padding: 0px 0px;
+    }
+    button {
+        display: block;
+        @include defaultbutton;
+        @include primarybtn;
+        border: none;
+        background: rgba($dark, 0.8);
+        font-weight: 400;
+    }
+    button.edit_post {
+        @include defaultbutton;
+        @include secondarybutton;
+        margin-top: 10px;
+    }
+    div.form {
+        padding: 15px 0px;
+        button {
+            margin-top: 8px;
+        }
+    }
+}
+
+@mixin size {
+    font-size: 18px;
+    line-height: 33px;
+    @include respond(phone) {
+        font-size: 16px;
+        line-height: 25px;
+    }
+}
+
+@mixin absolutediv {
+    div.image {
+        img {
+            @include doctorsearchimg;
+        }
+    }
+    div.text {
+        margin: 15px 0px 0px 0px;
+        h3 {
+            @include mp;
+            font-size: 25px;
+        }
+        p {
+            @include mp;
+        }
+        ul {
+            margin: 15px 0px;
+            li {
+                list-style-type: lower-latin;
+            }
+        }
+    }
+}
+
+@mixin patientbottom {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    background: $white;
+    padding: 20px 15px;
+}
+
+@mixin input {
+    min-height: 68px;
+    padding: 20px 22px 20px 40px;
+    border-radius: 14px;
+    outline: none;
+    @include border(#E7E9EE);
+}
+
+@mixin animate {
+    animation: twirl 50s infinite ease-in;
+}
+
+@mixin respond ($breakpoint) {
+    @if $breakpoint==phone {
+        @media screen and (min-width: 0em) and (max-width: 479px) {
+            @content;
+        }
+    }
+    @if $breakpoint==lphone {
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+            @content;
+        }
+    }
+    @if $breakpoint==tab {
+        @media screen and (min-width: 0px) and (max-width: 991px) {
+            @content;
+        }
+    }
+    @if $breakpoint==laptop {
+        @media screen and (min-width: 1920px) {
+            @content;
+        }
+    }
+}
+
+div.main-extend {
+    @include flex(yes);
+    padding: 110px 0px;
+    @include respond(phone) {
+        padding: 80px 0px;
+    }
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media (prefers-reduced-motion:reduce) {
+    .form-control {
+        transition: none
+    }
+}
+
+.form-control[type=file] {
+    overflow: hidden
+}
+
+.form-control[type=file]:not(:disabled):not([readonly]) {
+    cursor: pointer
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25)
+}
+
+.form-control::-webkit-date-and-time-value {
+    height: 1.5em
+}
+
+.form-control::-moz-placeholder {
+    color: #6c757d;
+    opacity: 1
+}
+
+.form-control::placeholder {
+    color: #6c757d;
+    opacity: 1
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #e9ecef;
+    opacity: 1
+}
+
+.form-control::file-selector-button {
+    padding: .375rem .75rem;
+    margin: -.375rem -.75rem;
+    -webkit-margin-end: .75rem;
+    margin-inline-end: .75rem;
+    color: #212529;
+    background-color: #e9ecef;
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: 1px;
+    border-radius: 0;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media (prefers-reduced-motion:reduce) {
+    .form-control::file-selector-button {
+        transition: none
+    }
+}
+
+.form-control:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: #dde0e3
+}
+
+.form-control::-webkit-file-upload-button {
+    padding: .375rem .75rem;
+    margin: -.375rem -.75rem;
+    -webkit-margin-end: .75rem;
+    margin-inline-end: .75rem;
+    color: #212529;
+    background-color: #e9ecef;
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: 1px;
+    border-radius: 0;
+    -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media (prefers-reduced-motion:reduce) {
+    .form-control::-webkit-file-upload-button {
+        -webkit-transition: none;
+        transition: none
+    }
+}
+
+.form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+    background-color: #dde0e3
+}
+
+$grey: #6F7278;
+$dark: #292C32;
+$blue: #343472;
+$white: rgb(255, 255, 255);
+$orangeheader: #FFA90F;
+$orangeback: #EF9F00;
+$greyback: #FBF9F8;
+$lightblue:#E8E9FD;
+$blueborder: #E7E9EE;
+$darkgrey: #F8F7F2;
+$whitegrey:#f8f9fa;
+$lightgrey: #E7E9EE;
+$bordergrey: rgba($grey, 0.5);
+$red: red;
+$orange:#eeca86;
+$purple: #302cff;
+$blue: #0d6efd;
+$imagestand: 0px 0px 10px rgba(0, 0, 0, 0.05);
+$textgrey: #64607D;
+$formbottom: 30px;
+$tdpadding: 10px 25px;

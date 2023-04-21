@@ -1,0 +1,259 @@
+@import "mixins";
+@font-face {
+    font-family: regular;
+    src: url("./fonts/Quicksand-Regular.ttf"), local('sans-serif');
+    font-display: swap;
+}
+
+ul {
+    @include mp;
+    li {
+        list-style-position: inside;
+        @include mp;
+        span {
+            @include mp;
+            margin-left: -10px;
+        }
+    }
+}
+
+img {
+    height: auto;
+    width: auto;
+}
+
+div.table-container {
+    @include mp;
+    table.table {
+        padding: 15px 0px 0px 0px;
+        &>thead {
+            border-bottom: 1px solid $lightgrey;
+            tr {
+                th {
+                    border: none;
+                    padding: $tdpadding;
+                }
+            }
+        }
+        &>tbody {
+            tr {
+                border-bottom: 1px solid $lightgrey;
+                @include transition;
+                cursor: pointer;
+                &:hover {
+                    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05);
+                }
+                td {
+                    padding: $tdpadding;
+                    vertical-align: middle;
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        box-shadow: $imagestand;
+                    }
+                    span {
+                        padding-left: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+a.header-button {
+    padding: 16px 26px;
+    line-height: 1.125em;
+    color: $white;
+    text-decoration: none;
+    border-radius: 80px;
+    @extend .font-weight;
+    @include secondarybutton;
+    @extend .font;
+    @include transition;
+}
+
+div.buttons {
+    width: 100%;
+    a.secondary-button {
+        color: $dark;
+        margin-left: 30px;
+        font-size: 18px;
+        @include respond(phone) {
+            margin: 0;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    }
+    @include respond(phone) {
+        @include flex(yes);
+    }
+}
+
+.primary-button {
+    @include defaultbutton;
+    @include primarybtn;
+}
+
+.secondary-button {
+    @include defaultbutton;
+    @include secondarybutton;
+}
+
+div.resize {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0px 12px;
+}
+
+div.resize-small {
+    max-width: 551px;
+}
+
+div.resize-medium {
+    max-width: 994px;
+    width: 100%;
+    padding: 0px 24px;
+}
+
+div.subtitle-main {
+    margin-bottom: 20px;
+    @include flex(no);
+    justify-content: flex-start;
+    div.subtitle-line {
+        width: 50px;
+        background: $dark;
+        height: 2px;
+        margin-right: 15px;
+    }
+    @include respond(phone) {
+        margin-bottom: 10px;
+    }
+}
+
+h1 {
+    @extend .font;
+    @extend .font-weight;
+    line-height: 1.308em;
+    font-size: 48px;
+    margin-bottom: 0px;
+    @include respond(tab) {
+        font-size: 43px;
+    }
+    @include respond(lphone) {
+        font-size: 36px;
+    }
+    @include respond(phone) {
+        font-size: 30px;
+    }
+}
+
+h2 {
+    @extend .font;
+    @extend .font-weight;
+    line-height: 1.316em;
+    font-size: 38px;
+    margin-bottom: 10px;
+    @include respond(tab) {
+        font-size: 38px;
+    }
+    @include respond(lphone) {
+        font-size: 32px;
+    }
+    @include respond(phone) {
+        font-size: 26px;
+    }
+}
+
+h3 {
+    @extend .font;
+    @extend .font-weight;
+    line-height: 1.375em;
+    font-size: 24px;
+    @include respond(tab) {
+        font-size: 24px;
+    }
+    @include respond(lphone) {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    @include respond(phone) {
+        font-size: 20px;
+        line-height: 30px;
+    }
+}
+
+h4 {
+    @include h4;
+}
+
+h5 {
+    @extend .font;
+    @extend .font-weight;
+    line-height: 1.389em;
+    font-size: 18px;
+    @include respond(phone) {
+        font-size: 16px;
+    }
+}
+
+h6 {
+    @extend .font;
+    @extend .font-weight;
+    font-size: 16px;
+    line-height: 1.125em;
+}
+
+p {
+    @extend .font;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.800em;
+    padding: 10px 0px;
+}
+
+button {
+    @extend .font;
+    @extend .font-weight;
+    font-size: 16px;
+}
+
+.subtitle {
+    font-size: 20px;
+    @extend .font;
+    line-height: 1.2em;
+    font-weight: 300;
+    @include respond(tab) {
+        font-size: 18px;
+    }
+    @include respond(lphone) {
+        font-size: 16px;
+    }
+}
+
+.medtext {
+    font-size: 20px;
+    // line-height: 1.2em;
+    @include respond(tab) {
+        font-size: 18px;
+    }
+    @include respond(lphone) {
+        font-size: 16px;
+    }
+}
+
+a {
+    font-size: 16px;
+    @extend .font;
+    text-decoration: none;
+}
+
+input {
+    font-size: 16px;
+    @extend .font;
+}
+
+textarea {
+    font-size: 16px;
+    @extend .font;
+}

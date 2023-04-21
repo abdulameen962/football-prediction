@@ -37,6 +37,12 @@ STATE_CHOICES = (
     ("draft","DRAFT"),
 )
 
+class Tag(models.Model):
+    tag = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.tag
+
 class Blog(models.Model):
 
     title = models.CharField(max_length=200)
@@ -48,6 +54,7 @@ class Blog(models.Model):
     author = models.ForeignKey(User,on_delete=models.PROTECT)
     cover_image = CloudinaryField("image",default=None,null=True)
     additonal_image = CloudinaryField("image",default=None,null=True)
+    tags = models.ManyToManyField(Tag,related_name="blog_tags",default=None)
     objects = models.Manager()
     new_manager = PublishedManager()
     

@@ -1,0 +1,12 @@
+{
+    "name": "predictions",
+    "version": "1.0.0",
+    "description": "Football prediction web app",
+    "main": "index.html",
+    "scripts": {
+        "node:sass": "node-sass css/sass/main.scss css/styles.css",
+        "auto:compile": "nodemon -e scss -x \"npm run node:sass\""
+    },
+    "author": "",
+    "license": "ISC"
+}

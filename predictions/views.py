@@ -20,12 +20,39 @@ from rave_python import Rave,Misc,RaveExceptions
 from allauth.account.signals import email_confirmed,email_confirmation_sent
 from django.template.defaultfilters import slugify
 import time
+from django.db.utils import OperationalError,ProgrammingError
 from .models import *
 from .flutterwave import checkPayment,rave
 from .signals import *
 
 admin.site.login = login_required(admin.site.login)
-leagues = League.objects.all()
+#handlers
+def handler404(request, *args, **argv):
+    response = render(request,'predictions/404.html')
+    response.status_code = 404
+    return response
+
+
+def handler500(request, *args, **argv):
+    response = render(request,'predictions/404.html')
+    response.status_code = 500
+    return response
+
+def handler403(request, *args, **argv):
+    response = render(request,'predictions/404.html')
+    response.status_code = 403
+    return response
+
+def handler400(request, *args, **argv):
+    response = render(request,'predictions/404.html')
+    response.status_code = 400
+    return response
+
+try:
+    leagues = League.objects.all()  
+except (OperationalError, ProgrammingError) as e:
+    leagues=[]
+
 predictionstable = []
 if len(leagues) > 0:
     for league in leagues:
@@ -151,13 +178,14 @@ class Blogview(ListView):
     model = Blog
     template_name = "predictions/blogs.html"
     context_object_name = 'blogs'
-    paginate_by = 10
+    paginate_by = 7
     
 
     def get_context_data(self, **kwargs):
        blogs = Blog.objects.all()
-       paginated = Paginator(blogs,10)
+       paginated = Paginator(blogs,7)
        context = super().get_context_data(**kwargs)
+
        context["max_num"] = paginated.num_pages
        context["page_request_var"] = "page"
        context["page_range"] = paginated.page_range

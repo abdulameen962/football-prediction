@@ -24,10 +24,33 @@
     },
     {
         "model": "sessions.session",
+        "pk": "n8aqam48r1wf6500pzit843fv5i337k3",
+        "fields": {
+            "session_data": ".eJxVjMsOwiAQRf-FtSE8pvSxdO83EGAGixow0CYa479rky50e8-558WsW5fZro2qTcgmBuzwu3kXrpQ3gBeXz4WHkpeaPN8UvtPGTwXpdtzdv8Ds2vx96xi9J6kGUL022AVSAmQEY1CMhAMpJ8GjjwZEF1XQvcZo-hBogG6Uaos2ai2VbOlxT_XJJvH-AJpHP0M:1ppirP:WOwIGHiEpwZvPUS1B_WpM9aSTG8bipEVNf5U1lggQ4k",
+            "expire_date": "2023-05-05T04:59:03.095Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "smzqs5qvzyjonu74co4xj7n184kcm4b8",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2pBhAAGX7nsGMjAoVUOT0q6Md7dNutDtf-_9t4i0LjWuvcxxZHERSpx-t0T5WdoO-EHtPsk8tWUek9wVedAuh4nL63q4fweVet1qjSYrhuJRI4XgbLCKGJzLCW-aCBS7YNEm1AGMUx6T8bRVZwBvchCfL7W4NkI:1pprsD:xdVv3DWfMUMHgSr_9T3ixMG1bM-s2ZPFf1AUTFdluCc",
+            "expire_date": "2023-05-05T14:36:29.812Z"
+        }
+    },
+    {
+        "model": "sessions.session",
         "pk": "urr4dw1iqavurrphzy060jxgvcryxr78",
         "fields": {
             "session_data": ".eJxVjEEOwiAQRe_C2pBhAAGX7nsGMjAoVUOT0q6Md7dNutDtf-_9t4i0LjWuvcxxZHERSpx-t0T5WdoO-EHtPsk8tWUek9wVedAuh4nL63q4fweVet1qjSYrhuJRI4XgbLCKGJzLCW-aCBS7YNEm1AGMUx6T8bRVZwBvchCfL7W4NkI:1plfKI:SeRgVYou9-CY-GqLrzK_kXt-QVmjDvXsggdOWw3zwBM",
             "expire_date": "2023-04-24T00:24:06.675Z"
+        }
+    },
+    {
+        "model": "sites.site",
+        "fields": {
+            "domain": "127.0.0.1:8000",
+            "name": "127.0.0.1:8000"
         }
     },
     {
@@ -41,16 +64,16 @@
         "model": "predictions.user",
         "fields": {
             "password": "pbkdf2_sha256$600000$5CN6ul2EFSfoblBDoQV8Op$5MhlQLTM52wHJQ8dI5jZ2sCVLACw4LeHWisAAuwPqB4=",
-            "last_login": "2023-04-10T00:23:51.568Z",
+            "last_login": "2023-04-21T14:36:26Z",
             "is_superuser": true,
             "username": "Dara",
-            "first_name": "",
-            "last_name": "",
-            "email": "abdul@gmail.com",
+            "first_name": "Sanni",
+            "last_name": "Ifeoluwa",
+            "email": "dara@gmail.com",
             "is_staff": true,
             "is_active": true,
-            "date_joined": "2023-04-08T23:30:16.287Z",
-            "type": "",
+            "date_joined": "2023-04-08T23:30:16Z",
+            "type": "premium",
             "groups": [],
             "user_permissions": []
         }
@@ -59,7 +82,7 @@
         "model": "predictions.user",
         "fields": {
             "password": "!fmNqERFjSdTzqnAiMheR3XEXwDy1GJtOyEOLUrrq",
-            "last_login": "2023-04-09T16:12:15.479Z",
+            "last_login": "2023-04-21T06:08:51.044Z",
             "is_superuser": false,
             "username": "frankly",
             "first_name": "Frankly",
@@ -67,25 +90,312 @@
             "email": "footballfrankly23@gmail.com",
             "is_staff": false,
             "is_active": true,
-            "date_joined": "2023-04-09T12:37:37.282Z",
-            "type": "",
+            "date_joined": "2023-04-09T12:37:37Z",
+            "type": "premium",
             "groups": [],
             "user_permissions": []
         }
     },
     {
-        "model": "predictions.blog",
+        "model": "predictions.user",
+        "fields": {
+            "password": "pbkdf2_sha256$600000$rGEvD3WqH8rsDb71RcXPmQ$DCX6IyqGtf2jAWrCbAvSRHR8vYmjaUhVvvcosGRt74g=",
+            "last_login": "2023-04-21T06:15:27.154Z",
+            "is_superuser": false,
+            "username": "Abdul",
+            "first_name": "",
+            "last_name": "",
+            "email": "muslimotsanni@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-04-21T06:15:16.194Z",
+            "type": "premium",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "predictions.tag",
         "pk": 1,
         "fields": {
-            "title": "This is a test blog",
-            "slug": "this-is-a-test-blog",
-            "body": "Hello,how are you doing",
-            "published": "2023-04-09T15:53:04Z",
+            "tag": "Lorem"
+        }
+    },
+    {
+        "model": "predictions.tag",
+        "pk": 2,
+        "fields": {
+            "tag": "Ipsum"
+        }
+    },
+    {
+        "model": "predictions.tag",
+        "pk": 3,
+        "fields": {
+            "tag": "Dinor"
+        }
+    },
+    {
+        "model": "predictions.tag",
+        "pk": 4,
+        "fields": {
+            "tag": "Dolor"
+        }
+    },
+    {
+        "model": "predictions.tag",
+        "pk": 5,
+        "fields": {
+            "tag": "Rate"
+        }
+    },
+    {
+        "model": "predictions.blog",
+        "pk": 2,
+        "fields": {
+            "title": "eum quisquam vitae adipisci?",
+            "slug": "eum-quisquam-vitae-adipisci",
+            "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt inventore at vero eum quisquam vitae adipisci? Modi doloremque amet recusandae, reiciendis impedit, quasi nam necessitatibus quia, commodi aliquam temporibus praesentium.",
+            "published": "2023-04-21T11:50:41Z",
             "state": "published",
-            "created": "2023-04-09T15:53:36Z",
+            "created": "2023-04-21T11:51:53Z",
             "author": [
                 "Dara"
+            ],
+            "cover_image": "image/upload/v1682077980/r6jrep4w52koqkfdfj0v.jpg",
+            "additonal_image": "image/upload/v1682078011/viho6lui2bwe7ffpykec.jpg",
+            "tags": [
+                1,
+                5
             ]
+        }
+    },
+    {
+        "model": "predictions.blog",
+        "pk": 3,
+        "fields": {
+            "title": "Perspiciatis eveniet qui dolore mollitia asperiores tempore molestias",
+            "slug": "perspiciatis-eveniet-qui-dolore-mollitia-asperiores-tempore-molestias",
+            "body": "Accusantium at incidunt esse doloremque sint adipisci et dolores! Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio dicta, aliquid delectus, perspiciatis eveniet qui dolore mollitia asperiores tempore molestias iste",
+            "published": "2023-04-21T12:03:16Z",
+            "state": "published",
+            "created": "2023-04-21T12:04:17Z",
+            "author": [
+                "Dara"
+            ],
+            "cover_image": "image/upload/v1682078685/rjcxz3vjkvkfxxkukqss.jpg",
+            "additonal_image": "image/upload/v1682078687/fgxyi3atesp0eznn0hzw.jpg",
+            "tags": [
+                1,
+                5
+            ]
+        }
+    },
+    {
+        "model": "predictions.blog",
+        "pk": 4,
+        "fields": {
+            "title": "Facere nemo magnam, deserunt eaque dolorum explicabo, porro consequatur",
+            "slug": "facere-nemo-magnam-deserunt-eaque-dolorum-explicabo-porro-consequatur",
+            "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nemo magnam, deserunt eaque dolorum explicabo, porro consequatur aliquam ut harum, impedit pariatur accusantium architecto quod veritatis minima nulla temporibus deleniti!",
+            "published": "2023-04-21T12:04:49Z",
+            "state": "published",
+            "created": "2023-04-21T12:05:18Z",
+            "author": [
+                "Dara"
+            ],
+            "cover_image": "image/upload/v1682078737/h4agsvm7jl3s7kay5c9o.jpg",
+            "additonal_image": "image/upload/v1682078739/ntdtmfko6xma1crsanoj.jpg",
+            "tags": [
+                2,
+                3,
+                5
+            ]
+        }
+    },
+    {
+        "model": "predictions.blog",
+        "pk": 5,
+        "fields": {
+            "title": "Cum dolores quibusdam aspernatur nostrum!",
+            "slug": "cum-dolores-quibusdam-aspernatur-nostrum",
+            "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque sapiente, aperiam molestiae consectetur amet magnam. Facilis quasi harum illo fugit rerum repellendus! Natus, nemo assumenda? Cum dolores quibusdam aspernatur nostrum!",
+            "published": "2023-04-21T12:05:52Z",
+            "state": "published",
+            "created": "2023-04-21T12:06:17Z",
+            "author": [
+                "Dara"
+            ],
+            "cover_image": "image/upload/v1682078795/oxlaul3zxnj4wtqmq6w0.jpg",
+            "additonal_image": "image/upload/v1682078797/cntwew30dh7l1x2f4ayk.jpg",
+            "tags": [
+                1,
+                2,
+                3
+            ]
+        }
+    },
+    {
+        "model": "predictions.blog",
+        "pk": 6,
+        "fields": {
+            "title": "Quam tenetur saepe perferendis adipisci consequatur incidunt",
+            "slug": "quam-tenetur-saepe-perferendis-adipisci-consequatur-incidunt",
+            "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, quis impedit iste est repellendus hic dolores dicta tempora. Quam tenetur saepe perferendis adipisci consequatur incidunt error harum similique sint dolor?",
+            "published": "2023-04-21T12:06:39Z",
+            "state": "published",
+            "created": "2023-04-21T12:06:56Z",
+            "author": [
+                "Dara"
+            ],
+            "cover_image": "image/upload/v1682078834/xk60dcxcyzumwepftdjj.jpg",
+            "additonal_image": "image/upload/v1682078838/iggzx3qcgacafmmcniem.jpg",
+            "tags": [
+                2,
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "predictions.blog",
+        "pk": 7,
+        "fields": {
+            "title": "Provident inventore ullam saepe deleniti impedit.",
+            "slug": "provident-inventore-ullam-saepe-deleniti-impedit",
+            "body": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident inventore ullam saepe deleniti impedit. Commodi optio, velit expedita nulla rerum mollitia, magni voluptatem ratione inventore ipsam harum dolores voluptas delectus.",
+            "published": "2023-04-21T12:07:21Z",
+            "state": "published",
+            "created": "2023-04-21T12:07:53Z",
+            "author": [
+                "Dara"
+            ],
+            "cover_image": "image/upload/v1682078898/hlaoqddedenrxtlezptm.jpg",
+            "additonal_image": "image/upload/v1682078899/dcvljizac5ulepa1eqqn.jpg",
+            "tags": [
+                1,
+                3,
+                5
+            ]
+        }
+    },
+    {
+        "model": "predictions.blog",
+        "pk": 10,
+        "fields": {
+            "title": "Provident inventore ullam saepe deleniti impedit. 1",
+            "slug": "provident-inventore-ullam-saepe-deleniti-impedit-1",
+            "body": "Hello,how are you",
+            "published": "2023-04-21T15:24:54Z",
+            "state": "published",
+            "created": "2023-04-21T15:25:06Z",
+            "author": [
+                "Dara"
+            ],
+            "cover_image": "image/upload/v1682090734/qzmbnqdbtlohhirxaowj.jpg",
+            "additonal_image": "image/upload/v1682090783/bmqyal06xwt9eokdasg8.jpg",
+            "tags": [
+                1,
+                3
+            ]
+        }
+    },
+    {
+        "model": "predictions.blog",
+        "pk": 11,
+        "fields": {
+            "title": "Provident inventore ullam saepe deleniti impedit. 1 2",
+            "slug": "provident-inventore-ullam-saepe-deleniti-impedit-1-2",
+            "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto tenetur ex fuga itaque veritatis eveniet reiciendis ratione? Earum alias porro expedita nesciunt? Molestiae dolores numquam amet dolor. Temporibus, suscipit beatae.",
+            "published": "2023-04-21T15:26:43Z",
+            "state": "published",
+            "created": "2023-04-21T15:27:18Z",
+            "author": [
+                "Dara"
+            ],
+            "cover_image": "image/upload/v1682090855/lip2a3pry491nfclpgcl.jpg",
+            "additonal_image": "image/upload/v1682090856/n3chamqbeyldzyymgpso.jpg",
+            "tags": [
+                1,
+                4
+            ]
+        }
+    },
+    {
+        "model": "predictions.league",
+        "pk": 1,
+        "fields": {
+            "code": "EPL",
+            "league": "English Premier League",
+            "logo": ""
+        }
+    },
+    {
+        "model": "predictions.prediction",
+        "pk": 1,
+        "fields": {
+            "league": 1,
+            "type": "published",
+            "published": "2023-04-15T09:43:54Z",
+            "updated": "2023-04-15T09:43:47Z",
+            "home": "Brighton",
+            "away": "Leicester",
+            "correct_score": "2-1",
+            "send_mail": true,
+            "tip": "home"
+        }
+    },
+    {
+        "model": "predictions.freemiumprofile",
+        "pk": 1,
+        "fields": {
+            "user": [
+                "Dara"
+            ],
+            "watchlist": []
+        }
+    },
+    {
+        "model": "predictions.freemiumprofile",
+        "pk": 3,
+        "fields": {
+            "user": [
+                "frankly"
+            ],
+            "watchlist": []
+        }
+    },
+    {
+        "model": "predictions.premiumprofile",
+        "pk": 1,
+        "fields": {
+            "user": [
+                "Dara"
+            ],
+            "activated": true,
+            "watchlist": []
+        }
+    },
+    {
+        "model": "predictions.premiumprofile",
+        "pk": 2,
+        "fields": {
+            "user": [
+                "frankly"
+            ],
+            "activated": true,
+            "watchlist": []
+        }
+    },
+    {
+        "model": "predictions.premiumprofile",
+        "pk": 5,
+        "fields": {
+            "user": [
+                "Abdul"
+            ],
+            "activated": true,
+            "watchlist": []
         }
     },
     {
@@ -96,6 +406,30 @@
                 "frankly"
             ],
             "email": "footballfrankly23@gmail.com",
+            "verified": true,
+            "primary": true
+        }
+    },
+    {
+        "model": "account.emailaddress",
+        "pk": 3,
+        "fields": {
+            "user": [
+                "Dara"
+            ],
+            "email": "dara@gmail.com",
+            "verified": true,
+            "primary": true
+        }
+    },
+    {
+        "model": "account.emailaddress",
+        "pk": 5,
+        "fields": {
+            "user": [
+                "Abdul"
+            ],
+            "email": "muslimotsanni@gmail.com",
             "verified": true,
             "primary": true
         }
@@ -141,9 +475,9 @@
             ],
             "provider": "google",
             "uid": "113147239365229882265",
-            "last_login": "2023-04-09T16:12:13.615Z",
+            "last_login": "2023-04-21T06:08:41.397Z",
             "date_joined": "2023-04-09T12:37:38.516Z",
-            "extra_data": "{\"iss\": \"https://accounts.google.com\", \"azp\": \"664887382931-65kikh46ep03ghhbekohrs31e3vbqq71.apps.googleusercontent.com\", \"aud\": \"664887382931-65kikh46ep03ghhbekohrs31e3vbqq71.apps.googleusercontent.com\", \"sub\": \"113147239365229882265\", \"email\": \"footballfrankly23@gmail.com\", \"email_verified\": true, \"at_hash\": \"rgnQig16PcQtscQNwU1WVQ\", \"name\": \"Frankly\", \"picture\": \"https://lh3.googleusercontent.com/a/AGNmyxbAE0N44t7LVNOnSguexSmhYx69xpn5q0Ben2BC=s96-c\", \"given_name\": \"Frankly\", \"locale\": \"en\", \"iat\": 1681056734, \"exp\": 1681060334}"
+            "extra_data": "{\"iss\": \"https://accounts.google.com\", \"azp\": \"664887382931-65kikh46ep03ghhbekohrs31e3vbqq71.apps.googleusercontent.com\", \"aud\": \"664887382931-65kikh46ep03ghhbekohrs31e3vbqq71.apps.googleusercontent.com\", \"sub\": \"113147239365229882265\", \"email\": \"footballfrankly23@gmail.com\", \"email_verified\": true, \"at_hash\": \"SVaJtOx6dGzkn0BfOnreRw\", \"name\": \"Frankly\", \"picture\": \"https://lh3.googleusercontent.com/a/AGNmyxbAE0N44t7LVNOnSguexSmhYx69xpn5q0Ben2BC=s96-c\", \"given_name\": \"Frankly\", \"locale\": \"en\", \"iat\": 1682057322, \"exp\": 1682060922}"
         }
     },
     {
@@ -312,7 +646,7 @@
         "model": "admin.logentry",
         "pk": 10,
         "fields": {
-            "action_time": "2023-04-09T13:05:43.000Z",
+            "action_time": "2023-04-09T13:05:43Z",
             "user": [
                 "Dara"
             ],
@@ -358,6 +692,1014 @@
             ],
             "object_id": "1",
             "object_repr": "This is a test blog",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 13,
+        "fields": {
+            "action_time": "2023-04-14T06:17:49.792Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "account",
+                "emailaddress"
+            ],
+            "object_id": "3",
+            "object_repr": "dara@gmail.com",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 14,
+        "fields": {
+            "action_time": "2023-04-14T06:18:49.835Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "1",
+            "object_repr": "Dara",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Type\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 15,
+        "fields": {
+            "action_time": "2023-04-14T06:19:01.153Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "2",
+            "object_repr": "frankly",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Type\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 16,
+        "fields": {
+            "action_time": "2023-04-14T06:27:41.173Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "1",
+            "object_repr": "Dara",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 17,
+        "fields": {
+            "action_time": "2023-04-14T06:29:57.838Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "1",
+            "object_repr": "Dara",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Type\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 18,
+        "fields": {
+            "action_time": "2023-04-15T09:30:11.815Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "1",
+            "object_repr": "This is a tester blog",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 19,
+        "fields": {
+            "action_time": "2023-04-15T09:44:02.921Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "prediction"
+            ],
+            "object_id": "1",
+            "object_repr": "English Premier League",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 20,
+        "fields": {
+            "action_time": "2023-04-15T09:54:36.983Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "prediction"
+            ],
+            "object_id": "1",
+            "object_repr": "English Premier League",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 21,
+        "fields": {
+            "action_time": "2023-04-15T10:06:23.558Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "sites",
+                "site"
+            ],
+            "object_id": "1",
+            "object_repr": "http://127.0.0.1:8000",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Domain name\", \"Display name\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 22,
+        "fields": {
+            "action_time": "2023-04-21T04:58:23.008Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "1",
+            "object_repr": "Dara",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Type\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 23,
+        "fields": {
+            "action_time": "2023-04-21T04:58:34.808Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "1",
+            "object_repr": "Dara",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Type\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 24,
+        "fields": {
+            "action_time": "2023-04-21T04:58:43.152Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 25,
+        "fields": {
+            "action_time": "2023-04-21T05:15:13.024Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Type\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 26,
+        "fields": {
+            "action_time": "2023-04-21T05:18:10.061Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 27,
+        "fields": {
+            "action_time": "2023-04-21T05:52:07.963Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 28,
+        "fields": {
+            "action_time": "2023-04-21T05:52:18.155Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "premiumprofile"
+            ],
+            "object_id": "3",
+            "object_repr": "Abdul",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 29,
+        "fields": {
+            "action_time": "2023-04-21T05:52:34.118Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Type\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 30,
+        "fields": {
+            "action_time": "2023-04-21T05:59:48.711Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 31,
+        "fields": {
+            "action_time": "2023-04-21T06:01:32.449Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Type\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 32,
+        "fields": {
+            "action_time": "2023-04-21T06:03:53.830Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 33,
+        "fields": {
+            "action_time": "2023-04-21T06:04:01.442Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 34,
+        "fields": {
+            "action_time": "2023-04-21T06:06:24.888Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "premiumprofile"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 35,
+        "fields": {
+            "action_time": "2023-04-21T06:06:39.742Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 36,
+        "fields": {
+            "action_time": "2023-04-21T06:13:34.357Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "freemiumprofile"
+            ],
+            "object_id": "2",
+            "object_repr": "Abdul",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 37,
+        "fields": {
+            "action_time": "2023-04-21T06:13:46.461Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "premiumprofile"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 38,
+        "fields": {
+            "action_time": "2023-04-21T06:14:08.852Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "freemiumprofile"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 39,
+        "fields": {
+            "action_time": "2023-04-21T06:14:21.060Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "4",
+            "object_repr": "Abdul",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 40,
+        "fields": {
+            "action_time": "2023-04-21T11:53:30.979Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "2",
+            "object_repr": "eum quisquam vitae adipisci?",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 41,
+        "fields": {
+            "action_time": "2023-04-21T12:04:46.467Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "3",
+            "object_repr": "Perspiciatis eveniet qui dolore mollitia asperiores tempore molestias",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 42,
+        "fields": {
+            "action_time": "2023-04-21T12:05:38.128Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "4",
+            "object_repr": "Facere nemo magnam, deserunt eaque dolorum explicabo, porro consequatur",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 43,
+        "fields": {
+            "action_time": "2023-04-21T12:06:36.736Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "5",
+            "object_repr": "Cum dolores quibusdam aspernatur nostrum!",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 44,
+        "fields": {
+            "action_time": "2023-04-21T12:07:17.924Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "6",
+            "object_repr": "Quam tenetur saepe perferendis adipisci consequatur incidunt",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 45,
+        "fields": {
+            "action_time": "2023-04-21T12:08:18.359Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "7",
+            "object_repr": "Provident inventore ullam saepe deleniti impedit.",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 46,
+        "fields": {
+            "action_time": "2023-04-21T12:10:47.306Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "sites",
+                "site"
+            ],
+            "object_id": "1",
+            "object_repr": "127.0.0.1:8000",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Domain name\", \"Display name\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 47,
+        "fields": {
+            "action_time": "2023-04-21T14:02:46.790Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "tag"
+            ],
+            "object_id": "1",
+            "object_repr": "Lorem",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 48,
+        "fields": {
+            "action_time": "2023-04-21T14:02:56.285Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "tag"
+            ],
+            "object_id": "2",
+            "object_repr": "Ipsum",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 49,
+        "fields": {
+            "action_time": "2023-04-21T14:03:03.481Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "tag"
+            ],
+            "object_id": "3",
+            "object_repr": "Dinor",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 50,
+        "fields": {
+            "action_time": "2023-04-21T14:03:11.520Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "tag"
+            ],
+            "object_id": "4",
+            "object_repr": "Dolor",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 51,
+        "fields": {
+            "action_time": "2023-04-21T14:03:19.557Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "tag"
+            ],
+            "object_id": "5",
+            "object_repr": "Rate",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 52,
+        "fields": {
+            "action_time": "2023-04-21T14:03:39.725Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "7",
+            "object_repr": "Provident inventore ullam saepe deleniti impedit.",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 53,
+        "fields": {
+            "action_time": "2023-04-21T14:03:50.555Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "6",
+            "object_repr": "Quam tenetur saepe perferendis adipisci consequatur incidunt",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 54,
+        "fields": {
+            "action_time": "2023-04-21T14:04:01.440Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "5",
+            "object_repr": "Cum dolores quibusdam aspernatur nostrum!",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 55,
+        "fields": {
+            "action_time": "2023-04-21T14:04:13.351Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "4",
+            "object_repr": "Facere nemo magnam, deserunt eaque dolorum explicabo, porro consequatur",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 56,
+        "fields": {
+            "action_time": "2023-04-21T14:04:23.160Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "3",
+            "object_repr": "Perspiciatis eveniet qui dolore mollitia asperiores tempore molestias",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 57,
+        "fields": {
+            "action_time": "2023-04-21T14:04:33.270Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "2",
+            "object_repr": "eum quisquam vitae adipisci?",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 58,
+        "fields": {
+            "action_time": "2023-04-21T14:48:18.181Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "user"
+            ],
+            "object_id": "1",
+            "object_repr": "Dara",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 59,
+        "fields": {
+            "action_time": "2023-04-21T14:58:51.780Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "8",
+            "object_repr": "Hello",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 60,
+        "fields": {
+            "action_time": "2023-04-21T15:00:21.152Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "8",
+            "object_repr": "Hello",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 61,
+        "fields": {
+            "action_time": "2023-04-21T15:00:54.946Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "7",
+            "object_repr": "Provident inventore ullam saepe deleniti impedit.",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"State\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 62,
+        "fields": {
+            "action_time": "2023-04-21T15:01:22.366Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "7",
+            "object_repr": "Provident inventore ullam saepe deleniti impedit.",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"State\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 63,
+        "fields": {
+            "action_time": "2023-04-21T15:14:53.736Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "9",
+            "object_repr": "Provident inventore ullam saepe deleniti impedit.",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 64,
+        "fields": {
+            "action_time": "2023-04-21T15:15:22.424Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "9",
+            "object_repr": "Provident inventore ullam impedit.",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Title\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 65,
+        "fields": {
+            "action_time": "2023-04-21T15:24:37.383Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "9",
+            "object_repr": "Provident inventore ullam impedit.",
+            "action_flag": 3,
+            "change_message": ""
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 66,
+        "fields": {
+            "action_time": "2023-04-21T15:26:22.614Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "10",
+            "object_repr": "Provident inventore ullam saepe deleniti impedit. 1",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 67,
+        "fields": {
+            "action_time": "2023-04-21T15:27:36.727Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "11",
+            "object_repr": "Provident inventore ullam saepe deleniti impedit. 1",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 68,
+        "fields": {
+            "action_time": "2023-04-21T15:44:28.929Z",
+            "user": [
+                "Dara"
+            ],
+            "content_type": [
+                "predictions",
+                "blog"
+            ],
+            "object_id": "11",
+            "object_repr": "Provident inventore ullam saepe deleniti impedit. 1 2",
             "action_flag": 2,
             "change_message": "[]"
         }
