@@ -37,6 +37,8 @@ if len(leagues) > 0:
                         mainleague["predictions"].append(prediction)
 
             predictionstable.append(mainleague)
+
+
 def index(request):
     user = request.user
 
@@ -94,6 +96,16 @@ def index(request):
 @verified_email_required
 def Type(request):
     return render(request,"predictions/choose-type.html")
+
+@login_required(login_url="account_login")
+def not_verified(request):
+    #confirm user doesn't have a verified email
+    user = request.user
+    emailuser = EmailAddress.objects.get(user=user)
+    if emailuser.verified:
+        return HttpResponseRedirect(reverse("index"))
+
+    return render(request,"account/verified_email_required.html")
 
 @login_required(login_url="account_login")
 @verified_email_required
@@ -177,7 +189,7 @@ def user_save(user,type):
 @verified_email_required
 def complete_signup(request,method):
     user = request.user
-    if user.type != "":
+    if user.type == "":
         if method == "freemium":
             user_save(user,method)
             return HttpResponseRedirect(reverse("freemium"))
@@ -198,13 +210,10 @@ def premium_payment(request):
     user = request.user
     if user.type == "premium":
         userprofile = PremiumProfile.objects.get(user=user)
-        if userprofile.activated == False:
-            return render(request,"predictions/premium_signup.html")
-        else:
-            user_save(user,"premium")
+        if userprofile.activated:
             return HttpResponseRedirect(reverse("premium"))
-    else:
-         return HttpResponseRedirect(reverse("index"))
+            
+    return render(request,"predictions/premium_signup.html")
 
 @login_required(login_url="account_login")
 @verified_email_required
@@ -225,6 +234,7 @@ def confirm_payment(request):
                 userprofile = PremiumProfile.objects.get(user=user)
             userprofile.activated = True
             userprofile.save()
+            messages.success(request,"You have been activated as a premium user")
             return HttpResponseRedirect(reverse("premium"))
     except RaveExceptions.PlanStatusError as e:
         print(e.err)
@@ -281,6 +291,8 @@ def activate_subscription(request):
                 userprofile = PremiumProfile.objects.get(user=user)
                 if userprofile.activated:
                     return HttpResponseRedirect(reverse("premium"))
+
+            #for users not activated premium users of other users
             for plan in res:
                 customer = plan["customer"]
                 if user.email == customer["customer_email"] and plan["status"] == "cancelled":

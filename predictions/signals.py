@@ -24,13 +24,13 @@ def user_handler(sender, instance,**kwargs):
                 try:
                     FreemiumProfile.objects.get(user=instance)
                 except FreemiumProfile.DoesNotExist:
-                    FreemiumProfile.objects.create(user=instance)
+                   FreemiumProfile.objects.create(user=instance)
             elif instance.type == "premium":
                 #create premium profile
                 try:
                     PremiumProfile.objects.get(user=instance)
                 except PremiumProfile.DoesNotExist:
-                    PremiumProfile.objects.create(user=instance)
+                   PremiumProfile.objects.create(id=instance.id,user=instance)
 
         elif instance.type == "" and emailuser.verified == False:
             #send the email
@@ -77,7 +77,7 @@ def premium_profile_delete_handler(sender,instance,**kwargs):
         freemium = FreemiumProfile.objects.get(user=user)
         #here to transfer details
     except FreemiumProfile.DoesNotExist:
-        FreemiumProfile.objects.create(user=user)
+        freemium = FreemiumProfile.objects.create(id=user.id,user=user)
 
     freemium = FreemiumProfile.objects.get(user=user)
     #transfer details

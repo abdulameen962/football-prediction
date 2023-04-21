@@ -14,7 +14,15 @@
     {% endfor %}
 </ul>
 {% endif %}
-<h1>Choose types</h1>
+<div class="membership">
+  <div class="membership_header headers" data-aos="fade-up" data-aos-duration="1000">
+      <h2>Choose User Types</h2>
+      <p>molestiae eos assumenda quibusdam voluptate sequi, quo distinctio doloribus laborum maxime nisi in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores</p>
+  </div>
+  <div class="membership_body">
+       <membership :membership="usertypes"></membership>
+  </div>
+</div>
 <a href="{% url 'complete_signup' 'freemium' %}" class="btn btn-primary text-white">Freemium user<a>
 <a href="{% url 'complete_signup' 'premium' %}" class="btn btn-primary text-white">Premium user<a>
 {% endblock  %}

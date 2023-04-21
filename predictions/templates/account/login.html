@@ -26,11 +26,11 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a><br/>
-  <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+  <button class="primary-button" type="submit">{% trans "Sign In" %}</button><br/>
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 </form>
 {% if socialaccount_providers %}
-
+<p>{% blocktrans with site.name as site_name %}Don't have an account?<a href="{{ signup_url }}">Sign up now</a>{% endblocktrans %}</p>
 <div class="socialaccount_ballot">
 
   <ul class="socialaccount_providers">
@@ -38,7 +38,6 @@
   </ul>
 
 </div>
-<p>{% blocktrans with site.name as site_name %}Don't have an account?<a href="{{ signup_url }}">sign up</a>{% endblocktrans %}</p>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}

@@ -247,11 +247,13 @@
         }
         div.cta {
             padding: 15px 0px;
+            @include flex(yes);
         }
     }
     
     footer {
         border-top: 1px solid $lightgrey;
+        margin-top: 30px;
         ul {
             justify-content: center;
             margin: 20px 0px;

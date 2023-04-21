@@ -2,7 +2,11 @@
 {% block title %} Blogs {% endblock  %}
 {% block og_title %} Blogs {% endblock  %}
 {% block body %}
-<h1>Sport News</h1>
+<div class="blog-header headers">
+    <p class="subtitle">The Blog</p>
+    <h1>Sport news around the world</h1>
+    <p>Lorem ipsum dinor dolor quibusdam voluptate sequi</p>
+</div>
 {% for blog in blogs %}
 <div class="blog">
     <h3>{{ blog.title }}</h3>
