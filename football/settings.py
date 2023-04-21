@@ -215,8 +215,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MERCHANT_ID = os.environ.get("Merchant_Id")
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL="/"
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL="index"
 EMAIL_FROM_USER = os.environ.get('EMAIL_FROM_USER')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
