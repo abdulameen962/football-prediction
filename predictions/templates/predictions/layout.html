@@ -56,6 +56,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Matches</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Profile</a>
+                            </li>
                         {% elif user.role != "" %}
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Live scores</a>
@@ -74,11 +77,9 @@
                             </li>
                         {% endif %}
                         {% comment %} <li class="nav-item">
-                            <a class="nav-link" href="#">Support</a>
+                            <a class="nav-link" href="#">Support</a>,also must have profile and live matches
                         </li> {% endcomment %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
-                        </li>
+                         
                         <li class="nav-item link_show">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
