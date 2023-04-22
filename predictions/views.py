@@ -26,18 +26,6 @@ from .flutterwave import checkPayment,rave
 from .signals import *
 
 admin.site.login = login_required(admin.site.login)
-leagues = League.objects.all()
-predictionstable = []
-if len(leagues) > 0:
-    for league in leagues:
-        leaguepredictions = league.prediction.all()
-        if len(leaguepredictions) > 0:
-            mainleague = {"league":league,"predictions":[]}
-            for prediction in leaguepredictions:
-                if prediction.type == "freemium":
-                        mainleague["predictions"].append(prediction)
-
-            predictionstable.append(mainleague)
 #handlers
 def handler404(request, *args, **argv):
     response = render(request,'predictions/404.html')

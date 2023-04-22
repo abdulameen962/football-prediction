@@ -1,7 +1,7 @@
 {% extends 'predictions/layout.html' %}
 {% load static %}
-{% block title %} Predictions home{% endblock  %}
-{% block og_title %} Predictions home{% endblock  %}
+{% block title %} Football Predictions{% endblock  %}
+{% block og_title %} Football Predictions{% endblock  %}
 {% block body %}
 <div class="row home-main">
     <div class="text col-sm-12 col-md-12 col-lg-5" data-aos="fade-up" data-aos-duration="1000">
@@ -37,7 +37,7 @@
 </div>
 <div class="predictions">
     <div class="predict-header headers" id="predictions" data-aos="fade-up" data-aos-duration="1000">
-        <h2>Predictions</h2>
+        <h2>Picks</h2>
         <p>molestiae eos assumenda quibusdam voluptate sequi, quo distinctio doloribus laborum maxime nisi in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores</p>
     </div>
     <div class="predict-table row">
@@ -97,7 +97,7 @@
                                     {% endif %}
                                 </tr>
                             {% empty %}
-                                <tr><td>No predictions now,check back later</td></tr>
+                                <tr><td>No picks now,check back later</td></tr>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -107,7 +107,7 @@
                 </div>
             </div>
         {%empty%}
-            <p>No prediction available for you now <a href="{% url 'account_login' %}">Sign in</a> now to get predictions for other user types</p>
+            <p>No picks available for you now <a href="{% url 'account_login' %}">Sign in</a> now to get picks for other user types</p>
         {% endfor %}
     </div>
 </div>

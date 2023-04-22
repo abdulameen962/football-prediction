@@ -53,9 +53,21 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'premium_payment' %}">Activate Premium</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Picks</a>
+                            </li>
                         {% elif user.role == "premium"%}
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Live scores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Exact Correct scores</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Combo draws</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Combo ticket picks</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Watchlist</a>
@@ -64,12 +76,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Matches</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Predictions</a>
-                        </li>
-                        <li class="nav-item">
+                        {% comment %} <li class="nav-item">
                             <a class="nav-link" href="#">Support</a>
-                        </li>
+                        </li> {% endcomment %}
                         <li class="nav-item">
                             <a class="nav-link" href="#">Profile</a>
                         </li>
@@ -81,7 +90,7 @@
                             <a class="nav-link" href="{% url 'index' %}#how">How it works</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}#predictions">Predictions</a>
+                            <a class="nav-link" href="{% url 'index' %}#predictions">Picks</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'index' %}#membership">Membership</a>
