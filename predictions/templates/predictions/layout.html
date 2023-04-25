@@ -5,21 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <link rel="stylesheet" href="{% static 'predictions/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'predictions/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'predictions/css/styles/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'predictions/css/styles/aos.css' %}">
     <title> {% block title %} Predictions {% endblock  %} </title>
     <link rel="shortcut icon" href="{% static 'predictions/css/images/icon.svg' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'predictions/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'predictions/css/styles/styles.css' %}">
     <meta property="og:type" content="{% block type_content %} website {% endblock  %}" />	
     <meta property="og:site_name" content="{% block meta_content %} Football predictions {% endblock  %}" />
     <meta name="robots" content="index, follow">
     <meta name="twitter:data1" content="1 minute" />
+    <meta name="description" content="{% block description %} A Football prediction web app {% endblock  %} " />
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
     <link rel='dns-prefetch' href='//s.w.org' />
-    <link rel="canonical" href="{{ current_site }}{{ request.path }}" />
+    <link rel="canonical" href="https://{{ current_site }}{{ request.path }}" />
     <meta property="og:title" content="{% block og_title %} Predictions {% endblock  %}" />
-    <meta property="og:description" content="{% block description %} A Football prediction web app {% endblock  %}" />
-    <meta property="og:url" content="{{ current_site }}{{ request.path }}" />
+    <meta property="og:description" content="A Football prediction web app" />
+    <meta property="og:url" content="https://{{ current_site }}{{ request.path }}" />
     <link rel="apple-touch-icon" href="{% static 'predictions/images/icon.svg' %}" />
     <meta name="msapplication-TileImage" content="{% static 'predictions/images/icon.svg' %}" />
     {% comment %} <link rel="shortcut icon" href="{% static 'predictions/images/logo2.png' %}" type="image/x-icon"> {% endcomment %}
@@ -79,7 +80,9 @@
                         {% comment %} <li class="nav-item">
                             <a class="nav-link" href="#">Support</a>,also must have profile and live matches
                         </li> {% endcomment %}
-                         
+                        <li class="nav-item link_show">
+                            <a class="nav-link" href="{% url 'confirm_payment' %}">Confirm Payment</a>
+                        </li>
                         <li class="nav-item link_show">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>

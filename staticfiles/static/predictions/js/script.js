@@ -20,7 +20,7 @@ const app = Vue.createApp({
                 },
                 {
                     class: "step step3",
-                    header: "Check Predictions",
+                    header: "Check Tips",
                     text: "in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores",
                     image: `
                     <img src="/static/predictions/css/images/step3.svg" alt="background image"/>
@@ -78,16 +78,25 @@ const app = Vue.createApp({
                     "duration": "Monthly duration",
                     "price": "$15.00",
                     "features": [{
-                            "text": "Large number of leagues",
+                            "text": "Exact correct scores",
                         },
                         {
-                            "text": "Large number of predictions",
+                            "text": "Combo ticket picks"
+                        },
+                        {
+                            "text": "Combo draws",
                         },
                         {
                             "text": "Live scores of matches",
                         },
                         {
-                            "text": "Watchlist to get email updates of new Predictions",
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
+                        },
+                        {
+                            "text": "Watchlist of new tips",
                         },
                         {
                             "text": "Full Support for any of your enquires",
@@ -108,10 +117,13 @@ const app = Vue.createApp({
                     "duration": "Yearly Duration",
                     "price": "$150.00",
                     "features": [{
-                            "text": "Large number of leagues",
+                            "text": "Exact correct scores",
                         },
                         {
-                            "text": "Large number of predictions",
+                            "text": "Combo ticket picks"
+                        },
+                        {
+                            "text": "Combo draws",
                         },
                         {
                             "text": "Live scores of matches",
@@ -120,7 +132,13 @@ const app = Vue.createApp({
                             "text": "Full Support for any of your enquires",
                         },
                         {
-                            "text": "Watchlist to get email updates of new Predictions",
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
+                        },
+                        {
+                            "text": "Watchlist of new tips",
                         },
                         {
                             "text": "Discounted Yearly Subscription,can cancel anytime",
@@ -165,16 +183,25 @@ const app = Vue.createApp({
                     "price": "$15.00",
                     "href": "/complete-signup/premium/",
                     "features": [{
-                            "text": "Large number of leagues",
+                            "text": "Exact correct scores",
                         },
                         {
-                            "text": "Large number of predictions",
+                            "text": "Combo ticket picks"
+                        },
+                        {
+                            "text": "Combo draws",
                         },
                         {
                             "text": "Live scores of matches",
                         },
                         {
-                            "text": "Watchlist to get email updates of new Predictions",
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
+                        },
+                        {
+                            "text": "Watchlist of new tips",
                         },
                         {
                             "text": "Full Support for any of your enquires",
@@ -197,16 +224,25 @@ const app = Vue.createApp({
                     "price": "$15.00",
                     "href": "https://sandbox-flw-web-v3.herokuapp.com/pay/predict-football",
                     "features": [{
-                            "text": "Large number of leagues",
+                            "text": "Exact correct scores",
                         },
                         {
-                            "text": "Large number of predictions",
+                            "text": "Combo ticket picks"
+                        },
+                        {
+                            "text": "Combo draws",
                         },
                         {
                             "text": "Live scores of matches",
                         },
                         {
-                            "text": "Watchlist to get email updates of new Predictions",
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
+                        },
+                        {
+                            "text": "Watchlist of new tips",
                         },
                         {
                             "text": "Full Support for any of your enquires",
@@ -228,19 +264,28 @@ const app = Vue.createApp({
                     "price": "$150.00",
                     "href": "https://sandbox-flw-web-v3.herokuapp.com/pay/predict-football",
                     "features": [{
-                            "text": "Large number of leagues",
+                            "text": "Exact correct scores",
                         },
                         {
-                            "text": "Large number of predictions",
+                            "text": "Combo ticket picks"
+                        },
+                        {
+                            "text": "Combo draws",
                         },
                         {
                             "text": "Live scores of matches",
                         },
                         {
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
+                        },
+                        {
                             "text": "Full Support for any of your enquires",
                         },
                         {
-                            "text": "Watchlist to get email updates of new Predictions",
+                            "text": "Watchlist of new tips",
                         },
                         {
                             "text": "Discounted Yearly Subscription,can cancel anytime",
@@ -254,6 +299,7 @@ const app = Vue.createApp({
         AOS.init();
         var inners = document.querySelectorAll("ul.socialaccount_providers li a");
         var email = document.querySelector("[type='email']");
+        var checkbox = document.querySelector("[type='checkbox']");
         if (email) {
             email.required = true;
             var label = email.previousElementSibling;
@@ -275,6 +321,9 @@ const app = Vue.createApp({
                     `
                 }
             })
+        }
+        if (checkbox) {
+            checkbox.checked = true;
         }
     },
     methods: {}

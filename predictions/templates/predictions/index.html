@@ -52,20 +52,20 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Home</th>
-                                <th scope="col">Away</th>
-                                <th scope="col">Correct score</th>
-                                <th scope="col">Tip</th>
+                                <th class="w-auto" scope="col">Home</th>
+                                <th class="w-auto" scope="col">Away</th>
+                                <th class="w-auto" scope="col">Correct score</th>
+                                <th class="w-auto" scope="col">Tip</th>
                             </tr>
                         </thead>
                         <tbody id="patients">
                             {% for predict in prediction.predictions %}
                                 <tr>
-                                    <td>{{ predict.home }}</td>
-                                    <td>{{ predict.away }}</td>
-                                    <td><a href="{% url 'account_login' %}">?</a> </td>
+                                    <td class="w-auto">{{ predict.home }}</td>
+                                    <td class="w-auto">{{ predict.away }}</td>
+                                    <td class="w-auto"><a href="{% url 'account_login' %}">?</a> </td>
                                     {% if predict.tip == "home" %}
-                                        <td>
+                                        <td class="w-auto">
                                             <svg width="54" height="50" viewBox="0 0 54 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect x="0.5" y="0.5" width="53" height="49" rx="12.5" fill="#03B962"/>
                                                 <circle cx="27" cy="25" r="15" stroke="white" stroke-width="2"/>
@@ -75,7 +75,7 @@
                                             </svg>                                                                                               
                                         </td>                                                                              
                                     {% elif predict.tip == "away" %}
-                                        <td>
+                                        <td class="w-auto">
                                             <svg width="54" height="50" viewBox="0 0 54 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect x="0.5" y="0.5" width="53" height="49" rx="12.5" fill="#FC3A3A"/>
                                                 <circle cx="27" cy="25" r="15" stroke="white" stroke-width="2"/>
@@ -85,7 +85,7 @@
                                             </svg>                                                
                                         </td>                                                                           
                                     {% else %}
-                                        <td>
+                                        <td class="w-auto">
                                             <svg width="54" height="50" viewBox="0 0 54 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <rect x="0.5" y="0.5" width="53" height="49" rx="12.5" fill="#F7A400"/>
                                                 <circle cx="27" cy="25" r="15" stroke="white" stroke-width="2"/>

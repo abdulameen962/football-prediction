@@ -4,7 +4,7 @@
     "description": "Football prediction web app",
     "main": "index.html",
     "scripts": {
-        "node:sass": "node-sass css/sass/main.scss css/styles.css",
+        "node:sass": "node-sass css/sass/main.scss css/styles/styles.css",
         "auto:compile": "nodemon -e scss -x \"npm run node:sass\""
     },
     "author": "",

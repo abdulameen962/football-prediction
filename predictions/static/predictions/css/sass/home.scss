@@ -89,12 +89,10 @@
                     @include grid(2);
                     gap: 30px 75px;
                 }
-                @include respond(lphone) {
-                    gap: 30px 0px;
-                }
                 @include respond(phone) {
                     @include grid(1);
                     margin: 10px 0px;
+                    gap: 30px 0px;
                 }
                 div.step {
                     position: relative;

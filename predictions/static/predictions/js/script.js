@@ -20,7 +20,7 @@ const app = Vue.createApp({
                 },
                 {
                     class: "step step3",
-                    header: "Check Predictions",
+                    header: "Check Tips",
                     text: "in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores",
                     image: `
                     <img src="/static/predictions/css/images/step3.svg" alt="background image"/>
@@ -90,6 +90,12 @@ const app = Vue.createApp({
                             "text": "Live scores of matches",
                         },
                         {
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
+                        },
+                        {
                             "text": "Watchlist of new tips",
                         },
                         {
@@ -124,6 +130,12 @@ const app = Vue.createApp({
                         },
                         {
                             "text": "Full Support for any of your enquires",
+                        },
+                        {
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
                         },
                         {
                             "text": "Watchlist of new tips",
@@ -183,6 +195,12 @@ const app = Vue.createApp({
                             "text": "Live scores of matches",
                         },
                         {
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
+                        },
+                        {
                             "text": "Watchlist of new tips",
                         },
                         {
@@ -216,6 +234,12 @@ const app = Vue.createApp({
                         },
                         {
                             "text": "Live scores of matches",
+                        },
+                        {
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
                         },
                         {
                             "text": "Watchlist of new tips",
@@ -252,6 +276,12 @@ const app = Vue.createApp({
                             "text": "Live scores of matches",
                         },
                         {
+                            "text": "HT/FT tips",
+                        },
+                        {
+                            "text": "Halftime Correct scores",
+                        },
+                        {
                             "text": "Full Support for any of your enquires",
                         },
                         {
@@ -269,6 +299,7 @@ const app = Vue.createApp({
         AOS.init();
         var inners = document.querySelectorAll("ul.socialaccount_providers li a");
         var email = document.querySelector("[type='email']");
+        var checkbox = document.querySelector("[type='checkbox']");
         if (email) {
             email.required = true;
             var label = email.previousElementSibling;
@@ -290,6 +321,9 @@ const app = Vue.createApp({
                     `
                 }
             })
+        }
+        if (checkbox) {
+            checkbox.checked = true;
         }
     },
     methods: {}

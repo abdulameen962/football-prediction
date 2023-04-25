@@ -226,7 +226,7 @@ p input[readonly]:not([type="checkbox"]) {
 
 @font-face {
   font-family: regular;
-  src: url("./fonts/Quicksand-Regular.ttf"), local("sans-serif");
+  src: url("../fonts/Quicksand-Regular.ttf"), local("sans-serif");
   font-display: swap; }
 
 ul {
@@ -254,7 +254,7 @@ div.table-container {
       border-bottom: 1px solid #E7E9EE; }
       div.table-container table.table > thead tr th {
         border: none;
-        padding: 10px 25px; }
+        padding: 10px 15px 10px 10px; }
     div.table-container table.table > tbody tr {
       border-bottom: 1px solid #E7E9EE;
       transition: all 0.3s ease;
@@ -262,7 +262,7 @@ div.table-container {
       div.table-container table.table > tbody tr:hover {
         box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05); }
       div.table-container table.table > tbody tr td {
-        padding: 10px 25px;
+        padding: 10px 15px 10px 10px;
         vertical-align: middle; }
         div.table-container table.table > tbody tr td img {
           width: 40px;
@@ -726,16 +726,14 @@ div.works {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 0px 30px;
         gap: 30px 75px; } }
-    @media screen and (min-width: 0px) and (max-width: 740px) {
-      div.works div.work-grid {
-        gap: 30px 0px; } }
     @media screen and (min-width: 0em) and (max-width: 479px) {
       div.works div.work-grid {
         display: grid;
         justify-content: space-between;
         grid-template-columns: repeat(1, minmax(0, 1fr));
         gap: 0px 30px;
-        margin: 10px 0px; } }
+        margin: 10px 0px;
+        gap: 30px 0px; } }
     div.works div.work-grid div.step {
       position: relative; }
       div.works div.work-grid div.step div.work-single {
