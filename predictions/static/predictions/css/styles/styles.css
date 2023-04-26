@@ -973,8 +973,8 @@ input[type="submit"] {
   @media screen and (min-width: 0px) and (max-width: 740px) {
     button[type="submit"],
     input[type="submit"] {
-      padding-top: 15px;
-      padding-bottom: 15px; } }
+      padding-top: 13px;
+      padding-bottom: 13px; } }
 
 ul.socialaccount_providers {
   display: flex;

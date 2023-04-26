@@ -41,8 +41,8 @@ input[type="submit"] {
         box-shadow: 0 0 0 0.25rem rgba($orangeheader, .5);
     }
     @include respond(lphone) {
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding-top: 13px;
+        padding-bottom: 13px;
     }
 }
 
