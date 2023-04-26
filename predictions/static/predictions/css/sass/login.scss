@@ -31,6 +31,7 @@ input[type="submit"] {
     margin: 20px 0px 0px;
     background: $orangeheader;
     border: none;
+    color: $white;
     font-weight: normal;
     &:hover,
     &:focus,
@@ -38,6 +39,10 @@ input[type="submit"] {
         background: $orangeheader;
         border-color: $orangeheader;
         box-shadow: 0 0 0 0.25rem rgba($orangeheader, .5);
+    }
+    @include respond(lphone) {
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 }
 
