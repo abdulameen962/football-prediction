@@ -81,6 +81,7 @@ div.base_login_main {
     padding: 5px;
     &>div.image {
         position: relative;
+        height: 100vh;
         @include respond(lphone) {
             display: none;
         }
@@ -96,7 +97,6 @@ div.base_login_main {
     div.signup_main {
         padding: 5px 0px 0px 0px;
         @include flex(yes);
-        justify-content: space-between;
         nav {
             div.container-fluid {
                 @include flex(no);

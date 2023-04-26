@@ -1036,7 +1036,8 @@ ul.socialaccount_providers {
 div.base_login_main {
   padding: 5px; }
   div.base_login_main > div.image {
-    position: relative; }
+    position: relative;
+    height: 100vh; }
     @media screen and (min-width: 0px) and (max-width: 740px) {
       div.base_login_main > div.image {
         display: none; } }
@@ -1052,8 +1053,7 @@ div.base_login_main {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    justify-content: space-between; }
+    flex-direction: column; }
     div.base_login_main div.signup_main nav div.container-fluid {
       display: flex;
       justify-content: center;
