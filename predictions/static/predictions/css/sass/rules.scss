@@ -107,7 +107,9 @@ div.resize {
 }
 
 div.resize-small {
-    max-width: 551px;
+    max-width: 500px;
+    width: 100%;
+    padding: 0px 24px;
 }
 
 div.resize-medium {

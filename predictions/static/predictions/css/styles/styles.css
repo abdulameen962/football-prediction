@@ -363,7 +363,9 @@ div.resize {
   padding: 0px 12px; }
 
 div.resize-small {
-  max-width: 551px; }
+  max-width: 500px;
+  width: 100%;
+  padding: 0px 24px; }
 
 div.resize-medium {
   max-width: 994px;
@@ -950,12 +952,16 @@ ul.messages li {
 
 button[type="submit"],
 input[type="submit"] {
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 20px;
-  padding: 10px 25px;
-  margin: 10px 0px;
+  width: 100%;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 20px 0px 0px;
   background: #FFA90F;
-  border: none; }
+  border: none;
+  font-weight: normal; }
   button[type="submit"]:hover, button[type="submit"]:focus, button[type="submit"]:active,
   input[type="submit"]:hover,
   input[type="submit"]:focus,
@@ -964,49 +970,150 @@ input[type="submit"] {
     border-color: #FFA90F;
     box-shadow: 0 0 0 0.25rem rgba(255, 169, 15, 0.5); }
 
-ul.socialaccount_providers li {
-  list-style-type: none;
-  margin: 10px 0px; }
-  ul.socialaccount_providers li a {
-    text-decoration: none;
-    color: #292C32;
-    padding: 14px 34px;
-    font-size: 18px;
-    line-height: 1.389em;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    border-radius: 80px;
-    color: rgba(41, 44, 50, 0.6);
-    background: white;
-    border: 1px solid #E7E9EE;
+ul.socialaccount_providers {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  ul.socialaccount_providers li {
+    list-style-type: none;
+    margin: 10px 8px; }
+    ul.socialaccount_providers li a {
+      text-decoration: none;
+      color: #292C32;
+      padding: 14px 34px;
+      font-size: 18px;
+      line-height: 1.389em;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      border-radius: 80px;
+      color: rgba(41, 44, 50, 0.6);
+      background: white;
+      border: 1px solid #E7E9EE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+      width: 100%;
+      font-size: 20px;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      margin: 0;
+      padding: 0; }
+      @media screen and (min-width: 0px) and (max-width: 991px) {
+        ul.socialaccount_providers li a {
+          padding: 15px 40px;
+          font-size: 16px;
+          line-height: 1.125em; } }
+      @media screen and (min-width: 0px) and (max-width: 740px) {
+        ul.socialaccount_providers li a {
+          padding: 15px 34px;
+          font-size: 16px;
+          line-height: 1.125em; } }
+      @media screen and (min-width: 0em) and (max-width: 479px) {
+        ul.socialaccount_providers li a {
+          width: 100%;
+          text-align: center; } }
+      ul.socialaccount_providers li a:hover {
+        transform: translateY(-5px); }
+      @media screen and (min-width: 0em) and (max-width: 479px) {
+        ul.socialaccount_providers li a {
+          font-size: 18px;
+          width: 45px;
+          height: 45px;
+          margin: 0;
+          padding: 0; } }
+      ul.socialaccount_providers li a img {
+        width: 25px;
+        height: 25px;
+        margin: 0;
+        padding: 0; }
+        @media screen and (min-width: 0em) and (max-width: 479px) {
+          ul.socialaccount_providers li a img {
+            width: 20px;
+            height: 20px; } }
+
+div.base_login_main {
+  padding: 5px; }
+  div.base_login_main > div.image {
+    position: relative; }
+    @media screen and (min-width: 0px) and (max-width: 740px) {
+      div.base_login_main > div.image {
+        display: none; } }
+    div.base_login_main > div.image div.image_main {
+      background: url("../images/background.jpg");
+      background-repeat: no-repeat;
+      background-size: 85%;
+      width: 100%;
+      height: 100%;
+      position: fixed; }
+  div.base_login_main div.signup_main {
+    padding: 10px 0px 0px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    font-size: 20px; }
-    @media screen and (min-width: 0px) and (max-width: 991px) {
-      ul.socialaccount_providers li a {
-        padding: 15px 40px;
-        font-size: 16px;
-        line-height: 1.125em; } }
-    @media screen and (min-width: 0px) and (max-width: 740px) {
-      ul.socialaccount_providers li a {
-        padding: 15px 34px;
-        font-size: 16px;
-        line-height: 1.125em; } }
-    @media screen and (min-width: 0em) and (max-width: 479px) {
-      ul.socialaccount_providers li a {
+    flex-direction: column;
+    justify-content: space-between; }
+    div.base_login_main div.signup_main nav div.container-fluid {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      div.base_login_main div.signup_main nav div.container-fluid a img {
+        transform: scale(2); }
+        @media screen and (min-width: 0px) and (max-width: 991px) {
+          div.base_login_main div.signup_main nav div.container-fluid a img {
+            transform: scale(1.5); } }
+    div.base_login_main div.signup_main div.login-middle {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px; }
+      div.base_login_main div.signup_main div.login-middle a.secondaryAction {
+        float: right;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 10px; }
+      div.base_login_main div.signup_main div.login-middle > h2 {
+        margin: 0;
+        padding: 0; }
+      div.base_login_main div.signup_main div.login-middle > p {
+        text-align: center; }
+      div.base_login_main div.signup_main div.login-middle form {
         width: 100%;
-        text-align: center; } }
-    ul.socialaccount_providers li a:hover {
-      transform: translateY(-5px); }
-    @media screen and (min-width: 0em) and (max-width: 479px) {
-      ul.socialaccount_providers li a {
-        font-size: 18px; } }
-    ul.socialaccount_providers li a img {
-      width: 25px;
-      height: 25px;
-      margin-left: 6px; }
+        max-width: 95vw; }
+        @media screen and (min-width: 0px) and (max-width: 991px) {
+          div.base_login_main div.signup_main div.login-middle form {
+            max-width: 400px; } }
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+          div.base_login_main div.signup_main div.login-middle form {
+            max-width: 95vw; } }
+        div.base_login_main div.signup_main div.login-middle form input:not([type="submit"]),
+        div.base_login_main div.signup_main div.login-middle form input:not([type="checkbox"]) {
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          padding: 0px 8px;
+          border-radius: 0px;
+          margin: 0px 0px 10px;
+          font-size: 16px; }
+          div.base_login_main div.signup_main div.login-middle form input:not([type="submit"]):focus, div.base_login_main div.signup_main div.login-middle form input:not([type="submit"]):active, div.base_login_main div.signup_main div.login-middle form input:not([type="submit"]):hover,
+          div.base_login_main div.signup_main div.login-middle form input:not([type="checkbox"]):focus,
+          div.base_login_main div.signup_main div.login-middle form input:not([type="checkbox"]):active,
+          div.base_login_main div.signup_main div.login-middle form input:not([type="checkbox"]):hover {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            margin: 0px 0px 10px;
+            box-shadow: none;
+            padding: 4px 8px;
+            border-radius: 0px; }
+          div.base_login_main div.signup_main div.login-middle form input:not([type="submit"])::placeholder,
+          div.base_login_main div.signup_main div.login-middle form input:not([type="checkbox"])::placeholder {
+            display: none;
+            opacity: 0; }
 
 div.blogs {
   display: flex;

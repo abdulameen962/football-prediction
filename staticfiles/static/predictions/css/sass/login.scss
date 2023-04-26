@@ -22,12 +22,16 @@ ul.messages {
 
 button[type="submit"],
 input[type="submit"] {
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 20px;
-    padding: 10px 25px;
-    margin: 10px 0px;
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 20px 0px 0px;
     background: $orangeheader;
     border: none;
+    font-weight: normal;
     &:hover,
     &:focus,
     &:active {
@@ -38,23 +42,123 @@ input[type="submit"] {
 }
 
 ul.socialaccount_providers {
+    @include flex(no);
     li {
         list-style-type: none;
-        margin: 10px 0px;
+        margin: 10px 8px;
         a {
             @include link;
             @include defaultbutton;
             @include secondarybutton;
             @include flex(no);
+            display: none;
             width: 100%;
             font-size: 20px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            @include mp;
             @include respond(phone) {
                 font-size: 18px;
+                width: 45px;
+                height: 45px;
+                @include mp;
             }
             img {
                 width: 25px;
                 height: 25px;
-                margin-left: 6px;
+                @include mp;
+                @include respond(phone) {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}
+
+div.base_login_main {
+    padding: 5px;
+    &>div.image {
+        position: relative;
+        @include respond(lphone) {
+            display: none;
+        }
+        div.image_main {
+            background: url("../images/background.jpg");
+            background-repeat: no-repeat;
+            background-size: 85%;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+    }
+    div.signup_main {
+        padding: 10px 0px 0px 0px;
+        @include flex(yes);
+        justify-content: space-between;
+        nav {
+            div.container-fluid {
+                @include flex(no);
+                a {
+                    img {
+                        transform: scale(2);
+                        @include respond(tab) {
+                            transform: scale(1.5);
+                        }
+                    }
+                }
+            }
+        }
+        div.login-middle {
+            a.secondaryAction {
+                float: right;
+                @include mp;
+                margin-bottom: 10px;
+            }
+            @include mp;
+            @include flex(yes);
+            margin-top: 20px;
+            &>h2 {
+                @include mp;
+            }
+            &>p {
+                text-align: center;
+            }
+            form {
+                width: 100%;
+                max-width: 95vw;
+                @include respond(tab) {
+                    max-width: 400px;
+                }
+                @include respond(lphone) {
+                    max-width: 95vw;
+                }
+                input:not([type="submit"]),
+                input:not([type="checkbox"]) {
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                    padding: 0px 8px;
+                    border-radius: 0px;
+                    margin: 0px 0px 10px;
+                    font-size: 16px;
+                    &:focus,
+                    &:active,
+                    &:hover {
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                        margin: 0px 0px 10px;
+                        box-shadow: none;
+                        padding: 4px 8px;
+                        border-radius: 0px;
+                    }
+                    &::placeholder {
+                        display: none;
+                        opacity: 0;
+                    }
+                }
             }
         }
     }

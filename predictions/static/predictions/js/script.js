@@ -309,16 +309,19 @@ const app = Vue.createApp({
             inners.forEach(function(e) {
                 if (e.innerHTML == "Sign in with Google") {
                     e.innerHTML = `
-                    Sign in with <img src="/static/predictions/css/images/Google.svg" alt="google"/>
+                    <img src="/static/predictions/css/images/Google.svg" alt="google"/>
                     `
+                    e.style.display = "flex";
                 } else if (e.innerHTML == "Sign in with Instagram") {
                     e.innerHTML = `
-                    Sign in with <img src="/static/predictions/css/images/instagram.svg" alt="google"/>
+                    <img src="/static/predictions/css/images/instagram.svg" alt="google"/>
                     `
+                    e.style.display = "flex";
                 } else if (e.innerHTML == "Sign in with Facebook") {
                     e.innerHTML = `
-                    Sign in with <img src="/static/predictions/css/images/facebook.svg" alt="google"/>
+                    <img src="/static/predictions/css/images/facebook.svg" alt="google"/>
                     `
+                    e.style.display = "flex";
                 }
             })
         }
