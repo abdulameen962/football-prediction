@@ -31,6 +31,7 @@ input[type="submit"] {
     margin: 20px 0px 0px;
     background: $orangeheader;
     border: none;
+    color: $white;
     font-weight: normal;
     &:hover,
     &:focus,
@@ -38,6 +39,10 @@ input[type="submit"] {
         background: $orangeheader;
         border-color: $orangeheader;
         box-shadow: 0 0 0 0.25rem rgba($orangeheader, .5);
+    }
+    @include respond(lphone) {
+        padding-top: 13px;
+        padding-bottom: 13px;
     }
 }
 
@@ -78,10 +83,10 @@ ul.socialaccount_providers {
 }
 
 div.base_login_main {
-    padding: 5px;
     &>div.image {
         position: relative;
         height: 100vh;
+        @include mp;
         @include respond(lphone) {
             display: none;
         }
@@ -92,11 +97,15 @@ div.base_login_main {
             width: 100%;
             height: 100%;
             position: fixed;
+            @include respond(tab) {
+                background-size: cover;
+            }
         }
     }
     div.signup_main {
         padding: 5px 0px 0px 0px;
         @include flex(yes);
+        justify-content: flex-start;
         nav {
             div.container-fluid {
                 @include flex(no);
@@ -132,7 +141,7 @@ div.base_login_main {
                     max-width: 400px;
                 }
                 @include respond(lphone) {
-                    max-width: 95vw;
+                    max-width: 88vw;
                 }
                 input:not([type="submit"]),
                 input:not([type="checkbox"]) {

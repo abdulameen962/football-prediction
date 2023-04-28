@@ -1100,7 +1100,7 @@ div.base_login_main div.signup_main {
           max-width: 400px; } }
       @media screen and (min-width: 0px) and (max-width: 740px) {
         div.base_login_main div.signup_main div.login-middle form {
-          max-width: 95vw; } }
+          max-width: 88vw; } }
       div.base_login_main div.signup_main div.login-middle form input:not([type="submit"]),
       div.base_login_main div.signup_main div.login-middle form input:not([type="checkbox"]) {
         border-top: none;

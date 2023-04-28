@@ -141,7 +141,7 @@ div.base_login_main {
                     max-width: 400px;
                 }
                 @include respond(lphone) {
-                    max-width: 95vw;
+                    max-width: 88vw;
                 }
                 input:not([type="submit"]),
                 input:not([type="checkbox"]) {
