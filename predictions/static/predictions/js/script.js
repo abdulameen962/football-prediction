@@ -5,7 +5,7 @@ const app = Vue.createApp({
             works: [{
                     class: "step step1",
                     header: "Create Account",
-                    text: "in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores",
+                    text: "Sign up with your name and email address to experience what steady cash-out feels like.",
                     image: `
                   <img src="/static/predictions/css/images/step1.svg" alt="background image"/>
                   `
@@ -13,7 +13,7 @@ const app = Vue.createApp({
                 {
                     class: "step step2",
                     header: "Choose User Type",
-                    text: "in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores",
+                    text: "Check out the free version or Subscribe to the premium version to enjoy the ultimate VIP experience with exclusive access to more of our top-rated predictions.",
                     image: `
                     <img src="/static/predictions/css/images/step2.svg" alt="background image"/>
                 `
@@ -21,7 +21,7 @@ const app = Vue.createApp({
                 {
                     class: "step step3",
                     header: "Check Tips",
-                    text: "in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores",
+                    text: "Get reliable predictions for the latest football matches.",
                     image: `
                     <img src="/static/predictions/css/images/step3.svg" alt="background image"/>
                 `
@@ -29,7 +29,7 @@ const app = Vue.createApp({
                 {
                     class: "step step1",
                     header: "Bet on any Betting Platform",
-                    text: "in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores",
+                    text: "Make good decisions and place bets on any desired betting platform.",
                     image: `
                     <img src="/static/predictions/css/images/step4.svg" alt="background image"/>
                 `
@@ -37,7 +37,7 @@ const app = Vue.createApp({
                 {
                     class: "step step2",
                     header: "Cashout",
-                    text: "in dignissimos delectus? Quam qui rerum laboriosam nam adipisci ipsam maiores",
+                    text: "With an assuring smile, Win Big, Withdraw your greens and Ball with ease.",
                     image: `
                     <img src="/static/predictions/css/images/step5.svg" alt="background image"/>
                 `
