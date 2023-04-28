@@ -1,0 +1,7 @@
+aside {
+    &>a {
+        &>img {
+            transform: scale(2);
+        }
+    }
+}

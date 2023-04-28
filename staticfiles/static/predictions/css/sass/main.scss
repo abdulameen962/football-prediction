@@ -3,6 +3,7 @@
 @import "home";
 @import "login";
 @import "blogs";
+@import "dashboard";
 body {
     @include mpb;
     overflow-x: hidden;

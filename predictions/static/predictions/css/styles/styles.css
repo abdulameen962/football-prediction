@@ -1325,6 +1325,9 @@ div.blog_detail_main {
     div.blog_detail_main div.blog-detail p.author {
       text-align: center; }
 
+aside > a > img {
+  transform: scale(2); }
+
 body {
   margin: 0;
   padding: 0;

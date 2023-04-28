@@ -117,10 +117,12 @@
    
    {% endblock  %}
 
-    <div class="container-fluid resize">
-        {% block body %}
-        {% endblock %}
-    </div>
+    {% comment %} {% block mainbody %} {% endcomment %}
+        <div class="container-fluid resize">
+            {% block body %}
+            {% endblock %}
+        </div>
+    {% comment %} {% endblock  %} {% endcomment %}
     {% block footer %} 
     <footer data-aos="fade-up" data-aos-duration="1000">
         <div class="container-fluid resize">
@@ -147,8 +149,7 @@
             <div class="footer-main">
                 <div class="text headers">
                     <h2>Frankly Predictions</h2>
-                    <p>We can't wait to help you start winning big. Sign up now, Choose
-                        your subscription today, and Start making smarter bets with us.</p>
+                    <p>Join our community of football enthusiasts today and experience the difference. Our platform is designed to improve your football betting experience with accurate predictions and valuable insights. Whether you're a seasoned bettor or just starting, we will always have something for you. With us, you're not just a user, you're a valued member of our community.</p>
                 </div>
                 <ul class="social-links">
                     <li> 
