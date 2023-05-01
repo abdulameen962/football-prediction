@@ -1,7 +1,7 @@
 {% extends 'predictions/user-base.html' %}
 {% block title %} Premium{% endblock  %}
 {% block og_title %} Premium{% endblock  %}
-{% block body %}
+{% block content %}
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
@@ -14,6 +14,8 @@
     {% endfor %}
 </ul>
 {% endif %}
-<h1>Premium user</h1>
-<a role="button" class="btn btn-primary" href="{% url 'cancel_subscription' %}">Cancel subscription</a>
+<div class="dashboard-single">
+  <h2>Premium user</h2>
+  <a role="button" class="btn btn-primary" href="{% url 'cancel_subscription' %}">Cancel subscription</a>
+</div>
 {% endblock  %}

@@ -19,6 +19,7 @@ from django.utils.html import strip_tags
 from rave_python import Rave,Misc,RaveExceptions
 from allauth.account.signals import email_confirmed,email_confirmation_sent
 from django.template.defaultfilters import slugify
+# from django.core.management.utils import get_random_secret_key
 import time
 from django.db.utils import OperationalError,ProgrammingError
 from .models import *

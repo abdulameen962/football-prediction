@@ -214,6 +214,10 @@ p {
     padding: 10px 0px;
 }
 
+li {
+    @include listMain;
+}
+
 button {
     @extend .font;
     @extend .font-weight;

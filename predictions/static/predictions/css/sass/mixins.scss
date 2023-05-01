@@ -304,6 +304,10 @@
     animation: twirl 50s infinite ease-in;
 }
 
+@mixin stopoint {
+    pointer-events: none;
+}
+
 @mixin respond ($breakpoint) {
     @if $breakpoint==phone {
         @media screen and (min-width: 0em) and (max-width: 479px) {
@@ -450,7 +454,7 @@ div.main-extend {
 }
 
 $grey: #6F7278;
-$dark: #292C32;
+$dark: #353745;
 $blue: #343472;
 $white: rgb(255, 255, 255);
 $orangeheader: #FFA90F;
@@ -461,7 +465,8 @@ $blueborder: #E7E9EE;
 $darkgrey: #F8F7F2;
 $whitegrey:#f8f9fa;
 $lightgrey: #E7E9EE;
-$bordergrey: rgba($grey, 0.5);
+$icongrey:#A3A5AF;
+$bordergrey: rgba($grey, 0.2);
 $red: red;
 $orange:#eeca86;
 $purple: #302cff;

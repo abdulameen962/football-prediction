@@ -1,7 +1,276 @@
-aside {
-    &>a {
-        &>img {
-            transform: scale(2);
+$aside: 100px;
+$aside_inactive:240px;
+.padding {
+    padding: 20px 35px;
+    @include respond(tab) {
+        padding: 10px 20px;
+    }
+}
+
+section.dashboard_nav {
+    display: flex;
+    @include respond(tab) {
+        flex-direction: column;
+    }
+    aside {
+        @include transition;
+        @include flex(yes);
+        height: 100vh;
+        @extend .padding;
+        position: relative;
+        width: $aside;
+        border-right: 1px solid $bordergrey;
+        @include respond(tab) {
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            border: none;
+            height: auto;
+            border-bottom: 1px solid $bordergrey;
+        }
+        a.navbar-brand {
+            margin-right: 0px;
+            @include flex(no);
+            justify-content: flex-start;
+            @include respond(tab) {
+                z-index: 5;
+                backdrop-filter: blur(5px);
+            }
+            img {
+                transform: scale(.8);
+            }
+            span.expand_content {
+                padding-left: 8px;
+                @include respond(tab) {
+                    padding-left: 2px;
+                }
+            }
+        }
+        div.responsive_content {
+            display: none;
+            @include respond(tab) {
+                @include flex(no);
+                justify-content: flex-end;
+                z-index: 5;
+                backdrop-filter: blur(5px);
+                width: calc(100% - 150px);
+            }
+            div.responsive_content_nav {
+                @include transition;
+                svg {
+                    transform: scale(1.5);
+                    @include transition;
+                }
+            }
+            svg {
+                margin-left: 10px;
+            }
+        }
+        &>section {
+            position: fixed;
+            padding: 15px 0px;
+            @include flex(yes);
+            height: 100%;
+            justify-content: space-between;
+            @include transition;
+            // align-items: flex-start;
+            @include respond(tab) {
+                opacity: 0;
+                pointer-events: none;
+                top: 0px;
+                right: 0px;
+                width: 0px;
+                height: 100vh;
+                overflow-y: scroll;
+                @include respond(tab) {
+                    padding: 85px 25px 0px;
+                }
+            }
+            span.expand_content {
+                display: none;
+                padding-left: 20px;
+                vertical-align: middle;
+                @include respond(tab) {
+                    display: block;
+                }
+            }
+            div.btn-group {
+                @include mp;
+                box-shadow: none;
+            }
+            div.dropup {
+                @include respond(tab) {
+                    margin-top: 20px;
+                }
+                span {
+                    color: $icongrey;
+                    padding-left: 10px;
+                }
+            }
+            a {
+                display: flex;
+                @include transition;
+                align-items: center;
+                color: black;
+            }
+            ul.navbar_main_content {
+                @include flex(yes);
+                @include respond(tab) {
+                    padding: 0px 5px;
+                }
+                li {
+                    margin-top: 25px;
+                    // @include respond(tab) {
+                    //     margin-top: 0px;
+                    //     margin-left: 10px;
+                    // }
+                    a {
+                        svg {
+                            path {
+                                fill: $icongrey;
+                            }
+                        }
+                        &:hover {
+                            padding: 10px 13px;
+                            background: $orangeheader;
+                            color: $white;
+                            border-radius: 8px;
+                        }
+                        &:hover svg>path {
+                            fill: white;
+                        }
+                    }
+                }
+            }
+        }
+        &>.active_section {
+            z-index: 3;
+            opacity: 1;
+            pointer-events: all;
+            top: 0px;
+            right: 0px;
+            width: 400px;
+            max-width: 100vw;
+            height: 100vh;
+            background: $white;
+        }
+    }
+    div.dropdown {
+        svg:not([class="responsive_content_nav_icon"]) {
+            transform: scale(.8);
+        }
+    }
+    div.body_main {
+        @include transition;
+        background: rgba(#EFF1F5, 1);
+        width: calc(100vw - 100px);
+        @include respond(tab) {
+            width: 100vw;
+            background: rgba(#EFF1F5, .5);
+        }
+        div.container-main,
+        div.nav_main_header {
+            @extend .padding;
+        }
+        form {
+            @include respond(tab) {
+                display: none;
+            }
+        }
+        &>div.nav_main_header {
+            background: $white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            div.nav_side {
+                @include flex(no);
+                justify-content: flex-start;
+            }
+            div.dropdown {
+                margin-left: 35px;
+                @include respond(tab) {
+                    display: none;
+                }
+            }
+        }
+        div.dashboard-single {
+            background: $white;
+            border-radius: 15px;
+            padding: 30px 35px;
+        }
+    }
+    form {
+        ul.searchoptions {
+            display: none;
+        }
+        div.input-group {
+            margin-right: 30px;
+            border: none;
+            background: #F1F1F3;
+            outline: none;
+            border-radius: 10px;
+            padding: 10px 8px;
+            @include flex(no);
+            justify-content: flex-start;
+            &>span.input-addon {
+                background: none;
+                border: none;
+                height: 20px;
+                svg {
+                    transform: scale(.8);
+                }
+                &:last-child {
+                    border-left: 1px solid #B2B4BE;
+                }
+            }
+            input {
+                border: none;
+                background: none;
+                &:hover,
+                &:active,
+                &:focus {
+                    box-shadow: none;
+                    border: none;
+                }
+            }
+        }
+    }
+    .active_main {
+        width: calc(100vw - 240px);
+        @include respond(tab) {
+            width: 100%;
+        }
+    }
+    button.clicker {
+        @include mp;
+        @include flex(no);
+        background: none;
+        outline: none;
+        border: none;
+        box-shadow: none;
+        &:active,
+        &:hover,
+        &:focus {
+            box-shadow: none;
+        }
+        &::after {
+            display: none;
+        }
+    }
+    .active {
+        width: $aside_inactive;
+        @include respond(tab) {
+            width: 100%;
+        }
+        &>section {
+            align-items: flex-start;
+        }
+        ul.navbar_main_content {
+            justify-content: flex-start;
+            align-items: flex-start;
+            li {
+                width: 100%;
+            }
         }
     }
 }
