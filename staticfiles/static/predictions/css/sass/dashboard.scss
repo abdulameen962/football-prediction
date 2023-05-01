@@ -82,6 +82,7 @@ section.dashboard_nav {
                 width: 0px;
                 height: 100vh;
                 overflow-y: scroll;
+                justify-content: flex-start;
                 @include respond(tab) {
                     padding: 85px 25px 0px;
                 }

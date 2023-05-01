@@ -1414,7 +1414,8 @@ section.dashboard_nav {
           right: 0px;
           width: 0px;
           height: 100vh;
-          overflow-y: scroll; } }
+          overflow-y: scroll;
+          justify-content: flex-start; } }
   @media screen and (min-width: 0px) and (max-width: 991px) and (min-width: 0px) and (max-width: 991px) {
     section.dashboard_nav aside > section {
       padding: 85px 25px 0px; } }

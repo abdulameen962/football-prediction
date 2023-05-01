@@ -1,0 +1,13 @@
+name: Nesa Tests
+on: push
+
+jobs:
+    test_projects:
+           runs-on: ubuntu-latest
+           steps:
+           - uses: actions/checkout@v2
+           - name: Run Django unit tests
+             run:  |
+               pip3 install --user Django==4.2
+               pip3 install --user -r requirements.txt
+               python3 manage.py test
