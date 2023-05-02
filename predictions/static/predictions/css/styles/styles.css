@@ -1392,10 +1392,10 @@ section.dashboard_nav {
       section.dashboard_nav aside div.responsive_content div.responsive_content_nav {
         transition: all 0.3s ease; }
         section.dashboard_nav aside div.responsive_content div.responsive_content_nav svg {
-          transform: scale(1.5);
+          transform: scale(2);
           transition: all 0.3s ease; }
       section.dashboard_nav aside div.responsive_content svg {
-        margin-left: 10px; }
+        margin-left: 15px; }
     section.dashboard_nav aside > section {
       position: fixed;
       padding: 15px 0px;

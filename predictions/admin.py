@@ -30,6 +30,7 @@ admin.site.register(PremiumProfile)
 admin.site.register(League)
 admin.site.register(Prediction)
 admin.site.register(Tag)
+admin.site.register(Notification)
 
 
 

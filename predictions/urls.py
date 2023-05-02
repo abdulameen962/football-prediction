@@ -19,4 +19,10 @@ urlpatterns = [
     path("confirm-payment/",views.confirm_payment,name="confirm_payment"),
     path("cancel-subscription/",views.cancel_subscription,name="cancel_subscription"),
     path("activate-subscription/",views.activate_subscription,name="activate_subscription"),
+    path("notifications/",views.NotificationsView.as_view(),name="notifications"),
+
+
+    #api views
+    path("get-notifications/",views.get_notification,name="get_notification"),
+    path("update-notifications/",views.update_notification,name="update_notification"),
 ]

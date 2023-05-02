@@ -302,6 +302,26 @@ const app = Vue.createApp({
         var checkbox = document.querySelector("[type='checkbox']");
         var aside = document.querySelector("aside");
         var navbar = document.querySelector(".responsive_content .responsive_content_nav");
+        var notification_number = document.querySelector(".notification_number");
+
+        function getNotificationNumber() {
+            axios
+                .get(`/update-notifications/`, {
+                    method: "GET",
+                })
+                .then(response => {
+                    number = response.data;
+                    if (response.status == 200) {
+                        var number = number.number;
+                        notification_number.innerHTML = `${number}`;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.error = true;
+                })
+                .finally(() => this.loading = false);
+        }
         if (email) {
             email.required = true;
             var label = email.previousElementSibling;
@@ -386,6 +406,66 @@ const app = Vue.createApp({
                         `;
                     }
                 }
+            }
+        }
+        if (notification_number) {
+            setInterval(() => {
+                getNotificationNumber()
+            }, 30000);
+            notification_number.parentElement.onclick = () => {
+                //get the notifications
+                axios
+                    .get(`/get-notifications/`, {
+                        method: "GET",
+                    })
+                    .then(response => {
+                        notification = response.data;
+                        if (response.status == 200) {
+                            var ul = document.querySelector(".notification_list_main");
+                            if (notification.length > 0) {
+                                ul.innerHTML = "";
+                                for (let i = 0; i < notification.length; i++) {
+                                    const li = document.createElement("li");
+                                    li.innerHTML = `
+                                            <div class="row_header row">
+                                                <header class="notification_list_header">
+                                                    <h4> ${notification[i].header} </h4>
+                                                </header>
+                                                <div class="notification_list_extras">
+                                                    <p>${notification[i].created}</p>
+                                                    <button class="notification_list_delete">
+                                                        <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M1.28571 19.5556C1.28571 20.9 2.44286 22 3.85714 22H14.1429C15.5571 22 16.7143 20.9 16.7143 19.5556V7.33333C16.7143 5.98889 15.5571 4.88889 14.1429 4.88889H3.85714C2.44286 4.88889 1.28571 5.98889 1.28571 7.33333V19.5556ZM5.14286 7.33333H12.8571C13.5643 7.33333 14.1429 7.88333 14.1429 8.55556V18.3333C14.1429 19.0056 13.5643 19.5556 12.8571 19.5556H5.14286C4.43571 19.5556 3.85714 19.0056 3.85714 18.3333V8.55556C3.85714 7.88333 4.43571 7.33333 5.14286 7.33333ZM13.5 1.22222L12.5871 0.354444C12.3557 0.134444 12.0214 0 11.6871 0H6.31286C5.97857 0 5.64429 0.134444 5.41286 0.354444L4.5 1.22222H1.28571C0.578571 1.22222 0 1.77222 0 2.44444C0 3.11667 0.578571 3.66667 1.28571 3.66667H16.7143C17.4214 3.66667 18 3.11667 18 2.44444C18 1.77222 17.4214 1.22222 16.7143 1.22222H13.5Z" fill="#FF0000"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p> ${notification[i].message} </p>
+                                            </div>
+                                        `
+                                    if (notification[i].read) {
+                                        li.className = "notification_list_single read";
+                                    } else {
+                                        li.className = "notification_list_single unread";
+                                    }
+                                    ul.append(li);
+                                }
+                                //for show more li
+                                const li = document.createElement("li");
+                                li.innerHTML = `<a href="/notifications/">Show All</a>`
+                                ul.append(li);
+                            } else {
+                                ul.innerHTML = "";
+                                ul.innerHTML = `<li>No notifications currently,check back later</li>`
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        this.error = true
+                    })
+                    .finally(() => this.loading = false)
             }
         }
     },

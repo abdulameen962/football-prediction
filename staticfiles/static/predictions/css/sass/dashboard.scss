@@ -58,12 +58,12 @@ section.dashboard_nav {
             div.responsive_content_nav {
                 @include transition;
                 svg {
-                    transform: scale(1.5);
+                    transform: scale(2);
                     @include transition;
                 }
             }
             svg {
-                margin-left: 10px;
+                margin-left: 15px;
             }
         }
         &>section {

@@ -7,7 +7,32 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import send_mail,send_mass_mail
+from django.utils import timezone
 
+def send_notification(header,users,message):
+    #check if one has been sent before
+    header = header
+    message = message
+    
+    try:
+        Notification.objects.get(header=header)
+    except Notification.DoesNotExist:
+        newnotification = Notification.objects.create(header=header,message=message,created=timezone.now())
+        if len(users) > 0:
+            for user in users:
+                newnotification.users.add(user)
+
+
+def delete_notification(header,message):
+    #check if one has been sent before
+    header = header
+    message = message
+    
+    try:
+        notification = Notification.objects.get(header=header,message=message)
+        notification.delete()
+    except Notification.DoesNotExist:
+        header = ""
 
 @receiver(pre_save,sender=Blog)
 def blog_handler(sender,instance,**kwargs):
@@ -32,6 +57,26 @@ def blog_handler(sender,instance,**kwargs):
         instance.slug = (slugify(instance.title))
     else:
         instance.slug = (slugify(instance.title))
+
+    header = f"New blog {instance.title}"
+    message = f"A new blog has been released titles {instance.title},<a href='/blogs/{instance.slug}/'>Check it out now</a>"
+    users = []
+    mainusers = User.objects.all()
+
+    for user in mainusers:
+        if user.type != "":
+            users.append(user)
+
+    
+    if instance.state == "published":
+        send_notification(header,users,message)
+
+
+@receiver(pre_delete,sender=Blog)
+def blog_delete_handler(sender,instance,**kwargs):
+    header = f"New blog {instance.title}"
+    message = f"A new blog has been released titles {instance.title},<a href='/blogs/{instance.slug}/'>Check it out now</a>"
+    delete_notification(header,message)
 
 @receiver(post_save,sender=User)
 def user_handler(sender, instance,**kwargs):
@@ -62,9 +107,29 @@ def user_handler(sender, instance,**kwargs):
             else:
                 return ""
 
+            #check if one has been sent before
+            header = f"Welcome {instance.username}"
+            message = "Welcome to the Prediction app,we hope you enjoy this platform.Take a tour and if our help is needed contact support"
+
+            send_notification(header,[instance],message)
+
+
+
     except EmailAddress.DoesNotExist:
         #signed in through socials
         emailuser = ""
+
+        #check if one has been sent before
+        header = f"Welcome {instance.username}"
+        message = "Welcome to the Prediction app,we hope you enjoy this platform.Take a tour and if our help is needed contact support"
+        
+        send_notification(header,[instance],message)
+
+@receiver(pre_delete,sender=User)
+def user_delete_handler(sender,instance,**kwargs):
+    header = f"Welcome {instance.username}"
+    message = "Welcome to the Prediction app,we hope you enjoy this platform.Take a tour and if our help is needed contact support</a>"
+    delete_notification(header,message)
 
 #signal for change from freemium to premium
 @receiver(pre_save,sender=PremiumProfile)
@@ -75,7 +140,7 @@ def premium_profile_handler(sender,instance,**kwargs):
         freemium = FreemiumProfile.objects.get(user=user)
         #here to transfer details
         #remove all present ones
-        if len(freemium.watchlist.all()) > 0:
+        if len(freemium.watchlist.all())> 0:
             for watch in freemium.watchlist.all():
                 freemium.watchlist.remove(watch)
             
@@ -130,3 +195,22 @@ def prediction_mail_handler(sender,instance,**kwargs):
         send_mass_mail(subject=f"New prediction dropped for {instance.league.league}",message=plain_message, from_email=settings.EMAIL_HOST_USER,recipient_list=emails, fail_silently=False,html_message=html_message)
 
 
+    #check if one has been sent before
+    header = f"New prediction: {instance.home} vs {instance.away} in {instance.league.league} league"
+    message = f"A new prediction just came in,hurry now to check it at <a href='/leagues/{instance.league.id}/'>{instance.home} vs {instance.away}</a>"
+    
+    send_notification(header,users,message)
+
+@receiver(pre_delete,sender=Prediction)
+def prediction_delete_handler(sender,instance,**kwargs):
+    header = f"New prediction: {instance.home} vs {instance.away} in {instance.league.league} league"
+    message = "Welcome to the Prediction app,we hope you enjoy this platform.Take a tour and if our help is needed contact support"
+    delete_notification(header,message)
+
+@receiver(post_save,sender=Notification)
+def notification_saver_handler(sender,instance,**kwargs):
+    #check if it is a removal
+    users = instance.users.all()
+    if len(users) < 0:
+        #user list is empty,delete list
+        instance.delete()

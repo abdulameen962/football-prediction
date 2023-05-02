@@ -119,4 +119,32 @@ class PremiumProfile(models.Model):
     def __str__(self):
         return f"{self.user.username}"
 
+
+class Notification(models.Model):
+    users = models.ManyToManyField(User, related_name="notifications",default=None)
+    created = models.DateTimeField(auto_now_add=False)
+    header = models.CharField(max_length=200,default=None,null=True)
+    message = models.TextField()
+    read = models.BooleanField(default=False)
+    objects = models.Manager()
+
+    def __str__(self):
+        return f"{self.message}"
+
+    class Meta:
+        ordering = ("-created",)
+        verbose_name = "Notification"
+        verbose_name_plural = "Notifications"
+
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "header":self.header,
+            "created": self.created.strftime("%m/%d/%Y, %I:%M %p"),
+            "message": self.message,
+            "read": self.read,
+        }
+    
+
     

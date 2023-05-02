@@ -340,3 +340,67 @@ def activate_subscription(request):
                 return HttpResponseRedirect(reverse("premium_payment"))
     except RaveExceptions.PlanStatusError as e:
         print(e.err)
+
+
+@login_required(login_url="account_login")
+@verified_email_required
+def get_notification(request):
+    user = request.user
+    if user.type != "":
+        notifications = user.notifications.all()
+        notificationbox = []
+        if len(notifications) > 0:
+            if len(notifications) < 5:
+                for notify in notifications:
+                    notificationbox.append(notify)
+
+            else:
+                    notificationbox = [notifications[0],notifications[1],notifications[2],notifications[3],notifications[4]]
+
+        if len(notificationbox) > 0:
+            return JsonResponse([notify.serialize() for notify in notificationbox],status=200,safe=False)
+
+        else:
+            return JsonResponse({"message":"No notifications yet"},status=200)
+
+    else:
+        return JsonResponse({"message":"User has no type yet"},status=403)
+
+
+@login_required(login_url="account_login")
+@verified_email_required
+def update_notification(request):
+    user = request.user
+    if user.type != "":
+        notifications = user.notifications.all()
+
+        return JsonResponse({"number":len(notifications)},status=200)
+
+
+# @login_required(login_url="account_login")
+class NotificationsView(ListView):
+    model = Notification
+    template_name = "predictions/notifications.html"
+    context_object_name = "notifications"
+
+    # def get(self,request):
+    #     user = request.user
+    #     if user.is_authenticated == False:
+    #         return HttpResponseRedirect(reverse("index"))
+
+    #     else:
+    #         if user.type == "":
+    #             return HttpResponseRedirect(reverse("type"))
+    
+
+    def get_context_data(self, **kwargs):
+
+       notifications = Notification.objects.all()
+       paginated = Paginator(notifications,15)
+       context = super().get_context_data(**kwargs)
+
+       context["max_num"] = paginated.num_pages
+       context["page_request_var"] = "page"
+       context["page_range"] = paginated.page_range
+
+       return context
