@@ -25,4 +25,5 @@ urlpatterns = [
     #api views
     path("get-notifications/",views.get_notification,name="get_notification"),
     path("update-notifications/",views.update_notification,name="update_notification"),
+    path("edit-notifications/<int:id>",views.edit_notification.as_view(),name="edit_notification"),
 ]

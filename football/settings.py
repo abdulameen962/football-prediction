@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     "django_extensions",
+    'celery',
 
 ]
 
@@ -228,3 +229,5 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 RAVE_PUBLIC_KEY = os.environ.get('RAVE_PUBLIC_KEY')
 RAVE_SECRET_KEY = os.environ.get("RAVE_SECRET_KEY")
+CELERY_BROKER_URL = os.environ.get('RABBITMQ_URL', os.environ.get("RABBITMQ_URL"))
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')

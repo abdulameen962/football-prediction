@@ -1,0 +1,89 @@
+{% extends 'predictions/user-base.html' %}
+{% block title %} Notifications{% endblock  %}
+{% block og_title %} Notifications{% endblock  %}
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="dashboard-single">
+    <header>
+        <h2>Notifications</h2>
+    </header>
+    <div class="notifications_main_page">
+        {% for notify in notifications %}
+           {% if notify.read %}
+           <div class="notifications_main_page_single read">
+        
+           {% else %}
+           <div class="notifications_main_page_single unread">
+
+           {% endif %}
+            <div class="row">
+                <div class="col-sm-12 col-md-8 col-lg-7">
+                <h3> {{ notify.header }} </h3>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-5">
+                    <div class="row">
+                        <div class="created col-9">
+                            <p> {{ notify.created }} </p>
+                        </div>
+                        <div class="delete col-3">
+                            <button @click="deleteNotification($event,{{ notify.id }})">
+                                <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.28571 19.5556C1.28571 20.9 2.44286 22 3.85714 22H14.1429C15.5571 22 16.7143 20.9 16.7143 19.5556V7.33333C16.7143 5.98889 15.5571 4.88889 14.1429 4.88889H3.85714C2.44286 4.88889 1.28571 5.98889 1.28571 7.33333V19.5556ZM5.14286 7.33333H12.8571C13.5643 7.33333 14.1429 7.88333 14.1429 8.55556V18.3333C14.1429 19.0056 13.5643 19.5556 12.8571 19.5556H5.14286C4.43571 19.5556 3.85714 19.0056 3.85714 18.3333V8.55556C3.85714 7.88333 4.43571 7.33333 5.14286 7.33333ZM13.5 1.22222L12.5871 0.354444C12.3557 0.134444 12.0214 0 11.6871 0H6.31286C5.97857 0 5.64429 0.134444 5.41286 0.354444L4.5 1.22222H1.28571C0.578571 1.22222 0 1.77222 0 2.44444C0 3.11667 0.578571 3.66667 1.28571 3.66667H16.7143C17.4214 3.66667 18 3.11667 18 2.44444C18 1.77222 17.4214 1.22222 16.7143 1.22222H13.5Z" fill="#FF0000"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <p>{{ notify.message|safe }}</p>
+            </div>
+            </div>
+        {% empty %}
+            <p>No notifications yet,you are all caught up</p>
+        {% endfor %}
+
+
+    </div>
+    <nav class="pagination">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item previous"><a class="page-link" href="?{{ page_request_var }}={{ page_obj.previous_page_number }}"> 
+                <span> 
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7.00008V9.00008H4.00003L9.50003 14.5001L8.08003 15.9201L0.160034 8.00008L8.08003 0.0800781L9.50003 1.50008L4.00003 7.00008H16Z" fill="black"/>
+                    </svg>                    
+                </span>
+                Previous</a></li>
+            {% endif %}
+            <div class="numbers">
+                {% for i in page_range %}
+                        <li class="page-item numbers"><a href="?{{ page_request_var }}={{ i }}" class="page-link"> {{ i }} </a></li>
+                {% endfor %}
+            </div>
+            {% if page_obj.has_next %}
+                <li class="page-item next" ><a class="page-link" href="?{{ page_request_var }}={{ page_obj.next_page_number }}">
+                Next
+                <span>    
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.16 9.00004L0.16 7.00004L12.16 7.00004L6.66 1.50004L8.08 0.0800438L16 8.00004L8.08 15.92L6.66 14.5L12.16 9.00004L0.16 9.00004Z" fill="black"/>
+                    </svg>                    
+                </span>
+                </a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock  %}

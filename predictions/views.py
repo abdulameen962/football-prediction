@@ -19,6 +19,7 @@ from django.utils.html import strip_tags
 from rave_python import Rave,Misc,RaveExceptions
 from allauth.account.signals import email_confirmed,email_confirmation_sent
 from django.template.defaultfilters import slugify
+from django.contrib.auth.mixins import UserPassesTestMixin
 # from django.core.management.utils import get_random_secret_key
 import time
 from django.db.utils import OperationalError,ProgrammingError
@@ -377,25 +378,33 @@ def update_notification(request):
         return JsonResponse({"number":len(notifications)},status=200)
 
 
-# @login_required(login_url="account_login")
-class NotificationsView(ListView):
+class NotificationsView(UserPassesTestMixin,ListView):
     model = Notification
     template_name = "predictions/notifications.html"
     context_object_name = "notifications"
 
-    # def get(self,request):
-    #     user = request.user
-    #     if user.is_authenticated == False:
-    #         return HttpResponseRedirect(reverse("index"))
+    login_url = "account_login"
 
-    #     else:
-    #         if user.type == "":
-    #             return HttpResponseRedirect(reverse("type"))
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.type != ""   
+
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        mainuser = self.request.user
+        notifications = []
+        for notify in queryset:
+            users = notify.users.all()
+            for user in users:
+                if user.id == mainuser.id:
+                    notifications.append(notify)
+
+        return notifications
     
 
     def get_context_data(self, **kwargs):
 
-       notifications = Notification.objects.all()
+       notifications = super().get_queryset()
        paginated = Paginator(notifications,15)
        context = super().get_context_data(**kwargs)
 
@@ -404,3 +413,57 @@ class NotificationsView(ListView):
        context["page_range"] = paginated.page_range
 
        return context
+
+
+class edit_notification(UserPassesTestMixin,View):
+    login_url = "account_login"
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.type != ""  
+
+
+    def put(self,request,id):
+        #mark messages as read
+        user = self.request.user
+
+        try:
+            notification = Notification.objects.get(id=id)
+            
+            #check if the user is part of the notification
+            try:
+                notification.users.get(id=user.id)
+                try:
+                    notification.read = True
+                    notification.save()
+                except Exception:
+                    return JsonResponse({"message":"Notification couldn't be marked"},status=400)
+            except User.DoesNotExist:
+                return JsonResponse({"message":"User isn't part of the notification"},status=400)
+
+        except Notification.DoesNotExist:
+            return JsonResponse({"message":"invalid notification"},status=400)
+
+        return JsonResponse({"message":"Marked successfully"},status=200) 
+
+    def delete(self,request,id):
+        user = self.request.user
+
+        try:
+            notification = Notification.objects.get(id=id)
+
+            #check if the user is part of the notification
+            try:
+                notification.users.get(id=user.id)
+                try:
+                    notification.users.remove(user)
+                    notification.save()
+                except Exception:
+                    return JsonResponse({"message":"User couldnt't be removed"},status=400)
+            except User.DoesNotExist:
+                return JsonResponse({"message":"User isn't part of the notification"},status=400)
+
+        except Notification.DoesNotExist:
+            return JsonResponse({"message":"invalid notification"},status=400)
+
+
+        return JsonResponse({"message":"Removed successfully"},status=200)

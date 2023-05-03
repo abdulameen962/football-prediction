@@ -468,8 +468,44 @@ const app = Vue.createApp({
                     .finally(() => this.loading = false)
             }
         }
+
     },
-    methods: {}
+    methods: {
+        deleteNotification(event, id) {
+            axios
+                .delete(`/edit-notifications/${id}`, {
+                    // method: "Delete",
+                    // withCredentials: true,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    }
+                })
+                .then(response => {
+                    var message = response.data;
+                    if (response.status == 200) {
+                        //do the needful
+                        console.log(message.message);
+                    }
+                })
+        },
+        readNotifications(event, id) {
+            axios
+                .put(`/edit-notifications/${id}`, {
+                    // method: "PUT",
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                    }
+                })
+                .then(response => {
+                    var message = response.data;
+                    if (response.status == 200) {
+                        //do the needful
+                        console.log(message.message);
+                    }
+                })
+        }
+    }
 })
 
 app.component("works", {
