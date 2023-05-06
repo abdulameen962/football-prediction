@@ -3,7 +3,7 @@ from django.utils import timezone
 from .models import Notification,Prediction
 import datetime
 from celery.schedules import crontab
-from datetime import timedelta
+from datetime import timedelta,datetime
 
 today = timezone.now()
 run_every_hour = crontab(hour='23')
