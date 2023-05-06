@@ -127,7 +127,7 @@ class PremiumProfile(models.Model):
 
 class Notification(models.Model):
     users = models.ManyToManyField(User, related_name="notifications",default=None)
-    created = models.DateTimeField(auto_now_add=False)
+    created = models.DateTimeField(auto_now_add=False,default=timezone.now)
     header = models.CharField(max_length=200,default=None,null=True)
     message = models.TextField()
     read = models.BooleanField(default=False)

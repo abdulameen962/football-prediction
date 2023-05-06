@@ -42,6 +42,7 @@ def updateNotification():
             created = notify.created
             created = created.strftime("%m/%d/%Y %I:%M %p")
             created = datetime.strptime(created,"%m/%d/%Y %I:%M %p")
+            today = timezone.now()
             today = today.strftime("%m/%d/%Y %I:%M %p")
             today = datetime.strptime(today,"%m/%d/%Y %I:%M %p")
             difference = today - created
