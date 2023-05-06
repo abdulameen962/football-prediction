@@ -303,25 +303,8 @@ const app = Vue.createApp({
         var aside = document.querySelector("aside");
         var navbar = document.querySelector(".responsive_content .responsive_content_nav");
         var notification_number = document.querySelector(".notification_number");
+        var form = document.getElementById("search_form");
 
-        function getNotificationNumber() {
-            axios
-                .get(`/update-notifications/`, {
-                    method: "GET",
-                })
-                .then(response => {
-                    number = response.data;
-                    if (response.status == 200) {
-                        var number = number.number;
-                        notification_number.innerHTML = `${number}`;
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.error = true;
-                })
-                .finally(() => this.loading = false);
-        }
         if (email) {
             email.required = true;
             var label = email.previousElementSibling;
@@ -409,6 +392,7 @@ const app = Vue.createApp({
             }
         }
         if (notification_number) {
+            getNotificationNumber()
             setInterval(() => {
                 getNotificationNumber()
             }, 30000);
@@ -421,23 +405,20 @@ const app = Vue.createApp({
                     .then(response => {
                         notification = response.data;
                         if (response.status == 200) {
-                            var ul = document.querySelector(".notification_list_main");
+                            var ul = document.querySelector("#notification_list_main");
                             if (notification.length > 0) {
                                 ul.innerHTML = "";
                                 for (let i = 0; i < notification.length; i++) {
                                     const li = document.createElement("li");
                                     li.innerHTML = `
-                                            <div class="row_header row">
+                                            <div class="row_header">
                                                 <header class="notification_list_header">
-                                                    <h4> ${notification[i].header} </h4>
+                                                    <h5> ${notification[i].header} </h5>
                                                 </header>
-                                                <div class="notification_list_extras">
-                                                    <p>${notification[i].created}</p>
-                                                    <button class="notification_list_delete">
-                                                        <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1.28571 19.5556C1.28571 20.9 2.44286 22 3.85714 22H14.1429C15.5571 22 16.7143 20.9 16.7143 19.5556V7.33333C16.7143 5.98889 15.5571 4.88889 14.1429 4.88889H3.85714C2.44286 4.88889 1.28571 5.98889 1.28571 7.33333V19.5556ZM5.14286 7.33333H12.8571C13.5643 7.33333 14.1429 7.88333 14.1429 8.55556V18.3333C14.1429 19.0056 13.5643 19.5556 12.8571 19.5556H5.14286C4.43571 19.5556 3.85714 19.0056 3.85714 18.3333V8.55556C3.85714 7.88333 4.43571 7.33333 5.14286 7.33333ZM13.5 1.22222L12.5871 0.354444C12.3557 0.134444 12.0214 0 11.6871 0H6.31286C5.97857 0 5.64429 0.134444 5.41286 0.354444L4.5 1.22222H1.28571C0.578571 1.22222 0 1.77222 0 2.44444C0 3.11667 0.578571 3.66667 1.28571 3.66667H16.7143C17.4214 3.66667 18 3.11667 18 2.44444C18 1.77222 17.4214 1.22222 16.7143 1.22222H13.5Z" fill="#FF0000"/>
-                                                        </svg>
-                                                    </button>
+                                                <div>
+                                                    <div class="notification_list_extras">
+                                                        <p>${notification[i].created}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div>
@@ -454,10 +435,14 @@ const app = Vue.createApp({
                                 //for show more li
                                 const li = document.createElement("li");
                                 li.innerHTML = `<a href="/notifications/">Show All</a>`
+                                li.classList.add("show_notifications")
                                 ul.append(li);
-                            } else {
+                            } else if (notification.message) {
                                 ul.innerHTML = "";
-                                ul.innerHTML = `<li>No notifications currently,check back later</li>`
+                                var li = document.createElement("li");
+                                li.innerHTML = "No notifications currently,check back later"
+                                ul.append(li);
+                                console.log(ul);
                             }
                         }
                     })
@@ -468,14 +453,73 @@ const app = Vue.createApp({
                     .finally(() => this.loading = false)
             }
         }
+        if (form) {
+            const options = document.querySelector(".searchoptions");
+            const input = document.querySelector("[name='search']");
+            var lis = document.querySelectorAll(".searchoptions li");
+            var result_search = document.getElementById("#search_result");
+            var search_reset = document.querySelector(".search_reset");
+            input.onfocus = () => {
+                options.style.display = "block";
+            }
+            input.onblur = () => {
+                setTimeout(() => {
+                    options.style.display = "none";
+                }, 500);
+            }
+            lis.forEach(function(e) {
+                e.onclick = () => {
+                    form.dataset.search = e.dataset.search;
+                    input.placeholder = `Search in ${e.dataset.search}s`
+                }
+            })
+            form.onsubmit = (event) => {
+                event.preventDefault();
+                var crsf = document.querySelector("[name='csrfmiddlewaretoken']").value;
+                axios
+                    .post(`/search/`, {
+                        headers: {
+                            // 'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRFToken': crsf,
+                        },
+                        body: JSON.stringify({
+                            "command": form.dataset.search,
+                            "term": input.value,
+                        })
+                    })
+                    .then(response => {
+                        res = response.data;
+                        if (response.status == 201) {
+                            //no link
+                            document.querySelector("[name='search']").value = "";
+                            options.style.display = "none";
+                            result_search.style.display = "block";
+                            result_search.innerHTML = `<p>Search term not found,pls search for another <button class="search_reset">Search for another</button></p>`;
+                        } else if (response.status == 200) {
+                            //link
+                            document.querySelector("[name='search']").value = "";
+                            window.location.href = res.message;
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+                    .finally(() => this.loading = false);
+            }
+            if (search_reset) {
+                search_reset.onclick = () => {
+                    result_search.style.display = "none";
+                    options.style.display = "block";
+                }
+            }
+
+        }
 
     },
     methods: {
         deleteNotification(event, id) {
             axios
                 .delete(`/edit-notifications/${id}`, {
-                    // method: "Delete",
-                    // withCredentials: true,
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
                         'X-CSRFToken': getCookie('csrftoken'),
@@ -486,8 +530,21 @@ const app = Vue.createApp({
                     if (response.status == 200) {
                         //do the needful
                         console.log(message.message);
+                        var parentElement = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+                        parentElement.style.opacity = "0";
+                        setTimeout(() => {
+                            parentElement.style.display = "none";
+                            parentElement.remove();
+                        }, 500);
+                        console.log(parentElement);
+                        getNotificationNumber();
                     }
                 })
+                .catch(error => {
+                    console.log(error);
+                })
+                .finally(() => this.loading = false);
+
         },
         readNotifications(event, id) {
             axios

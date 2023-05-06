@@ -20,10 +20,20 @@ urlpatterns = [
     path("cancel-subscription/",views.cancel_subscription,name="cancel_subscription"),
     path("activate-subscription/",views.activate_subscription,name="activate_subscription"),
     path("notifications/",views.NotificationsView.as_view(),name="notifications"),
+    path("leagues/",views.leagues.as_view(),name="all_leagues"),
+    path("leagues/<int:id>/",views.league_single,name="leagues"),
+    # path("live-scores/",views.live_scores,name="live_scores"),
+    # path("watchlist/",views.watchlist,name="watchlist"),
+    # path("support/",views.support,name="support"),
+    # path("profile/",views.profile,name="profile"),
+
 
 
     #api views
     path("get-notifications/",views.get_notification,name="get_notification"),
     path("update-notifications/",views.update_notification,name="update_notification"),
     path("edit-notifications/<int:id>",views.edit_notification.as_view(),name="edit_notification"),
+    path("search/",views.Search.as_view(),name="search"),
+    # path("get-leagues/",views.get_leagues,name="get_leagues"),
+    # path("get-type-league-info/<str:method>/",views.get_league_info,name="get_league_info"),
 ]

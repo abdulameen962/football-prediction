@@ -229,5 +229,18 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 RAVE_PUBLIC_KEY = os.environ.get('RAVE_PUBLIC_KEY')
 RAVE_SECRET_KEY = os.environ.get("RAVE_SECRET_KEY")
-CELERY_BROKER_URL = os.environ.get('RABBITMQ_URL', os.environ.get("RABBITMQ_URL"))
+CELERY_BROKER_URL = os.environ.get("RABBITMQ_URL")
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
+
+# Django celery configuration 
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
+# Cloudamqp configuration
+BROKER_POOL_LIMIT = 1
+BROKER_HEARTBEAT = 60
+BROKER_CONNECTION_TIMEOUT = 30
+
+

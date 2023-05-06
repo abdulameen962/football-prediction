@@ -13,3 +13,23 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+function getNotificationNumber() {
+    var notification_number = document.querySelector(".notification_number");
+    axios
+        .get(`/update-notifications/`, {
+            method: "GET",
+        })
+        .then(response => {
+            number = response.data;
+            if (response.status == 200) {
+                var number = number.number;
+                notification_number.innerHTML = `${number}`;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            this.error = true;
+        })
+        .finally(() => this.loading = false);
+}

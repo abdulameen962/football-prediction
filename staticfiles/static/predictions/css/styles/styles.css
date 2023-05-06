@@ -257,7 +257,7 @@ div.table-container {
         padding: 10px 15px 10px 10px; }
     div.table-container table.table > tbody tr {
       border-bottom: 1px solid #E7E9EE;
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
       cursor: pointer; }
       div.table-container table.table > tbody tr:hover {
         box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05); }
@@ -281,7 +281,7 @@ a.header-button {
   color: rgba(53, 55, 69, 0.6);
   background: white;
   border: 1px solid #E7E9EE;
-  transition: all 0.3s ease; }
+  transition: all 0.5s ease; }
   a.header-button:hover {
     transform: translateY(-5px); }
 
@@ -307,12 +307,12 @@ div.buttons {
   padding: 14px 34px;
   font-size: 18px;
   line-height: 1.389em;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   text-decoration: none;
   border-radius: 80px;
   background: #EF9F00;
   color: white;
-  transition: all 0.3s ease; }
+  transition: all 0.5s ease; }
   @media screen and (min-width: 0px) and (max-width: 991px) {
     .primary-button {
       padding: 15px 40px;
@@ -334,7 +334,7 @@ div.buttons {
   padding: 14px 34px;
   font-size: 18px;
   line-height: 1.389em;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   text-decoration: none;
   border-radius: 80px;
   color: rgba(53, 55, 69, 0.6);
@@ -632,7 +632,7 @@ div.home-main div.text {
         padding: 14px 34px;
         font-size: 18px;
         line-height: 1.389em;
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
         text-decoration: none;
         border-radius: 80px;
         color: rgba(53, 55, 69, 0.6);
@@ -660,7 +660,7 @@ div.home-main div.text {
       padding: 14px 34px;
       font-size: 18px;
       line-height: 1.389em;
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
       text-decoration: none;
       border-radius: 80px;
       color: rgba(53, 55, 69, 0.6);
@@ -844,7 +844,7 @@ div.membership {
       background: rgba(128, 128, 128, 0.03);
       border-radius: 20px;
       padding: 30px 25px;
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
       cursor: pointer; }
       div.membership div.membership_body div.member-single:hover {
         transform: translateY(-5px);
@@ -922,7 +922,7 @@ footer {
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.02);
       width: 41px;
       height: 41px;
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -994,7 +994,7 @@ ul.socialaccount_providers {
       padding: 14px 34px;
       font-size: 18px;
       line-height: 1.389em;
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
       text-decoration: none;
       border-radius: 80px;
       color: rgba(53, 55, 69, 0.6);
@@ -1157,7 +1157,7 @@ div.blogs {
         padding: 14px 34px;
         font-size: 18px;
         line-height: 1.389em;
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
         text-decoration: none;
         border-radius: 80px;
         color: rgba(53, 55, 69, 0.6);
@@ -1285,7 +1285,7 @@ nav.pagination {
     nav.pagination ul.pagination li.next a {
       border: none;
       color: #353745;
-      transition: all 0.3s ease; }
+      transition: all 0.5s ease; }
       nav.pagination ul.pagination li.previous a:hover, nav.pagination ul.pagination li.previous a:active, nav.pagination ul.pagination li.previous a:focus,
       nav.pagination ul.pagination li.next a:hover,
       nav.pagination ul.pagination li.next a:active,
@@ -1331,12 +1331,66 @@ div.blog_detail_main {
       text-align: center; }
 
 .padding, section.dashboard_nav aside, section.dashboard_nav div.body_main div.container-main,
-section.dashboard_nav div.body_main div.nav_main_header {
+section.dashboard_nav div.body_main div.nav_main_header, section.dashboard_nav div.body_main div.dashboard-single nav.pagination, section.dashboard_nav div.body_main div.dashboard-single > header, section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page {
   padding: 20px 35px; }
   @media screen and (min-width: 0px) and (max-width: 991px) {
     .padding, section.dashboard_nav aside, section.dashboard_nav div.body_main div.container-main,
-    section.dashboard_nav div.body_main div.nav_main_header {
+    section.dashboard_nav div.body_main div.nav_main_header, section.dashboard_nav div.body_main div.dashboard-single nav.pagination, section.dashboard_nav div.body_main div.dashboard-single > header, section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page {
       padding: 10px 20px; } }
+
+div.notification_dropdown button.notify {
+  position: relative; }
+  div.notification_dropdown button.notify div.notification_number {
+    position: absolute;
+    font-size: 10px;
+    border-radius: 50%;
+    background: red;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    right: 0px;
+    color: white; }
+
+div.notification_dropdown > ul {
+  border: none;
+  box-shadow: 0px 4px 10px rgba(41, 44, 50, 0.08);
+  min-width: 300px;
+  padding: 0px; }
+  div.notification_dropdown > ul li {
+    transition: all 0.5s ease;
+    padding: 12px 8px;
+    border-bottom: 1px solid #E7E9EE; }
+    div.notification_dropdown > ul li div.row_header div.notification_list_extras {
+      padding: 10px 0px;
+      display: flex;
+      margin-right: 8px; }
+      div.notification_dropdown > ul li div.row_header div.notification_list_extras button.notification_list_delete {
+        margin: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        transition: all 0.5s ease;
+        margin-left: 8px; }
+        div.notification_dropdown > ul li div.row_header div.notification_list_extras button.notification_list_delete:hover {
+          transform: scale(1.1);
+          transform: translateY(-5px); }
+    div.notification_dropdown > ul li.show_notifications {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(232, 233, 253, 0.5);
+      color: #353745;
+      border: none;
+      padding: 8px 0px; }
 
 section.dashboard_nav {
   display: flex; }
@@ -1344,7 +1398,7 @@ section.dashboard_nav {
     section.dashboard_nav {
       flex-direction: column; } }
   section.dashboard_nav aside {
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1390,10 +1444,10 @@ section.dashboard_nav {
           backdrop-filter: blur(5px);
           width: calc(100% - 150px); } }
       section.dashboard_nav aside div.responsive_content div.responsive_content_nav {
-        transition: all 0.3s ease; }
+        transition: all 0.5s ease; }
         section.dashboard_nav aside div.responsive_content div.responsive_content_nav svg {
           transform: scale(2);
-          transition: all 0.3s ease; }
+          transition: all 0.5s ease; }
       section.dashboard_nav aside div.responsive_content svg {
         margin-left: 15px; }
     section.dashboard_nav aside > section {
@@ -1405,7 +1459,7 @@ section.dashboard_nav {
       flex-direction: column;
       height: 100%;
       justify-content: space-between;
-      transition: all 0.3s ease; }
+      transition: all 0.5s ease; }
       @media screen and (min-width: 0px) and (max-width: 991px) {
         section.dashboard_nav aside > section {
           opacity: 0;
@@ -1438,7 +1492,7 @@ section.dashboard_nav {
         padding-left: 10px; }
       section.dashboard_nav aside > section a {
         display: flex;
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
         align-items: center;
         color: black; }
       section.dashboard_nav aside > section ul.navbar_main_content {
@@ -1451,15 +1505,23 @@ section.dashboard_nav {
             padding: 0px 5px; } }
         section.dashboard_nav aside > section ul.navbar_main_content li {
           margin-top: 25px; }
-          section.dashboard_nav aside > section ul.navbar_main_content li a svg path {
+          section.dashboard_nav aside > section ul.navbar_main_content li a svg path,
+          section.dashboard_nav aside > section ul.navbar_main_content li div svg path {
             fill: #A3A5AF; }
-          section.dashboard_nav aside > section ul.navbar_main_content li a:hover {
+          section.dashboard_nav aside > section ul.navbar_main_content li a:hover,
+          section.dashboard_nav aside > section ul.navbar_main_content li div:hover {
             padding: 10px 13px;
             background: #FFA90F;
             color: white;
             border-radius: 8px; }
-          section.dashboard_nav aside > section ul.navbar_main_content li a:hover svg > path {
+          section.dashboard_nav aside > section ul.navbar_main_content li a:hover svg > path,
+          section.dashboard_nav aside > section ul.navbar_main_content li div:hover svg > path {
             fill: white; }
+          section.dashboard_nav aside > section ul.navbar_main_content li li div.dropdown button.clicker {
+            font-weight: 400; }
+            section.dashboard_nav aside > section ul.navbar_main_content li li div.dropdown button.clicker span {
+              color: #A3A5AF;
+              font-weight: 400; }
     section.dashboard_nav aside > .active_section {
       z-index: 3;
       opacity: 1;
@@ -1473,9 +1535,10 @@ section.dashboard_nav {
   section.dashboard_nav div.dropdown svg:not([class="responsive_content_nav_icon"]) {
     transform: scale(0.8); }
   section.dashboard_nav div.body_main {
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     background: #eff1f5;
-    width: calc(100vw - 100px); }
+    width: calc(100vw - 100px);
+    min-height: 100vh; }
     @media screen and (min-width: 0px) and (max-width: 991px) {
       section.dashboard_nav div.body_main {
         width: 100vw;
@@ -1500,35 +1563,90 @@ section.dashboard_nav {
             display: none; } }
     section.dashboard_nav div.body_main div.dashboard-single {
       background: white;
-      border-radius: 15px;
-      padding: 30px 35px; }
-  section.dashboard_nav form ul.searchoptions {
-    display: none; }
-  section.dashboard_nav form div.input-group {
-    margin-right: 30px;
-    border: none;
-    background: #F1F1F3;
-    outline: none;
-    border-radius: 10px;
-    padding: 10px 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: flex-start; }
-    section.dashboard_nav form div.input-group > span.input-addon {
-      background: none;
+      border-radius: 15px; }
+      section.dashboard_nav div.body_main div.dashboard-single nav.pagination {
+        padding-top: 10px;
+        padding-bottom: 10px; }
+      section.dashboard_nav div.body_main div.dashboard-single > header {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #E7E9EE; }
+      section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page div.notifications_main_page_single {
+        transition: all 0.5s ease;
+        padding: 10px 0px; }
+        section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page div.notifications_main_page_single div.row div.row_main_notification_outlet {
+          display: flex;
+          justify-content: flex-end; }
+          @media screen and (min-width: 0px) and (max-width: 740px) {
+            section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page div.notifications_main_page_single div.row div.row_main_notification_outlet {
+              justify-content: flex-start; } }
+          section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page div.notifications_main_page_single div.row div.row_main_notification_outlet div.delete {
+            margin-left: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; }
+            section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page div.notifications_main_page_single div.row div.row_main_notification_outlet div.delete button {
+              margin: 0;
+              padding: 0;
+              background: none;
+              border: none;
+              outline: none;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: auto;
+              transition: all 0.5s ease; }
+              section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page div.notifications_main_page_single div.row div.row_main_notification_outlet div.delete button:hover {
+                transform: scale(1.1);
+                transform: translateY(-5px); }
+  section.dashboard_nav form {
+    position: relative; }
+    section.dashboard_nav form ul.searchoptions {
+      display: none;
+      transition: all 0.5s ease;
+      position: absolute;
+      width: 100%;
+      box-shadow: 0px 4px 10px rgba(41, 44, 50, 0.03);
+      border-radius: 10px;
+      border: 1px solid #E7E9EE;
+      background: white;
+      border: none; }
+      section.dashboard_nav form ul.searchoptions li {
+        padding: 15px;
+        font-size: 14px;
+        background: none;
+        transition: all 0.5s ease; }
+        section.dashboard_nav form ul.searchoptions li:hover {
+          background: rgba(231, 233, 238, 0.2); }
+    section.dashboard_nav form div.input-group {
+      margin-right: 30px;
       border: none;
-      height: 20px; }
-      section.dashboard_nav form div.input-group > span.input-addon svg {
-        transform: scale(0.8); }
-      section.dashboard_nav form div.input-group > span.input-addon:last-child {
-        border-left: 1px solid #B2B4BE; }
-    section.dashboard_nav form div.input-group input {
-      border: none;
-      background: none; }
-      section.dashboard_nav form div.input-group input:hover, section.dashboard_nav form div.input-group input:active, section.dashboard_nav form div.input-group input:focus {
-        box-shadow: none;
-        border: none; }
+      background: #F1F1F3;
+      outline: none;
+      border-radius: 10px;
+      padding: 10px 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      justify-content: flex-start; }
+      section.dashboard_nav form div.input-group > span.input-addon {
+        background: none;
+        border: none;
+        height: 20px; }
+        section.dashboard_nav form div.input-group > span.input-addon svg {
+          transform: scale(0.8); }
+        section.dashboard_nav form div.input-group > span.input-addon:last-child {
+          border-left: 1px solid #B2B4BE; }
+      section.dashboard_nav form div.input-group input {
+        border: none;
+        background: none; }
+        section.dashboard_nav form div.input-group input:hover, section.dashboard_nav form div.input-group input:active, section.dashboard_nav form div.input-group input:focus {
+          box-shadow: none;
+          border: none; }
+    section.dashboard_nav form div#search_result {
+      display: none;
+      transition: all 0.5s ease; }
   section.dashboard_nav .active_main {
     width: calc(100vw - 240px); }
     @media screen and (min-width: 0px) and (max-width: 991px) {
@@ -1626,7 +1744,7 @@ nav {
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all 0.3s ease; }
+      transition: all 0.5s ease; }
       nav div.container-fluid a.navbar-brand:hover {
         transform: scale(0.95); }
     @media screen and (min-width: 0px) and (max-width: 991px) {
@@ -1642,7 +1760,7 @@ nav {
       margin-right: 35px; }
     nav div.container-fluid div ul li {
       list-style-type: none;
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
       margin-right: 35px; }
       nav div.container-fluid div ul li a {
         color: rgba(53, 55, 69, 0.7);

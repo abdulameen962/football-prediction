@@ -76,6 +76,8 @@ class League(models.Model):
     def __str__(self):
         return f"{self.league}({self.code})"
 
+    # add league name
+
 class Prediction(models.Model):
     TIP_CHOICES = (
         ("home","HOME"),
@@ -85,11 +87,14 @@ class Prediction(models.Model):
 
     league = models.ForeignKey(League, on_delete=models.PROTECT,related_name="prediction")
     type = models.CharField(choices=TYPE_CHOICES, max_length=50,default="freemium")
-    published = models.DateTimeField(auto_now_add=False)
+    published = models.DateTimeField(auto_now_add=False,default=timezone.now)
     updated = models.DateTimeField(default=timezone.now)
     home = models.CharField(max_length=50)
     away = models.CharField(max_length=50)
     correct_score = models.CharField(max_length=50)
+    halftime_correct_score = models.CharField(max_length=50,default=None,null=True)
+    combo_draws = models.CharField(max_length=50,default=None,null=True)
+    combo_tickets = models.CharField(max_length=50,default=None,null=True)
     send_mail = models.BooleanField(default=True)
     tip = models.CharField(choices=TIP_CHOICES,max_length=50)
     objects = models.Manager()

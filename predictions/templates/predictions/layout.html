@@ -46,6 +46,9 @@
             </div>
             <div class="navbar-collapse collapse" id="navbarNavDropdown">
                 <ul class="nav-ul navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
                     {% if user.is_authenticated %} 
                         {% if user.type == "freemium" %}
                             <li class="nav-item">
@@ -57,18 +60,9 @@
                             <li class="nav-item link_show">
                                 <a class="nav-link" href="{% url 'confirm_payment' %}">Confirm Pay</a>
                             </li>
-                        {% elif user.role != "" %}
+                        {% elif user.type == "premium" %}
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Live scores</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Correct scores</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Combo draws</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Combo ticket</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Watchlist</a>
@@ -80,6 +74,22 @@
                                 <a class="nav-link" href="#">Support</a>
                             </li>
                         {% endif %}
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button type="button" class="clicker dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"> 
+                                    <span>Leagues</span>
+                                </button>
+                                <ul class="dropdown-menu notification_list_main" aria-labelledby="dropdownMenu2">
+                                    {% for league in leagues %}
+                                      <li>
+                                        <a href="#">
+                                            {{ league.league }}
+                                        </a>
+                                      </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Profile</a>
                         </li>
@@ -190,8 +200,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>    
     <script src="{% static 'predictions/js/main.js' %}"></script>
     <script src="{% static 'predictions/js/vue.js' %}"></script>
-    <script src="{% static 'predictions/js/script.js' %}"></script>
     {% block script %}
     {% endblock %}
+    <script src="{% static 'predictions/js/script.js' %}"></script>
 </body>
 </html>

@@ -11,21 +11,21 @@ celey.autodiscover_tasks()
 
 from celery import shared_task
 
-@shared_task
-def add(x, y):
-    return x + y
+# @shared_task
+# def add(x, y):
+#     return x + y
 
-@shared_task
-def multiply(x, y):
-    return x * y
+# @shared_task
+# def multiply(x, y):
+#     return x * y
 
-@shared_task
-def add_and_multiply(x, y):
-    addition = add.s(x, y)
-    product = multiply.s(x, y)
-    return addition | product
+# @shared_task
+# def add_and_multiply(x, y):
+#     addition = add.s(x, y)
+#     product = multiply.s(x, y)
+#     return addition | product
 
-result = add.apply_async(args=(4, 5), priority=10)
+# result = add.apply_async(args=(4, 5), priority=10)
 
 #scheduling tasks
 # from datetime import timedelta

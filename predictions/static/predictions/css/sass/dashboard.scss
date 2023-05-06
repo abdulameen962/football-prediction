@@ -7,6 +7,58 @@ $aside_inactive:240px;
     }
 }
 
+div.notification_dropdown {
+    button.notify {
+        position: relative;
+        div.notification_number {
+            position: absolute;
+            font-size: 10px;
+            border-radius: 50%;
+            background: red;
+            width: 15px;
+            height: 15px;
+            @include flex(no);
+            top: 0px;
+            right: 0px;
+            color: $white;
+        }
+    }
+    &>ul {
+        border: none;
+        box-shadow: 0px 4px 10px rgba(41, 44, 50, 0.08);
+        min-width: 300px;
+        padding: 0px;
+        // @include transition;
+        li {
+            @include transition;
+            padding: 12px 8px;
+            border-bottom: 1px solid $lightgrey;
+            div.row_header {
+                div.notification_list_extras {
+                    padding: 10px 0px;
+                    display: flex;
+                    margin-right: 8px;
+                    button.notification_list_delete {
+                        @include button_naked;
+                        margin-left: 8px;
+                        // svg {
+                        //     transform: scale(1.1);
+                        // }
+                    }
+                }
+            }
+            &.show_notifications {
+                width: 100%;
+                @include flex(no);
+                background: rgba($lightblue, .5);
+                color: $dark;
+                border: none;
+                padding: 8px 0px;
+            }
+        }
+    }
+}
+
 section.dashboard_nav {
     display: flex;
     @include respond(tab) {
@@ -125,7 +177,8 @@ section.dashboard_nav {
                     //     margin-top: 0px;
                     //     margin-left: 10px;
                     // }
-                    a {
+                    a,
+                    div {
                         svg {
                             path {
                                 fill: $icongrey;
@@ -139,6 +192,17 @@ section.dashboard_nav {
                         }
                         &:hover svg>path {
                             fill: white;
+                        }
+                    }
+                    li {
+                        div.dropdown {
+                            button.clicker {
+                                font-weight: 400;
+                                span {
+                                    color: $icongrey;
+                                    font-weight: 400;
+                                }
+                            }
                         }
                     }
                 }
@@ -165,6 +229,7 @@ section.dashboard_nav {
         @include transition;
         background: rgba(#EFF1F5, 1);
         width: calc(100vw - 100px);
+        min-height: 100vh;
         @include respond(tab) {
             width: 100vw;
             background: rgba(#EFF1F5, .5);
@@ -197,12 +262,62 @@ section.dashboard_nav {
         div.dashboard-single {
             background: $white;
             border-radius: 15px;
-            padding: 30px 35px;
+            nav.pagination {
+                @extend .padding;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            &>header {
+                @extend .padding;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                border-bottom: 1px solid $lightgrey;
+            }
+            div.notifications_main_page {
+                @extend .padding;
+                div.notifications_main_page_single {
+                    @include transition;
+                    padding: 10px 0px;
+                    div.row {
+                        div.row_main_notification_outlet {
+                            display: flex;
+                            justify-content: flex-end;
+                            @include respond(lphone) {
+                                justify-content: flex-start;
+                            }
+                            div.delete {
+                                margin-left: 10px;
+                                @include flex(yes);
+                                button {
+                                    @include button_naked;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     form {
+        position: relative;
         ul.searchoptions {
             display: none;
+            @include transition;
+            position: absolute;
+            width: 100%;
+            // bottom: 0;
+            @include background;
+            background: $white;
+            border: none;
+            li {
+                padding: 15px;
+                font-size: 14px;
+                background: none;
+                @include transition;
+                &:hover {
+                    background: rgba($lightgrey, .2);
+                }
+            }
         }
         div.input-group {
             margin-right: 30px;
@@ -234,6 +349,10 @@ section.dashboard_nav {
                     border: none;
                 }
             }
+        }
+        div#search_result {
+            display: none;
+            @include transition;
         }
     }
     .active_main {

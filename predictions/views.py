@@ -55,17 +55,6 @@ try:
 except (OperationalError, ProgrammingError) as e:
     leagues=[]
 
-predictionstable = []
-if len(leagues) > 0:
-    for league in leagues:
-        leaguepredictions = league.prediction.all()
-        if len(leaguepredictions) > 0:
-            mainleague = {"league":league,"predictions":[]}
-            for prediction in leaguepredictions:
-                if prediction.type == "freemium":
-                        mainleague["predictions"].append(prediction)
-
-            predictionstable.append(mainleague)
 
 
 def index(request):
@@ -467,3 +456,108 @@ class edit_notification(UserPassesTestMixin,View):
 
 
         return JsonResponse({"message":"Removed successfully"},status=200)
+
+
+class Search(UserPassesTestMixin,View):
+    login_url = "account_login"
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.type != ""  
+
+    def post(self,request):
+        user = self.request.user
+
+        data = json.loads(request.body)
+        command = data.get("command",)
+        search_term = data.get("term",)
+
+        if command == "league":
+            result = []
+            leagues = League.objects.all()
+            if len(leagues) > 0:
+                for league in leagues:
+                    if search_term.lower() in league.league.lower():
+                       result.append(league)
+
+                    elif search_term.lower() in league.code.lower():
+                        result.append(league)
+
+                if len(result) > 0:
+                    #there is at league a result
+                    main_result = result[0]
+                    link = request.build_absolute_uri(reverse('leagues',args=[main_result.id]))
+
+                    return JsonResponse({"message":link},status=200)
+                else:
+                    return JsonResponse({"message":"League doesn't exist"},status=201)
+            else:
+                return JsonResponse({"message":"No League available now"},status=201)
+
+        elif command == "watchlist":
+            if user.type == "freemium":
+                #get his profile
+                return JsonResponse({"message":"User denied access"},status=400)
+            elif user.type == "premium":
+                #get his profile
+                profile = PremiumProfile.objects.get(user=user)
+
+            if profile != "":
+                watchlist = profile.watchlist.all()
+                result = []
+                if len(watchlist) > 0:
+                    for watch in watchlist:
+                        if search_term.lower() in watchlist.league.lower():
+                            result.append(watch)
+
+                    if len(result) > 0:
+                        #there is at league a result
+                        main_result = result[0]
+                        link = request.build_absolute_uri(reverse('leagues',args=[main_result.id]))
+
+                        return JsonResponse({"message":link},status=200)
+                    else:
+                        return JsonResponse({"message":"League doesn't exist"},status=201)
+
+                else:
+                    return JsonResponse({"message":"You have not added any watchlist"},status=201)                
+            
+            return JsonResponse({"message":"User doesn't have a type"},status=403)
+        
+
+        else:
+            return JsonResponse({"message":"Wrong command/sth went wrong"},status=400)
+
+
+class leagues(UserPassesTestMixin,ListView):
+    model = League
+    template_name = "predictions/all_leagues.html"
+    context_object_name = "leagues"
+    login_url = "account_login"
+    
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.type != ""
+
+    def get_context_data(self, **kwargs):
+
+       leagues = super().get_queryset()
+       paginated = Paginator(leagues,10)
+       context = super().get_context_data(**kwargs)
+
+       context["max_num"] = paginated.num_pages
+       context["page_request_var"] = "page"
+       context["page_range"] = paginated.page_range
+
+       return context
+    
+
+@login_required(login_url="account_login")
+@verified_email_required
+def league_single(request,id):
+    user = request.user
+    try:
+        league = League.objects.get(pk=id)
+
+    except League.DoesNotExist:
+        return HttpResponseRedirect(reverse("index"))
+
+    return HttpResponse("cool")

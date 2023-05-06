@@ -25,6 +25,20 @@
     background-position: top right;
 }
 
+@mixin button_naked {
+    @include mp;
+    background: none;
+    border: none;
+    outline: none;
+    @include flex(no);
+    width: auto;
+    @include transition;
+    &:hover {
+        transform: scale(1.1);
+        transform: translateY(-5px);
+    }
+}
+
 @mixin h4 {
     @extend .font;
     @extend .font-weight;
@@ -137,7 +151,7 @@
 }
 
 @mixin transition {
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 
 @mixin doctorsearchimg {
