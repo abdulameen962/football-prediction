@@ -553,11 +553,139 @@ class leagues(UserPassesTestMixin,ListView):
 @login_required(login_url="account_login")
 @verified_email_required
 def league_single(request,id):
-    user = request.user
+    # user = request.user
     try:
         league = League.objects.get(pk=id)
+
+        return render(request,"predictions/league_single.html",{
+            "league": league,
+        })
 
     except League.DoesNotExist:
         return HttpResponseRedirect(reverse("index"))
 
-    return HttpResponse("cool")
+
+class get_leagues(UserPassesTestMixin,View):
+    login_url = "account_login"
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.type != ""
+
+    def get(self,request,page_num):
+        result = []
+        user = self.request.user
+        league = League.objects.all()
+        league = Paginator(league,10)
+
+        if page_num <= league.num_pages:
+            league = league.get_page(page_num)
+
+        else:
+            return JsonResponse({"message":"Paginated leagues doesn't exist"},status=403)
+        
+        for league in league:
+            predictions = league.prediction.all()
+
+            main_league = {"league":league.serialize(),"predictions":[]}
+
+            if predictions.count() > 0:
+                for predict in predictions:
+                    if predict.type == "freemium":
+                        main_league["predictions"].append(predict.serialize())
+
+                    elif predict.type == "premium" and user.type == "premium" and user.premium.activated:
+                        main_league["predictions"].append(predict.serialize())
+
+            
+            if len(main_league["predictions"]) > 0:
+                result.append(main_league)
+
+
+        if len(result) > 0:
+            return JsonResponse([predict for predict in result],safe=False,status=200)
+
+        else:
+            return JsonResponse({"message":"No available leagues"},status=201)
+
+
+
+@login_required(login_url="account_login")
+@verified_email_required
+def get_league_info(request,method,league_id):
+    user = request.user
+    term = method.lower()
+
+    try:
+        league = League.objects.get(id=league_id)
+        predictions = league.prediction.all()
+    except League.DoesNotExist:
+        return JsonResponse({"message":"Wrong page"},status=400)
+
+
+    if len(predictions) > 0:
+        status = False
+        if term == "correct_score":
+            status = True
+
+        elif term == "halftime_correct_score":
+            status = True
+
+        elif term == "combo_draws":
+            status = True
+        
+        elif term == "combo_tickets":
+            status = True
+
+        else:
+            return JsonResponse({"message":"Wrong method"},status=403)
+
+
+        if status:
+            #get all the predictions to check if it has the term
+            main_league = {"league":league.serialize(),"predictions":[]}
+
+            for predict in predictions:
+                if predict.type == "freemium":
+
+                    if term == "correct_score":
+                        if predict.correct_score != "" or predict.correct_score == "Empty":
+                            main_league["predictions"].append(predict.serialize())
+                    elif term == "halftime_correct_score":
+                        if predict.halftime_correct_score != "" or predict.halftime_correct_score == "Empty":
+                            main_league["predictions"].append(predict.serialize())
+
+                    elif term == "combo_draws":
+                        if predict.combo_draws != "" or predict.combo_draws == "Empty":
+                            main_league["predictions"].append(predict.serialize())
+                    
+                    elif term == "combo_tickets":
+                        if predict.combo_tickets != "" or predict.combo_tickets == "Empty":
+                            main_league["predictions"].append(predict.serialize())
+                    
+
+                elif predict.type == "premium" and user.type == "premium" and user.premium.activated:
+
+                    if term == "correct_score":
+                        if predict.correct_score != "" or predict.correct_score == "Empty":
+                            main_league["predictions"].append(predict.serialize())
+                    elif term == "halftime_correct_score":
+                        if predict.halftime_correct_score != "" or predict.halftime_correct_score == "Empty":
+                            main_league["predictions"].append(predict.serialize())
+
+                    elif term == "combo_draws":
+                        if predict.combo_draws != "" or predict.combo_draws == "Empty":
+                            main_league["predictions"].append(predict.serialize())
+                    
+                    elif term == "combo_tickets":
+                        if predict.combo_tickets != "" or predict.combo_tickets == "Empty":
+                            main_league["predictions"].append(predict.serialize())
+
+        if len(main_league["predictions"]) > 0:
+            return JsonResponse({"result":main_league},status=200,safe=False)
+
+        else:
+            return JsonResponse({"message":"No leagues available for this user"},status=201)
+
+
+    else:
+        return JsonResponse({"message":"No prediction exists for the league requested"},status=201)

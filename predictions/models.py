@@ -72,11 +72,21 @@ class League(models.Model):
     code = models.CharField(max_length=5)
     league = models.CharField(max_length=50)
     logo = CloudinaryField("image")
+    objects = models.Manager()
 
     def __str__(self):
         return f"{self.league}({self.code})"
 
-    # add league name
+    def get_absolute_url(self):
+        return reverse("leagues", args={self.id})   
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "code": self.code,
+            "logo":self.logo.url,
+            # "predictions": [prediction.serialize() for prediction in self.prediction.all()]
+        } 
 
 class Prediction(models.Model):
     TIP_CHOICES = (
@@ -107,6 +117,22 @@ class Prediction(models.Model):
         ordering = ("-updated",)
         verbose_name = "Prediction"
         verbose_name_plural = "Predictions"
+
+    def get_absolute_url(self):
+        return reverse("leagues", args={self.league.id})
+
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "type": self.type,
+            "home": self.home,
+            "away": self.away,
+            "correct_score":self.correct_score,
+            "halftime_correct_score": self.halftime_correct_score,
+            "combo_draws": self.combo_draws,
+            "combo_tickets": self.combo_tickets,
+        }    
 
 
 class FreemiumProfile(models.Model):

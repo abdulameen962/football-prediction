@@ -34,6 +34,6 @@ urlpatterns = [
     path("update-notifications/",views.update_notification,name="update_notification"),
     path("edit-notifications/<int:id>",views.edit_notification.as_view(),name="edit_notification"),
     path("search/",views.Search.as_view(),name="search"),
-    # path("get-leagues/",views.get_leagues,name="get_leagues"),
-    # path("get-type-league-info/<str:method>/",views.get_league_info,name="get_league_info"),
+    path("get-leagues/",views.get_leagues.as_view(),name="get_leagues"),
+    path("get-type-league-info/<str:method>/<int:league_id>/",views.get_league_info,name="get_league_info"),
 ]
