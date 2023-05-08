@@ -700,4 +700,21 @@ def get_league_info(request,method,league_id):
 @login_required(login_url="account_login")
 @verified_email_required
 def add_watchlist(request,id):
-    return
+    user = request.user
+    try:
+        watchlist = League.objects.get(pk=id)
+
+    except League.DoesNotExist:
+        return JsonResponse({"message":"Invalid league"},status=400)
+
+    if user.type != "premium" and user.premium.activated:
+        return JsonResponse({"message":"User not allowed"},status=403)
+
+    try:
+        profile = PremiumProfile.objects.get(user=user)
+        profile.watchlist.add(watchlist)
+        profile.save()
+    except Exception or PremiumProfile.DoesNotExist: 
+        return JsonResponse({"message":"Something wrong happened try again later"},status=400)
+
+    return JsonResponse({"message":"Watchlist added successfully"},status=200)
