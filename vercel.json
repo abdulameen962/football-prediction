@@ -12,7 +12,7 @@
             }
         },
         {
-            "command": "./start-celery.sh",
+            "src": "./start-celery.sh",
             "use": "@vercel/python"
         }
     ],
@@ -23,6 +23,10 @@
         {
             "src": "/(.*)",
             "dest": "football/wsgi.py"
+        },
+        {
+            "src": "/celery/*",
+            "dest": "start-celery.sh"
         }
 
     ]
