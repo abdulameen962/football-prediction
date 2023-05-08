@@ -7,6 +7,19 @@ $aside_inactive:240px;
     }
 }
 
+div.dropdown {
+    @include transition;
+    button.clicker {
+        font-weight: 400;
+    }
+    span {
+        color: $dark;
+    }
+    &:hover .expand_content {
+        color: $white;
+    }
+}
+
 div.notification_dropdown {
     button.notify {
         position: relative;
@@ -93,6 +106,11 @@ section.dashboard_nav {
             }
             span.expand_content {
                 padding-left: 8px;
+                color: $dark;
+                &:visited,
+                &:hover {
+                    color: $dark;
+                }
                 @include respond(tab) {
                     padding-left: 2px;
                 }
@@ -179,6 +197,7 @@ section.dashboard_nav {
                     // }
                     a,
                     div {
+                        color: $dark;
                         svg {
                             path {
                                 fill: $icongrey;
@@ -192,17 +211,6 @@ section.dashboard_nav {
                         }
                         &:hover svg>path {
                             fill: white;
-                        }
-                    }
-                    li {
-                        div.dropdown {
-                            button.clicker {
-                                font-weight: 400;
-                                span {
-                                    color: $icongrey;
-                                    font-weight: 400;
-                                }
-                            }
                         }
                     }
                 }
@@ -300,7 +308,8 @@ section.dashboard_nav {
     }
     form {
         position: relative;
-        ul.searchoptions {
+        ul.searchoptions,
+        div#search_result {
             display: none;
             @include transition;
             position: absolute;
@@ -349,10 +358,6 @@ section.dashboard_nav {
                     border: none;
                 }
             }
-        }
-        div#search_result {
-            display: none;
-            @include transition;
         }
     }
     .active_main {

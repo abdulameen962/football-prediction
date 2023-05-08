@@ -59,7 +59,7 @@ def blog_handler(sender,instance,**kwargs):
         instance.slug = (slugify(instance.title))
 
     header = f"New blog {instance.title}"
-    message = f"A new blog has been released titles {instance.title},<a href='/blogs/{instance.slug}/'>Check it out now</a>"
+    message = f"A new blog has been released titled: {instance.title},<a href='/blogs/{instance.slug}/'>Check it out now</a>"
     users = []
     mainusers = User.objects.all()
 
@@ -75,7 +75,7 @@ def blog_handler(sender,instance,**kwargs):
 @receiver(pre_delete,sender=Blog)
 def blog_delete_handler(sender,instance,**kwargs):
     header = f"New blog {instance.title}"
-    message = f"A new blog has been released titles {instance.title},<a href='/blogs/{instance.slug}/'>Check it out now</a>"
+    message = f"A new blog has been released titled: {instance.title},<a href='/blogs/{instance.slug}/'>Check it out now</a>"
     delete_notification(header,message)
 
 @receiver(post_save,sender=User)
@@ -167,20 +167,6 @@ def premium_profile_delete_handler(sender,instance,**kwargs):
     freemium = FreemiumProfile.objects.get(user=user)
     #transfer details
 
-@receiver(pre_save,sender=Prediction)
-def prediction_pre_save_handler(sender,instance,**kwargs):
-    #if any field is empty
-    if instance.correct_score is None:
-        instance.correct_score = "Empty"
-
-    elif instance.halftime_correct_score is None:
-        instance.halftime_correct_score = "Empty"
-
-    elif instance.combo_draws is None:
-        instance.combo_draws = "Empty"
-
-    elif instance.combo_tickets is None:
-        instance.combo_tickets = "Empty"
 
 #signal for sending emails for new predictions to all premium users on it
 @receiver(post_save,sender=Prediction)
@@ -212,14 +198,7 @@ def prediction_mail_handler(sender,instance,**kwargs):
     #check if one has been sent before
     header = f"New prediction: {instance.home} vs {instance.away} in {instance.league.league} league"
     message = f"A new prediction just came in,hurry now to check it at <a href='/leagues/{instance.league.id}/'>{instance.home} vs {instance.away}</a>"
-    
     send_notification(header,users,message)
-
-@receiver(pre_delete,sender=Prediction)
-def prediction_delete_handler(sender,instance,**kwargs):
-    header = f"New prediction: {instance.home} vs {instance.away} in {instance.league.league} league"
-    message = "Welcome to the Prediction app,we hope you enjoy this platform.Take a tour and if our help is needed contact support"
-    delete_notification(header,message)
 
 @receiver(post_save,sender=Notification)
 def notification_saver_handler(sender,instance,**kwargs):

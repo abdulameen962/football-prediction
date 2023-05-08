@@ -8,12 +8,15 @@ $aside_inactive:240px;
 }
 
 div.dropdown {
+    @include transition;
     button.clicker {
         font-weight: 400;
-        span {
-            color: $icongrey;
-            font-weight: 400;
-        }
+    }
+    span {
+        color: $dark;
+    }
+    &:hover .expand_content {
+        color: $white;
     }
 }
 
@@ -103,6 +106,11 @@ section.dashboard_nav {
             }
             span.expand_content {
                 padding-left: 8px;
+                color: $dark;
+                &:visited,
+                &:hover {
+                    color: $dark;
+                }
                 @include respond(tab) {
                     padding-left: 2px;
                 }
@@ -189,6 +197,7 @@ section.dashboard_nav {
                     // }
                     a,
                     div {
+                        color: $dark;
                         svg {
                             path {
                                 fill: $icongrey;

@@ -52,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for predict in prediction.prediction.all %}
+                {% for predict in league.prediction.all %}
                     {% if predict.correct_score != "" or predict.correct_score == "Empty" %}
                         {% if predict.type == "freemium"%}
                             <tr>

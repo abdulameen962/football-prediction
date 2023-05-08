@@ -347,7 +347,13 @@ def get_notification(request):
             else:
                     notificationbox = [notifications[0],notifications[1],notifications[2],notifications[3],notifications[4]]
 
+
         if len(notificationbox) > 0:
+            #mark all the notifications as read
+            for notify in notificationbox:
+                notify.read = True
+                notify.save()
+
             return JsonResponse([notify.serialize() for notify in notificationbox],status=200,safe=False)
 
         else:

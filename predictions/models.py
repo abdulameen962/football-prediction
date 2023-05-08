@@ -77,6 +77,10 @@ class League(models.Model):
     def __str__(self):
         return f"{self.league}({self.code})"
 
+
+    class Meta:
+        ordering = ("league",)
+
     def get_absolute_url(self):
         return reverse("leagues", args={self.id})   
 
@@ -101,10 +105,10 @@ class Prediction(models.Model):
     updated = models.DateTimeField(default=timezone.now)
     home = models.CharField(max_length=50)
     away = models.CharField(max_length=50)
-    correct_score = models.CharField(max_length=50)
-    halftime_correct_score = models.CharField(max_length=50,default=None,null=True)
-    combo_draws = models.CharField(max_length=50,default=None,null=True)
-    combo_tickets = models.CharField(max_length=50,default=None,null=True)
+    correct_score = models.CharField(max_length=50,default=None,null=True,blank=True)
+    halftime_correct_score = models.CharField(max_length=50,default=None,null=True,blank=True)
+    combo_draws = models.CharField(max_length=50,default=None,null=True,blank=True)
+    combo_tickets = models.CharField(max_length=50,default=None,null=True,blank=True)
     send_mail = models.BooleanField(default=True)
     tip = models.CharField(choices=TIP_CHOICES,max_length=50)
     objects = models.Manager()

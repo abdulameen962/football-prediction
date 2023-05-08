@@ -442,7 +442,6 @@ const app = Vue.createApp({
                                 var li = document.createElement("li");
                                 li.innerHTML = "No notifications currently,check back later"
                                 ul.append(li);
-                                console.log(ul);
                             }
                         }
                     })
@@ -521,6 +520,11 @@ const app = Vue.createApp({
     },
     methods: {
         deleteNotification(event, id) {
+            var parentElement = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+            if (parentElement.className != "notifications_main_page_single read" || parentElement.className != "notifications_main_page_single unread") {
+                parentElement = parentElement.parentElement;
+            }
+            var mainparent = parentElement.parentElement;
             axios
                 .delete(`/edit-notifications/${id}`, {
                     headers: {
@@ -529,17 +533,13 @@ const app = Vue.createApp({
                     }
                 })
                 .then(response => {
-                    var message = response.data;
                     if (response.status == 200) {
                         //do the needful
-                        console.log(message.message);
-                        var parentElement = event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
                         parentElement.style.opacity = "0";
-                        setTimeout(() => {
-                            parentElement.style.display = "none";
-                            parentElement.remove();
-                        }, 500);
-                        console.log(parentElement);
+                        parentElement.remove();
+                        if (mainparent.innerHTML == "") {
+                            mainparent.innerHTML = "<p>No notifications yet,you are all caught up</p>"
+                        }
                         getNotificationNumber();
                     }
                 })
