@@ -476,10 +476,11 @@ const app = Vue.createApp({
             form.onsubmit = (event) => {
                 event.preventDefault();
                 var crsf = document.querySelector("[name='csrfmiddlewaretoken']").value;
-                axios
-                    .post(`/search/`, {
+                fetch("/search/", {
+                        method: "POST",
                         headers: {
-                            // 'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json; charset=UTF-8',
                             'X-CSRFToken': crsf,
                         },
                         body: JSON.stringify({
@@ -487,8 +488,7 @@ const app = Vue.createApp({
                             "term": input.value,
                         })
                     })
-                    .then(response => {
-                        res = response.data;
+                    .then(response => response.json().then(res => {
                         if (response.status == 201) {
                             //no link
                             document.querySelector("[name='search']").value = "";
@@ -500,11 +500,7 @@ const app = Vue.createApp({
                             document.querySelector("[name='search']").value = "";
                             window.location.href = res.message;
                         }
-                    })
-                    .catch(error => {
-                        console.log(error)
-                    })
-                    .finally(() => this.loading = false);
+                    }))
             }
             if (search_reset) {
                 search_reset.onclick = () => {
