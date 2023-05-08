@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -212,7 +212,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -229,9 +229,8 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 RAVE_PUBLIC_KEY = os.environ.get('RAVE_PUBLIC_KEY')
 RAVE_SECRET_KEY = os.environ.get("RAVE_SECRET_KEY")
-CELERY_BROKER_URL = os.environ.get("RABBITMQ_URL")
-CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
-
+CELERY_BROKER_URL = "amqps://bvklpodc:e8rvi_hVaH1zLwOl4wO23euPhmgx_xJg@hawk.rmq.cloudamqp.com/bvklpodc"
+CELERY_RESULT_BACKEND = "rpc://"
 # Django celery configuration 
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = 'json'
