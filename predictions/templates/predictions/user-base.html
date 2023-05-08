@@ -5,6 +5,7 @@
 {% endblock  %}
 
 {% block mainbody %}
+<iframe frameborder="0" style="display:none" id="stopperframe"></iframe>
     <section class="dashboard_nav">
         <aside class="aside_nav">
             <section>
@@ -153,7 +154,7 @@
                 </header>
                 
                 <div class="nav_side">
-                    <form method="POST" id="search_form" data-search="league" target="stopperframe" onsubmit="submitSearch(event)">
+                    <form method="POST" id="search_form" data-search="league" target="stopperframe">
                         {% csrf_token %}
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text input-addon" id="addon-wrapping"> 
