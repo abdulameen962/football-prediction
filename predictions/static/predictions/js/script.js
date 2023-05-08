@@ -482,10 +482,10 @@ const app = Vue.createApp({
                             // 'X-Requested-With': 'XMLHttpRequest',
                             'X-CSRFToken': crsf,
                         },
-                        body: JSON.stringify({
-                            "command": form.dataset.search,
-                            "term": input.value,
-                        })
+                        // body: JSON.stringify({
+                        //     "command": form.dataset.search,
+                        //     "term": input.value,
+                        // })
                     })
                     .then(response => {
                         res = response.data;

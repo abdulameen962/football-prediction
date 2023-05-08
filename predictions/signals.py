@@ -167,6 +167,20 @@ def premium_profile_delete_handler(sender,instance,**kwargs):
     freemium = FreemiumProfile.objects.get(user=user)
     #transfer details
 
+@receiver(pre_save,sender=Prediction)
+def prediction_pre_save_handler(sender,instance,**kwargs):
+    #if any field is empty
+    if instance.correct_score is None:
+        instance.correct_score = "Empty"
+
+    elif instance.halftime_correct_score is None:
+        instance.halftime_correct_score = "Empty"
+
+    elif instance.combo_draws is None:
+        instance.combo_draws = "Empty"
+
+    elif instance.combo_tickets is None:
+        instance.combo_tickets = "Empty"
 
 #signal for sending emails for new predictions to all premium users on it
 @receiver(post_save,sender=Prediction)
@@ -215,18 +229,3 @@ def notification_saver_handler(sender,instance,**kwargs):
         #user list is empty,delete list
         instance.delete()
 
-
-@receiver(pre_save,sender=Prediction)
-def prediction_pre_save_handler(sender,instance,**kwargs):
-    #if any field is empty
-    if instance.correct_score is None:
-        instance.correct_score = "Empty"
-
-    elif instance.halftime_correct_score is None:
-        instance.halftime_correct_score = "Empty"
-
-    elif instance.combo_draws is None:
-        instance.combo_draws = "Empty"
-
-    elif instance.combo_tickets is None:
-        instance.combo_tickets = "Empty"

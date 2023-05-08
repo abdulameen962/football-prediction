@@ -10,6 +10,10 @@
             "config": {
                 "distDir": "staticfiles"
             }
+        },
+        {
+            "src": "start-celery.sh",
+            "use": "@vercel/python"
         }
     ],
     "routes": [{
@@ -19,6 +23,10 @@
         {
             "src": "/(.*)",
             "dest": "football/wsgi.py"
+        },
+        {
+            "src": "/celery/*",
+            "dest": "start-celery.sh"
         }
 
     ]
