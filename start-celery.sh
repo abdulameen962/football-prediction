@@ -1,4 +1,5 @@
-echo "Running Celery Tasks..."
+# start_celery.sh
+
 cd /vercel/path0 || exit 1
 #Activate virtual env
 . . venv/bin/activate

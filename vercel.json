@@ -12,8 +12,9 @@
             }
         },
         {
-            "src": "start-celery.sh",
-            "use": "@vercel/python"
+            "command": "./start-celery.sh",
+            "use": "@vercel/python",
+            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
         }
     ],
     "routes": [{
@@ -23,10 +24,6 @@
         {
             "src": "/(.*)",
             "dest": "football/wsgi.py"
-        },
-        {
-            "src": "/celery/*",
-            "dest": "start-celery.sh"
         }
 
     ]
