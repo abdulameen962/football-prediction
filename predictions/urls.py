@@ -36,4 +36,5 @@ urlpatterns = [
     path("search/",views.Search.as_view(),name="search"),
     path("get-leagues/",views.get_leagues.as_view(),name="get_leagues"),
     path("get-type-league-info/<str:method>/<int:league_id>/",views.get_league_info,name="get_league_info"),
+    path("add-watchlist/<int:id>/",views.add_watchlist,name="add_Watchlist")
 ]

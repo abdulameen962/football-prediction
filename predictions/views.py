@@ -695,3 +695,9 @@ def get_league_info(request,method,league_id):
 
     else:
         return JsonResponse({"message":"No prediction exists for the league requested"},status=201)
+
+
+@login_required(login_url="account_login")
+@verified_email_required
+def add_watchlist(request,id):
+    return
