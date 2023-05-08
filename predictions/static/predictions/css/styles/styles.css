@@ -1613,7 +1613,7 @@ section.dashboard_nav {
   section.dashboard_nav form {
     position: relative; }
     section.dashboard_nav form ul.searchoptions,
-    section.dashboard_nav form div#search_result {
+    section.dashboard_nav form ul#search_result {
       display: none;
       transition: all 0.5s ease;
       position: absolute;
@@ -1624,13 +1624,13 @@ section.dashboard_nav {
       background: white;
       border: none; }
       section.dashboard_nav form ul.searchoptions li,
-      section.dashboard_nav form div#search_result li {
+      section.dashboard_nav form ul#search_result li {
         padding: 15px;
         font-size: 14px;
         background: none;
         transition: all 0.5s ease; }
         section.dashboard_nav form ul.searchoptions li:hover,
-        section.dashboard_nav form div#search_result li:hover {
+        section.dashboard_nav form ul#search_result li:hover {
           background: rgba(231, 233, 238, 0.2); }
     section.dashboard_nav form div.input-group {
       margin-right: 30px;

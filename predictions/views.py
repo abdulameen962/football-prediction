@@ -488,12 +488,15 @@ class Search(UserPassesTestMixin,View):
                     elif search_term.lower() in league.code.lower():
                         result.append(league)
 
-                if len(result) > 0:
-                    #there is at league a result
-                    main_result = result[0]
-                    link = request.build_absolute_uri(reverse('leagues',args=[main_result.id]))
+                    if len(result) > 0:
+                        #there is at league a result
+                        main_result = []
+                        for res in result:
+                            link = request.build_absolute_uri(reverse('leagues',args=[res.id]))
+                            res_add = {"league":res.league,"link":link}
+                            main_result.append(res_add)
 
-                    return JsonResponse({"message":link},status=200)
+                        return JsonResponse([result for result in main_result],status=200,safe=False)
                 else:
                     return JsonResponse({"message":"League doesn't exist"},status=201)
             else:
@@ -517,10 +520,13 @@ class Search(UserPassesTestMixin,View):
 
                     if len(result) > 0:
                         #there is at league a result
-                        main_result = result[0]
-                        link = request.build_absolute_uri(reverse('leagues',args=[main_result.id]))
+                        main_result = []
+                        for res in result:
+                            link = request.build_absolute_uri(reverse('leagues',args=[res.id]))
+                            res_add = {"league":res.league,"link":link}
+                            main_result.append(res_add)
 
-                        return JsonResponse({"message":link},status=200)
+                        return JsonResponse([result for result in main_result],status=200,safe=False)
                     else:
                         return JsonResponse({"message":"League doesn't exist"},status=201)
 

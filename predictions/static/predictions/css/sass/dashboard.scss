@@ -309,7 +309,7 @@ section.dashboard_nav {
     form {
         position: relative;
         ul.searchoptions,
-        div#search_result {
+        ul#search_result {
             display: none;
             @include transition;
             position: absolute;

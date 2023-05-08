@@ -490,10 +490,10 @@ const app = Vue.createApp({
                         })
                     })
                     .then(response => response.json().then(res => {
+                        options.style.display = "none";
                         if (response.status == 201) {
                             //no link
                             document.querySelector("[name='search']").value = "";
-                            options.style.display = "none";
                             if (result_search) {
                                 result_search.style.display = "block";
                                 result_search.innerHTML = `<p>Search term not found,pls search for another <button class="search_reset btn btn-primary">Search for another</button></p>`;
@@ -504,7 +504,15 @@ const app = Vue.createApp({
                         } else if (response.status == 200) {
                             //link
                             document.querySelector("[name='search']").value = "";
-                            window.location.href = res.message;
+                            //get all the search result
+                            result_search.innerHTML = "";
+                            for (let i = 0; i < res.length; i++) {
+                                const li = document.createElement("li");
+                                li.innerHTML = `<a href="${res[i].link}">${res[i].league}</a>`
+                                result_search.append(li);
+                            }
+                            result_search.style.display = "block";
+                            // window.location.href = res.message;
                         }
                     }))
             }
