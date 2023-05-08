@@ -7,6 +7,16 @@ $aside_inactive:240px;
     }
 }
 
+div.dropdown {
+    button.clicker {
+        font-weight: 400;
+        span {
+            color: $icongrey;
+            font-weight: 400;
+        }
+    }
+}
+
 div.notification_dropdown {
     button.notify {
         position: relative;
@@ -194,17 +204,6 @@ section.dashboard_nav {
                             fill: white;
                         }
                     }
-                    li {
-                        div.dropdown {
-                            button.clicker {
-                                font-weight: 400;
-                                span {
-                                    color: $icongrey;
-                                    font-weight: 400;
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -300,7 +299,8 @@ section.dashboard_nav {
     }
     form {
         position: relative;
-        ul.searchoptions {
+        ul.searchoptions,
+        div#search_result {
             display: none;
             @include transition;
             position: absolute;
@@ -349,10 +349,6 @@ section.dashboard_nav {
                     border: none;
                 }
             }
-        }
-        div#search_result {
-            display: none;
-            @include transition;
         }
     }
     .active_main {

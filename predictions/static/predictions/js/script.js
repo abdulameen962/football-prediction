@@ -457,14 +457,16 @@ const app = Vue.createApp({
             const options = document.querySelector(".searchoptions");
             const input = document.querySelector("[name='search']");
             var lis = document.querySelectorAll(".searchoptions li");
-            var result_search = document.getElementById("#search_result");
+            var result_search = document.getElementById("search_result");
             var search_reset = document.querySelector(".search_reset");
             input.onfocus = () => {
                 options.style.display = "block";
+                result_search.style.display = "none";
             }
             input.onblur = () => {
                 setTimeout(() => {
                     options.style.display = "none";
+                    result_search.style.display = "none";
                 }, 500);
             }
             lis.forEach(function(e) {
@@ -493,8 +495,13 @@ const app = Vue.createApp({
                             //no link
                             document.querySelector("[name='search']").value = "";
                             options.style.display = "none";
-                            result_search.style.display = "block";
-                            result_search.innerHTML = `<p>Search term not found,pls search for another <button class="search_reset">Search for another</button></p>`;
+                            if (result_search) {
+                                result_search.style.display = "block";
+                                result_search.innerHTML = `<p>Search term not found,pls search for another <button class="search_reset btn btn-primary">Search for another</button></p>`;
+                            } else {
+                                console.log(result_search);
+                            }
+
                         } else if (response.status == 200) {
                             //link
                             document.querySelector("[name='search']").value = "";
