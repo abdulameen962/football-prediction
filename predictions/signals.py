@@ -172,6 +172,10 @@ def premium_profile_delete_handler(sender,instance,**kwargs):
 @receiver(post_save,sender=Prediction)
 def prediction_mail_handler(sender,instance,**kwargs):
     #check if prediction is marked
+    if instance.correct_score == "" and instance.halftime_correct_score == "" and instance.combo_draws == "" and instance.combo_tickets == "":
+        instance.delete()
+
+        
     users = []
     if instance.send_mail:
         premiums = instance.league.premium_leagues.all()

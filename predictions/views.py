@@ -627,6 +627,9 @@ def get_league_info(request,method,league_id):
     user = request.user
     term = method.lower()
 
+    if request.method != "GET":
+        return JsonResponse({"message":"Wrong method"},status=400)
+
     try:
         league = League.objects.get(id=league_id)
         predictions = league.prediction.all()
@@ -696,7 +699,7 @@ def get_league_info(request,method,league_id):
             return JsonResponse({"result":main_league},status=200,safe=False)
 
         else:
-            return JsonResponse({"message":"No leagues available for this user"},status=201)
+            return JsonResponse({"message":"No requested info available for this league"},status=201)
 
 
     else:
@@ -707,20 +710,24 @@ def get_league_info(request,method,league_id):
 @verified_email_required
 def add_watchlist(request,id):
     user = request.user
-    try:
-        watchlist = League.objects.get(pk=id)
+    if request.method == "PUT":
+        try:
+            watchlist = League.objects.get(pk=id)
 
-    except League.DoesNotExist:
-        return JsonResponse({"message":"Invalid league"},status=400)
+        except League.DoesNotExist:
+            return JsonResponse({"message":"Invalid league"},status=400)
 
-    if user.type != "premium" and user.premium.activated:
-        return JsonResponse({"message":"User not allowed"},status=403)
+        if user.type != "premium" and user.premium.activated:
+            return JsonResponse({"message":"User not allowed"},status=403)
 
-    try:
-        profile = PremiumProfile.objects.get(user=user)
-        profile.watchlist.add(watchlist)
-        profile.save()
-    except Exception or PremiumProfile.DoesNotExist: 
-        return JsonResponse({"message":"Something wrong happened try again later"},status=400)
+        try:
+            profile = PremiumProfile.objects.get(user=user)
+            profile.watchlist.add(watchlist)
+            profile.save()
+        except Exception or PremiumProfile.DoesNotExist: 
+            return JsonResponse({"message":"Something wrong happened try again later"},status=400)
 
-    return JsonResponse({"message":"Watchlist added successfully"},status=200)
+        return JsonResponse({"message":"Watchlist added successfully"},status=200)
+
+    else:
+        return JsonResponse({"message":"Failed request method"},status=400)

@@ -27,19 +27,16 @@
             </svg>  
             <span>Correct scores</span>
         </button>
-        <ul class="dropdown-menu notification_list_main" aria-labelledby="dropdownMenu2">
-              <li data-value="correct_score">
-                    Correct scores
-              </li>
-              <li data-value="halftime_correct_score">
-                Halftime Correct scores
-              </li>
-              <li data-value="combo_draws">
-                Combo Draws
-              </li>
-              <li data-value="combo_tickets">
-                Combo Tickets
-              </li>
+        <ul class="dropdown-menu league_list_main" id="league_list_main" aria-labelledby="dropdownMenu2" data-identifier={{ league.id }}>
+            {% for dropdown in league_types %}
+                {% if dropdown.league == league.id %}
+                    {% for types in dropdown.types %}
+                        <li data-value="{{ types.data }}">
+                            {{ types.name }}
+                        </li> 
+                    {% endfor %} 
+                {% endif %}
+            {% endfor %}  
         </ul>
     </div>
   </header>
