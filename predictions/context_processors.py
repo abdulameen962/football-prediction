@@ -17,16 +17,16 @@ def current_site_processor(request):
             combo_tickets = False
             if len(predictions) > 0:
                 for predict in predictions:
-                    if predict.correct_score != "" and predict.correct_score == "Empty":
+                    if predict.correct_score != "" and predict.correct_score != "Empty":
                        correct_score = True
 
-                    elif predict.halftime_correct_score != "" and predict.halftime_correct_score == "Empty":
+                    elif predict.halftime_correct_score != "" and predict.halftime_correct_score != "Empty":
                         halftime_correct_score = True
 
-                    elif predict.combo_draws != "" and predict.combo_draws == "Empty":
+                    elif predict.combo_draws != "" and predict.combo_draws != "Empty":
                         combo_draws = True
 
-                    elif predict.combo_tickets != "" and predict.combo_tickets == "Empty":
+                    elif predict.combo_tickets != "" and predict.combo_tickets != "Empty":
                         combo_tickets = True
 
             if correct_score:

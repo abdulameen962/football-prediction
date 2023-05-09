@@ -34,8 +34,12 @@
                         <li data-value="{{ types.data }}">
                             {{ types.name }}
                         </li> 
+                        {%empty%}
+                        <p>No available ones</p>
                     {% endfor %} 
                 {% endif %}
+                {%empty%}
+                <p>No availables</p>
             {% endfor %}  
         </ul>
     </div>
