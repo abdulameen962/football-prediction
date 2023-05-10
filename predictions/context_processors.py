@@ -15,18 +15,22 @@ def current_site_processor(request):
             halftime_correct_score = False
             combo_draws = False
             combo_tickets = False
+            # ticker_off = False
             if len(predictions) > 0:
                 for predict in predictions:
-                    if predict.correct_score != "" and predict.correct_score != "Empty":
+                    if predict.correct_score != "":
                        correct_score = True
+                    
 
-                    elif predict.halftime_correct_score != "" and predict.halftime_correct_score != "Empty":
+                    if predict.halftime_correct_score != "":
                         halftime_correct_score = True
 
-                    elif predict.combo_draws != "" and predict.combo_draws != "Empty":
+
+                    if predict.combo_draws != "":
                         combo_draws = True
 
-                    elif predict.combo_tickets != "" and predict.combo_tickets != "Empty":
+
+                    if predict.combo_tickets != "":
                         combo_tickets = True
 
             if correct_score:
@@ -34,16 +38,16 @@ def current_site_processor(request):
                 res["types"].append(correct_score)
 
 
-            elif halftime_correct_score:
+            if halftime_correct_score:
                 halftime_correct_score = {"data":"halftime_correct_score","name":"Halftime Correct scores"}
                 res["types"].append(halftime_correct_score)
 
-            elif combo_draws:
+            if combo_draws:
                 combo_draws = {"data":"combo_draws","name":"Combo Draws"}
                 res["types"].append(combo_draws)
 
 
-            elif combo_tickets:
+            if combo_tickets:
                 combo_tickets = {"data":"combo_tickets","name":"Combo Tickets"}
                 res["types"].append(combo_tickets)
 

@@ -132,6 +132,7 @@ class Prediction(models.Model):
             "type": self.type,
             "home": self.home,
             "away": self.away,
+            "tip":self.tip,
             "correct_score":self.correct_score,
             "halftime_correct_score": self.halftime_correct_score,
             "combo_draws": self.combo_draws,
