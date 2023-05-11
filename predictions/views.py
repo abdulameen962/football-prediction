@@ -729,5 +729,26 @@ def add_watchlist(request,id):
 
         return JsonResponse({"message":"Watchlist added successfully"},status=200)
 
+
+    elif request.method == "DELETE":
+        try:
+            watchlist = League.objects.get(pk=id)
+
+        except League.DoesNotExist:
+            return JsonResponse({"message":"Invalid league"},status=400)
+
+        if user.type != "premium" and user.premium.activated:
+            return JsonResponse({"message":"User not allowed"},status=403)
+
+        try:
+            profile = PremiumProfile.objects.get(user=user)
+            profile.watchlist.get(watchlist)
+            profile.watchlist.remove(watchlist)
+            profile.save()
+        except Exception or PremiumProfile.DoesNotExist or League.DoesNotExist: 
+            return JsonResponse({"message":"Something wrong happened try again later/watchlist isn't added"},status=400)
+
+        return JsonResponse({"message":"Watchlist removed successfully"},status=200)
+
     else:
         return JsonResponse({"message":"Failed request method"},status=400)

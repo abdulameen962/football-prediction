@@ -18,7 +18,7 @@
 {% for league in leagues %}
   <header>
     <h2>{{league.league}}</h2>
-    <a class="btn btn-primary text-white" href="#">Add to watchlist</a>
+    <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="add" @click="addWatchlist($event,{{league.id}})">Add to watchlist</button>
     <div class="dropdown">
         <button type="button" class="clicker dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
             <svg width="27" height="32" viewBox="0 0 27 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,97 +45,97 @@
         </ul>
     </div>
   </header>
-  <div class="table-responsive table-container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="w-auto" scope="col">Home</th>
-                <th class="w-auto" scope="col">Away</th>
-                {% for dropdown in league_types %}
-                    {% if dropdown.league == league.id %}
-                        {% with dropdown.types|first as first_type %}
-                            {% if "correct_score" == first_type.data %}
-                                <th class="w-auto" scope="col">Correct score</th>
-                                <th class="w-auto" scope="col">Tip</th>
-
-                            {% elif "halftime_correct_score" == first_type.data %}
-                                <th class="w-auto" scope="col">Halftime Correct scores</th>
-
-                            {% elif "combo_draws" == first_type.data %}
-                                <th class="w-auto" scope="col">Combo Draws</th>
-
-                            {% elif "combo_tickets" == first_type.data %}
-                                <th class="w-auto" scope="col">Combo Tickets</th>
-                            {% endif %} 
-                        {% endwith %}
-                    {% endif %}
-                {% endfor %} 
-            </tr>
-        </thead>
-        <tbody>
-            {% for predict in league.prediction.all %}
-                {% if  predict.type == "freemium" %}
+    <div class="table-responsive table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="w-auto" scope="col">Home</th>
+                    <th class="w-auto" scope="col">Away</th>
                     {% for dropdown in league_types %}
                         {% if dropdown.league == league.id %}
-                        {% with dropdown.types|first as first_type %}
-                                {% if first_type.data == "correct_score" %}
-                                    {% if predict.correct_score != "" %}
-                                        <predict :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
-                                    {% endif %}  
-
-                                {% elif first_type.data == "halftime_correct_score" %}
-                                    {% if predict.halftime_correct_score != "" %}
-                                        <predict :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
-                                    {% endif %} 
-
-                                {% elif first_type.data == "combo_draws" %}
-                                    {% if predict.combo_draws != "" %}
-                                        <predict :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
-                                    {% endif %} 
-
-                                {% elif first_type.data == "combo_tickets" %}
-                                    {% if predict.combo_tickets != "" %}
-                                        <predict :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
-                                    {% endif %} 
-                                {% endif %}
-                        {% endwith %}
-                        {% endif %}       
-                    {% endfor %}
-                
-                {% elif predict.type == "premium" and user.type == "premium" and user.premium.activated %}
-                    {% for dropdown in league_types %}
-                        {% if dropdown.league == league.id %}
+                            {% with dropdown.types|first as first_type %}
+                                {% if "correct_score" == first_type.data %}
+                                    <th class="w-auto" scope="col">Correct score</th>
+                                    <th class="w-auto" scope="col">Tip</th>
+    
+                                {% elif "halftime_correct_score" == first_type.data %}
+                                    <th class="w-auto" scope="col">Halftime Correct scores</th>
+    
+                                {% elif "combo_draws" == first_type.data %}
+                                    <th class="w-auto" scope="col">Combo Draws</th>
+    
+                                {% elif "combo_tickets" == first_type.data %}
+                                    <th class="w-auto" scope="col">Combo Tickets</th>
+                                {% endif %} 
+                            {% endwith %}
+                        {% endif %}
+                    {% endfor %} 
+                </tr>
+            </thead>
+            <tbody>
+                {% for predict in league.prediction.all %}
+                    {% if  predict.type == "freemium" %}
+                        {% for dropdown in league_types %}
+                            {% if dropdown.league == league.id %}
                             {% with dropdown.types|first as first_type %}
                                     {% if first_type.data == "correct_score" %}
                                         {% if predict.correct_score != "" %}
                                             <predict :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
                                         {% endif %}  
-
+    
                                     {% elif first_type.data == "halftime_correct_score" %}
                                         {% if predict.halftime_correct_score != "" %}
                                             <predict :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
                                         {% endif %} 
-
+    
                                     {% elif first_type.data == "combo_draws" %}
                                         {% if predict.combo_draws != "" %}
                                             <predict :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
                                         {% endif %} 
-
+    
                                     {% elif first_type.data == "combo_tickets" %}
                                         {% if predict.combo_tickets != "" %}
                                             <predict :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
                                         {% endif %} 
                                     {% endif %}
                             {% endwith %}
-                        {% endif %}       
-                    {% endfor %}
-                {% endif %}
-            {% empty %}
-                <tr><td>No picks now,check back later</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
-  </div>
+                            {% endif %}       
+                        {% endfor %}
+                    
+                    {% elif predict.type == "premium" and user.type == "premium" and user.premium.activated %}
+                        {% for dropdown in league_types %}
+                            {% if dropdown.league == league.id %}
+                                {% with dropdown.types|first as first_type %}
+                                        {% if first_type.data == "correct_score" %}
+                                            {% if predict.correct_score != "" %}
+                                                <predict :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
+                                            {% endif %}  
+    
+                                        {% elif first_type.data == "halftime_correct_score" %}
+                                            {% if predict.halftime_correct_score != "" %}
+                                                <predict :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
+                                            {% endif %} 
+    
+                                        {% elif first_type.data == "combo_draws" %}
+                                            {% if predict.combo_draws != "" %}
+                                                <predict :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
+                                            {% endif %} 
+    
+                                        {% elif first_type.data == "combo_tickets" %}
+                                            {% if predict.combo_tickets != "" %}
+                                                <predict :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
+                                            {% endif %} 
+                                        {% endif %}
+                                {% endwith %}
+                            {% endif %}       
+                        {% endfor %}
+                    {% endif %}
+                {% empty %}
+                    <tr><td>No picks now,check back later</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {%empty%}
 <p>No leagues now,check back later</p>
