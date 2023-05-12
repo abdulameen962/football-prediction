@@ -1416,8 +1416,7 @@ section.dashboard_nav {
     flex-direction: column;
     height: 100vh;
     position: relative;
-    width: 100px;
-    border-right: 1px solid rgba(111, 114, 120, 0.2); }
+    width: 100px; }
     @media screen and (min-width: 0px) and (max-width: 991px) {
       section.dashboard_nav aside {
         width: 100%;
@@ -1548,13 +1547,16 @@ section.dashboard_nav {
     transform: scale(0.8); }
   section.dashboard_nav div.body_main {
     transition: all 0.5s ease;
-    background: #eff1f5;
-    width: calc(100vw - 100px);
-    min-height: 100vh; }
-    @media screen and (min-width: 0px) and (max-width: 991px) {
-      section.dashboard_nav div.body_main {
-        width: 100vw;
-        background: rgba(239, 241, 245, 0.5); } }
+    width: calc(100vw - 100px); }
+    section.dashboard_nav div.body_main div.container-main {
+      background: #eff1f5;
+      border-top-left-radius: 15px;
+      min-height: 100vh; }
+      @media screen and (min-width: 0px) and (max-width: 991px) {
+        section.dashboard_nav div.body_main div.container-main {
+          border: none;
+          width: 100vw;
+          background: rgba(239, 241, 245, 0.5); } }
     @media screen and (min-width: 0px) and (max-width: 991px) {
       section.dashboard_nav div.body_main form {
         display: none; } }

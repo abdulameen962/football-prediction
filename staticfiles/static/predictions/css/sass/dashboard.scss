@@ -84,7 +84,7 @@ section.dashboard_nav {
         @extend .padding;
         position: relative;
         width: $aside;
-        border-right: 1px solid $bordergrey;
+        // border-right: 1px solid $bordergrey;
         @include respond(tab) {
             width: 100%;
             flex-direction: row;
@@ -235,12 +235,16 @@ section.dashboard_nav {
     }
     div.body_main {
         @include transition;
-        background: rgba(#EFF1F5, 1);
         width: calc(100vw - 100px);
-        min-height: 100vh;
-        @include respond(tab) {
-            width: 100vw;
-            background: rgba(#EFF1F5, .5);
+        div.container-main {
+            background: rgba(#EFF1F5, 1);
+            border-top-left-radius: 15px;
+            min-height: 100vh;
+            @include respond(tab) {
+                border: none;
+                width: 100vw;
+                background: rgba(#EFF1F5, .5);
+            }
         }
         div.container-main,
         div.dashboard-single-main,
