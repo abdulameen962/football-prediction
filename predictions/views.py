@@ -782,19 +782,9 @@ class watchlist(UserPassesTestMixin,ListView):
 
        return context
     
-class profile(UserPassesTestMixin,DetailView):
-    login_url="account_login"
-    model = User
-    context_object_name = "user"
-    template_name = "predictions/profile.html"
 
-    def test_func(self):
-        user = self.request.user
-        return user.is_authenticated and user.type != ""
-
-    def get_context_data(self, **kwargs):
-        user = super().get_queryset()
-        context = super().get_context_data(**kwargs)
-        # context[""] = 
-        return context
+@login_required(login_url="account_login")
+@verified_email_required
+def profile(request):
+    return render(request,"predictions/profile.html")
     

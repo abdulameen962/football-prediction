@@ -25,7 +25,7 @@ urlpatterns = [
     # path("live-scores/",views.live_scores,name="live_scores"),
     path("watchlists/",views.watchlist.as_view(),name="watchlist"),
     # path("support/",views.support,name="support"),
-    path("profile/",views.profile.as_view(),name="profile"),
+    path("profile/",views.profile,name="profile"),
 
 
 

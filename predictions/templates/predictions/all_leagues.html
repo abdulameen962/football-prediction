@@ -22,7 +22,7 @@
         {% if league in user.premium.watchlist.all %}
             <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="remove" @click="addWatchlist($event,{{league.id}})">Remove from watchlist</button>
         {% else %}
-            <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="remove" @click="addWatchlist($event,{{league.id}})">Add to watchlist</button>
+            <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="add" @click="addWatchlist($event,{{league.id}})">Add to watchlist</button>
         {% endif %}
         <div class="dropdown">
             <button type="button" class="clicker dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">

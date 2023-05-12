@@ -1,1 +1,30 @@
 {% extends 'predictions/user-base.html' %}
+{% block title %} Your profile{% endblock  %}
+{% block og_title %} Your profile{% endblock  %}
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="dashboard-single profile_main row">
+    <div class="profile_image col-sm-12 col-md-6 col-lg-6">
+
+
+    </div>
+    <div class="profile_body col-sm-12 col-md-6 col-lg-6">
+
+
+    </div>
+</div>
+<div class="dashboard-single league_history">
+
+</div>
+{% endblock  %}
