@@ -71,9 +71,6 @@
                                 <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'cancel_subscription' %}">Cancel Pay</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="#">Support</a>
                             </li>
                         {% endif %}
@@ -94,7 +91,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                         </li>
                         <li class="nav-item link_show">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>

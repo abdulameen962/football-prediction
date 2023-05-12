@@ -577,47 +577,47 @@ def league_single(request,id):
         return HttpResponseRedirect(reverse("index"))
 
 
-class get_leagues(UserPassesTestMixin,View):
-    login_url = "account_login"
+# class get_leagues(UserPassesTestMixin,View):
+#     login_url = "account_login"
 
-    def test_func(self):
-        return self.request.user.is_authenticated and self.request.user.type != ""
+#     def test_func(self):
+#         return self.request.user.is_authenticated and self.request.user.type != ""
 
-    def get(self,request,page_num):
-        result = []
-        user = self.request.user
-        league = League.objects.all()
-        league = Paginator(league,10)
+#     def get(self,request,page_num):
+#         result = []
+#         user = self.request.user
+#         league = League.objects.all()
+#         league = Paginator(league,10)
 
-        if page_num <= league.num_pages:
-            league = league.get_page(page_num)
+#         if page_num <= league.num_pages:
+#             league = league.get_page(page_num)
 
-        else:
-            return JsonResponse({"message":"Paginated leagues doesn't exist"},status=403)
+#         else:
+#             return JsonResponse({"message":"Paginated leagues doesn't exist"},status=403)
         
-        for league in league:
-            predictions = league.prediction.all()
+#         for league in league:
+#             predictions = league.prediction.all()
 
-            main_league = {"league":league.serialize(),"predictions":[]}
+#             main_league = {"league":league.serialize(),"predictions":[]}
 
-            if predictions.count() > 0:
-                for predict in predictions:
-                    if predict.type == "freemium":
-                        main_league["predictions"].append(predict.serialize())
+#             if predictions.count() > 0:
+#                 for predict in predictions:
+#                     if predict.type == "freemium":
+#                         main_league["predictions"].append(predict.serialize())
 
-                    elif predict.type == "premium" and user.type == "premium" and user.premium.activated:
-                        main_league["predictions"].append(predict.serialize())
+#                     elif predict.type == "premium" and user.type == "premium" and user.premium.activated:
+#                         main_league["predictions"].append(predict.serialize())
 
             
-            if len(main_league["predictions"]) > 0:
-                result.append(main_league)
+#             if len(main_league["predictions"]) > 0:
+#                 result.append(main_league)
 
 
-        if len(result) > 0:
-            return JsonResponse([predict for predict in result],safe=False,status=200)
+#         if len(result) > 0:
+#             return JsonResponse([predict for predict in result],safe=False,status=200)
 
-        else:
-            return JsonResponse({"message":"No available leagues"},status=201)
+#         else:
+#             return JsonResponse({"message":"No available leagues"},status=201)
 
 
 
@@ -781,4 +781,20 @@ class watchlist(UserPassesTestMixin,ListView):
        context["page_range"] = paginated.page_range
 
        return context
+    
+class profile(UserPassesTestMixin,DetailView):
+    login_url="account_login"
+    model = User
+    context_object_name = "user"
+    template_name = "predictions/profile.html"
+
+    def test_func(self):
+        user = self.request.user
+        return user.is_authenticated and user.type != ""
+
+    def get_context_data(self, **kwargs):
+        user = super().get_queryset()
+        context = super().get_context_data(**kwargs)
+        # context[""] = 
+        return context
     
