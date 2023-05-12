@@ -22,9 +22,9 @@ urlpatterns = [
     path("notifications/",views.NotificationsView.as_view(),name="notifications"),
     path("leagues/",views.leagues.as_view(),name="all_leagues"),
     path("leagues/<int:id>/",views.league_single,name="leagues"),
-    # path("live-scores/",views.live_scores,name="live_scores"),
+    path("live-scores/",views.live_scores,name="live_scores"),
     path("watchlists/",views.watchlist.as_view(),name="watchlist"),
-    # path("support/",views.support,name="support"),
+    path("support/",views.support.as_view(),name="support"),
     path("profile/",views.profile,name="profile"),
 
 

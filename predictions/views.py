@@ -787,4 +787,27 @@ class watchlist(UserPassesTestMixin,ListView):
 @verified_email_required
 def profile(request):
     return render(request,"predictions/profile.html")
+
+
+@login_required(login_url="account_login")
+@verified_email_required
+def live_scores(request):
+    return render(request,"predictions/live-scores.html")
+
+
+
+class support(UserPassesTestMixin,View):
+    login_url = "account_login"
+
+    def test_func(self):
+        user = self.request.user
+        return user.is_authenticated and user.type == "premium" and user.premium.activated
+
+    def get(self,request):
+        return render(request,"predictions/support.html")
+
+    def post(self,request):
+        return
+
+
     
