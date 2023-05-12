@@ -243,6 +243,7 @@ section.dashboard_nav {
             background: rgba(#EFF1F5, .5);
         }
         div.container-main,
+        div.dashboard-single-main,
         div.nav_main_header {
             @extend .padding;
         }

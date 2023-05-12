@@ -15,36 +15,41 @@
 </ul>
 {% endif %}
 <div class="dashboard-single">
-{% for league in leagues %}
-  <header>
-    <h2>{{league.league}}</h2>
-    <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="add" @click="addWatchlist($event,{{league.id}})">Add to watchlist</button>
-    <div class="dropdown">
-        <button type="button" class="clicker dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-            <svg width="27" height="32" viewBox="0 0 27 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M23 17.2273V14.3793H21V17.6832C21.0001 17.9752 21.1054 18.2553 21.293 18.4618L24 21.443V23.1897H2V21.443L4.707 18.4618C4.89455 18.2553 4.99994 17.9752 5 17.6832V13.278C4.99721 11.7305 5.3653 10.2095 6.06709 8.86879C6.76887 7.52805 7.7795 6.41502 8.9969 5.6421C10.2143 4.86918 11.5953 4.46375 13.0005 4.46677C14.4058 4.46978 15.7853 4.88113 17 5.65927V3.19788C16.0481 2.73371 15.0356 2.43786 14 2.32125V0.0625H12V2.32015C9.53457 2.5965 7.24976 3.8698 5.58737 5.89383C3.92498 7.91786 3.0031 10.5488 3 13.278V17.2273L0.293 20.2085C0.105451 20.4149 5.66374e-05 20.695 0 20.9871V24.2909C0 24.583 0.105357 24.8631 0.292893 25.0697C0.48043 25.2762 0.734784 25.3922 1 25.3922H8V26.4935C8 27.9539 8.52678 29.3545 9.46447 30.3872C10.4021 31.4199 11.6739 32 13 32C14.3261 32 15.5979 31.4199 16.5355 30.3872C17.4732 29.3545 18 27.9539 18 26.4935V25.3922H25C25.2652 25.3922 25.5196 25.2762 25.7071 25.0697C25.8946 24.8631 26 24.583 26 24.2909V20.9871C25.9999 20.695 25.8946 20.4149 25.707 20.2085L23 17.2273ZM16 26.4935C16 27.3698 15.6839 28.2101 15.1213 28.8297C14.5587 29.4493 13.7956 29.7974 13 29.7974C12.2044 29.7974 11.4413 29.4493 10.8787 28.8297C10.3161 28.2101 10 27.3698 10 26.4935V25.3922H16V26.4935Z" fill="#A3A5AF"/>
-                <path d="M23 12.1767C25.2091 12.1767 27 10.2045 27 7.77157C27 5.33866 25.2091 3.36639 23 3.36639C20.7909 3.36639 19 5.33866 19 7.77157C19 10.2045 20.7909 12.1767 23 12.1767Z" fill="#A3A5AF"/>
-            </svg>  
-            {% for dropdown in league_types %}
-                {% if dropdown.league == league.id %}
-                    <span>{% with dropdown.types|first as first_type %}{{ first_type.name }}{% endwith %}</span>
-                {% endif %}       
-            {% endfor %}
+  <div class="dashboard-single-main">
+    {% for league in leagues %}
+    <header>
+        <h2>{{league.league}}</h2>
+        {% if league in user.premium.watchlist.all %}
+            <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="remove" @click="addWatchlist($event,{{league.id}})">Remove from watchlist</button>
+        {% else %}
+            <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="remove" @click="addWatchlist($event,{{league.id}})">Add to watchlist</button>
+        {% endif %}
+        <div class="dropdown">
+            <button type="button" class="clicker dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg width="27" height="32" viewBox="0 0 27 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23 17.2273V14.3793H21V17.6832C21.0001 17.9752 21.1054 18.2553 21.293 18.4618L24 21.443V23.1897H2V21.443L4.707 18.4618C4.89455 18.2553 4.99994 17.9752 5 17.6832V13.278C4.99721 11.7305 5.3653 10.2095 6.06709 8.86879C6.76887 7.52805 7.7795 6.41502 8.9969 5.6421C10.2143 4.86918 11.5953 4.46375 13.0005 4.46677C14.4058 4.46978 15.7853 4.88113 17 5.65927V3.19788C16.0481 2.73371 15.0356 2.43786 14 2.32125V0.0625H12V2.32015C9.53457 2.5965 7.24976 3.8698 5.58737 5.89383C3.92498 7.91786 3.0031 10.5488 3 13.278V17.2273L0.293 20.2085C0.105451 20.4149 5.66374e-05 20.695 0 20.9871V24.2909C0 24.583 0.105357 24.8631 0.292893 25.0697C0.48043 25.2762 0.734784 25.3922 1 25.3922H8V26.4935C8 27.9539 8.52678 29.3545 9.46447 30.3872C10.4021 31.4199 11.6739 32 13 32C14.3261 32 15.5979 31.4199 16.5355 30.3872C17.4732 29.3545 18 27.9539 18 26.4935V25.3922H25C25.2652 25.3922 25.5196 25.2762 25.7071 25.0697C25.8946 24.8631 26 24.583 26 24.2909V20.9871C25.9999 20.695 25.8946 20.4149 25.707 20.2085L23 17.2273ZM16 26.4935C16 27.3698 15.6839 28.2101 15.1213 28.8297C14.5587 29.4493 13.7956 29.7974 13 29.7974C12.2044 29.7974 11.4413 29.4493 10.8787 28.8297C10.3161 28.2101 10 27.3698 10 26.4935V25.3922H16V26.4935Z" fill="#A3A5AF"/>
+                    <path d="M23 12.1767C25.2091 12.1767 27 10.2045 27 7.77157C27 5.33866 25.2091 3.36639 23 3.36639C20.7909 3.36639 19 5.33866 19 7.77157C19 10.2045 20.7909 12.1767 23 12.1767Z" fill="#A3A5AF"/>
+                </svg>  
+                {% for dropdown in league_types %}
+                    {% if dropdown.league == league.id %}
+                        <span>{% with dropdown.types|first as first_type %}{{ first_type.name }}{% endwith %}</span>
+                    {% endif %}       
+                {% endfor %}
 
-        </button>
-        <ul class="dropdown-menu league_list_main" id="league_list_main" aria-labelledby="dropdownMenu2" data-identifier={{ league.id }}>
-            {% for dropdown in league_types %}
-                {% if dropdown.league == league.id %}
-                    {% for types in dropdown.types %}
-                        <li data-value="{{ types.data }}">
-                            {{ types.name }}
-                        </li> 
-                    {% endfor %} 
-                {% endif %}
-            {% endfor %}  
-        </ul>
-    </div>
-  </header>
+            </button>
+            <ul class="dropdown-menu league_list_main" id="league_list_main" aria-labelledby="dropdownMenu2" data-identifier={{ league.id }}>
+                {% for dropdown in league_types %}
+                    {% if dropdown.league == league.id %}
+                        {% for types in dropdown.types %}
+                            <li data-value="{{ types.data }}">
+                                {{ types.name }}
+                            </li> 
+                        {% endfor %} 
+                    {% endif %}
+                {% endfor %}  
+            </ul>
+        </div>
+    </header>
     <div class="table-responsive table-container">
         <table class="table">
             <thead>
@@ -57,13 +62,13 @@
                                 {% if "correct_score" == first_type.data %}
                                     <th class="w-auto" scope="col">Correct score</th>
                                     <th class="w-auto" scope="col">Tip</th>
-    
+
                                 {% elif "halftime_correct_score" == first_type.data %}
                                     <th class="w-auto" scope="col">Halftime Correct scores</th>
-    
+
                                 {% elif "combo_draws" == first_type.data %}
                                     <th class="w-auto" scope="col">Combo Draws</th>
-    
+
                                 {% elif "combo_tickets" == first_type.data %}
                                     <th class="w-auto" scope="col">Combo Tickets</th>
                                 {% endif %} 
@@ -82,17 +87,17 @@
                                         {% if predict.correct_score != "" %}
                                             <predict :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
                                         {% endif %}  
-    
+
                                     {% elif first_type.data == "halftime_correct_score" %}
                                         {% if predict.halftime_correct_score != "" %}
                                             <predict :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
                                         {% endif %} 
-    
+
                                     {% elif first_type.data == "combo_draws" %}
                                         {% if predict.combo_draws != "" %}
                                             <predict :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
                                         {% endif %} 
-    
+
                                     {% elif first_type.data == "combo_tickets" %}
                                         {% if predict.combo_tickets != "" %}
                                             <predict :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
@@ -110,17 +115,17 @@
                                             {% if predict.correct_score != "" %}
                                                 <predict :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
                                             {% endif %}  
-    
+
                                         {% elif first_type.data == "halftime_correct_score" %}
                                             {% if predict.halftime_correct_score != "" %}
                                                 <predict :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
                                             {% endif %} 
-    
+
                                         {% elif first_type.data == "combo_draws" %}
                                             {% if predict.combo_draws != "" %}
                                                 <predict :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
                                             {% endif %} 
-    
+
                                         {% elif first_type.data == "combo_tickets" %}
                                             {% if predict.combo_tickets != "" %}
                                                 <predict :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
@@ -140,5 +145,35 @@
 {%empty%}
 <p>No leagues now,check back later</p>
 {% endfor %}
+
+  </div>
 </div>
+<nav class="pagination">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item previous"><a class="page-link" href="?{{ page_request_var }}={{ page_obj.previous_page_number }}"> 
+            <span> 
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 7.00008V9.00008H4.00003L9.50003 14.5001L8.08003 15.9201L0.160034 8.00008L8.08003 0.0800781L9.50003 1.50008L4.00003 7.00008H16Z" fill="black"/>
+                </svg>                    
+            </span>
+            Previous</a></li>
+        {% endif %}
+        <div class="numbers">
+            {% for i in page_range %}
+                    <li class="page-item numbers"><a href="?{{ page_request_var }}={{ i }}" class="page-link"> {{ i }} </a></li>
+            {% endfor %}
+        </div>
+        {% if page_obj.has_next %}
+            <li class="page-item next" ><a class="page-link" href="?{{ page_request_var }}={{ page_obj.next_page_number }}">
+            Next
+            <span>    
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.16 9.00004L0.16 7.00004L12.16 7.00004L6.66 1.50004L8.08 0.0800438L16 8.00004L8.08 15.92L6.66 14.5L12.16 9.00004L0.16 9.00004Z" fill="black"/>
+                </svg>                    
+            </span>
+            </a></li>
+        {% endif %}
+    </ul>
+</nav>
 {% endblock  %}

@@ -726,7 +726,7 @@ const app = Vue.createApp({
                                 //do the needful
                                 el.dataset.stage = "remove";
                                 el.innerHTML = el.dataset.loaded;
-                                console.log(message.message);
+                                // console.log(message.message);
                             }
                         }))
                 }, 100);
@@ -740,12 +740,12 @@ const app = Vue.createApp({
                             }
                         })
                         .then(response => response.json().then(res => {
-                            var message = response.data;
+                            var message = res;
                             if (response.status == 200) {
                                 //do the needful
                                 el.dataset.stage = "add";
                                 el.innerHTML = el.dataset.removed;
-                                console.log(message.message);
+                                // console.log(message.message);
                             }
                         }));
                 }, 100);

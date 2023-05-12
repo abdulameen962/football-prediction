@@ -1331,10 +1331,12 @@ div.blog_detail_main {
       text-align: center; }
 
 .padding, section.dashboard_nav aside, section.dashboard_nav div.body_main div.container-main,
+section.dashboard_nav div.body_main div.dashboard-single-main,
 section.dashboard_nav div.body_main div.nav_main_header, section.dashboard_nav div.body_main div.dashboard-single nav.pagination, section.dashboard_nav div.body_main div.dashboard-single > header, section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page {
   padding: 20px 35px; }
   @media screen and (min-width: 0px) and (max-width: 991px) {
     .padding, section.dashboard_nav aside, section.dashboard_nav div.body_main div.container-main,
+    section.dashboard_nav div.body_main div.dashboard-single-main,
     section.dashboard_nav div.body_main div.nav_main_header, section.dashboard_nav div.body_main div.dashboard-single nav.pagination, section.dashboard_nav div.body_main div.dashboard-single > header, section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page {
       padding: 10px 20px; } }
 

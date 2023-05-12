@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.urls import reverse
 from django.core.paginator import Paginator
-from django.views.generic import View,ListView
+from django.views.generic import View,ListView,DetailView
 from django.core.mail import send_mail
 from allauth.account.decorators import verified_email_required
 from django.db.models.signals import pre_save,post_save,pre_delete,post_delete
@@ -742,7 +742,7 @@ def add_watchlist(request,id):
 
         try:
             profile = PremiumProfile.objects.get(user=user)
-            profile.watchlist.get(watchlist)
+            profile.watchlist.get(id=watchlist.id)
             profile.watchlist.remove(watchlist)
             profile.save()
         except Exception or PremiumProfile.DoesNotExist or League.DoesNotExist: 
@@ -752,3 +752,33 @@ def add_watchlist(request,id):
 
     else:
         return JsonResponse({"message":"Failed request method"},status=400)
+
+
+
+class watchlist(UserPassesTestMixin,ListView):
+    login_url = "index"
+    model = League
+    template_name = "predictions/watchlist.html"
+    context_object_name = "leagues"
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.type == "premium" and self.request.user.premium.activated
+
+    def get_queryset(self):
+        user = self.request.user
+        watchlist = user.premium.watchlist.all()
+
+        return watchlist
+    
+
+    def get_context_data(self, **kwargs):
+       leagues = super().get_queryset()
+       paginated = Paginator(leagues,10)
+       context = super().get_context_data(**kwargs)
+
+       context["max_num"] = paginated.num_pages
+       context["page_request_var"] = "page"
+       context["page_range"] = paginated.page_range
+
+       return context
+    
