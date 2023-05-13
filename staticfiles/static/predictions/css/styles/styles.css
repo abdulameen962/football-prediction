@@ -1634,6 +1634,7 @@ section.dashboard_nav {
         align-items: flex-start; }
         @media screen and (min-width: 0px) and (max-width: 740px) {
           section.dashboard_nav div.body_main div.profile_main div.profile_nav {
+            justify-content: flex-start;
             border: none;
             border-bottom: 1px solid #E7E9EE; } }
         section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li {
@@ -1673,9 +1674,6 @@ section.dashboard_nav {
                 margin-left: 15px; }
       section.dashboard_nav div.body_main div.profile_main div.profile_body {
         padding: 20px 25px 20px 20px; }
-        section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form {
-          display: none;
-          padding: 20px; }
         section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info {
           margin: 35px 0px;
           padding: 20px 0px 20px 15px;
@@ -1729,9 +1727,9 @@ section.dashboard_nav {
             section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_image svg {
               min-width: 80px;
               min-height: 80px; }
-              @media screen and (min-width: 0px) and (max-width: 740px) {
+              @media screen and (min-width: 0px) and (max-width: 991px) {
                 section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_image svg {
-                  width: 80px; } }
+                  width: 70px; } }
             @media screen and (min-width: 0px) and (max-width: 991px) {
               section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_image {
                 min-height: 100px;
@@ -1753,6 +1751,23 @@ section.dashboard_nav {
               color: #B0B4BA; }
               section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_text p.role {
                 font-weight: 600; }
+        section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form {
+          display: none;
+          padding: 20px; }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form > a {
+            margin: 15px 0px 0px; }
+          @media screen and (min-width: 0px) and (max-width: 740px) {
+            section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form form input[type="submit"] {
+              font-size: 16px; } }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form form div.row {
+            width: 100%; }
+            @media screen and (min-width: 0px) and (max-width: 740px) {
+              section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form form div.row > div {
+                margin: 10px 0px; } }
+        section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form-active {
+          display: block; }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form-active form {
+            display: block; }
   section.dashboard_nav form {
     position: relative; }
     section.dashboard_nav form ul.searchoptions,

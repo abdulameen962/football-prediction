@@ -760,10 +760,10 @@ const app = Vue.createApp({
                 console.log(el);
             }
             if (el.dataset.stage == "show") {
-                formdiv.style.display = "block";
+                formdiv.classList.add("info-form-active");
                 el.dataset.stage = "hide";
             } else if (el.dataset.stage == "hide") {
-                formdiv.style.display = "none";
+                formdiv.classList.remove("info-form-active");
                 el.dataset.stage = "show";
             }
         }

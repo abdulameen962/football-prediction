@@ -9,6 +9,7 @@ from django.db.models.signals import pre_save,post_save,pre_delete,post_delete
 from django.dispatch import receiver
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import login,logout,authenticate
 import json
 from urllib.request import urlopen
 from allauth.account.models  import EmailAddress
@@ -788,11 +789,42 @@ class watchlist(UserPassesTestMixin,ListView):
 @login_required(login_url="account_login")
 @verified_email_required
 def profile(request):
+    user = request.user
     if request.method == "GET":
         return render(request,"predictions/profile.html")
 
 
     elif request.method == "POST":
+        try:
+            new_username = request.POST["username"]
+            if new_username != user.username:
+                try:
+                    User.objects.get(username=new_username)
+                    messages.error(request,"Username already taken")
+
+                except User.DoesNotExist:
+                    user.username = new_username
+                    user.save()
+                    messages.error(request,"Username changed,login again to confirm")
+                    logout(request)
+                    return HttpResponseRedirect(reverse("account_login"))
+
+
+        except Exception:
+            try:
+                new_first_name = request.POST["first_name"]
+                new_last_name = request.POST["last_name"]
+                if new_first_name != user.first_name:
+                    user.first_name = new_first_name
+                    user.save()
+
+                if new_last_name != user.last_name:
+                    user.last_name = new_last_name
+                    user.save()
+
+            except Exception:
+                return ""
+
         return HttpResponseRedirect(reverse("settings"))
 
 

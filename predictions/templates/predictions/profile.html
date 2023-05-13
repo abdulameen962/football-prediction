@@ -56,9 +56,9 @@
             {% csrf_token %}
             <div class="form-group">
                 <label class="form-label">Username:</label>
-                <input class="form-control" type="text" name="username" value="{{ user.username }}" placeholder="Username">
+                <input class="form-control" required type="text" name="username" value="{{ user.username }}" placeholder="Username">
             </div>
-            <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="primary-button" type="submit" value="Submit">
         </form>
           <a class="btn btn-primary text-white" href="{% url 'account_reset_password' %}">Reset Password</a>
         </div>
@@ -86,15 +86,17 @@
         <div class="profile-info info-form third" id="username_form1">
           <form action="{% url 'settings' %}" method="post">
             {% csrf_token %}
-            <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6">
                 <label class="form-label">First Name:</label>
-                <input class="form-control" type="text" name="username" value="{{ user.first_name }}" placeholder="Username">
+                <input class="form-control" type="text" required name="first_name" value="{{ user.first_name }}" placeholder="Username">
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6">
+                <label class="form-label">Last Name:</label>
+                <input class="form-control" type="text" required name="last_name" value="{{ user.last_name }}" placeholder="Username">
+              </div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Last Name:</label>
-              <input class="form-control" type="text" name="username" value="{{ user.last_name }}" placeholder="Username">
-            </div>
-            <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="primary-button" type="submit" value="Submit">
           </form>
           <a class="btn btn-primary text-white" href="{% url 'account_email' %}">Reset Email</a>
         </div>
