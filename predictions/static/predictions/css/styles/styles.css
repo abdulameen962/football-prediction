@@ -1625,6 +1625,9 @@ section.dashboard_nav {
     section.dashboard_nav div.body_main div.profile_main {
       padding: 25px 10px;
       margin-top: 25px; }
+      @media screen and (min-width: 0px) and (max-width: 740px) {
+        section.dashboard_nav div.body_main div.profile_main {
+          padding: 0px; } }
       section.dashboard_nav div.body_main div.profile_main div.profile_nav {
         height: inherit;
         border-right: 1px solid #E7E9EE;

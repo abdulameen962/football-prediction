@@ -321,6 +321,9 @@ section.dashboard_nav {
         div.profile_main {
             padding: 25px 10px;
             margin-top: 25px;
+            @include respond(lphone) {
+                padding: 0px;
+            }
             div.profile_nav {
                 height: inherit;
                 border-right: 1px solid $lightgrey;
