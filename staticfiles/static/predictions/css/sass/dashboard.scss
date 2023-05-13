@@ -345,6 +345,9 @@ section.dashboard_nav {
             }
             div.support_page_main {
                 padding: 45px;
+                @include respond(tab) {
+                    padding: 25px 20px;
+                }
                 header {
                     margin-bottom: 15px;
                     h2 {

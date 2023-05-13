@@ -1637,6 +1637,9 @@ section.dashboard_nav {
                 transform: translateY(5px); }
       section.dashboard_nav div.body_main div.support_page div.support_page_main {
         padding: 45px; }
+        @media screen and (min-width: 0px) and (max-width: 991px) {
+          section.dashboard_nav div.body_main div.support_page div.support_page_main {
+            padding: 25px 20px; } }
         section.dashboard_nav div.body_main div.support_page div.support_page_main header {
           margin-bottom: 15px; }
           section.dashboard_nav div.body_main div.support_page div.support_page_main header h2 {
