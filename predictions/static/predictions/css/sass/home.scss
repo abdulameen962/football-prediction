@@ -250,6 +250,7 @@
         div.cta {
             padding: 15px 0px;
             @include flex(yes);
+            align-items: flex-start;
         }
     }
     

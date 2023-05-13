@@ -900,7 +900,8 @@ div.membership {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; }
+    flex-direction: column;
+    align-items: flex-start; }
 
 footer {
   border-top: 1px solid #E7E9EE;
@@ -1080,8 +1081,6 @@ div.base_login_main div.signup_main {
         div.base_login_main div.signup_main nav div.container-fluid a img {
           transform: scale(1.5); } }
   div.base_login_main div.signup_main div.login-middle {
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
