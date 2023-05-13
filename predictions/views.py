@@ -371,15 +371,20 @@ def get_notification(request):
 def update_notification(request):
     user = request.user
     if user.type != "":
+        main_notify = []
         notifications = user.notifications.all()
+        for notify in notifications:
+            if notify.read == False:
+                main_notify.append(notify)
 
-        return JsonResponse({"number":len(notifications)},status=200)
+        return JsonResponse({"number":len(main_notify)},status=200)
 
 
 class NotificationsView(UserPassesTestMixin,ListView):
     model = Notification
     template_name = "predictions/notifications.html"
     context_object_name = "notifications"
+    paginate_by = 15
 
     login_url = "account_login"
 
@@ -401,16 +406,29 @@ class NotificationsView(UserPassesTestMixin,ListView):
     
 
     def get_context_data(self, **kwargs):
+        queryset = super().get_queryset()
+        mainuser = self.request.user
+        notifications = []
+        for notify in queryset:
+            users = notify.users.all()
+            for user in users:
+                if user.id == mainuser.id:
+                    notifications.append(notify)
 
-       notifications = super().get_queryset()
-       paginated = Paginator(notifications,15)
-       context = super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
 
-       context["max_num"] = paginated.num_pages
-       context["page_request_var"] = "page"
-       context["page_range"] = paginated.page_range
+        if len(notifications)> 0:
+            for notify in notifications:
+                notify.read = True
+                notify.save()
 
-       return context
+            paginated = Paginator(notifications,15)
+            context["max_num"] = paginated.num_pages
+            context["page_range"] = paginated.page_range
+
+            context["page_request_var"] = "page"
+
+        return context
 
 
 class edit_notification(UserPassesTestMixin,View):
@@ -548,13 +566,15 @@ class leagues(UserPassesTestMixin,ListView):
     template_name = "predictions/all_leagues.html"
     context_object_name = "leagues"
     login_url = "account_login"
+    paginate_by = 10
+    
     
     def test_func(self):
         return self.request.user.is_authenticated and self.request.user.type != ""
 
     def get_context_data(self, **kwargs):
 
-       leagues = super().get_queryset()
+       leagues = League.objects.all()
        paginated = Paginator(leagues,10)
        context = super().get_context_data(**kwargs)
 
@@ -763,6 +783,7 @@ class watchlist(UserPassesTestMixin,ListView):
     model = League
     template_name = "predictions/watchlist.html"
     context_object_name = "leagues"
+    paginate_by = 10
 
     def test_func(self):
         return self.request.user.is_authenticated and self.request.user.type == "premium" and self.request.user.premium.activated
@@ -775,13 +796,16 @@ class watchlist(UserPassesTestMixin,ListView):
     
 
     def get_context_data(self, **kwargs):
-       leagues = super().get_queryset()
-       paginated = Paginator(leagues,10)
+       leagues = self.request.user.premium.watchlist.all()
        context = super().get_context_data(**kwargs)
 
-       context["max_num"] = paginated.num_pages
-       context["page_request_var"] = "page"
-       context["page_range"] = paginated.page_range
+       if len(leagues) > 0:
+            paginated = Paginator(leagues,10)
+
+            context["max_num"] = paginated.num_pages
+            context["page_range"] = paginated.page_range
+
+            context["page_request_var"] = "page"
 
        return context
     
@@ -852,7 +876,26 @@ class support(UserPassesTestMixin,View):
         return render(request,"predictions/support.html")
 
     def post(self,request):
-        return
+        user = self.request.user
+        email = user.email
+        issue = request.POST["issue"]
+        subject = request.POST["subject"]
+        body = request.POST["body"]
+
+        #send mail to user
+        user_header = "Thanks for contacting us"
+        user_html_message = render_to_string("predictions/support_thanks.html",{"issue":issue,"user":user})
+        user_plain_message = strip_tags(user_html_message)
+
+        send_mail(message=user_plain_message, from_email=settings.EMAIL_HOST_USER,subject=user_header,recipient_list=[email],fail_silently=False,html_message=user_html_message)
+        #send mail to the admin
+
+        admin_html_message = render_to_string("predictions/admin_support.html",{"body":body,"issue":issue,"user":user})
+        admin_plain_message = strip_tags(admin_html_message)
+        send_mail(message=admin_plain_message, from_email=settings.EMAIL_HOST_USER,subject=f"New complaint: {subject}",recipient_list=[settings.EMAIL_HOST_USER],fail_silently=False,html_message=admin_html_message)
+
+        messages.success(request,"Email sent successfully,thanks for contacting us")
+        return HttpResponseRedirect(reverse("support"))
 
 @login_required(login_url="account_login")
 @verified_email_required

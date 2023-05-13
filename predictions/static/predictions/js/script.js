@@ -544,8 +544,10 @@ const app = Vue.createApp({
                             method: "GET"
                         })
                         .then(response => response.json().then(res => {
+                            var showable = e.parentElement.previousElementSibling.children[1];
                             if (response.status == 200) {
                                 // with information
+                                showable.innerHTML = e.innerHTML;
                                 var all_predictions = res.result.predictions;
                                 main_table.innerHTML = "";
                                 var thead = document.createElement("thead");
@@ -652,6 +654,7 @@ const app = Vue.createApp({
                                 main_table.append(thead, tbody)
                             } else if (response.status == 201) {
                                 //without any table info
+                                showable.innerHTML = e.innerHTML;
                                 main_table.innerHTML = "This league doesn't have the specified prediction type,you can try choosing another type or check back again"
                             }
                         }))

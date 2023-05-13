@@ -13,6 +13,12 @@ body {
     @include mp;
 }
 
+ul.social-links {
+    li {
+        display: inline-block;
+    }
+}
+
 nav {
     width: 100%;
     div.collapse {
