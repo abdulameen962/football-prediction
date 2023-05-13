@@ -243,4 +243,7 @@ BROKER_POOL_LIMIT = 1
 BROKER_HEARTBEAT = 60
 BROKER_CONNECTION_TIMEOUT = 30
 
+#live-score configuration
+LIVE_SCORE = os.environ.get("LIVE_SCORE_API")
+
 

@@ -51,7 +51,7 @@ class Blog(models.Model):
     published = models.DateTimeField(default=timezone.now)
     state = models.CharField(choices=STATE_CHOICES, max_length=50)
     created = models.DateTimeField(auto_now_add=False)
-    author = models.ForeignKey(User,on_delete=models.PROTECT)
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
     cover_image = CloudinaryField("image",default=None,null=True)
     additonal_image = CloudinaryField("image",default=None,null=True)
     tags = models.ManyToManyField(Tag,related_name="blog_tags",default=None)
@@ -141,14 +141,14 @@ class Prediction(models.Model):
 
 
 class FreemiumProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.PROTECT,related_name="freemium")
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="freemium")
     watchlist = models.ManyToManyField(League,related_name="freemium_leagues",blank=True,default=None)
 
     def __str__(self):
         return f"{self.user.username}"
 
 class PremiumProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.PROTECT,related_name="premium")
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="premium")
     activated = models.BooleanField(default=False)
     watchlist = models.ManyToManyField(League,related_name="premium_leagues",blank=True,default=None)
 

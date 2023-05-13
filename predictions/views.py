@@ -10,6 +10,7 @@ from django.dispatch import receiver
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import json
+from urllib.request import urlopen
 from allauth.account.models  import EmailAddress
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
@@ -792,7 +793,13 @@ def profile(request):
 @login_required(login_url="account_login")
 @verified_email_required
 def live_scores(request):
-    return render(request,"predictions/live-scores.html")
+    # response = urlopen(settings.LIVE_SCORE).read()
+    # live_scores = live_scores["data"]
+    # live_scores = live_scores["match"]
+    live_scores = []
+    return render(request,"predictions/live-scores.html",{
+        "live_scores": live_scores,
+    })
 
 
 
@@ -808,6 +815,18 @@ class support(UserPassesTestMixin,View):
 
     def post(self,request):
         return
+
+@login_required(login_url="account_login")
+@verified_email_required
+def delete_account(request):
+    user = request.user
+    try:
+        user.delete()
+    except Exception:
+        messages.error(request,"Something wrong happened")
+        return HttpResponseRedirect(reverse("settings"))
+
+    return HttpResponseRedirect(reverse("index"))
 
 
     

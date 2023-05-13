@@ -1,1 +1,17 @@
 {% extends 'predictions/user-base.html' %}
+{% block title %} Live scores{% endblock  %}
+{% block og_title %} Live scores{% endblock  %}
+{% block content %}
+<div class="live_scores_container">
+    {% for score in live_scores %}
+        <div class="dashboard-single">
+            {% comment %} <p>No live scores now,check back later</p> {% endcomment %}
+        </div>
+    
+    {%empty%}
+        <div class="dashboard-single">
+            <p>No live scores now,check back later</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock  %}

@@ -1,10 +1,16 @@
 $aside: 100px;
 $aside_inactive:240px;
 .padding {
-    padding: 20px 35px;
+    padding: 15px 35px;
     @include respond(tab) {
         padding: 10px 20px;
     }
+}
+
+.dropdown-menu {
+    padding: 12px;
+    border: none;
+    @include background;
 }
 
 div.dropdown {
@@ -237,13 +243,14 @@ section.dashboard_nav {
         @include transition;
         width: calc(100vw - 100px);
         div.container-main {
-            background: rgba(#EFF1F5, 1);
+            background: #F6F6F6;
             border-top-left-radius: 15px;
             min-height: 100vh;
             @include respond(tab) {
                 border: none;
                 width: 100vw;
-                background: rgba(#EFF1F5, .5);
+                border-radius: 0px;
+                // background: rgba(#EFF1F5, .5);
             }
         }
         div.container-main,
@@ -275,6 +282,7 @@ section.dashboard_nav {
         div.dashboard-single {
             background: $white;
             border-radius: 15px;
+            box-shadow: 0px 0px 25px rgba($dark, .02);
             nav.pagination {
                 @extend .padding;
                 padding-top: 10px;
@@ -304,6 +312,176 @@ section.dashboard_nav {
                                 button {
                                     @include button_naked;
                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        div.profile_main {
+            padding: 25px 10px;
+            margin-top: 25px;
+            div.profile_nav {
+                height: inherit;
+                border-right: 1px solid $lightgrey;
+                @include flex(no);
+                align-items: flex-start;
+                @include respond(lphone) {
+                    border: none;
+                    border-bottom: 1px solid $lightgrey;
+                }
+                ul {
+                    li {
+                        margin: 20px 0px;
+                        a {
+                            font-size: 18px;
+                            color: #A4ACB5;
+                            font-weight: 300;
+                            padding: 10px 15px;
+                            border-radius: 20px;
+                            @include transition;
+                            &:hover {
+                                background: rgba($orangeheader, .2);
+                                color: $orangeheader;
+                            }
+                            @include respond(lphone) {
+                                font-size: 16px;
+                            }
+                        }
+                        &.delete_account {
+                            margin-top: 20px;
+                            &>div {
+                                &>button {
+                                    span {
+                                        padding: 10px 25px;
+                                        font-size: 18px;
+                                        font-weight: normal;
+                                    }
+                                }
+                                div.dropdown-menu {
+                                    ul {
+                                        display: flex;
+                                        li {
+                                            a,
+                                            span {
+                                                text-align: center;
+                                                border-radius: 5px;
+                                                padding: 10px 12px;
+                                            }
+                                            a {
+                                                color: $white;
+                                                &:hover {
+                                                    background: rgba($orangeheader, 1);
+                                                }
+                                            }
+                                            span {
+                                                margin-top: 0px;
+                                                margin-left: 15px;
+                                            }
+                                            &.no {
+                                                margin-left: 30px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            div.profile_body {
+                padding: 20px 25px 20px 20px;
+                div.info-form {
+                    display: none;
+                    padding: 20px;
+                }
+                div.profile-info {
+                    // @include mp;
+                    margin: 35px 0px;
+                    padding: 20px 0px 20px 15px;
+                    border-radius: 15px;
+                    border: 2px solid rgba(#F5F7F9, 1);
+                    div {
+                        max-width: 100%;
+                    }
+                    div.info_container {
+                        max-width: 500px;
+                        width: 100%;
+                        div.personal_info_second {
+                            div.personal_info_text {
+                                padding: 0;
+                                div.info_text_main {
+                                    margin: 20px 0px;
+                                    h6 {
+                                        color: $lightgreyheader;
+                                        font-weight: 550;
+                                    }
+                                    p {
+                                        font-weight: 600;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    header {
+                        padding-right: 0px;
+                    }
+                    div.edit {
+                        @include flex(no);
+                        justify-content: flex-end;
+                        @include mp;
+                        button.secondary-button {
+                            padding: 12px 25px;
+                            color: $lightgreyheader;
+                            font-weight: 550;
+                            svg {
+                                path {
+                                    fill: $lightgreyheader;
+                                }
+                            }
+                            @include respond(lphone) {
+                                width: auto;
+                            }
+                        }
+                        @include respond(tab) {
+                            justify-content: flex-start;
+                        }
+                    }
+                    div.personal_info {
+                        padding-right: 0px;
+                        padding-left: 0px;
+                    }
+                    div.personal_image {
+                        @include flex(no);
+                        padding: 5px 8px;
+                        overflow: hidden;
+                        justify-content: flex-start;
+                        svg {
+                            min-width: 80px;
+                            min-height: 80px;
+                            @include respond(lphone) {
+                                width: 80px;
+                            }
+                        }
+                        @include respond(tab) {
+                            min-height: 100px;
+                            justify-content: flex-start;
+                        }
+                    }
+                    div.personal_text {
+                        padding: 5px 10px;
+                        @include flex(yes);
+                        align-items: flex-start;
+                        h4 {
+                            @include mp;
+                        }
+                        p {
+                            @include mp;
+                            font-size: 16px;
+                            color: #B0B4BA;
+                            // font-weight: 600;
+                            &.role {
+                                font-weight: 600;
                             }
                         }
                     }

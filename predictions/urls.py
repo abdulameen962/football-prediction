@@ -25,7 +25,8 @@ urlpatterns = [
     path("live-scores/",views.live_scores,name="live_scores"),
     path("watchlists/",views.watchlist.as_view(),name="watchlist"),
     path("support/",views.support.as_view(),name="support"),
-    path("profile/",views.profile,name="profile"),
+    path("settings/",views.profile,name="settings"),
+    path("delete-account/",views.delete_account,name="delete_account"),
 
 
 

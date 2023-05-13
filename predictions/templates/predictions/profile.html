@@ -2,29 +2,103 @@
 {% block title %} Your profile{% endblock  %}
 {% block og_title %} Your profile{% endblock  %}
 {% block content %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
+<header>
+  <h3>Account settings</h3>
+</header>
 <div class="dashboard-single profile_main row">
-    <div class="profile_image col-sm-12 col-md-6 col-lg-6">
-
-
+    <div class="col-sm-12 col-md-2 col-lg-2 profile_nav">
+      <ul class="profile_nav_list">
+        <li><a href="{% url 'settings' %}">My Profile</a></li>
+        <li><a href="{% url 'notifications' %}">Notifications</a></li>
+        <li class="delete_account">
+          <div class="btn-group dropup">
+            <button type="button" class="clicker dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">                                                            
+                <span class="text-danger">Delete Account</span>
+            </button>
+            <div class="dropdown-menu">
+                <p>Are you sure you want to delete your account</p>
+                <ul>
+                  <li class="yes"><a class="dropdown-item primary-button" href="{% url 'delete_account' %}">Yes</a></li>
+                  <li class="no"><span class="dropdown-item secondary-button">No</span></li>
+                </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="profile_body col-sm-12 col-md-6 col-lg-6">
-
-
-    </div>
-</div>
-<div class="dashboard-single league_history">
-
+    <div class="col-sm-12 col-md-10 col-lg-10 profile_body">
+        <header>
+          <h4>My Profile</h4>
+        </header>
+        <div class="profile-info first row">
+          <div class="col-sm-12 col-md-9 col-lg-9 row personal_info">
+            <div class="col-sm-12 col-md-2 col-lg-2 personal_image">
+              <svg viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="17.5" cy="17.5" r="17.5" fill="#A3A5AF"/>
+                <path d="M17 9C12.0293 9 8 13.0293 8 18C8 22.9707 12.0293 27 17 27C21.9707 27 26 22.9707 26 18C26 13.0293 21.9707 9 17 9Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10.0439 23.7114C10.0439 23.7114 12.05 21.15 17 21.15C21.95 21.15 23.957 23.7114 23.957 23.7114M17 18C17.7161 18 18.4028 17.7155 18.9092 17.2092C19.4155 16.7028 19.7 16.0161 19.7 15.3C19.7 14.5839 19.4155 13.8972 18.9092 13.3908C18.4028 12.8845 17.7161 12.6 17 12.6C16.2839 12.6 15.5971 12.8845 15.0908 13.3908C14.5844 13.8972 14.3 14.5839 14.3 15.3C14.3 16.0161 14.5844 16.7028 15.0908 17.2092C15.5971 17.7155 16.2839 18 17 18Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="col-sm-12 col-md-10 col-lg-10 personal_text">
+              <h4> {{ user.username }} </h4>
+              <p class="role"> {{ user.type }} </p>
+              <p> {{ user.date_joined }} </p>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-3 col-lg-3 edit">
+            <button class="secondary-button edit_button" id="edit_btn1" data-stage="show">Edit <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 18.4615H22V20H0V18.4615ZM18.3857 5.38462C19.0143 4.76923 19.0143 3.84615 18.3857 3.23077L15.5571 0.461538C14.9286 -0.153846 13.9857 -0.153846 13.3571 0.461538L1.57143 12V16.9231H6.6L18.3857 5.38462ZM14.4571 1.53846L17.2857 4.30769L14.9286 6.61539L12.1 3.84615L14.4571 1.53846ZM3.14286 15.3846V12.6154L11 4.92308L13.8286 7.69231L5.97143 15.3846H3.14286Z"/>
+              </svg>
+              
+          </div>
+        </div>
+        <div class="profile-info info-form third" id="username_form">
+          <form action="#" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="form-label">Username:</label>
+                <input class="form-control" type="text" name="username" value="{{ user.username }}" placeholder="Username">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+          <a class="btn btn-primary text-white" href="{% url 'account_reset_password' %}">Reset Password</a>
+        </div>
+        <div class="profile-info second">
+          <div class="row">
+            <header class="col-sm-12 col-md-9 col-lg-9">
+              <h5>Personal Information</h5>
+            </header>
+            <div class="col-sm-12 col-md-3 col-lg-3 edit">
+              <button class="secondary-button edit_button" id="edit_btn2" data-stage="show">Edit <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 18.4615H22V20H0V18.4615ZM18.3857 5.38462C19.0143 4.76923 19.0143 3.84615 18.3857 3.23077L15.5571 0.461538C14.9286 -0.153846 13.9857 -0.153846 13.3571 0.461538L1.57143 12V16.9231H6.6L18.3857 5.38462ZM14.4571 1.53846L17.2857 4.30769L14.9286 6.61539L12.1 3.84615L14.4571 1.53846ZM3.14286 15.3846V12.6154L11 4.92308L13.8286 7.69231L5.97143 15.3846H3.14286Z"/>
+                </svg>              
+                </button>
+            </div>
+          </div>
+          <div class="info_container">
+            <div class="row personal_info_second">
+              <div class="personal_info_text">
+                  <personal :infos="[{'title': 'First Name' ,'name': '{{ user.first_name }}' },{'title': 'Last Name' ,'name': '{{ user.last_name }}'}]" ></personal>
+                  <personal :infos="[{'title': 'Email address' ,'name': '{{ user.email }}' },{'title': 'User type' ,'name': '{{ user.type }}'}]" ></personal>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="profile-info info-form third" id="username_form">
+          <form action="#" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="form-label">First Name:</label>
+                <input class="form-control" type="text" name="username" value="{{ user.first_name }}" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name:</label>
+              <input class="form-control" type="text" name="username" value="{{ user.last_name }}" placeholder="Username">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+          </form>
+          <a class="btn btn-primary text-white" href="{% url 'account_email' %}">Reset Email</a>
+        </div>
+      </div>
 </div>
 {% endblock  %}

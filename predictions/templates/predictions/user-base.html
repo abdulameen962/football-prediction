@@ -127,13 +127,12 @@
                             <span class="expand_content">{{ user.username }}</span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'settings' %}">Settings</a></li>
                             <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                         </ul>
                     </div>
                 {% else %}
                     <a href="{% url 'account_login' %}"><img src="{% static 'predictions/css/images/logout.svg' %}" alt="icon"><span class="expand_content">Login</span></a>
-                
                 {% endif %}
 
             </section>
@@ -150,7 +149,7 @@
         <div class="body_main">
             <div class="nav_main_header">
                 <header>
-                    <h2>Welcome {{user.username}}</h2>
+                    <h2>Welcome</h2>
                 </header>
                 
                 <div class="nav_side">
@@ -204,6 +203,18 @@
                 </div>
             </div>
             <div class="container-main">
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 {% block content %}{% endblock  %}
             </div>
 

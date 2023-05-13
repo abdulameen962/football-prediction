@@ -2,18 +2,6 @@
 {% block title %} Premium plan payment {% endblock  %}
 {% block og_title %} Premium plan payment {% endblock  %}
 {% block body %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <p>Please remember to use the same email on your account with the flutterwave payment which is <b> {{ user.email }} </b> so as to confirm your payment successfully</p>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
