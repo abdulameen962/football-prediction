@@ -15,6 +15,7 @@ from allauth.account.models  import EmailAddress
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
 from django.contrib import admin
+from django.utils.datastructures import MultiValueDictKeyError
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from rave_python import Rave,Misc,RaveExceptions
@@ -787,7 +788,12 @@ class watchlist(UserPassesTestMixin,ListView):
 @login_required(login_url="account_login")
 @verified_email_required
 def profile(request):
-    return render(request,"predictions/profile.html")
+    if request.method == "GET":
+        return render(request,"predictions/profile.html")
+
+
+    elif request.method == "POST":
+        return HttpResponseRedirect(reverse("settings"))
 
 
 @login_required(login_url="account_login")

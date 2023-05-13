@@ -751,6 +751,21 @@ const app = Vue.createApp({
                         }));
                 }, 100);
             }
+        },
+        showForm(event, id) {
+            var el = event.target;
+            var formdiv = document.getElementById(id)
+            if (el.className != "secondary-button edit_button") {
+                el = el.parentElement;
+                console.log(el);
+            }
+            if (el.dataset.stage == "show") {
+                formdiv.style.display = "block";
+                el.dataset.stage = "hide";
+            } else if (el.dataset.stage == "hide") {
+                formdiv.style.display = "none";
+                el.dataset.stage = "show";
+            }
         }
     }
 })

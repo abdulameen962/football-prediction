@@ -1333,12 +1333,19 @@ div.blog_detail_main {
 .padding, section.dashboard_nav aside, section.dashboard_nav div.body_main div.container-main,
 section.dashboard_nav div.body_main div.dashboard-single-main,
 section.dashboard_nav div.body_main div.nav_main_header, section.dashboard_nav div.body_main div.dashboard-single nav.pagination, section.dashboard_nav div.body_main div.dashboard-single > header, section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page {
-  padding: 20px 35px; }
+  padding: 15px 35px; }
   @media screen and (min-width: 0px) and (max-width: 991px) {
     .padding, section.dashboard_nav aside, section.dashboard_nav div.body_main div.container-main,
     section.dashboard_nav div.body_main div.dashboard-single-main,
     section.dashboard_nav div.body_main div.nav_main_header, section.dashboard_nav div.body_main div.dashboard-single nav.pagination, section.dashboard_nav div.body_main div.dashboard-single > header, section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page {
       padding: 10px 20px; } }
+
+.dropdown-menu {
+  padding: 12px;
+  border: none;
+  box-shadow: 0px 4px 10px rgba(41, 44, 50, 0.03);
+  border-radius: 10px;
+  border: 1px solid #E7E9EE; }
 
 div.dropdown {
   transition: all 0.5s ease; }
@@ -1549,14 +1556,14 @@ section.dashboard_nav {
     transition: all 0.5s ease;
     width: calc(100vw - 100px); }
     section.dashboard_nav div.body_main div.container-main {
-      background: #eff1f5;
+      background: #F6F6F6;
       border-top-left-radius: 15px;
       min-height: 100vh; }
       @media screen and (min-width: 0px) and (max-width: 991px) {
         section.dashboard_nav div.body_main div.container-main {
           border: none;
           width: 100vw;
-          background: rgba(239, 241, 245, 0.5); } }
+          border-radius: 0px; } }
     @media screen and (min-width: 0px) and (max-width: 991px) {
       section.dashboard_nav div.body_main form {
         display: none; } }
@@ -1577,7 +1584,8 @@ section.dashboard_nav {
             display: none; } }
     section.dashboard_nav div.body_main div.dashboard-single {
       background: white;
-      border-radius: 15px; }
+      border-radius: 15px;
+      box-shadow: 0px 0px 25px rgba(53, 55, 69, 0.02); }
       section.dashboard_nav div.body_main div.dashboard-single nav.pagination {
         padding-top: 10px;
         padding-bottom: 10px; }
@@ -1614,6 +1622,139 @@ section.dashboard_nav {
               section.dashboard_nav div.body_main div.dashboard-single div.notifications_main_page div.notifications_main_page_single div.row div.row_main_notification_outlet div.delete button:hover {
                 transform: scale(1.1);
                 transform: translateY(-5px); }
+    section.dashboard_nav div.body_main div.profile_main {
+      padding: 25px 10px;
+      margin-top: 25px; }
+      section.dashboard_nav div.body_main div.profile_main div.profile_nav {
+        height: inherit;
+        border-right: 1px solid #E7E9EE;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-items: flex-start; }
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+          section.dashboard_nav div.body_main div.profile_main div.profile_nav {
+            border: none;
+            border-bottom: 1px solid #E7E9EE; } }
+        section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li {
+          margin: 20px 0px; }
+          section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li a {
+            font-size: 18px;
+            color: #A4ACB5;
+            font-weight: 300;
+            padding: 10px 15px;
+            border-radius: 20px;
+            transition: all 0.5s ease; }
+            section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li a:hover {
+              background: rgba(255, 169, 15, 0.2);
+              color: #FFA90F; }
+            @media screen and (min-width: 0px) and (max-width: 740px) {
+              section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li a {
+                font-size: 16px; } }
+          section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account {
+            margin-top: 20px; }
+            section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account > div > button span {
+              padding: 10px 25px;
+              font-size: 18px;
+              font-weight: normal; }
+            section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account > div div.dropdown-menu ul {
+              display: flex; }
+              section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account > div div.dropdown-menu ul li a,
+              section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account > div div.dropdown-menu ul li span {
+                text-align: center;
+                border-radius: 5px;
+                padding: 10px 12px; }
+              section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account > div div.dropdown-menu ul li a {
+                color: white; }
+                section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account > div div.dropdown-menu ul li a:hover {
+                  background: #ffa90f; }
+              section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account > div div.dropdown-menu ul li span {
+                margin-top: 0px;
+                margin-left: 15px; }
+              section.dashboard_nav div.body_main div.profile_main div.profile_nav ul li.delete_account > div div.dropdown-menu ul li.no {
+                margin-left: 30px; }
+      section.dashboard_nav div.body_main div.profile_main div.profile_body {
+        padding: 20px 25px 20px 20px; }
+        section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form {
+          display: none;
+          padding: 20px; }
+        section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info {
+          margin: 35px 0px;
+          padding: 20px 0px 20px 15px;
+          border-radius: 15px;
+          border: 2px solid #f5f7f9; }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div {
+            max-width: 100%; }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.info_container {
+            max-width: 500px;
+            width: 100%; }
+            section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.info_container div.personal_info_second div.personal_info_text {
+              padding: 0; }
+              section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.info_container div.personal_info_second div.personal_info_text div.info_text_main {
+                margin: 20px 0px; }
+                section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.info_container div.personal_info_second div.personal_info_text div.info_text_main h6 {
+                  color: #B1B7BF;
+                  font-weight: 550; }
+                section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.info_container div.personal_info_second div.personal_info_text div.info_text_main p {
+                  font-weight: 600; }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info header {
+            padding-right: 0px; }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.edit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0; }
+            section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.edit button.secondary-button {
+              padding: 12px 25px;
+              color: #B1B7BF;
+              font-weight: 550; }
+              section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.edit button.secondary-button svg path {
+                fill: #B1B7BF; }
+              @media screen and (min-width: 0px) and (max-width: 740px) {
+                section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.edit button.secondary-button {
+                  width: auto; } }
+            @media screen and (min-width: 0px) and (max-width: 991px) {
+              section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.edit {
+                justify-content: flex-start; } }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_info {
+            padding-right: 0px;
+            padding-left: 0px; }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 8px;
+            overflow: hidden;
+            justify-content: flex-start; }
+            section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_image svg {
+              min-width: 80px;
+              min-height: 80px; }
+              @media screen and (min-width: 0px) and (max-width: 740px) {
+                section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_image svg {
+                  width: 80px; } }
+            @media screen and (min-width: 0px) and (max-width: 991px) {
+              section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_image {
+                min-height: 100px;
+                justify-content: flex-start; } }
+          section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_text {
+            padding: 5px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            align-items: flex-start; }
+            section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_text h4 {
+              margin: 0;
+              padding: 0; }
+            section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_text p {
+              margin: 0;
+              padding: 0;
+              font-size: 16px;
+              color: #B0B4BA; }
+              section.dashboard_nav div.body_main div.profile_main div.profile_body div.profile-info div.personal_text p.role {
+                font-weight: 600; }
   section.dashboard_nav form {
     position: relative; }
     section.dashboard_nav form ul.searchoptions,

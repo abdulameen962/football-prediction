@@ -306,6 +306,7 @@ const app = Vue.createApp({
         var form = document.getElementById("search_form");
         var trs = document.querySelectorAll(".tr_element");
         const league_list_main = document.getElementById("league_list_main");
+        // var live_scores_container = document.querySelector(".live_scores_container");
 
         if (email) {
             email.required = true;
@@ -750,6 +751,21 @@ const app = Vue.createApp({
                         }));
                 }, 100);
             }
+        },
+        showForm(event, id) {
+            var el = event.target;
+            var formdiv = document.getElementById(id)
+            if (el.className != "secondary-button edit_button") {
+                el = el.parentElement;
+                console.log(el);
+            }
+            if (el.dataset.stage == "show") {
+                formdiv.style.display = "block";
+                el.dataset.stage = "hide";
+            } else if (el.dataset.stage == "hide") {
+                formdiv.style.display = "none";
+                el.dataset.stage = "show";
+            }
         }
     }
 })
@@ -813,15 +829,6 @@ app.component("predict", {
         predict: Object,
         command: String,
     },
-    // <div v-if="current_variant.alt == media.alt && current_variant.alt.includes('#')">    
-    // </div>
-    // body() {
-    //     return {
-    //         home: "home",
-    //         away: "away",
-    //         draw: "draw",
-    //     }
-    // },
     template: `
         <tr class="tr_element">
             <td class="w-auto">{{ predict.home }}</td>
@@ -863,6 +870,21 @@ app.component("predict", {
     `
 })
 
-
+app.component("personal", {
+    props: {
+        infos: Array,
+    },
+    template: `
+    <div class="row info_text_main">
+        <div class="col-sm-12 col-md-6 col-lg-6" v-for="info in infos">
+            <h6> {{ info.title }} </h6>
+            <p v-if="info.name != ''"> {{ info.name }} </p>
+            <p v-else> None </p>
+        </div>
+    </div>
+    
+    
+    `
+})
 
 app.mount("body");
