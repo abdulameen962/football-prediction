@@ -898,7 +898,10 @@ def profile(request):
 def live_scores(request):
     user = request.user
     if user.is_authenticated and user.type == "premium" and user.premium.activated:
-        response = urlopen(settings.LIVE_SCORE).read()
+        http = urllib3.PoolManager()
+        response = http.request("GET",settings.LIVE_SCORE)
+        response = response.data
+        # response = urlopen(settings.LIVE_SCORE).read()
         true = "true"
         null = "null"
         live_scores = response.decode()
