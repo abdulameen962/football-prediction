@@ -1,10 +1,5 @@
 {
     "builds": [{
-            "src": "start-celery.sh",
-            "use": "@vercel/python",
-            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-        },
-        {
             "src": "football/wsgi.py",
             "use": "@vercel/python",
             "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
@@ -15,6 +10,11 @@
             "config": {
                 "distDir": "staticfiles"
             }
+        },
+        {
+            "src": "start-celery.sh",
+            "use": "@vercel/python",
+            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
         }
     ],
     "routes": [{
