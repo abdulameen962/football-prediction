@@ -1345,7 +1345,11 @@ section.dashboard_nav div.body_main div.dashboard-single div.latest_predictions_
   border: none;
   box-shadow: 0px 4px 10px rgba(41, 44, 50, 0.03);
   border-radius: 10px;
-  border: 1px solid #E7E9EE; }
+  border: 1px solid #E7E9EE;
+  min-width: 220px; }
+  .dropdown-menu li {
+    padding: 4px 0px;
+    font-size: 16px; }
 
 div.dropdown {
   transition: all 0.5s ease; }
@@ -1687,6 +1691,10 @@ section.dashboard_nav {
               fill: white; }
       section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header {
         margin-bottom: 30px; }
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+          section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header > h3 {
+            width: 50%;
+            margin: 0; } }
         section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right {
           display: flex;
           justify-content: center;
@@ -1694,7 +1702,7 @@ section.dashboard_nav {
           justify-content: flex-end; }
           @media screen and (min-width: 0px) and (max-width: 740px) {
             section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right {
-              justify-content: flex-start; } }
+              width: 50%; } }
           section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right > button {
             background: none;
             border: none;
@@ -1711,7 +1719,8 @@ section.dashboard_nav {
           section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right div.dropdown {
             margin-right: 15px;
             display: flex;
-            align-items: center; }
+            align-items: center;
+            padding-top: 5px; }
             section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right div.dropdown > button svg {
               margin-right: 5px; }
       section.dashboard_nav div.body_main div.dashboard-single nav.pagination {

@@ -543,10 +543,10 @@ class Search(UserPassesTestMixin,View):
             leagues = League.objects.all()
             if len(leagues) > 0:
                 for league in leagues:
-                    if search_term.lower() in league.league.lower():
+                    if search_term.lower() in league.league.lower() and league.prediction.all().count() > 0:
                        result.append(league)
 
-                    elif search_term.lower() in league.code.lower():
+                    elif search_term.lower() in league.code.lower() and league.prediction.all().count() > 0:
                         result.append(league)
 
                 if len(result) > 0:
@@ -575,10 +575,10 @@ class Search(UserPassesTestMixin,View):
             result = []
             if len(watchlist) > 0:
                 for watch in watchlist:
-                    if search_term.lower() in watch.league.lower():
+                    if search_term.lower() in watch.league.lower() and watch.prediction.all().count() > 0:
                         result.append(watch)
 
-                    elif search_term.lower() in watch.code.lower():
+                    elif search_term.lower() in watch.code.lower() and watch.prediction.all().count() > 0:
                         result.append(watch)
 
                 if len(result) > 0:

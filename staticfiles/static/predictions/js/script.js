@@ -499,7 +499,7 @@ const app = Vue.createApp({
                             document.querySelector("[name='search']").value = "";
                             if (result_search) {
                                 result_search.style.display = "block";
-                                result_search.innerHTML = `<p>Search term not found,pls search for another <button class="search_reset btn btn-primary">Search for another</button></p>`;
+                                result_search.innerHTML = `<ul><li>Search term not found,pls search for another <p class="search_reset text-info">Search for another</p></li></ul>`;
                             } else {
                                 console.log(result_search);
                             }
