@@ -24,10 +24,6 @@
         {
             "src": "/(.*)",
             "dest": "football/wsgi.py"
-        },
-        {
-            "src": "/celery/(.*)",
-            "dest": "start-celery.sh"
         }
 
     ]

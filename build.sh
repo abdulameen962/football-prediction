@@ -10,9 +10,9 @@ python3.9 manage.py migrate
 echo "Collect Static..."
 python3.9 manage.py collectstatic --noinput
 
-echo "Running Celery Tasks..."
+# echo "Running Celery Tasks..."
 # cd /vercel/path0 || exit 1
 #Activate virtual env
 # . . venv/bin/activate
 
-celery -A football worker -l info
+# celery -A football worker -l info
