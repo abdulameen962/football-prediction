@@ -898,16 +898,16 @@ def profile(request):
 def live_scores(request):
     user = request.user
     if user.is_authenticated and user.type == "premium" and user.premium.activated:
-        http = urllib3.PoolManager()
-        response = http.request("GET",settings.LIVE_SCORE)
-        response = response.data
+        # http = urllib3.PoolManager()
+        # response = http.request("GET",settings.LIVE_SCORE)
+        # response = response.data
         # response = urlopen(settings.LIVE_SCORE).read()
-        true = "true"
-        null = "null"
-        live_scores = response.decode()
-        live_scores = eval(live_scores)
-        live_scores = live_scores["data"]["match"]
-        # live_scores = []
+        # true = "true"
+        # null = "null"
+        # live_scores = response.decode()
+        # live_scores = eval(live_scores)
+        # live_scores = live_scores["data"]["match"]
+        live_scores = []
         return render(request,"predictions/live-scores.html",{
             "live_scores": live_scores,
         })
