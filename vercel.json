@@ -13,7 +13,7 @@
         },
         {
             "src": "start-celery.sh",
-            "use": "@vercel/python",
+            "use": "@vercel/static-build",
             "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
         }
     ],
