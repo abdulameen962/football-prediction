@@ -12,25 +12,31 @@ class BlogAdmin(admin.ModelAdmin):
 class LeagueAdmin(admin.ModelAdmin):
     list_display = ("league","code")
 
-class PredictAdmin(models.Model):
-    list_display = ("league","type","home","away","correct_score")
-
-class FreemiumProfileAdmin(models.Model):
-    list_display = ("user")
+class FreemiumProfileAdmin(admin.ModelAdmin):
+    # list_display = ("user")
     filter_horizontal = ("watchlist",)
 
-class PremiumProfileAdmin(models.Model):
-    list_display = ("user","activated")
+class PremiumProfileAdmin(admin.ModelAdmin):
+    # list_display = ("user","activated")
     filter_horizontal = ("watchlist",)
+
+class LeagueAdmin(admin.ModelAdmin):
+    list_display = ("code","league")
+
+class PredictionAdmin(admin.ModelAdmin):
+    list_display = ("home","away","correct_score","halftime_correct_score")
+
+class NotificationAdmin(admin.ModelAdmin):
+    list_display = ("header","message","read","created")
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Blog,BlogAdmin)
-admin.site.register(FreemiumProfile)
-admin.site.register(PremiumProfile)
-admin.site.register(League)
-admin.site.register(Prediction)
+admin.site.register(FreemiumProfile,FreemiumProfileAdmin)
+admin.site.register(PremiumProfile,PremiumProfileAdmin)
+admin.site.register(League,LeagueAdmin)
+admin.site.register(Prediction,PredictionAdmin)
 admin.site.register(Tag)
-admin.site.register(Notification)
+admin.site.register(Notification,NotificationAdmin)
 
 
 

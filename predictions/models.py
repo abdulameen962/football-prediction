@@ -69,9 +69,9 @@ class Blog(models.Model):
         ordering = ("-created",)
 
 class League(models.Model):
-    code = models.CharField(max_length=5)
-    league = models.CharField(max_length=50)
-    logo = CloudinaryField("image")
+    code = models.CharField(max_length=50)
+    league = models.CharField(max_length=100)
+    logo = CloudinaryField("image",blank=True)
     objects = models.Manager()
 
     def __str__(self):
@@ -89,6 +89,7 @@ class League(models.Model):
             "id": self.id,
             "code": self.code,
             "logo":self.logo.url,
+            "league": self.league,
             # "predictions": [prediction.serialize() for prediction in self.prediction.all()]
         } 
 
@@ -129,6 +130,8 @@ class Prediction(models.Model):
     def serialize(self):
         return{
             "id": self.id,
+            "league": self.league.serialize(),
+            "updated": self.updated.strftime("%m/%d/%Y %I:%M %p"),
             "type": self.type,
             "home": self.home,
             "away": self.away,
@@ -153,7 +156,7 @@ class PremiumProfile(models.Model):
     watchlist = models.ManyToManyField(League,related_name="premium_leagues",blank=True,default=None)
 
     def __str__(self):
-        return f"{self.user.username}"
+        return f"{self.user.username} has an activated state of {self.activated}"
 
 
 class Notification(models.Model):

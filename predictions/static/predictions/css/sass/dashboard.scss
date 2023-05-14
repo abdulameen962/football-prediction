@@ -384,10 +384,90 @@ section.dashboard_nav {
                 }
             }
         }
+        div.league_singles,
+        div.latest {
+            margin: 15px 0px;
+        }
         div.dashboard-single {
             background: $white;
             border-radius: 15px;
             box-shadow: 0px 0px 25px rgba($dark, .02);
+            div.latest_leagues_main,
+            div.latest_predictions_main {
+                @extend .padding;
+            }
+            &>header {
+                ul.quick-actions {
+                    padding: 30px 0px;
+                    li {
+                        display: inline-block;
+                        margin-right: 24px;
+                        transform: scale(1.3);
+                        @include transition;
+                        &:hover {
+                            transform: scale(1.4);
+                        }
+                        &>a {
+                            padding: 10px;
+                            border-radius: 50%;
+                            background: rgba($orangeheader, 1);
+                            svg {
+                                path {
+                                    fill: $white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            div.dashboard-single-main {
+                &>header {
+                    margin-bottom: 30px;
+                    div.league_right {
+                        @include flex(no);
+                        justify-content: flex-end;
+                        @include respond(lphone) {
+                            justify-content: flex-start;
+                        }
+                        &>button {
+                            background: none;
+                            border: none;
+                            outline: none;
+                            @include transition;
+                            &:hover {
+                                transform: translateY(-3px);
+                            }
+                            svg {
+                                transform: scale(1.4);
+                            }
+                        }
+                        &>button.watchlisted {
+                            svg {
+                                path {
+                                    fill: rgba($orangeheader, 1);
+                                }
+                            }
+                        }
+                        &>button.watchlist {
+                            svg {
+                                path {
+                                    fill: #ACAEFF;
+                                }
+                            }
+                        }
+                        div.dropdown {
+                            margin-right: 15px;
+                            display: flex;
+                            align-items: center;
+                            &>button {
+                                svg {
+                                    margin-right: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             nav.pagination {
                 @extend .padding;
                 padding-top: 10px;

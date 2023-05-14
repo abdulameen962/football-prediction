@@ -1,1 +1,4 @@
 {% extends 'predictions/all_leagues.html' %}
+{% block exclusion %}
+    <p>You have not added any league to your watchlist yet. You can go to the <a href="{% url 'all_leagues' %}">all leagues</a> page and click on the watchlist icon</p>
+{% endblock  %}

@@ -133,7 +133,27 @@ def not_verified(request):
 def Freemiumview(request):
     user = request.user
     if user.type == "freemium":
-        return render(request,"predictions/freemium.html")
+        leagues = League.objects.all()
+        hot_league_list = []
+        if leagues.count() > 1:
+            for league1 in leagues:
+                for league2 in leagues:
+                    if len(league1.prediction.filter(type="freemium")) > len(league2.prediction.filter(type="freemium")) and len(hot_league_list) < 6 and league1.serialize() not in hot_league_list:
+                        hot_league_list.append(league1.serialize())
+
+        elif leagues.count() == 1:
+            hot_league_list.append(leagues.first().serialize())
+
+        predictions = Prediction.objects.filter(type="freemium")
+        hot_prediction_list = []
+        for predict in predictions:
+            if len(hot_prediction_list) < 6:
+                hot_prediction_list.append(predict.serialize())
+
+        return render(request,"predictions/freemium.html",{
+            "hot_leagues":hot_league_list,
+            "hot_prediction": hot_prediction_list,
+        })
     else:
         return HttpResponseRedirect(reverse("index"))
             
@@ -153,13 +173,10 @@ def Premiumview(request):
                 user.save()
                 messages.error(request,"Your subscription plan has been cancelled,you have been returned to a freemium user.If error,kindly contact support")
                 return HttpResponseRedirect(reverse("freemium"))
-            else:
-                return render(request,"predictions/premium.html")
         else:
             if action == True:
                 userprofile.activated = action
                 userprofile.save()
-                return render(request,"predictions/premium.html")
             else:
                 user.type = "freemium"
                 user.save()
@@ -167,6 +184,29 @@ def Premiumview(request):
                 return HttpResponseRedirect(reverse("freemium"))
     else:
         return HttpResponseRedirect(reverse("confirm_payment"))
+
+    leagues = League.objects.all()
+    hot_league_list = []
+    if leagues.count() > 1:
+        for league1 in leagues:
+            for league2 in leagues:
+                if len(league1.prediction.all()) > len(league2.prediction.all()) and len(hot_league_list) < 6 and league1.serialize() not in hot_league_list:
+                    hot_league_list.append(league1.serialize())
+
+    elif leagues.count() == 1:
+        hot_league_list.append(leagues.first().serialize())
+
+    predictions = Prediction.objects.all()
+    hot_prediction_list = []
+    for predict in predictions:
+        if len(hot_prediction_list) < 6:
+            hot_prediction_list.append(predict.serialize())
+
+
+    return render(request,"predictions/premium.html",{
+        "hot_leagues": hot_league_list,
+        "hot_predictions": hot_prediction_list,
+    })
 
 class Blogview(ListView):
     model = Blog
@@ -509,15 +549,15 @@ class Search(UserPassesTestMixin,View):
                     elif search_term.lower() in league.code.lower():
                         result.append(league)
 
-                    if len(result) > 0:
-                        #there is at league a result
-                        main_result = []
-                        for res in result:
-                            link = request.build_absolute_uri(reverse('leagues',args=[res.id]))
-                            res_add = {"league":res.league,"link":link}
-                            main_result.append(res_add)
+                if len(result) > 0:
+                    #there is at league a result
+                    main_result = []
+                    for res in result:
+                        link = request.build_absolute_uri(reverse('leagues',args=[res.id]))
+                        res_add = {"league":res.league,"link":link}
+                        main_result.append(res_add)
 
-                        return JsonResponse([result for result in main_result],status=200,safe=False)
+                    return JsonResponse([result for result in main_result],status=200,safe=False)
                 else:
                     return JsonResponse({"message":"League doesn't exist"},status=201)
             else:
@@ -531,31 +571,31 @@ class Search(UserPassesTestMixin,View):
                 #get his profile
                 profile = PremiumProfile.objects.get(user=user)
 
-            if profile != "":
-                watchlist = profile.watchlist.all()
-                result = []
-                if len(watchlist) > 0:
-                    for watch in watchlist:
-                        if search_term.lower() in watchlist.league.lower():
-                            result.append(watch)
+            watchlist = profile.watchlist.all()
+            result = []
+            if len(watchlist) > 0:
+                for watch in watchlist:
+                    if search_term.lower() in watch.league.lower():
+                        result.append(watch)
 
-                    if len(result) > 0:
-                        #there is at league a result
-                        main_result = []
-                        for res in result:
-                            link = request.build_absolute_uri(reverse('leagues',args=[res.id]))
-                            res_add = {"league":res.league,"link":link}
-                            main_result.append(res_add)
+                    elif search_term.lower() in watch.code.lower():
+                        result.append(watch)
 
-                        return JsonResponse([result for result in main_result],status=200,safe=False)
-                    else:
-                        return JsonResponse({"message":"League doesn't exist"},status=201)
+                if len(result) > 0:
+                    #there is at league a result
+                    main_result = []
+                    for res in result:
+                        link = request.build_absolute_uri(reverse('leagues',args=[res.id]))
+                        res_add = {"league":res.league,"link":link}
+                        main_result.append(res_add)
 
+                    return JsonResponse([result for result in main_result],status=200,safe=False)
                 else:
-                    return JsonResponse({"message":"You have not added any watchlist"},status=201)                
-            
-            return JsonResponse({"message":"User doesn't have a type"},status=403)
-        
+                    return JsonResponse({"message":"League doesn't exist"},status=201)
+
+            else:
+                return JsonResponse({"message":"You have not added any watchlist"},status=201)                
+                    
 
         else:
             return JsonResponse({"message":"Wrong command/sth went wrong"},status=400)
@@ -855,13 +895,18 @@ def profile(request):
 @login_required(login_url="account_login")
 @verified_email_required
 def live_scores(request):
-    # response = urlopen(settings.LIVE_SCORE).read()
-    # live_scores = live_scores["data"]
-    # live_scores = live_scores["match"]
-    live_scores = []
-    return render(request,"predictions/live-scores.html",{
-        "live_scores": live_scores,
-    })
+    user = request.user
+    if user.is_authenticated and user.type == "premium" and user.premium.activated:
+        # response = urlopen(settings.LIVE_SCORE).read()
+        # live_scores = live_scores["data"]
+        # live_scores = live_scores["match"]
+        live_scores = []
+        return render(request,"predictions/live-scores.html",{
+            "live_scores": live_scores,
+        })
+
+    else:
+        return HttpResponseRedirect(reverse("index"))
 
 
 

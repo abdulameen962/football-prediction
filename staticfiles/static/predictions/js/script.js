@@ -511,7 +511,7 @@ const app = Vue.createApp({
                             result_search.innerHTML = "";
                             for (let i = 0; i < res.length; i++) {
                                 const li = document.createElement("li");
-                                li.innerHTML = `<a href="${res[i].link}">${res[i].league}</a>`
+                                li.innerHTML = `<a class="text-dark" href="${res[i].link}">${res[i].league}</a>`
                                 result_search.append(li);
                             }
                             result_search.style.display = "block";
@@ -538,7 +538,7 @@ const app = Vue.createApp({
         if (league_list_main) {
             var leagues_list = document.querySelectorAll("#league_list_main li");
             leagues_list.forEach((e) => {
-                var main_table = e.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild;
+                var main_table = e.parentElement.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild;
                 e.onclick = () => {
                     fetch(`/get-type-league-info/${e.dataset.value}/${league_list_main.dataset.identifier}/`, {
                             method: "GET"
@@ -715,44 +715,44 @@ const app = Vue.createApp({
         },
         addWatchlist(event, id) {
             var el = event.target;
+            if (el.dataset.stage != "add" || el.dataset.stage != "remove") {
+                el = el.parentElement;
+                if (el.dataset.stage != "add" || el.dataset.stage != "remove") {
+                    el = el.parentElement;
+                }
+            }
             if (el.dataset.stage == "add") {
-                el.innerHTML = el.dataset.loading;
-                setTimeout(() => {
-                    fetch(`/add-watchlist/${id}/`, {
-                            method: "PUT",
-                            headers: {
-                                'X-CSRFToken': getCookie('csrftoken'),
-                            }
-                        })
-                        .then(response => response.json().then(res => {
-                            var message = res;
-                            if (response.status == 200) {
-                                //do the needful
-                                el.dataset.stage = "remove";
-                                el.innerHTML = el.dataset.loaded;
-                                // console.log(message.message);
-                            }
-                        }))
-                }, 100);
+                fetch(`/add-watchlist/${id}/`, {
+                        method: "PUT",
+                        headers: {
+                            'X-CSRFToken': getCookie('csrftoken'),
+                        }
+                    })
+                    .then(response => response.json().then(res => {
+                        var message = res;
+                        if (response.status == 200) {
+                            //do the needful
+                            el.dataset.stage = "remove";
+                            el.className = "watchlisted";
+                            // console.log(message.message);
+                        }
+                    }))
             } else {
-                el.innerHTML = el.dataset.removing;
-                setTimeout(() => {
-                    fetch(`/add-watchlist/${id}/`, {
-                            method: "DELETE",
-                            headers: {
-                                'X-CSRFToken': getCookie('csrftoken'),
-                            }
-                        })
-                        .then(response => response.json().then(res => {
-                            var message = res;
-                            if (response.status == 200) {
-                                //do the needful
-                                el.dataset.stage = "add";
-                                el.innerHTML = el.dataset.removed;
-                                // console.log(message.message);
-                            }
-                        }));
-                }, 100);
+                fetch(`/add-watchlist/${id}/`, {
+                        method: "DELETE",
+                        headers: {
+                            'X-CSRFToken': getCookie('csrftoken'),
+                        }
+                    })
+                    .then(response => response.json().then(res => {
+                        var message = res;
+                        if (response.status == 200) {
+                            //do the needful
+                            el.dataset.stage = "add";
+                            el.className = "watchlist";
+                            // console.log(message.message);
+                        }
+                    }));
             }
         },
         showForm(event, id) {
@@ -886,6 +886,69 @@ app.component("personal", {
         </div>
     </div>
     
+    
+    `
+})
+
+app.component("user_dashboard", {
+    props: {
+        hot_leagues: Array,
+        hot_predictions: Array,
+    },
+    template: `
+    <div class="dashboard-single latest_leagues latest">
+        <header>
+            <h3>Hottest Leagues</h3>
+        </header>
+        <div class="latest_leagues_main">
+            <div class="table-responsive table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="w-auto" scope="col">Logo</th>
+                            <th class="w-auto" scope="col">League</th>
+                            <th class="w-auto" scope="col">Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="league in hot_leagues">
+                            <td class="w-auto"><img :src="league.logo" :alt="league.league"/></td>
+                            <td class="w-auto">{{ league.league }}</td>   
+                            <td class="w-auto">{{ league.code }}</td>                                                                                                              
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        </div>
+        <div class="dashboard-single latest_predictions latest">
+            <header>
+                <h3>Latest Predictions</h3>
+            </header>
+            <div class="latest_predictions_main">
+                <div class="table-responsive table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="w-auto" scope="col">League</th>
+                                <th class="w-auto" scope="col">Home</th>
+                                <th class="w-auto" scope="col">Away</th>
+                                <th class="w-auto" scope="col">Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="league in hot_predictions">
+                                <td class="w-auto">({{ league.league.code }}){{ league.league.league }}</td>
+                                <td class="w-auto">{{ league.home }}</td>   
+                                <td class="w-auto">{{ league.away }}</td>   
+                                <td class="w-auto">{{ league.updated }}</td>                                                                                                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
     
     `
 })

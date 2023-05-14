@@ -6,7 +6,7 @@ from allauth.account.models  import EmailAddress
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from django.core.mail import send_mail,send_mass_mail
+from django.core.mail import send_mail,send_mass_mail,EmailMessage
 from django.utils import timezone
 
 def send_notification(header,users,message):
@@ -196,7 +196,8 @@ def prediction_mail_handler(sender,instance,**kwargs):
 
 
     if len(emails) > 0:
-        send_mass_mail(subject=f"New prediction dropped for {instance.league.league}",message=plain_message, from_email=settings.EMAIL_HOST_USER,recipient_list=emails, fail_silently=False,html_message=html_message)
+        subject = f"New prediction dropped for {instance.league.league}"
+        send_mail(subject=subject,message=plain_message, from_email=settings.EMAIL_HOST_USER,recipient_list=emails, fail_silently=False,html_message=html_message)
 
 
     #check if one has been sent before

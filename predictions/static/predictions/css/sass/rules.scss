@@ -39,7 +39,7 @@ div.table-container {
             tr {
                 border-bottom: 1px solid $lightgrey;
                 @include transition;
-                cursor: pointer;
+                // cursor: pointer;
                 &:hover {
                     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.05);
                 }

@@ -4,36 +4,48 @@
 {% block content %}
 <div class="dashboard-single">
    <div class="dashboard-single-main">
-    <header>
-        <h2>{{league.league}}</h2>
-        {% if league in user.premium.watchlist.all %}
-            <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="remove" @click="addWatchlist($event,{{league.id}})">Remove from watchlist</button>
-        {% else %}
-            <button class="btn btn-primary text-white" data-removed="Removed" data-removing="Removing..." data-loading="Adding..." data-loaded="Added" data-stage="add" @click="addWatchlist($event,{{league.id}})">Add to watchlist</button>
-        {% endif %}
-        <div class="dropdown">
-            <button type="button" class="clicker dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.8232 2.13466C9.9456 1.92238 10.1183 1.74681 10.3245 1.62494C10.5307 1.50307 10.7634 1.43903 11.0002 1.43903C11.2369 1.43903 11.4697 1.50307 11.6759 1.62494C11.8821 1.74681 12.0548 1.92238 12.1772 2.13466L15.1017 7.19965H14.4376C14.4068 7.19943 14.3761 7.20136 14.3455 7.20541C13.1349 7.1431 11.942 7.52949 10.9762 8.29676C10.0105 9.06402 9.33379 10.1631 9.06481 11.401C8.79582 12.6389 8.95181 13.9365 9.50539 15.0659C10.059 16.1953 10.9747 17.0844 12.0919 17.5769C13.209 18.0695 14.4562 18.1341 15.6143 17.7594C16.7724 17.3847 17.7674 16.5946 18.4247 15.5279C19.082 14.4612 19.3594 13.1861 19.2084 11.9264C19.0573 10.6668 18.4874 9.50312 17.5987 8.6398H21.3125C21.4948 8.6398 21.6697 8.56393 21.7986 8.42889C21.9276 8.29385 22 8.1107 22 7.91973C22 7.72875 21.9276 7.5456 21.7986 7.41056C21.6697 7.27552 21.4948 7.19965 21.3125 7.19965H16.7091L13.3541 1.3901C12.283 -0.463367 9.71733 -0.463367 8.6476 1.3901L0.0993627 16.1876C0.0525965 16.2685 0.0215099 16.3583 0.00787793 16.4519C-0.00575402 16.5454 -0.00166446 16.6408 0.0199132 16.7327C0.0414908 16.8246 0.080134 16.9111 0.133636 16.9873C0.187139 17.0636 0.254452 17.128 0.331734 17.177C0.409015 17.226 0.494752 17.2585 0.584047 17.2728C0.673343 17.2871 0.764449 17.2828 0.852164 17.2602C0.939879 17.2376 1.02249 17.1971 1.09527 17.1411C1.16805 17.085 1.22958 17.0145 1.27634 16.9336L9.8232 2.13466ZM14.0939 8.6398C15.0967 8.6398 16.0585 9.05705 16.7676 9.79977C17.4767 10.5425 17.8751 11.5498 17.8751 12.6002C17.8751 13.6506 17.4767 14.6579 16.7676 15.4006C16.0585 16.1433 15.0967 16.5606 14.0939 16.5606C13.091 16.5606 12.1293 16.1433 11.4202 15.4006C10.7111 14.6579 10.3127 13.6506 10.3127 12.6002C10.3127 11.5498 10.7111 10.5425 11.4202 9.79977C12.1293 9.05705 13.091 8.6398 14.0939 8.6398Z" fill="#A3A5AF"/>
-                    </svg>                    
-                {% for dropdown in league_types %}
-                    {% if dropdown.league == league.id %}
-                        <span>{% with dropdown.types|first as first_type %}{{ first_type.name }}{% endwith %}</span>
-                    {% endif %}       
-                {% endfor %}
-    
-            </button>
-            <ul class="dropdown-menu league_list_main" id="league_list_main" aria-labelledby="dropdownMenu2" data-identifier={{ league.id }}>
-                {% for dropdown in league_types %}
-                    {% if dropdown.league == league.id %}
-                        {% for types in dropdown.types %}
-                            <li data-value="{{ types.data }}">
-                                {{ types.name }}
-                            </li> 
-                        {% endfor %} 
-                    {% endif %}
-                {% endfor %}  
-            </ul>
+    <header class="row">
+        <h3 class="col-sm-12 col-md-8 col-lg-8">{{league.league}}</h3>
+        <div class="league_right col-sm-12 col-md-4 col-lg-4">
+            <div class="dropdown">
+                <button type="button" class="clicker dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.8232 2.13466C9.9456 1.92238 10.1183 1.74681 10.3245 1.62494C10.5307 1.50307 10.7634 1.43903 11.0002 1.43903C11.2369 1.43903 11.4697 1.50307 11.6759 1.62494C11.8821 1.74681 12.0548 1.92238 12.1772 2.13466L15.1017 7.19965H14.4376C14.4068 7.19943 14.3761 7.20136 14.3455 7.20541C13.1349 7.1431 11.942 7.52949 10.9762 8.29676C10.0105 9.06402 9.33379 10.1631 9.06481 11.401C8.79582 12.6389 8.95181 13.9365 9.50539 15.0659C10.059 16.1953 10.9747 17.0844 12.0919 17.5769C13.209 18.0695 14.4562 18.1341 15.6143 17.7594C16.7724 17.3847 17.7674 16.5946 18.4247 15.5279C19.082 14.4612 19.3594 13.1861 19.2084 11.9264C19.0573 10.6668 18.4874 9.50312 17.5987 8.6398H21.3125C21.4948 8.6398 21.6697 8.56393 21.7986 8.42889C21.9276 8.29385 22 8.1107 22 7.91973C22 7.72875 21.9276 7.5456 21.7986 7.41056C21.6697 7.27552 21.4948 7.19965 21.3125 7.19965H16.7091L13.3541 1.3901C12.283 -0.463367 9.71733 -0.463367 8.6476 1.3901L0.0993627 16.1876C0.0525965 16.2685 0.0215099 16.3583 0.00787793 16.4519C-0.00575402 16.5454 -0.00166446 16.6408 0.0199132 16.7327C0.0414908 16.8246 0.080134 16.9111 0.133636 16.9873C0.187139 17.0636 0.254452 17.128 0.331734 17.177C0.409015 17.226 0.494752 17.2585 0.584047 17.2728C0.673343 17.2871 0.764449 17.2828 0.852164 17.2602C0.939879 17.2376 1.02249 17.1971 1.09527 17.1411C1.16805 17.085 1.22958 17.0145 1.27634 16.9336L9.8232 2.13466ZM14.0939 8.6398C15.0967 8.6398 16.0585 9.05705 16.7676 9.79977C17.4767 10.5425 17.8751 11.5498 17.8751 12.6002C17.8751 13.6506 17.4767 14.6579 16.7676 15.4006C16.0585 16.1433 15.0967 16.5606 14.0939 16.5606C13.091 16.5606 12.1293 16.1433 11.4202 15.4006C10.7111 14.6579 10.3127 13.6506 10.3127 12.6002C10.3127 11.5498 10.7111 10.5425 11.4202 9.79977C12.1293 9.05705 13.091 8.6398 14.0939 8.6398Z" fill="#A3A5AF"/>
+                    </svg>
+                        
+                    {% for dropdown in league_types %}
+                        {% if dropdown.league == league.id %}
+                            <span>{% with dropdown.types|first as first_type %}{{ first_type.name }}{% endwith %}</span>
+                        {% endif %}       
+                    {% endfor %}
+
+                </button>
+                <ul class="dropdown-menu league_list_main" id="league_list_main" aria-labelledby="dropdownMenu2" data-identifier={{ league.id }}>
+                    {% for dropdown in league_types %}
+                        {% if dropdown.league == league.id %}
+                            {% for types in dropdown.types %}
+                                <li data-value="{{ types.data }}">
+                                    {{ types.name }}
+                                </li> 
+                            {% endfor %} 
+                        {% endif %}
+                    {% endfor %}  
+                </ul>
+            </div>
+            {% if league in user.premium.watchlist.all %}
+                <button class="watchlisted" data-stage="remove" @click="addWatchlist($event,{{league.id}})">
+                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.4 17.9149C1.06667 18.0522 0.75 18.0224 0.45 17.8254C0.15 17.6284 0 17.3408 0 16.9626V2.05919C0 1.49291 0.196 1.00797 0.588 0.604373C0.98 0.200772 1.45067 -0.000684648 2 1.74804e-06H12C12.55 1.74804e-06 13.021 0.201802 13.413 0.605403C13.805 1.009 14.0007 1.4936 14 2.05919V16.9626C14 17.3401 13.85 17.6277 13.55 17.8254C13.25 18.023 12.9333 18.0529 12.6 17.9149L7 15.4439L1.4 17.9149Z"/>
+                    </svg>                                    
+                </button>
+            {% else %}
+                <button class="watchlist" data-stage="add" @click="addWatchlist($event,{{league.id}})">
+                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.4 17.9149C1.06667 18.0522 0.75 18.0224 0.45 17.8254C0.15 17.6284 0 17.3408 0 16.9626V2.05919C0 1.49291 0.196 1.00797 0.588 0.604373C0.98 0.200772 1.45067 -0.000684648 2 1.74804e-06H12C12.55 1.74804e-06 13.021 0.201802 13.413 0.605403C13.805 1.009 14.0007 1.4936 14 2.05919V16.9626C14 17.3401 13.85 17.6277 13.55 17.8254C13.25 18.023 12.9333 18.0529 12.6 17.9149L7 15.4439L1.4 17.9149Z"/>
+                    </svg> 
+                </button>
+            {% endif %}
+
         </div>
     </header>
     <div class="table-responsive table-container">
@@ -122,7 +134,11 @@
                         {% endfor %}
                     {% endif %}
                 {% empty %}
-                    <tr><td>No picks now,check back later</td></tr>
+                    {% if user.type == "premium" %}
+                        <tr><td>No picks now,check back later</td></tr>
+                    {% elif user.type == "freemium" %}
+                        <tr><td>No picks now for your user type,consider upgrading to see more</td></tr>
+                    {% endif %}
                 {% endfor %}
             </tbody>
         </table>
