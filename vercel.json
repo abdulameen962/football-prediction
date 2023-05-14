@@ -1,29 +1,59 @@
 {
-    "builds": [{
-            "src": "start-celery.sh",
-            "use": "@vercel/python",
-            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-        },
+
+    "builds": [
+
         {
+
             "src": "football/wsgi.py",
+
             "use": "@vercel/python",
+
             "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+
         },
+
         {
+
+            "src": "start-celery.sh",
+
+            "use": "@vercel/python",
+
+            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+
+        },
+
+        {
+
             "src": "build.sh",
+
             "use": "@vercel/static-build",
+
             "config": {
+
                 "distDir": "staticfiles"
+
             }
+
         }
+
     ],
-    "routes": [{
-            "src": "/static/(.*)",
-            "dest": "/static/$1"
-        },
+
+    "routes": [
+
         {
+
+            "src": "/static/(.*)",
+
+            "dest": "/static/$1"
+
+        },
+
+        {
+
             "src": "/(.*)",
+
             "dest": "football/wsgi.py"
+
         }
 
     ]
