@@ -78,11 +78,13 @@
                                             </button>
                                             <ul class="dropdown-menu notification_list_main" aria-labelledby="dropdownMenu2">
                                                 {% for league in leagues %}
-                                                  <li>
-                                                    <a href="{% url 'leagues' league.id %}">
-                                                        {{ league.league }}
-                                                    </a>
-                                                  </li>
+                                                    {% if league.prediction.all.count > 0 %}
+                                                        <li>
+                                                            <a href="{% url 'leagues' league.id %}">
+                                                                {{ league.league }}
+                                                            </a>
+                                                        </li>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </ul>
                                         </div>
