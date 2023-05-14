@@ -1904,6 +1904,9 @@ section.dashboard_nav {
               font-size: 16px; } }
           section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form form div.row {
             width: 100%; }
+            @media screen and (min-width: 0px) and (max-width: 991px) {
+              section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form form div.row {
+                margin: 0; } }
             @media screen and (min-width: 0px) and (max-width: 740px) {
               section.dashboard_nav div.body_main div.profile_main div.profile_body div.info-form form div.row > div {
                 margin: 10px 0px;
@@ -2076,7 +2079,17 @@ nav {
     nav div.container-fluid div ul li {
       list-style-type: none;
       transition: all 0.5s ease;
-      margin-right: 35px; }
+      margin-right: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      nav div.container-fluid div ul li div.dropdown button {
+        background: none;
+        margin: 0;
+        padding: 0;
+        border: none; }
+        nav div.container-fluid div ul li div.dropdown button span {
+          color: rgba(53, 55, 69, 0.7); }
       nav div.container-fluid div ul li a {
         color: rgba(53, 55, 69, 0.7);
         font-size: 16px;

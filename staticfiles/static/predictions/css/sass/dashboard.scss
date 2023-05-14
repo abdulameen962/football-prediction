@@ -700,6 +700,9 @@ section.dashboard_nav {
                         }
                         div.row {
                             width: 100%;
+                            @include respond(tab) {
+                                margin: 0;
+                            }
                             &>div {
                                 @include respond(lphone) {
                                     margin: 10px 0px;

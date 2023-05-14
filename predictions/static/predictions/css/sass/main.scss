@@ -104,6 +104,17 @@ nav {
                     list-style-type: none;
                     @include transition;
                     margin-right: 35px;
+                    @include flex(no);
+                    div.dropdown {
+                        button {
+                            background: none;
+                            @include mp;
+                            border: none;
+                            span {
+                                color: rgba($dark, 0.7);
+                            }
+                        }
+                    }
                     a {
                         color: rgba($dark, 0.7);
                         font-size: 16px;
