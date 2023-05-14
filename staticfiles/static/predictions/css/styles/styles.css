@@ -1691,10 +1691,6 @@ section.dashboard_nav {
               fill: white; }
       section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header {
         margin-bottom: 30px; }
-        @media screen and (min-width: 0px) and (max-width: 740px) {
-          section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header > h3 {
-            width: 50%;
-            margin: 0; } }
         section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right {
           display: flex;
           justify-content: center;
@@ -1702,7 +1698,7 @@ section.dashboard_nav {
           justify-content: flex-end; }
           @media screen and (min-width: 0px) and (max-width: 740px) {
             section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right {
-              width: 50%; } }
+              justify-content: flex-start; } }
           section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right > button {
             background: none;
             border: none;
