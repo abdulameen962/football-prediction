@@ -1711,7 +1711,8 @@ section.dashboard_nav {
           section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right div.dropdown {
             margin-right: 15px;
             display: flex;
-            align-items: center; }
+            align-items: center;
+            padding-top: 5px; }
             section.dashboard_nav div.body_main div.dashboard-single div.dashboard-single-main > header div.league_right div.dropdown > button svg {
               margin-right: 5px; }
       section.dashboard_nav div.body_main div.dashboard-single nav.pagination {
