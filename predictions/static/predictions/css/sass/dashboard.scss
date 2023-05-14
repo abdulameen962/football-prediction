@@ -423,11 +423,18 @@ section.dashboard_nav {
             div.dashboard-single-main {
                 &>header {
                     margin-bottom: 30px;
+                    &>h3 {
+                        @include respond(lphone) {
+                            width: 50%;
+                            margin: 0;
+                        }
+                    }
                     div.league_right {
                         @include flex(no);
                         justify-content: flex-end;
                         @include respond(lphone) {
-                            justify-content: flex-start;
+                            // justify-content: flex-start;
+                            width: 50%;
                         }
                         &>button {
                             background: none;

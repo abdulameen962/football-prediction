@@ -14,7 +14,7 @@
         {
             "src": "start-celery.sh",
             "use": "@vercel/python",
-            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+            "config": { "maxLambdaSize": "15mb", "runtime": "python3.9", "requirements": "requirements.txt" }
         }
     ],
     "routes": [{
