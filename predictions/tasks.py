@@ -5,7 +5,6 @@ import datetime
 from celery.schedules import crontab
 from datetime import timedelta,datetime
 
-today = timezone.now()
 run_every_hour = crontab(hour='23')
 
 @shared_task
@@ -17,6 +16,7 @@ def prediction_task_handler():
             created = predict.updated
             created = created.strftime("%m/%d/%Y %I:%M %p")
             created = datetime.strptime(created,"%m/%d/%Y %I:%M %p")
+            today = timezone.now()
             today = today.strftime("%m/%d/%Y %I:%M %p")
             today = datetime.strptime(today,"%m/%d/%Y %I:%M %p")
             difference = today - created
