@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login,logout,authenticate
 import json
+import urllib3
 from urllib.request import urlopen
 from allauth.account.models  import EmailAddress
 from django.contrib.sites.shortcuts import get_current_site
@@ -897,9 +898,12 @@ def profile(request):
 def live_scores(request):
     user = request.user
     if user.is_authenticated and user.type == "premium" and user.premium.activated:
-        # response = urlopen(settings.LIVE_SCORE).read()
-        # live_scores = live_scores["data"]
-        # live_scores = live_scores["match"]
+        response = urlopen(settings.LIVE_SCORE).read()
+        true = "true"
+        null = "null"
+        live_scores = response.decode()
+        live_scores = eval(live_scores)
+        live_scores = live_scores["data"]["match"]
         live_scores = []
         return render(request,"predictions/live-scores.html",{
             "live_scores": live_scores,

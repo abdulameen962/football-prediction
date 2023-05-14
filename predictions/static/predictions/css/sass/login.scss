@@ -46,36 +46,39 @@ input[type="submit"] {
     }
 }
 
-ul.socialaccount_providers {
+div.socialaccount_ballot {
     @include flex(no);
-    li {
-        list-style-type: none;
-        margin: 10px 8px;
-        a {
-            @include link;
-            @include defaultbutton;
-            @include secondarybutton;
-            @include flex(no);
-            display: none;
+    ul.socialaccount_providers {
+        @include flex(no);
+        width: 320px;
+        max-width: 90%;
+        li {
+            list-style-type: none;
+            margin: 10px 8px;
             width: 100%;
-            font-size: 20px;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            @include mp;
-            @include respond(phone) {
-                font-size: 18px;
-                width: 45px;
-                height: 45px;
+            a {
+                @include link;
+                @include defaultbutton;
+                @include secondarybutton;
+                @include flex(no);
+                display: none;
+                width: 100%;
+                font-size: 20px;
+                border-radius: 30px;
                 @include mp;
-            }
-            img {
-                width: 25px;
-                height: 25px;
-                @include mp;
+                padding: 15px 0px;
                 @include respond(phone) {
-                    width: 20px;
-                    height: 20px;
+                    font-size: 18px;
+                }
+                img {
+                    width: 25px;
+                    height: 25px;
+                    @include mp;
+                    margin-left: 5px;
+                    @include respond(phone) {
+                        width: 20px;
+                        height: 20px;
+                    }
                 }
             }
         }

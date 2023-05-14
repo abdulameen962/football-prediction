@@ -65,9 +65,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.instagram',
+    # 'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.facebook',
     "django_extensions",
     'celery',
 
@@ -144,30 +144,30 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         }
     },
-    'instagram': {
-        "VERIFIED_EMAIL": True,
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'APP': {
-            'client_id': os.environ.get("INSTA_CLIENT_ID"),
-            'secret': os.environ.get("INSTA_CLIENT_SECRET"),
-            'key': ''
-        }
-    },
-    'facebook': {
-        "VERIFIED_EMAIL": True,
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'APP': {
-            'client_id': os.environ.get("FB_CLIENT_ID"),
-            'secret': os.environ.get("FB_CLIENT_SECRET"),
-            'key': ''
-        }
-    },
+    # 'instagram': {
+    #     "VERIFIED_EMAIL": True,
+    #     'SCOPE': [
+    #         'profile',
+    #         'email',
+    #     ],
+    #     'APP': {
+    #         'client_id': os.environ.get("INSTA_CLIENT_ID"),
+    #         'secret': os.environ.get("INSTA_CLIENT_SECRET"),
+    #         'key': ''
+    #     }
+    # },
+    # 'facebook': {
+    #     "VERIFIED_EMAIL": True,
+    #     'SCOPE': [
+    #         'profile',
+    #         'email',
+    #     ],
+    #     'APP': {
+    #         'client_id': os.environ.get("FB_CLIENT_ID"),
+    #         'secret': os.environ.get("FB_CLIENT_SECRET"),
+    #         'key': ''
+    #     }
+    # },
 }
 
 cloudinary.config( 
