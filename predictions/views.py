@@ -904,7 +904,7 @@ def live_scores(request):
         live_scores = response.decode()
         live_scores = eval(live_scores)
         live_scores = live_scores["data"]["match"]
-        live_scores = []
+        # live_scores = []
         return render(request,"predictions/live-scores.html",{
             "live_scores": live_scores,
         })

@@ -135,26 +135,28 @@
     {% block footer %} 
     <footer data-aos="fade-up" data-aos-duration="1000">
         <div class="container-fluid resize">
-            <ul class="footer-nav nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}#how">How it works</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}#predictions">Predictions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}#membership">Membership</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                </li>
-                <li class="nav-item link_show">
-                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
-                </li>
-            </ul>
+            {% if user.is_authenticated == False %}
+                <ul class="footer-nav nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}#how">How it works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}#predictions">Predictions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}#membership">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                    </li>
+                    <li class="nav-item link_show">
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
+                    </li>
+                </ul>
+            {% endif %}
             <div class="footer-main">
                 <div class="text headers">
                     <h2>Frankly Predictions</h2>

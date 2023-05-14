@@ -1351,8 +1351,12 @@ section.dashboard_nav div.body_main div.dashboard-single div.latest_predictions_
   border: 1px solid #E7E9EE;
   min-width: 220px; }
   .dropdown-menu li {
+    margin-top: 0px;
     padding: 4px 0px;
     font-size: 16px; }
+    .dropdown-menu li a:hover, .dropdown-menu li a:focus, .dropdown-menu li a:visited {
+      background: none;
+      color: #353745; }
 
 div.dropdown {
   transition: all 0.5s ease; }
@@ -1530,22 +1534,22 @@ section.dashboard_nav {
         @media screen and (min-width: 0px) and (max-width: 991px) {
           section.dashboard_nav aside > section ul.navbar_main_content {
             padding: 0px 5px; } }
-        section.dashboard_nav aside > section ul.navbar_main_content li {
+        section.dashboard_nav aside > section ul.navbar_main_content > li {
           margin-top: 25px; }
-          section.dashboard_nav aside > section ul.navbar_main_content li a,
-          section.dashboard_nav aside > section ul.navbar_main_content li div {
+          section.dashboard_nav aside > section ul.navbar_main_content > li a,
+          section.dashboard_nav aside > section ul.navbar_main_content > li div {
             color: #353745; }
-            section.dashboard_nav aside > section ul.navbar_main_content li a svg path,
-            section.dashboard_nav aside > section ul.navbar_main_content li div svg path {
+            section.dashboard_nav aside > section ul.navbar_main_content > li a svg path,
+            section.dashboard_nav aside > section ul.navbar_main_content > li div svg path {
               fill: #A3A5AF; }
-            section.dashboard_nav aside > section ul.navbar_main_content li a:hover,
-            section.dashboard_nav aside > section ul.navbar_main_content li div:hover {
+            section.dashboard_nav aside > section ul.navbar_main_content > li a:hover,
+            section.dashboard_nav aside > section ul.navbar_main_content > li div:hover {
               padding: 10px 13px;
               background: #FFA90F;
               color: white;
               border-radius: 8px; }
-            section.dashboard_nav aside > section ul.navbar_main_content li a:hover svg > path,
-            section.dashboard_nav aside > section ul.navbar_main_content li div:hover svg > path {
+            section.dashboard_nav aside > section ul.navbar_main_content > li a:hover svg > path,
+            section.dashboard_nav aside > section ul.navbar_main_content > li div:hover svg > path {
               fill: white; }
     section.dashboard_nav aside > .active_section {
       z-index: 3;

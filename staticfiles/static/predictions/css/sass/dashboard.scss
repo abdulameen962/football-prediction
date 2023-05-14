@@ -13,8 +13,17 @@ $aside_inactive:240px;
     @include background;
     min-width: 220px;
     li {
+        margin-top: 0px;
         padding: 4px 0px;
         font-size: 16px;
+        a {
+            &:hover,
+            &:focus,
+            &:visited {
+                background: none;
+                color: $dark;
+            }
+        }
     }
 }
 
@@ -200,7 +209,7 @@ section.dashboard_nav {
                 @include respond(tab) {
                     padding: 0px 5px;
                 }
-                li {
+                &>li {
                     margin-top: 25px;
                     // @include respond(tab) {
                     //     margin-top: 0px;
