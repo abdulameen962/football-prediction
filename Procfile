@@ -1,0 +1,1 @@
+worker : celery -A football worker -l info

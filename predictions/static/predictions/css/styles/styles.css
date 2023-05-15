@@ -2083,13 +2083,18 @@ nav {
       display: flex;
       justify-content: center;
       align-items: center; }
+      @media screen and (min-width: 0px) and (max-width: 991px) {
+        nav div.container-fluid div ul li {
+          align-items: flex-start;
+          justify-content: flex-start; } }
       nav div.container-fluid div ul li div.dropdown button {
         background: none;
         margin: 0;
         padding: 0;
         border: none; }
         nav div.container-fluid div ul li div.dropdown button span {
-          color: rgba(53, 55, 69, 0.7); }
+          color: rgba(53, 55, 69, 0.7);
+          margin: 0; }
       nav div.container-fluid div ul li a {
         color: rgba(53, 55, 69, 0.7);
         font-size: 16px;

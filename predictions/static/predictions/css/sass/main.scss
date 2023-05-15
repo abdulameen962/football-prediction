@@ -105,6 +105,10 @@ nav {
                     @include transition;
                     margin-right: 35px;
                     @include flex(no);
+                    @include respond(tab) {
+                        align-items: flex-start;
+                        justify-content: flex-start;
+                    }
                     div.dropdown {
                         button {
                             background: none;
@@ -112,6 +116,7 @@ nav {
                             border: none;
                             span {
                                 color: rgba($dark, 0.7);
+                                margin: 0;
                             }
                         }
                     }
