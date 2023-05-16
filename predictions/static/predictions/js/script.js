@@ -1023,7 +1023,7 @@ app.component("live_score", {
         }
     },
     template: `
-    <div class="dashboard-single live_scores row p-4" v-if="fElement.length > 0" v-for="score in fElement">
+    <div class="dashboard-single live_scores row p-4" v-for="score in fElement">
         <div class="col-sm-12 col-md-5 col-lg-5 row flex-row justify-content-center align-items-center home">
             <div :class="'home_status' + ' ' + 'col-sm-12 col-md-5 col-lg-5' + ' ' + score.status">
                 <button v-if="score.status == 'IN PLAY'" class="btn rounded btn-danger text-white home_button">{{ score.status }}</button>
@@ -1057,11 +1057,6 @@ app.component("live_score", {
                 <span class="ps-3">{{ score.location }}</span></p>
             </div>
         </div>
-    </div>
-    <div class="dashboard-single live_scores p-4" v-else-if="fElement.length == 0">
-        <header>
-            <p> No live scores for the requested league/search term </p>
-        </header>
     </div>
     `
 })
