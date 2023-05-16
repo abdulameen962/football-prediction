@@ -22,7 +22,7 @@ urlpatterns = [
     path("notifications/",views.NotificationsView.as_view(),name="notifications"),
     path("leagues/",views.leagues.as_view(),name="all_leagues"),
     path("leagues/<int:id>/",views.league_single,name="leagues"),
-    path("live-scores/",views.live_scores,name="live_scores"),
+    path("live-scores/<str:league>/",views.live_scores,name="live_scores"),
     path("watchlists/",views.watchlist.as_view(),name="watchlist"),
     path("support/",views.support.as_view(),name="support"),
     path("settings/",views.profile,name="settings"),
@@ -37,5 +37,5 @@ urlpatterns = [
     path("search/",views.Search.as_view(),name="search"),
     # path("get-leagues/",views.get_leagues.as_view(),name="get_leagues"),
     path("get-type-league-info/<str:method>/<int:league_id>/",views.get_league_info,name="get_league_info"),
-    path("add-watchlist/<int:id>/",views.add_watchlist,name="add_Watchlist")
+    path("add-watchlist/<int:id>/",views.add_watchlist,name="add_Watchlist"),
 ]

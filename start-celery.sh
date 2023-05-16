@@ -3,4 +3,4 @@ echo "Building the project..."
 pip install -r requirements.txt
 
 echo "Celery tasks adding"
-celery -A football worker -l info
+celery -A football worker -l info -P eventlet

@@ -2,6 +2,7 @@ const app = Vue.createApp({
     delimiters: ["[[", "]]"],
     data() {
         return {
+            searchInput: "",
             works: [{
                     class: "step step1",
                     header: "Create Account",
@@ -437,7 +438,7 @@ const app = Vue.createApp({
                                 }
                                 //for show more li
                                 const li = document.createElement("li");
-                                li.innerHTML = `<a href="/notifications/">Show All</a>`
+                                li.innerHTML = `<a href="/notifications/" class="text-dark">Show All</a>`
                                 li.classList.add("show_notifications")
                                 ul.append(li);
                             } else if (notification.message) {
@@ -596,7 +597,11 @@ const app = Vue.createApp({
                                     if (e.dataset.value == "correct_score") {
                                         var tr1 = document.createElement("td");
                                         tr1.className = "w-auto";
-                                        tr1.innerHTML = `${all_predictions[i].correct_score}`;
+                                        if (all_predictions[i].correct_score == "?") {
+                                            tr1.innerHTML = `<a href="/activate-subscription/">${all_predictions[i].correct_score}</a>`;
+                                        } else {
+                                            tr1.innerHTML = `${all_predictions[i].correct_score}`;
+                                        }
                                         var tr2 = document.createElement("td");
                                         tr2.className = "w-auto";
                                         if (all_predictions[i].tip == "home") {
@@ -634,17 +639,29 @@ const app = Vue.createApp({
                                     } else if (e.dataset.value == "halftime_correct_score") {
                                         var tr1 = document.createElement("td");
                                         tr1.className = "w-auto";
-                                        tr1.innerHTML = `${all_predictions[i].halftime_correct_score}`;
+                                        if (all_predictions[i].halftime_correct_score == "?") {
+                                            tr1.innerHTML = `<a href="/activate-subscription/">${all_predictions[i].halftime_correct_score}</a>`;
+                                        } else {
+                                            tr1.innerHTML = `${all_predictions[i].halftime_correct_score}`;
+                                        }
                                         tr.append(tr1);
                                     } else if (e.dataset.value == "combo_draws") {
                                         var tr1 = document.createElement("td");
                                         tr1.className = "w-auto";
-                                        tr1.innerHTML = `${all_predictions[i].combo_draws}`;
+                                        if (all_predictions[i].combo_draws == "?") {
+                                            tr1.innerHTML = `<a href="/activate-subscription/">${all_predictions[i].combo_draws}</a>`;
+                                        } else {
+                                            tr1.innerHTML = `${all_predictions[i].combo_draws}`;
+                                        }
                                         tr.append(tr1);
                                     } else if (e.dataset.value == "combo_tickets") {
                                         var tr1 = document.createElement("td");
                                         tr1.className = "w-auto";
-                                        tr1.innerHTML = `${all_predictions[i].combo_tickets}`;
+                                        if (all_predictions[i].combo_tickets == "?") {
+                                            tr1.innerHTML = `<a href="/activate-subscription/">${all_predictions[i].combo_tickets}</a>`;
+                                        } else {
+                                            tr1.innerHTML = `${all_predictions[i].combo_tickets}`;
+                                        }
                                         tr.append(tr1);
                                     }
 
@@ -831,15 +848,21 @@ app.component("predict", {
     props: {
         predict: Object,
         command: String,
+        type: String,
+        href: String,
     },
     template: `
         <tr class="tr_element">
             <td class="w-auto">{{ predict.home }}</td>
             <td class="w-auto">{{ predict.away }}</td>
-            <td class="w-auto" v-if="command == 'correct_score'">{{ predict.correct_score }} </td>
-            <td class="w-auto" v-else-if="command == 'halftime_correct_score'">{{ predict.halftime_correct_score }} </td>
-            <td class="w-auto" v-else-if="command == 'combo_draws'">{{ predict.combo_draws }} </td>
-            <td class="w-auto" v-else>{{ predict.combo_tickets }} </td>
+            <td class="w-auto" v-if="command == 'correct_score' && type=='premium'">{{ predict.correct_score }} </td>
+            <td class="w-auto" v-else-if="command == 'correct_score' && type=='freemium'"> <a :href="href"> ? </a> </td>
+            <td class="w-auto" v-else-if="command == 'halftime_correct_score' && type=='premium'">{{ predict.halftime_correct_score }} </td>
+            <td class="w-auto" v-else-if="command == 'halftime_correct_score' && type=='freemium'"> <a :href="href"> ? </a> </td>
+            <td class="w-auto" v-else-if="command == 'combo_draws' && type=='premium'">{{ predict.combo_draws }} </td>
+            <td class="w-auto" v-else-if="command == 'combo_draws' && type=='freemium'"> <a :href="href"> ? </a> </td>
+            <td class="w-auto" v-else-if="command == 'combo_tickets' && type=='premium'">{{ predict.combo_tickets }} </td>
+            <td class="w-auto" v-else> <a :href="href"> ? </a>  </td>
             <td class="w-auto" v-if="predict.tip == 'home' && command == 'correct_score'">
                 <svg width="54" height="50" viewBox="0 0 54 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" y="0.5" width="53" height="49" rx="12.5" fill="#03B962"/>
@@ -866,7 +889,8 @@ app.component("predict", {
                     <path d="M21.4347 32H20.9347V32.5H21.4347V32ZM21.4347 17.4545V16.9545H20.9347V17.4545H21.4347ZM30.1847 18.3281L29.9398 18.7641L29.9422 18.7654L30.1847 18.3281ZM32.5852 20.821L32.1408 21.05L32.1408 21.05L32.5852 20.821ZM32.5781 28.6193L32.134 28.3896L32.1333 28.3911L32.5781 28.6193ZM30.1562 31.1264L29.9148 30.6886L29.9139 30.6891L30.1562 31.1264ZM24.0696 29.7202H23.5696V30.2202H24.0696V29.7202ZM28.7713 29.1662L29.0107 29.6051L29.0131 29.6038L28.7713 29.1662ZM30.2983 27.4972L30.7523 27.7067L30.7528 27.7056L30.2983 27.4972ZM30.2983 21.9432L29.8443 22.1527L29.8448 22.1538L30.2983 21.9432ZM28.7855 20.2884L28.5422 20.7252L28.5459 20.7272L28.7855 20.2884ZM24.0696 19.7344V19.2344H23.5696V19.7344H24.0696ZM26.3636 31.5H21.4347V32.5H26.3636V31.5ZM21.9347 32V17.4545H20.9347V32H21.9347ZM21.4347 17.9545H26.4631V16.9545H21.4347V17.9545ZM26.4631 17.9545C27.8397 17.9545 28.9921 18.2318 29.9398 18.7641L30.4295 17.8922C29.3033 17.2597 27.9747 16.9545 26.4631 16.9545V17.9545ZM29.9422 18.7654C30.8952 19.2939 31.6262 20.0514 32.1408 21.05L33.0297 20.592C32.4269 19.4221 31.5574 18.5176 30.4271 17.8909L29.9422 18.7654ZM32.1408 21.05C32.6553 22.0486 32.9233 23.2637 32.9233 24.7131H33.9233C33.9233 23.1416 33.6326 21.762 33.0297 20.592L32.1408 21.05ZM32.9233 24.7131C32.9233 26.1668 32.6531 27.3864 32.134 28.3896L33.0222 28.8491C33.6301 27.6742 33.9233 26.2897 33.9233 24.7131H32.9233ZM32.1333 28.3911C31.6192 29.393 30.8821 30.155 29.9148 30.6886L30.3977 31.5642C31.5421 30.933 32.4196 30.0237 33.023 28.8476L32.1333 28.3911ZM29.9139 30.6891C28.9521 31.2219 27.7754 31.5 26.3636 31.5V32.5C27.9064 32.5 29.2581 32.1957 30.3986 31.5638L29.9139 30.6891ZM24.0696 30.2202H26.2358V29.2202H24.0696V30.2202ZM26.2358 30.2202C27.3073 30.2202 28.2407 30.0251 29.0107 29.6051L28.5319 28.7272C27.9477 29.0459 27.1908 29.2202 26.2358 29.2202V30.2202ZM29.0131 29.6038C29.7884 29.1755 30.3692 28.5367 30.7523 27.7067L29.8443 27.2876C29.5456 27.9349 29.1084 28.4088 28.5295 28.7285L29.0131 29.6038ZM30.7528 27.7056C31.1324 26.8777 31.3097 25.8732 31.3097 24.7131H30.3097C30.3097 25.7783 30.146 26.6299 29.8438 27.2887L30.7528 27.7056ZM31.3097 24.7131C31.3097 23.5533 31.1326 22.5523 30.7518 21.7325L29.8448 22.1538C30.1459 22.8018 30.3097 23.6475 30.3097 24.7131H31.3097ZM30.7523 21.7337C30.3697 20.9048 29.7937 20.2692 29.0252 19.8495L28.5459 20.7272C29.1126 21.0366 29.5451 21.5043 29.8443 22.1527L30.7523 21.7337ZM29.0289 19.8516C28.2726 19.4302 27.3593 19.2344 26.3139 19.2344V20.2344C27.2383 20.2344 27.9726 20.4078 28.5422 20.7251L29.0289 19.8516ZM26.3139 19.2344H24.0696V20.2344H26.3139V19.2344ZM23.5696 19.7344V29.7202H24.5696V19.7344H23.5696Z" fill="white"/>
                     <rect x="0.5" y="0.5" width="53" height="49" rx="12.5" stroke="white"/>
                 </svg>                                                
-            </td>                                     
+            </td>            
+            <td class="w-auto"> <button class="btn btn-info"> {{ predict.prediction_status }} </button> </td>
         </tr>
     
     
@@ -950,6 +974,90 @@ app.component("user_dashboard", {
             </div>
     </div>
     
+    `
+})
+
+
+app.component("live_score", {
+    props: {
+        scores: Array,
+        filterKey: String,
+    },
+    data: function() {
+        return {
+            sortKey: ""
+        }
+    },
+    computed: {
+        fElement: function() {
+            const filterKey = this.filterKey && this.filterKey.toLowerCase()
+
+            let entries = this.scores
+
+            if (filterKey) {
+                entries = entries.filter(function(row) {
+                    return Object.keys(row).some(function(key) {
+                        return (
+                            String(row[key]).toLowerCase().indexOf(filterKey) > -1
+                        )
+                    })
+                })
+            }
+
+            if (entries != "") {
+                return entries;
+            } else {
+                // alert("the search term you entered doesn't exist");
+                filterKey = "";
+                return entries;
+            }
+        },
+        sortColumns() {
+            const sortedColumns = {}
+
+            this.columns.forEach(function(key) {
+                sortedColumns[key] = 1
+            })
+
+            return sortedColumns
+        }
+    },
+    template: `
+    <div class="dashboard-single live_scores row p-4" v-for="score in fElement">
+        <div class="home col-sm-12 col-md-5 col-lg-5 row flex-row justify-content-center align-items-center">
+            <div :class="'home_status' + ' ' + 'col-sm-12 col-md-5 col-lg-5' + ' ' + score.status">
+                <button v-if="score.status == 'IN PLAY'" class="btn rounded btn-danger text-white home_button">{{ score.status }}</button>
+                <button v-else-if="score.status == 'NOT STARTED'" class="btn rounded btn-light home_button">{{ score.status }}</button>
+                <button v-else-if="score.status == 'HALF TIME BREAK'" class="btn rounded btn-warning text-white home_button">{{ score.status }}</button>
+                <button v-else-if="score.status == 'ADDED TIME'" class="btn rounded btn-info text-white home_button">{{ score.status }}</button>
+                <button v-else-if="score.status == 'FINISHED'" class="btn rounded btn-success text-white home_button">{{ score.status }}</button>
+                <button v-else class="btn rounded btn-primary text-white home_button">{{ score.status }}</button>
+
+            </div>
+
+            <div class="home_current_time col-2">
+                <p class="p-1 rounded-pill text-dark text-center"> {{ score.time }}' </p>
+            </div>
+            <div class="home_home_team col-sm-12 col-md-5 col-md-5">
+                <p>{{ score.home_name }}</p>
+            </div>
+        </div>
+        <div class="score d-flex flew-row justify-content-center align-items-center col-sm-12 col-md-2 col-lg-2">
+            <button class="btn btn-light"> {{ score.score }} </button>
+        </div>
+        <div class="away col-sm-12 col-md-5 col-lg-5 row flex-row justify-content-center align-items-center">
+            <div class="away_team col-sm-12 col-md-5 col-lg-5">
+                <p> {{ score.away_name }} </p>
+            </div>
+            <div class="away_location col-sm-12 col-md-7 col-lg-7">
+                <p><svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 0C3.13 0 0 2.817 0 6.3C0 11.025 7 18 7 18C7 18 14 11.025 14 6.3C14 2.817 10.87 0 7 0ZM2 6.3C2 3.816 4.24 1.8 7 1.8C9.76 1.8 12 3.816 12 6.3C12 8.892 9.12 12.771 7 15.192C4.92 12.789 2 8.865 2 6.3Z" fill="#808080" fill-opacity="0.8"/>
+                <path d="M7 8.54993C8.38071 8.54993 9.5 7.54257 9.5 6.29993C9.5 5.05729 8.38071 4.04993 7 4.04993C5.61929 4.04993 4.5 5.05729 4.5 6.29993C4.5 7.54257 5.61929 8.54993 7 8.54993Z" fill="#808080" fill-opacity="0.8"/>
+                </svg>                
+                <span class="ps-3">{{ score.location }}</span></p>
+            </div>
+        </div>
+    </div>
     `
 })
 

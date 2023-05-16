@@ -75,6 +75,7 @@
                                         {% endwith %}
                                     {% endif %}
                                 {% endfor %} 
+                                <th class="w-auto" scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,22 +86,22 @@
                                         {% with dropdown.types|first as first_type %}
                                                 {% if first_type.data == "correct_score" %}
                                                     {% if predict.correct_score != "" %}
-                                                        <predict :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
+                                                        <predict :href="{% url 'activate_subscription' %}" :type="{{ user.type }}" :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
                                                     {% endif %}  
 
                                                 {% elif first_type.data == "halftime_correct_score" %}
                                                     {% if predict.halftime_correct_score != "" %}
-                                                        <predict :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
+                                                        <predict :href="{% url 'activate_subscription' %}" :type="{{ user.type }}" :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
                                                     {% endif %} 
 
                                                 {% elif first_type.data == "combo_draws" %}
                                                     {% if predict.combo_draws != "" %}
-                                                        <predict :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
+                                                        <predict :href="{% url 'activate_subscription' %}" :type="{{ user.type }}" :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
                                                     {% endif %} 
 
                                                 {% elif first_type.data == "combo_tickets" %}
                                                     {% if predict.combo_tickets != "" %}
-                                                        <predict :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
+                                                        <predict :href="{% url 'activate_subscription' %}" :type="{{ user.type }}" :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
                                                     {% endif %} 
                                                 {% endif %}
                                         {% endwith %}
@@ -113,22 +114,22 @@
                                             {% with dropdown.types|first as first_type %}
                                                     {% if first_type.data == "correct_score" %}
                                                         {% if predict.correct_score != "" %}
-                                                            <predict :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
+                                                            <predict :href="{% url 'activate_subscription' %}" :type="{{ user.type }}" :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
                                                         {% endif %}  
 
                                                     {% elif first_type.data == "halftime_correct_score" %}
                                                         {% if predict.halftime_correct_score != "" %}
-                                                            <predict :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
+                                                            <predict :href="{% url 'activate_subscription' %}" :type="{{ user.type }}" :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
                                                         {% endif %} 
 
                                                     {% elif first_type.data == "combo_draws" %}
                                                         {% if predict.combo_draws != "" %}
-                                                            <predict :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
+                                                            <predict :href="{% url 'activate_subscription' %}" :type="{{ user.type }}" :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
                                                         {% endif %} 
 
                                                     {% elif first_type.data == "combo_tickets" %}
                                                         {% if predict.combo_tickets != "" %}
-                                                            <predict :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
+                                                            <predict :href="{% url 'activate_subscription' %}" :type="{{ user.type }}" :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
                                                         {% endif %} 
                                                     {% endif %}
                                             {% endwith %}

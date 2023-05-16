@@ -410,6 +410,9 @@ section.dashboard_nav {
             div.latest_predictions_main {
                 @extend .padding;
             }
+            button.live_button {
+                @include border(rgba($dark, .2));
+            }
             &>header {
                 ul.quick-actions {
                     padding: 30px 0px;
@@ -515,6 +518,29 @@ section.dashboard_nav {
                             }
                         }
                     }
+                }
+            }
+        }
+        div.live_scores {
+            margin: 20px 0px 0px 0px;
+            div.home {
+                div.home_status {
+                    button.home_button {
+                        font-size: 14px;
+                    }
+                }
+                div.home_current_time {
+                    p {
+                        @include border(rgba($dark, .2));
+                        font-size: 14px;
+                    }
+                }
+            }
+            div.home_home_team,
+            div.away_team {
+                p {
+                    font-weight: 550;
+                    font-size: 16px;
                 }
             }
         }

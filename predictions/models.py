@@ -100,6 +100,10 @@ class Prediction(models.Model):
         ("draw","DRAW"),
     )
 
+    STATUS_CHOICES = (
+        ("Ongoing","Ongoing"),
+    )
+
     league = models.ForeignKey(League, on_delete=models.PROTECT,related_name="prediction")
     type = models.CharField(choices=TYPE_CHOICES, max_length=50,default="freemium")
     published = models.DateTimeField(auto_now_add=False,default=timezone.now)
@@ -110,6 +114,7 @@ class Prediction(models.Model):
     halftime_correct_score = models.CharField(max_length=50,default=None,null=True,blank=True)
     combo_draws = models.CharField(max_length=50,default=None,null=True,blank=True)
     combo_tickets = models.CharField(max_length=50,default=None,null=True,blank=True)
+    prediction_status = models.CharField(choices=STATUS_CHOICES,default="Ongoing",max_length=50)
     send_mail = models.BooleanField(default=True)
     tip = models.CharField(choices=TIP_CHOICES,max_length=50)
     objects = models.Manager()
@@ -136,6 +141,7 @@ class Prediction(models.Model):
             "home": self.home,
             "away": self.away,
             "tip":self.tip,
+            "status":self.prediction_status,
             "correct_score":self.correct_score,
             "halftime_correct_score": self.halftime_correct_score,
             "combo_draws": self.combo_draws,
@@ -187,3 +193,58 @@ class Notification(models.Model):
     
 
     
+class Completed_Predictions(models.Model):
+    TIP_CHOICES = (
+        ("home","HOME"),
+        ("away","AWAY"),
+        ("draw","DRAW"),
+    )
+
+    STATUS_CHOICES = (
+        ("Completed","Completed"),
+        ("Won","Won"),
+        ("Lost","Lost"),
+    )
+
+    league = models.ForeignKey(League, on_delete=models.PROTECT,related_name="completed_predictions")
+    type = models.CharField(choices=TYPE_CHOICES, max_length=50,default="freemium")
+    published = models.DateTimeField(auto_now_add=False,default=timezone.now)
+    updated = models.DateTimeField(default=timezone.now)
+    home = models.CharField(max_length=50)
+    away = models.CharField(max_length=50)
+    correct_score = models.CharField(max_length=50,default=None,null=True,blank=True)
+    halftime_correct_score = models.CharField(max_length=50,default=None,null=True,blank=True)
+    combo_draws = models.CharField(max_length=50,default=None,null=True,blank=True)
+    combo_tickets = models.CharField(max_length=50,default=None,null=True,blank=True)
+    prediction_status = models.CharField(choices=STATUS_CHOICES,default="Completed",max_length=50)
+    tip = models.CharField(choices=TIP_CHOICES,max_length=50)
+    objects = models.Manager()
+
+    def __str__(self):
+        return f"{self.league.league}"
+
+
+    class Meta:
+        ordering = ("-updated",)
+        verbose_name = "Completed Prediction"
+        verbose_name_plural = "Completed Predictions"
+
+    def get_absolute_url(self):
+        return reverse("leagues", args={self.league.id})
+
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "league": self.league.serialize(),
+            "updated": self.updated.strftime("%m/%d/%Y %I:%M %p"),
+            "type": self.type,
+            "home": self.home,
+            "away": self.away,
+            "tip":self.tip,
+            "prediction_status":self.prediction_status,
+            "correct_score":self.correct_score,
+            "halftime_correct_score": self.halftime_correct_score,
+            "combo_draws": self.combo_draws,
+            "combo_tickets": self.combo_tickets,
+        }    

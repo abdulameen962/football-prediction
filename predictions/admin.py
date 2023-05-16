@@ -24,10 +24,11 @@ class LeagueAdmin(admin.ModelAdmin):
     list_display = ("code","league")
 
 class PredictionAdmin(admin.ModelAdmin):
-    list_display = ("home","away","correct_score","halftime_correct_score")
+    list_display = ("home","away","correct_score","halftime_correct_score","prediction_status")
 
 class NotificationAdmin(admin.ModelAdmin):
     list_display = ("header","message","read","created")
+
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Blog,BlogAdmin)
@@ -37,6 +38,7 @@ admin.site.register(League,LeagueAdmin)
 admin.site.register(Prediction,PredictionAdmin)
 admin.site.register(Tag)
 admin.site.register(Notification,NotificationAdmin)
+admin.site.register(Completed_Predictions,PredictionAdmin)
 
 
 
