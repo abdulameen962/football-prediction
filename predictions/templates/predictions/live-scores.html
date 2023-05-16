@@ -7,9 +7,9 @@
         <header class="row">
             <h2 class="col-sm-12 col-md-6 col-lg-6">Live scores</h2>
             <div class="col-sm-12 col-md-6 col-lg-6 row align-items-center">
-                <div class="col-sm-12 col-md-7 col-lg-7">
+                <div class="col-sm-12 col-md-8 col-lg-8">
                     <div class="input-group">
-                        <span class="input-group-text input-addon" id="addon-wrapping"> 
+                        {% comment %} <span class="input-group-text input-addon" id="addon-wrapping"> 
                             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_79_2)">
                                 <path d="M17.9888 19.729L23.2586 25L25 23.2586L19.729 17.9888C21.3008 16.028 22.1558 13.5892 22.1522 11.0761C22.1522 4.9621 17.1901 0 11.0761 0C4.9621 0 0 4.9621 0 11.0761C0 17.1901 4.9621 22.1522 11.0761 22.1522C13.5892 22.1558 16.028 21.3009 17.9888 19.729ZM17.0757 17.2603C15.4695 18.8221 13.3165 19.6944 11.0761 19.6909C6.3158 19.6909 2.4614 15.8351 2.4614 11.0761C2.4614 6.31584 6.3158 2.46136 11.0761 2.46136C15.8351 2.46136 19.6909 6.31584 19.6909 11.0761C19.6944 13.3165 18.8221 15.4695 17.2603 17.0757L17.0757 17.2603Z" fill="#000000"/>
@@ -20,11 +20,11 @@
                                 </clipPath>
                                 </defs>
                             </svg>                                                                 
-                        </span>   
+                        </span>    {% endcomment %}
                         <input v-model="searchInput" class="form-control p-2" type="search" placeholder="Search for clubs scores etc"/>
                     </div>
                 </div>
-                <div class="dropdown col-sm-12 col-md-5 col-lg-5 d-flex flex-row justify-content-center">
+                <div class="dropdown col-sm-12 col-md-4 col-lg-4 d-flex flex-row justify-content-center live_choices">
                     <button type="button" class="clicker dropdown-toggle border border-1 rounded p-2 live_button" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                         {% if type == "all" %}
                             <span>Choose league</span>
@@ -42,14 +42,13 @@
                 </div>
             </div>
         </header>
-    </div>
-
-    {% if live_scores != None %}
+    </div>  
+    {% if live_scores|length > 0 %}
         <live_score :scores="{{ live_scores }}" :filter-Key="searchInput"></live_score>
     {%else%}
-        <div class="dashboard-single">
-            <p class="subtitle">No live scores now,check back later</p>
-        </div>
+    <div class="dashboard-single live_scores p-4">
+        <p class="subtitle"> No live scores for the requested league </p>
+    </div>
     {% endif %}
 </div>
 {% endblock  %}

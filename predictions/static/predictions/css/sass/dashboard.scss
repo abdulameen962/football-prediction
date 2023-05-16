@@ -256,6 +256,9 @@ section.dashboard_nav {
     div.body_main {
         @include transition;
         width: calc(100vw - 100px);
+        @include respond(tab) {
+            width: 100%;
+        }
         div.container-main {
             background: #F6F6F6;
             border-top-left-radius: 15px;
@@ -410,8 +413,14 @@ section.dashboard_nav {
             div.latest_predictions_main {
                 @extend .padding;
             }
-            button.live_button {
-                @include border(rgba($dark, .2));
+            div.live_choices {
+                @include respond(lphone) {
+                    justify-content: flex-start!important;
+                    padding: 10px 12px;
+                }
+                button.live_button {
+                    @include border(rgba($dark, .2));
+                }
             }
             &>header {
                 ul.quick-actions {
@@ -523,14 +532,35 @@ section.dashboard_nav {
         }
         div.live_scores {
             margin: 20px 0px 0px 0px;
+            &>div {
+                @include respond(lphone) {
+                    margin-bottom: 10px;
+                }
+                &>div {
+                    @include respond(lphone) {
+                        margin: 5px 0px;
+                    }
+                }
+            }
+            div.score {
+                @include respond(lphone) {
+                    justify-content: flex-start!important;
+                }
+            }
             div.home {
+                @include respond(lphone) {
+                    justify-content: flex-start!important;
+                }
                 div.home_status {
                     button.home_button {
                         font-size: 14px;
                     }
                 }
                 div.home_current_time {
-                    p {
+                    @include respond(lphone) {
+                        justify-content: flex-start!important;
+                    }
+                    span {
                         @include border(rgba($dark, .2));
                         font-size: 14px;
                     }
@@ -757,6 +787,7 @@ section.dashboard_nav {
             width: 100%;
             // bottom: 0;
             @include background;
+            z-index: 3;
             background: $white;
             border: none;
             li {
