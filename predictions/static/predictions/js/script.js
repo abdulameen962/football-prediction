@@ -890,7 +890,7 @@ app.component("predict", {
                     <rect x="0.5" y="0.5" width="53" height="49" rx="12.5" stroke="white"/>
                 </svg>                                                
             </td>            
-            <td class="w-auto"> <button class="btn btn-info"> {{ predict.prediction_status }} </button> </td>
+            <td class="w-auto"> <button class="btn btn-info text-white"> {{ predict.prediction_status }} </button> </td>
         </tr>
     
     
