@@ -10,7 +10,7 @@ class LatestPostFeed(Feed):
     description = "New Post"
 
     def items(self):
-        return Blog.new_manager.all()[:10]
+        return Blog.new_manager.all()
 
     def item_title(self,item):
         return item.title

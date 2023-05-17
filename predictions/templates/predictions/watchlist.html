@@ -1,4 +1,9 @@
 {% extends 'predictions/all_leagues.html' %}
+{% block content_header %} Your watchlist {% endblock %}
+{% block content_list %}
+    <li><a href="{% url 'watchlist' 'current' %}"> Current predictions </a></li>
+    <li><a href="{% url 'watchlist' 'completed' %}"> Completed predictions </a></li>
+{% endblock  %}
 {% block exclusion %}
     <p>You have not added any league to your watchlist yet. You can go to the <a href="{% url 'all_leagues' %}">all leagues</a> page and click on the watchlist icon</p>
 {% endblock  %}

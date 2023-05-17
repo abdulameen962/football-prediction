@@ -618,23 +618,26 @@ class leagues(UserPassesTestMixin,ListView):
        leagues = League.objects.all()
        paginated = Paginator(leagues,10)
        context = super().get_context_data(**kwargs)
+       state = self.kwargs.get("state")
 
        context["max_num"] = paginated.num_pages
        context["page_request_var"] = "page"
        context["page_range"] = paginated.page_range
+       context["page_type"] = state
 
        return context
     
 
 @login_required(login_url="account_login")
 @verified_email_required
-def league_single(request,id):
+def league_single(request,id,state):
     # user = request.user
     try:
         league = League.objects.get(pk=id)
 
         return render(request,"predictions/league_single.html",{
             "league": league,
+            "page_type": state,
         })
 
     except League.DoesNotExist:
@@ -843,13 +846,14 @@ class watchlist(UserPassesTestMixin,ListView):
     def get_context_data(self, **kwargs):
        leagues = self.request.user.premium.watchlist.all()
        context = super().get_context_data(**kwargs)
+       state = self.kwargs.get("state")
 
        if len(leagues) > 0:
             paginated = Paginator(leagues,10)
 
             context["max_num"] = paginated.num_pages
             context["page_range"] = paginated.page_range
-
+            context["page_type"] = state
             context["page_request_var"] = "page"
 
        return context

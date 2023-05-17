@@ -82,7 +82,7 @@ class League(models.Model):
         ordering = ("league",)
 
     def get_absolute_url(self):
-        return reverse("leagues", args={self.id})   
+        return reverse("leagues", args={self.id,"current"})   
 
     def serialize(self):
         return {
@@ -129,7 +129,7 @@ class Prediction(models.Model):
         verbose_name_plural = "Predictions"
 
     def get_absolute_url(self):
-        return reverse("leagues", args={self.league.id})
+        return reverse("leagues", args={self.league.id,"current"})
 
 
     def serialize(self):
@@ -230,7 +230,7 @@ class Completed_Predictions(models.Model):
         verbose_name_plural = "Completed Predictions"
 
     def get_absolute_url(self):
-        return reverse("leagues", args={self.league.id})
+        return reverse("leagues", args={self.league.id,"completed"})
 
 
     def serialize(self):

@@ -62,10 +62,10 @@
                             </li>
                         {% elif user.type == "premium" %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'all_leagues' %}">All Leagues</a>
+                                <a class="nav-link" href="{% url 'all_leagues' 'current' %}">All Leagues</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
+                                <a class="nav-link" href="{% url 'watchlist'  'current' %}">Watchlist</a>
                             </li>
                         {% endif %}
                         <li class="nav-item">
@@ -80,7 +80,7 @@
                                     {% for league in leagues %}
                                         {% if league.prediction.all.count > 0 %}
                                             <li>
-                                                <a href="{% url 'leagues' league.id %}">
+                                                <a href="{% url 'leagues' league.id 'current' %}">
                                                     {{ league.league }}
                                                 </a>
                                             </li>

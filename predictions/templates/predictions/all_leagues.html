@@ -2,6 +2,23 @@
 {% block title %} All leagues{% endblock  %}
 {% block og_title %} All leagues{% endblock  %}
 {% block content %}
+<div class="dashboard-single">
+    <header class="row">
+        <h2>{% block content_header %} All leagues {% endblock %}</h2>
+        <div class="dropdown">
+            <button type="button" class="clicker dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                <span> {{ page_type }} predictions </span>
+            </button>
+            <ul class="dropdown-menu league_list_main" aria-labelledby="dropdownMenu2" data-identifier={{ league.id }}>
+                {% block content_list %}
+                    <li><a href="{% url 'all_leagues' 'current' %}"> Current predictions </a></li>
+                    <li><a href="{% url 'all_leagues' 'completed' %}"> Completed predictions </a></li>
+                {% endblock  %}
+            </ul>
+        </div>
+    </header>
+</div>
+{% if page_type == "current" %}
 {% for league in leagues %}
     {% if league.prediction.all.count > 0 %}
         <div class="dashboard-single league_singles">
@@ -182,4 +199,8 @@
         {% endif %}
     </ul>
 </nav>
+
+{% elif page_type == "completed" %}
+    <p>cool</p>
+{% endif %}
 {% endblock  %}
