@@ -1572,11 +1572,12 @@ section.dashboard_nav {
     section.dashboard_nav div.body_main div.container-main {
       background: #F6F6F6;
       border-top-left-radius: 15px;
-      min-height: 100vh; }
+      height: 100%; }
       @media screen and (min-width: 0px) and (max-width: 991px) {
         section.dashboard_nav div.body_main div.container-main {
           border: none;
           width: 100vw;
+          min-height: 90vh;
           border-radius: 0px; } }
     @media screen and (min-width: 0px) and (max-width: 991px) {
       section.dashboard_nav div.body_main form {
@@ -1690,6 +1691,12 @@ section.dashboard_nav {
           padding: 10px 12px; } }
       section.dashboard_nav div.body_main div.dashboard-single div.live_choices button.live_button {
         border: 1px solid rgba(53, 55, 69, 0.2); }
+      section.dashboard_nav div.body_main div.dashboard-single div.state_choices {
+        display: flex;
+        justify-content: flex-end; }
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+          section.dashboard_nav div.body_main div.dashboard-single div.state_choices {
+            justify-content: flex-start; } }
       section.dashboard_nav div.body_main div.dashboard-single > header ul.quick-actions {
         padding: 30px 0px; }
         section.dashboard_nav div.body_main div.dashboard-single > header ul.quick-actions li {

@@ -262,10 +262,11 @@ section.dashboard_nav {
         div.container-main {
             background: #F6F6F6;
             border-top-left-radius: 15px;
-            min-height: 100vh;
+            height: 100%;
             @include respond(tab) {
                 border: none;
                 width: 100vw;
+                min-height: 90vh;
                 border-radius: 0px;
                 // background: rgba(#EFF1F5, .5);
             }
@@ -420,6 +421,13 @@ section.dashboard_nav {
                 }
                 button.live_button {
                     @include border(rgba($dark, .2));
+                }
+            }
+            div.state_choices {
+                display: flex;
+                justify-content: flex-end;
+                @include respond(lphone) {
+                    justify-content: flex-start;
                 }
             }
             &>header {

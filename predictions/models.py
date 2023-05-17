@@ -201,9 +201,9 @@ class Completed_Predictions(models.Model):
     )
 
     STATUS_CHOICES = (
-        ("Completed","Completed"),
-        ("Won","Won"),
-        ("Lost","Lost"),
+        ("completed","completed"),
+        ("win","win"),
+        ("lose","lose"),
     )
 
     league = models.ForeignKey(League, on_delete=models.PROTECT,related_name="completed_predictions")
@@ -216,7 +216,7 @@ class Completed_Predictions(models.Model):
     halftime_correct_score = models.CharField(max_length=50,default=None,null=True,blank=True)
     combo_draws = models.CharField(max_length=50,default=None,null=True,blank=True)
     combo_tickets = models.CharField(max_length=50,default=None,null=True,blank=True)
-    prediction_status = models.CharField(choices=STATUS_CHOICES,default="Completed",max_length=50)
+    prediction_status = models.CharField(choices=STATUS_CHOICES,default="completed",max_length=50)
     tip = models.CharField(choices=TIP_CHOICES,max_length=50)
     objects = models.Manager()
 

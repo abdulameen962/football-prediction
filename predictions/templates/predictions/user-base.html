@@ -34,14 +34,12 @@
                                                 <span class="expand_content">Leagues</span>
                                             </button>
                                             <ul class="dropdown-menu notification_list_main" aria-labelledby="dropdownMenu2">
-                                                {% for league in leagues %}
-                                                    {% if league.prediction.all.count > 0 %}
-                                                        <li>
-                                                            <a href="{% url 'leagues' league.id 'current'%}">
-                                                                {{ league.league }}
-                                                            </a>
-                                                        </li>
-                                                    {% endif %}
+                                                {% for league in main_leagues %}
+                                                    <li>
+                                                        <a href="{% url 'leagues' league.id 'current'%}">
+                                                            {{ league.league }}
+                                                        </a>
+                                                    </li>
                                                 {% endfor %}
                                             </ul>
                                         </div>
@@ -77,14 +75,12 @@
                                                 <span class="expand_content">Leagues</span>
                                             </button>
                                             <ul class="dropdown-menu notification_list_main" aria-labelledby="dropdownMenu2">
-                                                {% for league in leagues %}
-                                                    {% if league.prediction.all.count > 0 %}
-                                                        <li>
-                                                            <a href="{% url 'leagues' league.id 'current' %}">
-                                                                {{ league.league }}
-                                                            </a>
-                                                        </li>
-                                                    {% endif %}
+                                                {% for league in main_leagues %}
+                                                    <li>
+                                                        <a href="{% url 'leagues' league.id 'current' %}">
+                                                            {{ league.league }}
+                                                        </a>
+                                                    </li>
                                                 {% endfor %}
                                             </ul>
                                         </div>

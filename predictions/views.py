@@ -96,18 +96,16 @@ def index(request):
         predictionstable = []
         if len(leagues) > 0:
             for league in leagues:
-                leaguepredictions = league.prediction.all()
+                leaguepredictions = league.completed_predictions.all()
                 if len(leaguepredictions) > 0:
                     mainleague = {"league":league,"predictions":[]}
                     for prediction in leaguepredictions:
                         if prediction.type == "freemium":
                                 mainleague["predictions"].append(prediction)
 
-                    predictionstable.append(mainleague)
+                    if len(predictionstable) < 6:
+                        predictionstable.append(mainleague)
 
-        #limit the amount of predictions for a user
-        if len(predictionstable) > 3:
-            predictionstable = [predictionstable[0],predictionstable[1],predictionstable[2],predictionstable[3]]
         
         return render(request,"predictions/index.html",{
             "predictionstable": predictionstable,
@@ -153,7 +151,7 @@ def Freemiumview(request):
 
         return render(request,"predictions/freemium.html",{
             "hot_leagues":hot_league_list,
-            "hot_prediction": hot_prediction_list,
+            "hot_predictions": hot_prediction_list,
         })
     else:
         return HttpResponseRedirect(reverse("index"))
@@ -554,7 +552,7 @@ class Search(UserPassesTestMixin,View):
                     #there is at league a result
                     main_result = []
                     for res in result:
-                        link = request.build_absolute_uri(reverse('leagues',args=[res.id]))
+                        link = request.build_absolute_uri(reverse('leagues',args=[res.id,'current']))
                         res_add = {"league":res.league,"link":link}
                         main_result.append(res_add)
 
@@ -586,7 +584,7 @@ class Search(UserPassesTestMixin,View):
                     #there is at league a result
                     main_result = []
                     for res in result:
-                        link = request.build_absolute_uri(reverse('leagues',args=[res.id]))
+                        link = request.build_absolute_uri(reverse('leagues',args=[res.id,'current']))
                         res_add = {"league":res.league,"link":link}
                         main_result.append(res_add)
 
@@ -605,7 +603,7 @@ class Search(UserPassesTestMixin,View):
 class leagues(UserPassesTestMixin,ListView):
     model = League
     template_name = "predictions/all_leagues.html"
-    context_object_name = "leagues"
+    context_object_name = "leagues_page"
     login_url = "account_login"
     paginate_by = 10
     
@@ -830,7 +828,7 @@ class watchlist(UserPassesTestMixin,ListView):
     login_url = "index"
     model = League
     template_name = "predictions/watchlist.html"
-    context_object_name = "leagues"
+    context_object_name = "leagues_page"
     paginate_by = 10
 
     def test_func(self):

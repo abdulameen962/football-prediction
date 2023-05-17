@@ -40,10 +40,10 @@
 </div>
 <div class="predictions">
     <div class="predict-header headers" id="predictions" data-aos="fade-up" data-aos-duration="1000">
-        <h2>Picks</h2>
+        <h2>Our Past Picks</h2>
         <p>We cover all the major leagues and tournaments, including the
             English Premier League, La Liga, Serie A, and the UEFA
-            Champions League, among others.</p>
+            Champions League, amongst others.</p>
     </div>
     <div class="predict-table row">
         {% for prediction in predictionstable %}
@@ -61,6 +61,7 @@
                                 <th class="w-auto" scope="col">Away</th>
                                 <th class="w-auto" scope="col">Correct score</th>
                                 <th class="w-auto" scope="col">Tip</th>
+                                <th class="w-auto" scope="col">Result</th>
                             </tr>
                         </thead>
                         <tbody id="patients">
@@ -100,6 +101,18 @@
                                             </svg>                                                
                                         </td>                                     
                                     {% endif %}
+                                    <td class="w-auto"> 
+                                        {% if predict.prediction_status == "completed" %}
+                                            <button class="btn btn-info text-white"> {{ predict.prediction_status }} </button>
+
+                                        {% elif predict.prediction_status == "win" %}
+                                            <button class="btn btn-success text-white"> {{ predict.prediction_status }} </button>
+                                        
+                                        {% elif predict.prediction_status == "lose" %}
+                                            <button class="btn btn-danger text-white"> {{ predict.prediction_status }} </button>
+                                        {% endif %}    
+                                    
+                                    </td>
                                 </tr>
                             {% empty %}
                                 <tr><td>No picks now,check back later</td></tr>
