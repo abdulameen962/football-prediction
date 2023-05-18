@@ -30,7 +30,7 @@ class NotificationAdmin(admin.ModelAdmin):
     list_display = ("header","message","read","created")
 
 class SocialLinksAdmin(admin.ModelAdmin):
-    list_display = ("twitter_link","facebook_link","whatsapp_link","linkedin_link")
+    list_display = ("twitter_link","facebook_link","whatsapp_link","linkedin_link","first_payment_link","second_payment_link")
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Blog,BlogAdmin)

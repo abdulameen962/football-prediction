@@ -255,6 +255,8 @@ class SocialLinks(models.Model):
     facebook_link = models.CharField(max_length=200,blank=True)
     whatsapp_link = models.CharField(max_length=200,blank=True)
     linkedin_link = models.CharField(max_length=200,blank=True)
+    first_payment_link = models.CharField(max_length=400,blank=True)
+    second_payment_link = models.CharField(max_length=400,blank=True)
     object = models.Manager()
 
     class Meta:
