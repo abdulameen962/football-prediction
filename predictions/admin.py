@@ -39,6 +39,7 @@ admin.site.register(Prediction,PredictionAdmin)
 admin.site.register(Tag)
 admin.site.register(Notification,NotificationAdmin)
 admin.site.register(Completed_Predictions,PredictionAdmin)
+admin.site.register(SocialLinks)
 
 
 

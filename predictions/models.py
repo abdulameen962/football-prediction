@@ -248,3 +248,15 @@ class Completed_Predictions(models.Model):
             "combo_draws": self.combo_draws,
             "combo_tickets": self.combo_tickets,
         }    
+
+
+class SocialLinks(models.Model):
+    twitter_link = models.CharField(max_length=200,blank=True)
+    facebook_link = models.CharField(max_length=200,blank=True)
+    whatsapp_link = models.CharField(max_length=200,blank=True)
+    linkedin_link = models.CharField(max_length=200,blank=True)
+    object = models.Manager()
+
+    class Meta:
+        verbose_name = "Social Link"
+        verbose_name_plural = "Social Links"

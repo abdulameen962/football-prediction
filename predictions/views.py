@@ -1038,7 +1038,14 @@ class support(UserPassesTestMixin,View):
     def post(self,request):
         user = self.request.user
         email = user.email
-        issue = request.POST["issue"]
+
+        try:
+            issue = request.POST["issue"]
+
+        except MultiValueDictKeyError:
+            messages.error(request,"Pls choose an issue")
+            return HttpResponseRedirect(reverse("support"))
+            
         subject = request.POST["subject"]
         body = request.POST["body"]
 

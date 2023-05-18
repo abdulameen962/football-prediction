@@ -1,5 +1,5 @@
 from django.contrib.sites.shortcuts import get_current_site
-from .models import League,Prediction
+from .models import League,SocialLinks
 
 
 def current_site_processor(request):
@@ -106,11 +106,15 @@ def current_site_processor(request):
         if len(league.prediction.all()) > 0 or len(league.completed_predictions.all()) > 0:
             leagues.append(league)
             
+
+    social_links = SocialLinks.objects.all().first()
     context = {"current_site":current_site,
     "site_name":"Predictions",
     "league_types": results,
     "main_leagues":leagues,
+    "social_links": social_links,
     "completed_league_types": completed_leagues,
     }
 
     return context
+    
