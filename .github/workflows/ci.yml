@@ -1,4 +1,4 @@
-name: Nesa Tests
+name: Frankly Predictions Test
 on: push
 
 jobs:
