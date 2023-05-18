@@ -50,7 +50,7 @@ class Blog(models.Model):
     body = models.TextField()
     published = models.DateTimeField(default=timezone.now)
     state = models.CharField(choices=STATE_CHOICES, max_length=50)
-    created = models.DateTimeField(auto_now_add=False)
+    created = models.DateTimeField(auto_now_add=False,default=timezone.now)
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     cover_image = CloudinaryField("image",default=None,null=True)
     additonal_image = CloudinaryField("image",default=None,null=True)

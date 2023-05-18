@@ -165,7 +165,16 @@ def premium_profile_delete_handler(sender,instance,**kwargs):
         freemium = FreemiumProfile.objects.create(id=user.id,user=user)
 
     freemium = FreemiumProfile.objects.get(user=user)
+    
     #transfer details
+    if len(freemium.watchlist.all())> 0:
+        for watch in freemium.watchlist.all():
+            freemium.watchlist.remove(watch)
+        
+
+    if len(instance.watchlist.all()) > 0:
+        for watch in instance.watchlist.all():
+            freemium.watchlist.add(watch)
 
 
 #signal for sending emails for new predictions to all premium users on it
