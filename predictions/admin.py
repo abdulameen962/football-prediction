@@ -29,6 +29,8 @@ class PredictionAdmin(admin.ModelAdmin):
 class NotificationAdmin(admin.ModelAdmin):
     list_display = ("header","message","read","created")
 
+class SocialLinksAdmin(admin.ModelAdmin):
+    list_display = ("twitter_link","facebook_link","whatsapp_link","linkedin_link")
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Blog,BlogAdmin)
@@ -39,7 +41,7 @@ admin.site.register(Prediction,PredictionAdmin)
 admin.site.register(Tag)
 admin.site.register(Notification,NotificationAdmin)
 admin.site.register(Completed_Predictions,PredictionAdmin)
-admin.site.register(SocialLinks)
+admin.site.register(SocialLinks,SocialLinksAdmin)
 
 
 
