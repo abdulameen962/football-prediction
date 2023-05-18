@@ -44,4 +44,6 @@ class UserTestCase(TestCase):
             res = False
 
         self.assertTrue(res)
+
+        # self.assertRedirects()
         

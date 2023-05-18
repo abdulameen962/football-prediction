@@ -262,3 +262,7 @@ class SocialLinks(models.Model):
     class Meta:
         verbose_name = "Social Link"
         verbose_name_plural = "Social Links"
+
+    def __str__(self):
+        return f"Twitter:{self.twitter_link},Facebook:{self.facebook_link},Whatsapp:{self.whatsapp_link},Linkedin:{self.linkedin_link}"
+    

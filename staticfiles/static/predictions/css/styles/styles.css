@@ -1613,7 +1613,7 @@ section.dashboard_nav {
         align-items: flex-end;
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px; }
-        @media screen and (min-width: 0em) and (max-width: 479px) {
+        @media screen and (min-width: 0px) and (max-width: 740px) {
           section.dashboard_nav div.body_main div.support_page div.support_image {
             border-radius: 0px;
             border-top-right-radius: 15px;
