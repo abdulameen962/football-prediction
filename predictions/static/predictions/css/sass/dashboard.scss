@@ -311,7 +311,7 @@ section.dashboard_nav {
                 align-items: flex-end;
                 border-top-left-radius: 15px;
                 border-bottom-left-radius: 15px;
-                @include respond(phone) {
+                @include respond(lphone) {
                     border-radius: 0px;
                     border-top-right-radius: 15px;
                     border-top-left-radius: 15px;

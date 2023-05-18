@@ -213,3 +213,17 @@ def notification_saver_handler(sender,instance,**kwargs):
         #user list is empty,delete list
         instance.delete()
 
+@receiver(pre_save,sender=SocialLinks)
+def social_links_handler(sender,instance,**kwargs):
+    #check if all the fields are current
+    if instance.twitter_link == "":
+        instance.twitter_link = "#"
+
+    if instance.facebook_link == "":
+        instance.facebook_link = "#"
+
+    if instance.whatsapp_link == "":
+        instance.whatsapp_link = "#"
+
+    if instance.linkedin_link == "":
+        instance.linkedin_link = "#"

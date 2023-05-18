@@ -107,15 +107,16 @@ def current_site_processor(request):
             leagues.append(league)
             
 
-    # try:
-    #     social_links = SocialLinks.objects.all().first()
+    try:
+        social_links = SocialLinks.object.all().first()
 
-    # except SocialLinks.DoesNotExist:
-    #     social_links = ""
+    except SocialLinks.DoesNotExist:
+        social_links = ""
     context = {"current_site":current_site,
     "site_name":"Predictions",
     "league_types": results,
     "main_leagues":leagues,
+    "social_links": social_links,
     "completed_league_types": completed_leagues,
     }
 
