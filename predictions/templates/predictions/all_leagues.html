@@ -102,22 +102,22 @@
                                             {% if dropdown.league == league.id %}
                                             {% with dropdown.types|first as first_type %}
                                                     {% if first_type.data == "correct_score" %}
-                                                        {% if predict.correct_score != "" %}
+                                                        {% if predict.correct_score|length > 0 %}
                                                             <predict :href="{% url 'activate_subscription' %}" :type="'{{ user.type }}'" :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
                                                         {% endif %}  
 
                                                     {% elif first_type.data == "halftime_correct_score" %}
-                                                        {% if predict.halftime_correct_score != "" %}
+                                                        {% if predict.halftime_correct_score|length > 0 %}
                                                             <predict :href="{% url 'activate_subscription' %}" :type="'{{ user.type }}'" :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
                                                         {% endif %} 
 
                                                     {% elif first_type.data == "combo_draws" %}
-                                                        {% if predict.combo_draws != "" %}
+                                                        {% if predict.combo_draws|length > 0 %}
                                                             <predict :href="{% url 'activate_subscription' %}" :type="'{{ user.type }}'" :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
                                                         {% endif %} 
 
                                                     {% elif first_type.data == "combo_tickets" %}
-                                                        {% if predict.combo_tickets != "" %}
+                                                        {% if predict.combo_tickets|length > 0 %}
                                                             <predict :href="{% url 'activate_subscription' %}" :type="'{{ user.type }}'" :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
                                                         {% endif %} 
                                                     {% endif %}
@@ -130,22 +130,22 @@
                                             {% if dropdown.league == league.id %}
                                                 {% with dropdown.types|first as first_type %}
                                                         {% if first_type.data == "correct_score" %}
-                                                            {% if predict.correct_score != "" %}
+                                                            {% if predict.correct_score|length > 0 %}
                                                                 <predict :href="{% url 'activate_subscription' %}" :type="'{{ user.type }}'" :predict="{{ predict.serialize }}" :command="'correct_score'"></predict>
                                                             {% endif %}  
 
                                                         {% elif first_type.data == "halftime_correct_score" %}
-                                                            {% if predict.halftime_correct_score != "" %}
+                                                            {% if predict.halftime_correct_score|length > 0 %}
                                                                 <predict :href="{% url 'activate_subscription' %}" :type="'{{ user.type }}'" :predict="{{ predict.serialize }}" :command="'halftime_correct_score'"></predict>
                                                             {% endif %} 
 
                                                         {% elif first_type.data == "combo_draws" %}
-                                                            {% if predict.combo_draws != "" %}
+                                                            {% if predict.combo_draws|length > 0 %}
                                                                 <predict :href="{% url 'activate_subscription' %}" :type="'{{ user.type }}'" :predict="{{ predict.serialize }}" :command="'combo_draws'"></predict>
                                                             {% endif %} 
 
                                                         {% elif first_type.data == "combo_tickets" %}
-                                                            {% if predict.combo_tickets != "" %}
+                                                            {% if predict.combo_tickets|length > 0 %}
                                                                 <predict :href="{% url 'activate_subscription' %}" :type="'{{ user.type }}'" :predict="{{ predict.serialize }}" :command="'combo_tickets'"></predict>
                                                             {% endif %} 
                                                         {% endif %}

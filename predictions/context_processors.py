@@ -19,19 +19,19 @@ def current_site_processor(request):
             # ticker_off = False
             if len(predictions) > 0:
                 for predict in predictions:
-                    if predict.correct_score != "":
+                    if predict.correct_score != "" and predict.correct_score is not None:
                        correct_score = True
                     
 
-                    if predict.halftime_correct_score != "":
+                    if predict.halftime_correct_score != "" and predict.halftime_correct_score is not None:
                         halftime_correct_score = True
 
 
-                    if predict.combo_draws != "":
+                    if predict.combo_draws != "" and predict.combo_draws is not None:
                         combo_draws = True
 
 
-                    if predict.combo_tickets != "":
+                    if predict.combo_tickets != "" and predict.combo_tickets is not None:
                         combo_tickets = True
 
             if correct_score:
@@ -64,19 +64,19 @@ def current_site_processor(request):
             # ticker_off = False
             if len(predictions) > 0:
                 for predict in predictions:
-                    if predict.correct_score != "":
+                    if predict.correct_score != "" and predict.correct_score is not None:
                        complete_correct_score = True
                     
 
-                    if predict.halftime_correct_score != "":
+                    if predict.halftime_correct_score and predict.halftime_correct_score is not None:
                         complete_halftime_correct_score = True
 
 
-                    if predict.combo_draws != "":
+                    if predict.combo_draws != "" and predict.combo_draws is not None:
                         complete_combo_draws = True
 
 
-                    if predict.combo_tickets != "":
+                    if predict.combo_tickets != "" and predict.combo_tickets is not None:
                         complete_combo_tickets = True
 
             if complete_correct_score:

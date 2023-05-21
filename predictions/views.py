@@ -378,7 +378,7 @@ def activate_subscription(request):
 @verified_email_required
 def get_notification(request):
     user = request.user
-    if user.type != "":
+    if len(user.type) > 0:
         notifications = user.notifications.all()
         notificationbox = []
         if len(notifications) > 0:
@@ -409,7 +409,7 @@ def get_notification(request):
 @verified_email_required
 def update_notification(request):
     user = request.user
-    if user.type != "":
+    if len(user.type) > 0:
         main_notify = []
         notifications = user.notifications.all()
         for notify in notifications:
@@ -428,7 +428,7 @@ class NotificationsView(UserPassesTestMixin,ListView):
     login_url = "account_login"
 
     def test_func(self):
-        return self.request.user.is_authenticated and self.request.user.type != ""   
+        return self.request.user.is_authenticated and self.request.user.type != "" and self.request.user.type is not None   
 
 
     def get_queryset(self):
@@ -474,7 +474,7 @@ class edit_notification(UserPassesTestMixin,View):
     login_url = "account_login"
 
     def test_func(self):
-        return self.request.user.is_authenticated and self.request.user.type != ""  
+        return self.request.user.is_authenticated and self.request.user.type != "" and self.request.user.type is not None  
 
 
     def put(self,request,id):
@@ -528,7 +528,7 @@ class Search(UserPassesTestMixin,View):
     login_url = "account_login"
 
     def test_func(self):
-        return self.request.user.is_authenticated and self.request.user.type != ""  
+        return self.request.user.is_authenticated and self.request.user.type != "" and self.request.user.type is not None
 
     def post(self,request):
         user = self.request.user
@@ -609,7 +609,7 @@ class leagues(UserPassesTestMixin,ListView):
     
     
     def test_func(self):
-        return self.request.user.is_authenticated and self.request.user.type != ""
+        return self.request.user.is_authenticated and self.request.user.type != "" and self.request.user.type is not None
 
     def get_context_data(self, **kwargs):
 
@@ -728,36 +728,36 @@ def get_league_info(request,method,league_id):
                 if predict.type == "freemium":
 
                     if term == "correct_score":
-                        if predict.correct_score != "" or predict.correct_score == "Empty":
+                        if predict.correct_score != "" and predict.correct_score is not None:
                             main_league["predictions"].append(predict.serialize())
                     elif term == "halftime_correct_score":
-                        if predict.halftime_correct_score != "" or predict.halftime_correct_score == "Empty":
+                        if predict.halftime_correct_score != "" and predict.halftime_correct_score is not None:
                             main_league["predictions"].append(predict.serialize())
 
                     elif term == "combo_draws":
-                        if predict.combo_draws != "" or predict.combo_draws == "Empty":
+                        if predict.combo_draws != "" and predict.combo_draws is not None:
                             main_league["predictions"].append(predict.serialize())
                     
                     elif term == "combo_tickets":
-                        if predict.combo_tickets != "" or predict.combo_tickets == "Empty":
+                        if predict.combo_tickets != "" and predict.combo_tickets is not None:
                             main_league["predictions"].append(predict.serialize())
                     
 
                 elif predict.type == "premium" and user.type == "premium" and user.premium.activated:
 
                     if term == "correct_score":
-                        if predict.correct_score != "" or predict.correct_score == "Empty":
+                        if predict.correct_score != "" and predict.correct_score is not None:
                             main_league["predictions"].append(predict.serialize())
                     elif term == "halftime_correct_score":
-                        if predict.halftime_correct_score != "" or predict.halftime_correct_score == "Empty":
+                        if predict.halftime_correct_score != "" and predict.halftime_correct_score is not None:
                             main_league["predictions"].append(predict.serialize())
 
                     elif term == "combo_draws":
-                        if predict.combo_draws != "" or predict.combo_draws == "Empty":
+                        if predict.combo_draws != "" and predict.combo_draws is not None:
                             main_league["predictions"].append(predict.serialize())
                     
                     elif term == "combo_tickets":
-                        if predict.combo_tickets != "" or predict.combo_tickets == "Empty":
+                        if predict.combo_tickets != "" and predict.combo_tickets is not None:
                             main_league["predictions"].append(predict.serialize())
 
         if len(main_league["predictions"]) > 0:
@@ -1030,7 +1030,7 @@ class support(UserPassesTestMixin,View):
 
     def test_func(self):
         user = self.request.user
-        return user.is_authenticated and user.type == "premium" and user.premium.activated
+        return user.is_authenticated and user.type != "" and user.type is not None
 
     def get(self,request):
         return render(request,"predictions/support.html")
