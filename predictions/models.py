@@ -166,7 +166,7 @@ class PremiumProfile(models.Model):
 
 
 class Notification(models.Model):
-    users = models.ManyToManyField(User, related_name="notifications",default=None)
+    users = models.ManyToManyField(User, related_name="notifications",default=None,blank=True)
     created = models.DateTimeField(auto_now_add=False,default=timezone.now)
     header = models.CharField(max_length=200,default=None,null=True)
     message = models.TextField()
@@ -174,7 +174,7 @@ class Notification(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return f"{self.message}"
+        return f"{self.id} {self.message}"
 
     class Meta:
         ordering = ("-created",)

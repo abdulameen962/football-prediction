@@ -28,6 +28,7 @@ class PredictionAdmin(admin.ModelAdmin):
 
 class NotificationAdmin(admin.ModelAdmin):
     list_display = ("header","message","read","created")
+    filter_horizontal = ("users",)
 
 class SocialLinksAdmin(admin.ModelAdmin):
     list_display = ("twitter_link","facebook_link","whatsapp_link","linkedin_link","first_payment_link","second_payment_link")
