@@ -1,5 +1,5 @@
 # Summary of the football predicton app
-The football prediction app is a live fullstack web development project,made with the best practices and with languages such as Django- a python framework,postgres for the db,vue.js html,css,bootstrap and sass. With background processors like celery with rabbitmq etc. It is an app focused on predicting correct football predictions 
+The football prediction app is a live fullstack web development project,made with the best practices and with languages such as Django- a python framework,postgres for the db,vue.js html,css,bootstrap and sass. With background processors like celery with rabbitmq etc.Optimized with key words,automated feeds for the blog,also a django configured sitemap.It is an app focused on predicting correct football predictions 
 
 ## The football predictin web app is made up of four sides
 * Landing page

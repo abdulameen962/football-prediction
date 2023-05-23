@@ -3,9 +3,40 @@ from django.urls import path
 from . import views
 from .feeds import LatestPostFeed
 from allauth.account.views import *
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import *
+
+sitemaps = {
+    "static": StaticPagesSitemap,
+    "choose-type":ChooseTypeSitemap,
+    "freemium":Freemium,
+    "premium":Premium,
+    "not-verified":NotVerified,
+    "complete-signup-freemium":CompleteSignupFreemium,
+    "complete-signup-premium":CompleteSignupPremium,
+    "premium-payment":PremiumPayment,
+    "confirm-payment":ConfirmPayment,
+    "cancel-subscription":CancelSubscription,
+    "activate-subscription":ActivateSubscription,
+    "notifications":Notifications,
+    "ongoing-predictions":OngoingPredictions,
+    "completed-predictions":CompletedPredictions,
+    "ongoing-single-leagues":OngoingLeagueSingle,
+    "completed-league-single":CompletedLeagueSingle,
+    "ongoing-watchlist":OngoingWatchlist,
+    "completed-watchlist":CompletedWatchlist,
+    "support":SupportSitemap,
+    "settings":SettingsSitemap,
+    "delete-account":DeleteAccoutnSitemap,
+    "live-scores":LiveScoresSitemap,
+    "blogs": BlogsMainSitemap,
+    "blogs_detail": BlogsSitemap,
+    "feeds":Feeds,
+}
 
 
 urlpatterns = [
+    path("sitemap.xml/",sitemap,{"sitemaps":sitemaps},name="django.contrib.sitemaps.views.sitemap",),
     path("",views.index,name="index"),
     path("choose-type/",views.Type,name="type"),
     path("blogs/",views.Blogview.as_view(),name="blogs"),

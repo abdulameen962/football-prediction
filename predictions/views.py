@@ -59,7 +59,88 @@ try:
 except (OperationalError, ProgrammingError) as e:
     leagues=[]
 
-
+leagues_live_scores = [
+    {
+        "name": "all",
+        "display": "All leagues",
+        "id": 10000000000,
+    },
+    {
+        "name": "La-Liga",
+        "display": "La Liga",
+        "id": 3,
+    },
+    {
+        "name": "English-Premier-League",
+        "display": "English Premier League",
+        "id": 2,
+    },
+    {
+        "name": "Bundesliga",
+        "display": "Bundesliga",
+        "id": 1,
+    },
+    {
+        "name": "Serie-A",
+        "display": "Serie A",
+        "id": 4,
+    },
+    {
+        "name": "Ligue-1",
+        "display": "Ligue 1",
+        "id": 5,
+    },
+    {
+        "name": "Eredivisie",
+        "display": "Eredivisie",
+        "id": 196,
+    },
+    {
+        "name": "Russian-Premier-League",
+        "display": "Russian Premier League",
+        "id": 7,
+    },
+    {
+        "name": "Mexico-Liga-MX",
+        "display": "Mexico's Liga MX",
+        "id": 45,
+    },
+    {
+        "name": "Turkish-Süper-Lig",
+        "display": "Turkish Süper Lig",
+        "id": 6,
+    },
+    {
+        "name": "Ukranian-Premier-League",
+        "display": "Ukranian Premier League",
+        "id": 64,
+    },
+    {
+        "name": "Colombia-Categoria-Primera-A",
+        "display": "Colombia's Categoria Primera A",
+        "id": 51,
+    },
+    {
+        "name": "Uruguayan-Primera-Division",
+        "display": "Uruguayan Primera Division",
+        "id": 48,
+    },
+    {
+        "name": "Superleague-Greece",
+        "display": "Superleague Greece",
+        "id": 9,
+    },
+    {
+        "name": "Romania-Liga-I",
+        "display": "Romania's Liga I",
+        "id": 61,
+    },
+    {
+        "name": "Peruvian-Primera-Division",
+        "display": "Peruvian Primera Division",
+        "id": 47,
+    },
+]
 
 def index(request):
     user = request.user
@@ -903,83 +984,6 @@ def profile(request):
 @verified_email_required
 def live_scores(request,league):
     user = request.user
-    leagues = [
-        {
-            "name": "La-Liga",
-            "display": "La Liga",
-            "id": 3,
-        },
-        {
-            "name": "English-Premier-League",
-            "display": "English Premier League",
-            "id": 2,
-        },
-        {
-            "name": "Bundesliga",
-            "display": "Bundesliga",
-            "id": 1,
-        },
-        {
-            "name": "Serie-A",
-            "display": "Serie A",
-            "id": 4,
-        },
-        {
-            "name": "Ligue-1",
-            "display": "Ligue 1",
-            "id": 5,
-        },
-        {
-            "name": "Eredivisie",
-            "display": "Eredivisie",
-            "id": 196,
-        },
-        {
-            "name": "Russian-Premier-League",
-            "display": "Russian Premier League",
-            "id": 7,
-        },
-        {
-            "name": "Mexico-Liga-MX",
-            "display": "Mexico's Liga MX",
-            "id": 45,
-        },
-        {
-            "name": "Turkish-Süper-Lig",
-            "display": "Turkish Süper Lig",
-            "id": 6,
-        },
-        {
-            "name": "Ukranian-Premier-League",
-            "display": "Ukranian Premier League",
-            "id": 64,
-        },
-        {
-            "name": "Colombia-Categoria-Primera-A",
-            "display": "Colombia's Categoria Primera A",
-            "id": 51,
-        },
-        {
-            "name": "Uruguayan-Primera-Division",
-            "display": "Uruguayan Primera Division",
-            "id": 48,
-        },
-        {
-            "name": "Superleague-Greece",
-            "display": "Superleague Greece",
-            "id": 9,
-        },
-        {
-            "name": "Romania-Liga-I",
-            "display": "Romania's Liga I",
-            "id": 61,
-        },
-        {
-            "name": "Peruvian-Primera-Division",
-            "display": "Peruvian Primera Division",
-            "id": 47,
-        },
-    ]
     if user.is_authenticated and user.type == "premium" and user.premium.activated:
         # http = urllib3.PoolManager()
         # response = http.request("GET",settings.LIVE_SCORE)
@@ -997,7 +1001,7 @@ def live_scores(request,league):
 
         elif league != "":
             id = ""
-            for name in leagues:
+            for name in leagues_live_scores:
                 if league.lower() == name["name"].lower():
                     id = name["id"]
                     type = name["display"]
@@ -1016,7 +1020,7 @@ def live_scores(request,league):
         live_scores = live_scores["data"]["match"]
         return render(request,"predictions/live-scores.html",{
             "live_scores": live_scores,
-            "leagues_list": leagues,
+            "leagues_list": leagues_live_scores,
             "type":type,
         })
 
