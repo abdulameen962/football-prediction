@@ -6,10 +6,21 @@ from celery.schedules import crontab
 from datetime import timedelta,datetime
 from django.core.mail import send_mail
 from django.conf import settings
+from football.celery import app
 
 run_every_hour = crontab(hour='23')
+run_every_minute = crontab(minute='*')
 
-@shared_task
+@app.on_after_finalize.connect
+def setup_periodic_tasks(sender,**kwargs):
+    #calls the function every minute
+    sender.add_periodic_task(run_every_minute,prediction_task_handler.s())
+
+    sender.add_periodic_task(run_every_hour,updateNotification.s())
+
+    sender.add_periodic_task(run_every_hour,completed_prediction_task_handler.s())
+
+@app.task
 def prediction_task_handler():
     predictions = Prediction.objects.all()
 
@@ -21,30 +32,25 @@ def prediction_task_handler():
             today = timezone.now()
             today = today.strftime("%m/%d/%Y %I:%M %p")
             today = datetime.strptime(today,"%m/%d/%Y %I:%M %p")
-            difference = today - created
-            difference = difference.total_seconds()
+            # difference = today - created
+            # difference = difference.total_seconds()
 
             #convert to 30 days
-            difference = difference / 86400
-
-            if difference >= 3:
+            # difference = difference / 86400
+            if today >= created:
                 #move it to completed prediction and delete prediction
                 completed = Completed_Predictions(league=predict.league,type=predict.type,published=predict.published,updated=predict.updated,
                 home = predict.home,away=predict.away,correct_score=predict.correct_score,halftime_correct_score=predict.halftime_correct_score,combo_draws=predict.combo_draws,combo_tickets=predict.combo_tickets,tip=predict.tip
                 )
                 completed.save()
-                subject = f"A new prediction from {completed.league.league} has been moved to completed"
                 predict.delete()
 
-                send_mail(message="A new message has been marked completed,pls come to the dashboard to specify the prediction status", from_email=settings.EMAIL_HOST_USER,subject=subject,recipient_list=[settings.EMAIL_FROM_USER],fail_silently=False)
-
-
-    return "Prediction has been successfully updated"
+    return f"Prediction has been successfully updated"
 
 # result = updateNotification.delay(priority=10)
-result1 = prediction_task_handler.apply_async(task_id='prediction_task_handler', interval=run_every_hour,priority=10)
+# result = prediction_task_handler.apply_async(task_id='prediction_task_handler', schedule=run_every_minute)
 
-@shared_task
+@app.task
 def updateNotification():
     notifications = Notification.objects.all()
     if len(notifications) > 0:
@@ -70,10 +76,10 @@ def updateNotification():
 
 
 # result = updateNotification.delay(priority=10)
-result = updateNotification.apply_async(task_id='update_notification', interval=run_every_hour,priority=12)
+# result2 = updateNotification.apply_async(task_id='update_notification', schedule=run_every_hour)
 
 
-@shared_task
+@app.task
 def completed_prediction_task_handler():
     completed_predictions = Completed_Predictions.objects.all()
 
@@ -98,4 +104,4 @@ def completed_prediction_task_handler():
     return "Completed Prediction successfully updated"
 
 
-result2 = completed_prediction_task_handler.apply_async(task_id="completed_prediction_task_handler",interval=run_every_hour,priority=11)
+# result1 = completed_prediction_task_handler.apply_async(task_id="completed_prediction_task_handler",schedule=run_every_hour)

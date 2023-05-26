@@ -136,6 +136,7 @@ class Prediction(models.Model):
         return{
             "id": self.id,
             "league": self.league.serialize(),
+            "published": self.published.strftime("%m/%d/%Y %I:%M %p"),
             "updated": self.updated.strftime("%m/%d/%Y %I:%M %p"),
             "type": self.type,
             "home": self.home,

@@ -211,7 +211,7 @@ def prediction_mail_handler(sender,instance,**kwargs):
 
     #check if one has been sent before
     header = f"New prediction: {instance.home} vs {instance.away} in {instance.league.league} league"
-    message = f"A new prediction just came in,hurry now to check it at <a href='/leagues/{instance.league.id}/'>{instance.home} vs {instance.away}</a>"
+    message = f"A new prediction just came in,hurry now to check it at <a href='/leagues/{instance.league.id}/current/'>{instance.home} vs {instance.away}</a>"
     send_notification(header,users,message)
 
 @receiver(post_save,sender=Notification)
@@ -236,3 +236,11 @@ def social_links_handler(sender,instance,**kwargs):
 
     if instance.linkedin_link == "":
         instance.linkedin_link = "#"
+
+
+@receiver(post_save,sender=Completed_Predictions)
+def completed_predictions_handler(sender,instance,**kwargs):
+    #check if the email has been sent
+    subject = f"A new prediction from {instance.league.league} has been moved to completed"
+    message = f"A new message has been marked {instance.prediction_status},pls come to the dashboard to specify the prediction status"
+    send_mail(message=message, from_email=settings.EMAIL_HOST_USER,subject=subject,recipient_list=[settings.EMAIL_HOST_USER],fail_silently=False)

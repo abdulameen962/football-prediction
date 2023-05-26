@@ -1,26 +1,17 @@
 from __future__ import absolute_import, unicode_literals
 import os
 from celery import Celery
+from celery.schedules import crontab
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'football.settings')
 
-celey = Celery('football')
+app = Celery('football')
+app.conf.timezone = 'Africa/Lagos'
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()
 
-celey.config_from_object('django.conf:settings', namespace='CELERY')
-celey.autodiscover_tasks()
-
-from celery import shared_task
-
-# @shared_task
-# def add(x, y):
-#     return x + y
-
-# @shared_task
-# def multiply(x, y):
-#     return x * y
-
-# @shared_task
-# def add_and_multiply(x, y):
+# @app.task
+# def add_and_multiply():
 #     addition = add.s(x, y)
 #     product = multiply.s(x, y)
 #     return addition | product

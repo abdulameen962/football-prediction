@@ -966,7 +966,7 @@ app.component("user_dashboard", {
                                 <td class="w-auto">({{ league.league.code }}){{ league.league.league }}</td>
                                 <td class="w-auto">{{ league.home }}</td>   
                                 <td class="w-auto">{{ league.away }}</td>   
-                                <td class="w-auto">{{ league.updated }}</td>                                                                                                              
+                                <td class="w-auto">{{ league.published }}</td>                                                                                                              
                             </tr>
                         </tbody>
                     </table>

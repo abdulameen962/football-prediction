@@ -110,9 +110,9 @@
                             <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                         </li>
                     {% endif %}
-                    <li class="nav-item">
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
                 {% if user.is_authenticated %}
                     <a class="header-button contact2" href="{% url 'account_logout' %}">Log Out</a> {% else %}
@@ -150,9 +150,9 @@
                     <li class="nav-item link_show">
                         <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
-                    <li class="nav-item">
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
             {% endif %}
             <div class="footer-main">
