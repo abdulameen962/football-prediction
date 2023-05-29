@@ -437,11 +437,12 @@ def activate_subscription(request):
                     return HttpResponseRedirect(reverse("premium"))
 
             #for users not activated premium users of other users
-            for plan in res:
-                customer = plan["customer"]
-                if user.email == customer["customer_email"] and plan["status"] == "cancelled":
-                    rave.Subscriptions.activate(plan["id"])
-                    status = True
+            if len(res) > 0:
+                for plan in res:
+                    customer = plan["customer"]
+                    if user.email == customer["customer_email"] and plan["status"] == "cancelled":
+                        rave.Subscriptions.activate(plan["id"])
+                        status = True
 
             if status:
                 #get premium profile

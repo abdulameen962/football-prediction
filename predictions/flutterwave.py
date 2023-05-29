@@ -17,7 +17,7 @@ def generateTransactionReference(merchantId):
 
 
 # Create your views here.
-rave = Rave(f"{settings.RAVE_PUBLIC_KEY}",f"{settings.RAVE_SECRET_KEY}")
+rave = Rave(f"{settings.RAVE_PUBLIC_KEY}",f"{settings.RAVE_SECRET_KEY}",production=True)
 def checkPayment(user):
     try:
         res = rave.Subscriptions.all()
