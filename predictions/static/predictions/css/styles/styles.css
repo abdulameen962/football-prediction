@@ -804,6 +804,9 @@ div.headers {
       width: auto; } }
   div.headers p {
     text-align: center; }
+    @media screen and (min-width: 0px) and (max-width: 740px) {
+      div.headers p {
+        text-align: left; } }
     @media screen and (min-width: 0em) and (max-width: 479px) {
       div.headers p {
         margin: 0;

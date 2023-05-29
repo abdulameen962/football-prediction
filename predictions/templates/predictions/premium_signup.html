@@ -34,9 +34,9 @@
             </div>
             <div class="title-header col-sm-8 col-md-9 col-lg-10"><h4>Premium Pro</h4><p>Yearly Duration</p></div></div><div class="right col-sm-12 col-md-3 col-lg-2"><span>${{ pay.second_price }}</span></div></div><div class="text"><ul><li>Exact correct scores</li><li>Combo ticket picks</li><li>Combo draws</li><li>Live scores of matches</li><li>HT/FT tips</li><li>Halftime Correct scores</li><li>Full Support for any of your enquires</li><li>Watchlist of new tips</li><li>Discounted Yearly Subscription,can cancel anytime</li></ul></div><div class="cta"><a class="primary-button" href="{{ pay.second_payment_link }}">Choose</a></div></div></div></div>
       </div>
-    </div>
   {%empty%}
     <p class="subtitle">No payment link available</p>
   {% endfor %}
+</div>
 <p>If you have an existing subscription earlier with your account but it is inactive <a href="{% url 'activate_subscription' %}">Reactivate your subscription</a></p>
 {% endblock  %}

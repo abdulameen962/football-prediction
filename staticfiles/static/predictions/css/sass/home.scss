@@ -7,6 +7,9 @@
         }
         p {
             text-align: center;
+            @include respond(lphone) {
+                text-align: left;
+            }
             @include respond(phone) {
                 @include mp;
             }
