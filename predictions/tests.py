@@ -69,7 +69,7 @@ class SignalsTestCase(TestCase):
 
     def test_social_links_handler(self):
         # Test pre_save signal for SocialLinks model
-        social_links = SocialLinks.object.create(twitter_link='', facebook_link='', whatsapp_link='', linkedin_link='',first_payment_link="$$$",second_payment_link="####")
+        social_links = SocialLinks.object.create(twitter_link='', facebook_link='', whatsapp_link='', linkedin_link='')
         self.assertEqual(social_links.twitter_link, '#')
         self.assertEqual(social_links.facebook_link, '#')
         self.assertEqual(social_links.whatsapp_link, '#')
