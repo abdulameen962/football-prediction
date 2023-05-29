@@ -256,8 +256,6 @@ class SocialLinks(models.Model):
     facebook_link = models.CharField(max_length=200,blank=True)
     whatsapp_link = models.CharField(max_length=200,blank=True)
     linkedin_link = models.CharField(max_length=200,blank=True)
-    first_payment_link = models.CharField(max_length=400,blank=True)
-    second_payment_link = models.CharField(max_length=400,blank=True)
     object = models.Manager()
 
     class Meta:
@@ -266,4 +264,20 @@ class SocialLinks(models.Model):
 
     def __str__(self):
         return f"Twitter:{self.twitter_link},Facebook:{self.facebook_link},Whatsapp:{self.whatsapp_link},Linkedin:{self.linkedin_link}"
+    
+
+class PaymentLinks(models.Model):
+    header = models.CharField(max_length=300)
+    first_payment_link = models.CharField()
+    second_payment_link = models.CharField()
+    first_price = models.FloatField(default=15.00)
+    second_price = models.FloatField(default=150.00)
+    objects = models.Manager()
+
+    class Meta:
+        verbose_name = "Payment Link"
+        verbose_name_plural = "Payment Links"
+
+    def __str__(self):
+        return f"{self.header} has {self.first_payment_link} and {self.second_payment_link}"
     

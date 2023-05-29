@@ -355,7 +355,9 @@ def premium_payment(request):
         if userprofile.activated:
             return HttpResponseRedirect(reverse("premium"))
             
-    return render(request,"predictions/premium_signup.html")
+    return render(request,"predictions/premium_signup.html",{
+        "payment_links": PaymentLinks.objects.all()
+    })
 
 @login_required(login_url="account_login")
 @verified_email_required

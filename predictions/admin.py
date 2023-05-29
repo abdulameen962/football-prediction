@@ -31,8 +31,11 @@ class NotificationAdmin(admin.ModelAdmin):
     filter_horizontal = ("users",)
 
 class SocialLinksAdmin(admin.ModelAdmin):
-    list_display = ("twitter_link","facebook_link","whatsapp_link","linkedin_link","first_payment_link","second_payment_link")
+    list_display = ("twitter_link","facebook_link","whatsapp_link","linkedin_link")
 
+class PaymentLinksAdmin(admin.ModelAdmin):
+    list_display = ("header","first_payment_link","second_payment_link","first_price","second_price")
+    
 admin.site.register(User,UserAdmin)
 admin.site.register(Blog,BlogAdmin)
 admin.site.register(FreemiumProfile,FreemiumProfileAdmin)
@@ -43,6 +46,7 @@ admin.site.register(Tag)
 admin.site.register(Notification,NotificationAdmin)
 admin.site.register(Completed_Predictions,PredictionAdmin)
 admin.site.register(SocialLinks,SocialLinksAdmin)
+admin.site.register(PaymentLinks,PaymentLinksAdmin)
 
 
 
