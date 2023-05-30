@@ -63,9 +63,6 @@ const app = Vue.createApp({
                         {
                             "text": "Support for your enquiries",
                         },
-                        {
-                            "text": "Live scores of matches",
-                        },
                     ],
                 },
                 {

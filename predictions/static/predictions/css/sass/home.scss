@@ -5,11 +5,16 @@
         @include respond(lphone) {
             width: auto;
         }
+        h1,
+        h2,
+        h3,
+        h4 {
+            @include respond(lphone) {
+                text-align: center;
+            }
+        }
         p {
             text-align: center;
-            @include respond(lphone) {
-                text-align: left;
-            }
             @include respond(phone) {
                 @include mp;
             }
@@ -139,6 +144,9 @@
                 margin: 15px 0px;
             }
             div.league {
+                @include respond(lphone) {
+                    margin-top: 30px;
+                }
                 div.table-container {
                     @include patientbottom;
                     padding-left: 0px;
@@ -303,7 +311,7 @@
     div.testimonials_container {
         padding: 50px 0px;
         @include respond(lphone) {
-            padding: 25px 0px;
+            padding: 20px 0px;
         }
         div.testimonials_left {
             @include flex(no);
@@ -326,11 +334,19 @@
             }
         }
         section.testimonial-slider {
+            position: relative;
             li.splide__slide {
                 cursor: unset;
+                display: flex;
+                justify-content: flex-end;
                 div.splide_single {
+                    max-width: 550px;
                     padding: 20px 0px;
+                    @include respond(lphone) {
+                        max-width: 100%;
+                    }
                     div.text_body {
+                        margin: 10px 0px;
                         p {
                             line-height: 40px;
                             @include respond(tab) {
@@ -341,12 +357,14 @@
                     div.text_bottom {
                         div.text_bottom_left {
                             display: flex;
+                            align-items: center;
                             div.text_bottom_left_image {
                                 svg {
-                                    width: 30px;
+                                    width: 50px;
                                 }
                             }
                             div.text_bottom_left_text {
+                                padding-left: 8px;
                                 span {
                                     margin: 0;
                                 }
@@ -363,23 +381,22 @@
             }
             div.arrows {
                 width: 100%;
-                position: relative;
                 &>button {
                     position: absolute;
                     top: 50%;
                     background: none;
-                    width: 80px;
-                    height: 80px;
+                    width: 60px;
+                    height: 60px;
                     border: none;
                     @include mp;
                     border-radius: 50%;
                     @include flex(no);
                     @include respond(tab) {
-                        width: 60px;
-                        height: 60px;
+                        width: 40px;
+                        height: 40px;
                     }
                     @include respond(lphone) {
-                        top: 80%;
+                        top: 45%;
                     }
                     svg {
                         width: 100%;
@@ -388,20 +405,23 @@
                     }
                 }
                 button.next {
-                    left: 400px;
+                    left: 550px;
                     @include respond(tab) {
                         left: 260px;
                     }
                     @include respond(lphone) {
-                        left: 80%;
+                        left: 88%;
                     }
                 }
                 button.prev {
                     left: 0px;
                     @include respond(lphone) {
-                        left: -10px;
+                        left: 0px;
                     }
                 }
+            }
+            &>ul.splide__pagination {
+                display: none;
             }
         }
     }

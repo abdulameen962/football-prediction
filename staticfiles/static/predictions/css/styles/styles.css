@@ -774,6 +774,9 @@ div.predictions {
     @media screen and (min-width: 0em) and (max-width: 479px) {
       div.predictions div.predict-table {
         margin: 15px 0px; } }
+    @media screen and (min-width: 0px) and (max-width: 740px) {
+      div.predictions div.predict-table div.league {
+        margin-top: 30px; } }
     div.predictions div.predict-table div.league div.table-container {
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -802,11 +805,14 @@ div.headers {
   @media screen and (min-width: 0px) and (max-width: 740px) {
     div.headers {
       width: auto; } }
+  @media screen and (min-width: 0px) and (max-width: 740px) {
+    div.headers h1,
+    div.headers h2,
+    div.headers h3,
+    div.headers h4 {
+      text-align: center; } }
   div.headers p {
     text-align: center; }
-    @media screen and (min-width: 0px) and (max-width: 740px) {
-      div.headers p {
-        text-align: left; } }
     @media screen and (min-width: 0em) and (max-width: 479px) {
       div.headers p {
         margin: 0;
@@ -946,7 +952,7 @@ div.testimonials_container {
   padding: 50px 0px; }
   @media screen and (min-width: 0px) and (max-width: 740px) {
     div.testimonials_container {
-      padding: 25px 0px; } }
+      padding: 20px 0px; } }
   div.testimonials_container div.testimonials_left {
     display: flex;
     justify-content: center;
@@ -967,70 +973,84 @@ div.testimonials_container {
         div.testimonials_container div.testimonials_left p {
           font-size: 30px;
           line-height: 50px; } }
-  div.testimonials_container section.testimonial-slider li.splide__slide {
-    cursor: unset; }
-    div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single {
-      padding: 20px 0px; }
-      div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_body p {
-        line-height: 40px; }
-        @media screen and (min-width: 0px) and (max-width: 991px) {
-          div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_body p {
-            line-height: 30px; } }
-      div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_left {
-        display: flex; }
-        div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_left div.text_bottom_left_image svg {
-          width: 30px; }
-        div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_left div.text_bottom_left_text span {
-          margin: 0; }
-      div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_right {
-        display: flex;
-        justify-content: center;
-        align-items: center; }
-        @media screen and (min-width: 0px) and (max-width: 740px) {
-          div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_right {
-            justify-content: flex-start; } }
-  div.testimonials_container section.testimonial-slider div.arrows {
-    width: 100%;
+  div.testimonials_container section.testimonial-slider {
     position: relative; }
-    div.testimonials_container section.testimonial-slider div.arrows > button {
-      position: absolute;
-      top: 50%;
-      background: none;
-      width: 80px;
-      height: 80px;
-      border: none;
-      margin: 0;
-      padding: 0;
-      border-radius: 50%;
+    div.testimonials_container section.testimonial-slider li.splide__slide {
+      cursor: unset;
       display: flex;
-      justify-content: center;
-      align-items: center; }
-      @media screen and (min-width: 0px) and (max-width: 991px) {
-        div.testimonials_container section.testimonial-slider div.arrows > button {
-          width: 60px;
-          height: 60px; } }
-      @media screen and (min-width: 0px) and (max-width: 740px) {
-        div.testimonials_container section.testimonial-slider div.arrows > button {
-          top: 80%; } }
-      div.testimonials_container section.testimonial-slider div.arrows > button svg {
-        width: 100%;
-        height: 100%;
+      justify-content: flex-end; }
+      div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single {
+        max-width: 550px;
+        padding: 20px 0px; }
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+          div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single {
+            max-width: 100%; } }
+        div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_body {
+          margin: 10px 0px; }
+          div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_body p {
+            line-height: 40px; }
+            @media screen and (min-width: 0px) and (max-width: 991px) {
+              div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_body p {
+                line-height: 30px; } }
+        div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_left {
+          display: flex;
+          align-items: center; }
+          div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_left div.text_bottom_left_image svg {
+            width: 50px; }
+          div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_left div.text_bottom_left_text {
+            padding-left: 8px; }
+            div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_left div.text_bottom_left_text span {
+              margin: 0; }
+        div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_right {
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+          @media screen and (min-width: 0px) and (max-width: 740px) {
+            div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_bottom div.text_bottom_right {
+              justify-content: flex-start; } }
+    div.testimonials_container section.testimonial-slider div.arrows {
+      width: 100%; }
+      div.testimonials_container section.testimonial-slider div.arrows > button {
+        position: absolute;
+        top: 50%;
+        background: none;
+        width: 60px;
+        height: 60px;
+        border: none;
+        margin: 0;
+        padding: 0;
+        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center; }
-    div.testimonials_container section.testimonial-slider div.arrows button.next {
-      left: 400px; }
-      @media screen and (min-width: 0px) and (max-width: 991px) {
-        div.testimonials_container section.testimonial-slider div.arrows button.next {
-          left: 260px; } }
-      @media screen and (min-width: 0px) and (max-width: 740px) {
-        div.testimonials_container section.testimonial-slider div.arrows button.next {
-          left: 80%; } }
-    div.testimonials_container section.testimonial-slider div.arrows button.prev {
-      left: 0px; }
-      @media screen and (min-width: 0px) and (max-width: 740px) {
-        div.testimonials_container section.testimonial-slider div.arrows button.prev {
-          left: -10px; } }
+        @media screen and (min-width: 0px) and (max-width: 991px) {
+          div.testimonials_container section.testimonial-slider div.arrows > button {
+            width: 40px;
+            height: 40px; } }
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+          div.testimonials_container section.testimonial-slider div.arrows > button {
+            top: 45%; } }
+        div.testimonials_container section.testimonial-slider div.arrows > button svg {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+      div.testimonials_container section.testimonial-slider div.arrows button.next {
+        left: 550px; }
+        @media screen and (min-width: 0px) and (max-width: 991px) {
+          div.testimonials_container section.testimonial-slider div.arrows button.next {
+            left: 260px; } }
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+          div.testimonials_container section.testimonial-slider div.arrows button.next {
+            left: 88%; } }
+      div.testimonials_container section.testimonial-slider div.arrows button.prev {
+        left: 0px; }
+        @media screen and (min-width: 0px) and (max-width: 740px) {
+          div.testimonials_container section.testimonial-slider div.arrows button.prev {
+            left: 0px; } }
+    div.testimonials_container section.testimonial-slider > ul.splide__pagination {
+      display: none; }
 
 p {
   margin: 0;
