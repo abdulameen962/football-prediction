@@ -282,13 +282,13 @@
                                             </td>                                     
                                         {% endif %}          
                                         <td class="w-auto"> 
-                                            {% if predict.prediction_status == "completed" %}
+                                            {% if predict.prediction_status == "COMPLETED" %}
                                                 <button class="btn btn-info text-white"> {{ predict.prediction_status }} </button>
 
-                                            {% elif predict.prediction_status == "win" %}
+                                            {% elif predict.prediction_status == "WON" %}
                                                 <button class="btn btn-success text-white"> {{ predict.prediction_status }} </button>
                                             
-                                            {% elif predict.prediction_status == "lose" %}
+                                            {% elif predict.prediction_status == "LOST" %}
                                                 <button class="btn btn-danger text-white"> {{ predict.prediction_status }} </button>
                                             {% endif %}    
                                         

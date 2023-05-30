@@ -36,6 +36,10 @@ class SocialLinksAdmin(admin.ModelAdmin):
 class PaymentLinksAdmin(admin.ModelAdmin):
     list_display = ("header","first_payment_link","second_payment_link","first_price","second_price")
     
+
+class TestimonialsAdmin(admin.ModelAdmin):
+    list_display = ("body","ratings")
+
 admin.site.register(User,UserAdmin)
 admin.site.register(Blog,BlogAdmin)
 admin.site.register(FreemiumProfile,FreemiumProfileAdmin)
@@ -47,6 +51,7 @@ admin.site.register(Notification,NotificationAdmin)
 admin.site.register(Completed_Predictions,PredictionAdmin)
 admin.site.register(SocialLinks,SocialLinksAdmin)
 admin.site.register(PaymentLinks,PaymentLinksAdmin)
+admin.site.register(Testimonials,TestimonialsAdmin)
 
 
 

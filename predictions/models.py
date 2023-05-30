@@ -202,9 +202,9 @@ class Completed_Predictions(models.Model):
     )
 
     STATUS_CHOICES = (
-        ("completed","completed"),
-        ("win","win"),
-        ("lose","lose"),
+        ("COMPLETED","COMPLETED"),
+        ("WON","WON"),
+        ("LOST","LOST"),
     )
 
     league = models.ForeignKey(League, on_delete=models.PROTECT,related_name="completed_predictions")
@@ -217,7 +217,7 @@ class Completed_Predictions(models.Model):
     halftime_correct_score = models.CharField(max_length=50,default=None,null=True,blank=True)
     combo_draws = models.CharField(max_length=50,default=None,null=True,blank=True)
     combo_tickets = models.CharField(max_length=50,default=None,null=True,blank=True)
-    prediction_status = models.CharField(choices=STATUS_CHOICES,default="completed",max_length=50)
+    prediction_status = models.CharField(choices=STATUS_CHOICES,default="COMPLETED",max_length=50)
     tip = models.CharField(choices=TIP_CHOICES,max_length=50)
     objects = models.Manager()
 
@@ -277,7 +277,30 @@ class PaymentLinks(models.Model):
     class Meta:
         verbose_name = "Payment Link"
         verbose_name_plural = "Payment Links"
+        ordering = ("-header",)
 
     def __str__(self):
         return f"{self.header} has {self.first_payment_link} and {self.second_payment_link}"
+    
+
+class Testimonials(models.Model):
+    RATINGS = (
+        ("5 STARS","5 STARS"),
+        ("4 STARS","4 STARS"),
+        ("3 STARS","3 STARS"),
+        ("2 STARS","2 STARS"),
+        ("1 STARS","1 STARS"),
+    )
+    body = models.TextField()
+    recipient_user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="testimonial")
+    ratings = models.CharField(choices=RATINGS,default="5 STARS")
+    objects = models.Manager()
+
+    class Meta:
+        verbose_name = "Testimonial"
+        verbose_name_plural = "Testimonials"
+        ordering = ("ratings",)
+
+    def __str__(self):
+        return f"{self.subject} has the body of {self.body} made by {self.recipient_user.username} and rated it {self.ratings}"
     

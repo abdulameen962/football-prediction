@@ -190,6 +190,7 @@ def index(request):
         
         return render(request,"predictions/index.html",{
             "predictionstable": predictionstable,
+            "testimonials": Testimonials.objects.all()
         })
 
 
