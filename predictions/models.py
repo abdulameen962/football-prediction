@@ -289,7 +289,7 @@ class Testimonials(models.Model):
         ("4 STARS","4 STARS"),
         ("3 STARS","3 STARS"),
         ("2 STARS","2 STARS"),
-        ("1 STARS","1 STARS"),
+        ("1 STAR","1 STAR"),
     )
     body = models.TextField()
     recipient_user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="testimonial")
@@ -302,5 +302,5 @@ class Testimonials(models.Model):
         ordering = ("ratings",)
 
     def __str__(self):
-        return f"{self.subject} has the body of {self.body} made by {self.recipient_user.username} and rated it {self.ratings}"
+        return f"{self.body} made by {self.recipient_user.username} and rated it {self.ratings}"
     

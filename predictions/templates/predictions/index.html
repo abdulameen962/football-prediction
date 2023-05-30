@@ -145,76 +145,110 @@
     </div>
 </div>
 {% if testimonials|length > 0 %}
-<div class="testimonials_container row">
-    <div class="testimonials_left col-sm-12 col-md-4 col-lg-4">
-        <p>See what other people say about our excellent services</p>
-    </div>
-    <section id="main-carousel" class="splide col-sm-12 col-md-8 col-lg-8 testimonial-slider" aria-label="main carousel">
-        <div class="splide__track">
-            <ul class="splide__list">
-                {% for testimonial in testimonials %}
-                    <li class="splide__slide">
-                        <div class="splide_single">
-                            <p> {{ testimonial.body }} </p>
-                            <div class="text_bottom">
-                                <div class="text_bottom_left">
-
+    <div class="testimonials_container row" data-aos="fade-up" data-aos-duration="1000">
+        <div class="testimonials_left col-sm-12 col-md-6 col-lg-6">
+            <p>See what other people say about our excellent services</p>
+        </div>
+        <section id="main-carousel" class="splide col-sm-12 col-md-6 col-lg-6 testimonial-slider" aria-label="main carousel">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    {% for testimonial in testimonials %}
+                        <li class="splide__slide">
+                            <div class="splide_single">
+                                <div class="quote">
+                                    <svg width="31" height="27" viewBox="0 0 31 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_122_8)">
+                                        <path d="M31 0.26625L30.2177 5.88921C28.653 5.75768 27.3817 6.02075 26.4038 6.6784C25.4259 7.30318 24.7413 8.2239 24.3502 9.44056C23.9916 10.6243 23.9264 12.0054 24.1546 13.5838H31V27H17.7003V13.5838C17.7003 8.84867 18.7923 5.26444 20.9763 2.83111C23.1604 0.3649 26.5016 -0.490055 31 0.26625ZM13.2997 0.26625L12.5173 5.88921C10.9527 5.75768 9.68139 6.02075 8.70347 6.6784C7.72555 7.30318 7.04101 8.2239 6.64984 9.44056C6.29127 10.6243 6.22608 12.0054 6.45426 13.5838H13.2997V27H0V13.5838C0 8.84867 1.09201 5.26444 3.27603 2.83111C5.46004 0.3649 8.80126 -0.490055 13.2997 0.26625Z" fill="#FFA500"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_122_8">
+                                        <rect width="31" height="27" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>                                    
                                 </div>
-                                <div class="text_bottom_right">
-                                    
+                                <div class="text_body">
+                                    <p class="subtitle"> {{ testimonial.body }} </p>
+                                </div>
+                                <div class="text_bottom row">
+                                    <div class="text_bottom_left col-sm-12 col-md-7 col-lg-8">
+                                        <div class="text_bottom_left_image">
+                                            <svg viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="17.5" cy="17.5" r="17.5" fill="#A3A5AF"/>
+                                                <path d="M17 9C12.0293 9 8 13.0293 8 18C8 22.9707 12.0293 27 17 27C21.9707 27 26 22.9707 26 18C26 13.0293 21.9707 9 17 9Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M10.0439 23.7114C10.0439 23.7114 12.05 21.15 17 21.15C21.95 21.15 23.957 23.7114 23.957 23.7114M17 18C17.7161 18 18.4028 17.7155 18.9092 17.2092C19.4155 16.7028 19.7 16.0161 19.7 15.3C19.7 14.5839 19.4155 13.8972 18.9092 13.3908C18.4028 12.8845 17.7161 12.6 17 12.6C16.2839 12.6 15.5971 12.8845 15.0908 13.3908C14.5844 13.8972 14.3 14.5839 14.3 15.3C14.3 16.0161 14.5844 16.7028 15.0908 17.2092C15.5971 17.7155 16.2839 18 17 18Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="text_bottom_left_text">
+                                            <p> {{ testimonial.recipient_user.username|upper }} </p>
+                                            <span> {{ testimonial.recipient_user.type }} user </span>
+                                        </div>
+                                    </div>
+                                    <div class="text_bottom_right col-sm-12 col-md-5 col-lg-4">
+                                        {% if testimonial.ratings == "5 STARS" %}
+                                            <img src="{% static 'predictions/css/images/stars/5stars.svg' %}" alt="{{ testimonial.ratings }}" />
+                                        {% elif testimonial.ratings == "4 STARS" %}
+                                            <img src="{% static 'predictions/css/images/stars/4stars.svg' %}" alt="{{ testimonial.ratings }}" />
+                                        {% elif testimonial.ratings == "3 STARS" %}
+                                            <img src="{% static 'predictions/css/images/stars/3stars.svg' %}" alt="{{ testimonial.ratings }}" />
+                                        {% elif testimonial.ratings == "2 STARS" %}
+                                            <img src="{% static 'predictions/css/images/stars/2stars.svg' %}" alt="{{ testimonial.ratings }}" />
+                                        {% elif testimonial.ratings == "1 STAR" %}
+                                            <img src="{% static 'predictions/css/images/stars/1star.svg' %}" alt="{{ testimonial.ratings }}" />
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="splide__arrows splide__arrows--ltr arrows">
-            <button class="splide__arrow splide__arrow--prev prev" type="button" aria-label="Previous slide" aria-controls="splide01-track">
-                <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g filter="url(#filter0_d_1_4229)">
-                    <circle cx="44" cy="30" r="30" fill="white"/>
-                    </g>
-                    <path d="M48.4116 22.0586L40.4704 29.9998L48.4116 37.9409" stroke="#1B1C31" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <defs>
-                    <filter id="filter0_d_1_4229" x="0" y="0" width="88" height="88" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                    <feOffset dy="14"/>
-                    <feGaussianBlur stdDeviation="7"/>
-                    <feComposite in2="hardAlpha" operator="out"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_4229"/>
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_4229" result="shape"/>
-                    </filter>
-                    </defs>
-                </svg>            
-            </button>
-            <button class="splide__arrow splide__arrow--next next" type="button" aria-label="Next slide" aria-controls="splide01-track">
-                <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g filter="url(#filter0_d_1_4232)">
-                    <circle cx="30" cy="30" r="30" transform="matrix(-1 0 0 1 74 0)" fill="white"/>
-                    </g>
-                    <path d="M39.5884 22.0586L47.5296 29.9998L39.5884 37.9409" stroke="#1B1C31" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <defs>
-                    <filter id="filter0_d_1_4232" x="0" y="0" width="88" height="88" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                    <feOffset dy="14"/>
-                    <feGaussianBlur stdDeviation="7"/>
-                    <feComposite in2="hardAlpha" operator="out"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_4232"/>
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_4232" result="shape"/>
-                    </filter>
-                    </defs>
-                </svg>            
-            </button>
-        </div>
-    </section>
-</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="splide__arrows splide__arrows--ltr arrows">
+                <button class="splide__arrow splide__arrow--prev prev" type="button" aria-label="Previous slide" aria-controls="splide01-track">
+                    <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_d_125_11)">
+                        <path d="M44 60C60.5685 60 74 46.5685 74 30C74 13.4315 60.5685 0 44 0C27.4315 0 14 13.4315 14 30C14 46.5685 27.4315 60 44 60Z" fill="white"/>
+                        <path d="M47.9412 22L40 29.9412L47.9412 37.8823" stroke="#1B1C31" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_d_125_11" x="0" y="0" width="88" height="88" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="14"/>
+                        <feGaussianBlur stdDeviation="7"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_125_11"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_125_11" result="shape"/>
+                        </filter>
+                        </defs>
+                    </svg>                               
+                </button>
+                <button class="splide__arrow splide__arrow--next next" type="button" aria-label="Next slide" aria-controls="splide01-track">
+                    <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_d_125_15)">
+                        <path d="M44 60C27.4315 60 14 46.5685 14 30C14 13.4315 27.4315 0 44 0C60.5685 0 74 13.4315 74 30C74 46.5685 60.5685 60 44 60Z" fill="white"/>
+                        <path d="M39.5884 22.0586L47.5296 29.9998L39.5884 37.9409" stroke="#1B1C31" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_d_125_15" x="0" y="0" width="88" height="88" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="14"/>
+                        <feGaussianBlur stdDeviation="7"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_125_15"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_125_15" result="shape"/>
+                        </filter>
+                        </defs>
+                    </svg>
+                </button>
+            </div>
+        </section>
+    </div>
 {% endif %}
 {% endblock  %}
 {% block script %}
-    <script src="{% static 'preidictions/js/splide.min.js' %}"></script>
+    <script src="{% static 'predictions/js/splide.min.js' %}" ></script>
 {% endblock  %}

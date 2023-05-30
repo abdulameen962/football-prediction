@@ -308,7 +308,20 @@ const app = Vue.createApp({
         var trs = document.querySelectorAll(".tr_element");
         const league_list_main = document.getElementById("league_list_main");
         // var live_scores_container = document.querySelector(".live_scores_container");
-
+        var main_carousel = document.getElementById("main-carousel");
+        if (main_carousel) {
+            var main = new Splide('#main-carousel', {
+                type: 'slide',
+                speed: 2000,
+                rewind: true,
+                perPage: 1,
+                rewindSpeed: 1500,
+                pagination: true,
+                arrows: true,
+                autoplay: false,
+            });
+            main.mount();
+        }
         if (email) {
             email.required = true;
             var label = email.previousElementSibling;
