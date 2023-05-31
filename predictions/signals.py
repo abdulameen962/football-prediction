@@ -4,6 +4,7 @@ from .models import *
 from django.template.defaultfilters import slugify
 from allauth.account.models  import EmailAddress
 from django.conf import settings
+from datetime import datetime
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import send_mail,send_mass_mail,EmailMessage
@@ -97,34 +98,37 @@ def user_handler(sender, instance,**kwargs):
                 except PremiumProfile.DoesNotExist:
                    PremiumProfile.objects.create(id=instance.id,user=instance)
 
-        elif instance.type == "" and emailuser.verified == False:
-            #send the email
-            html_message = render_to_string("predictions/welcome-mail.html",{"username":instance.username})
-            plain_message = strip_tags(html_message)
-            #check if the user has an email address
-            if instance.email != "":
-                send_mail(message=plain_message, from_email=settings.EMAIL_HOST_USER,subject=f"Welcome to Frankly Prediction {instance.username}",recipient_list=[instance.email],fail_silently=False,html_message=html_message)
-            else:
-                return ""
-
-            #check if one has been sent before
-            header = f"Welcome {instance.username}"
-            message = "Welcome to the Prediction app,we hope you enjoy this platform.Take a tour and if our help is needed contact support"
-
-            send_notification(header,[instance],message)
-
-
-
     except EmailAddress.DoesNotExist:
-        #signed in through socials
-        emailuser = ""
+        status = False        
+
+    today = timezone.now()
+    today = timezone.localtime(today)
+    today = today.strftime("%m/%d/%Y %I:%M %p")
+    today = datetime.strptime(today,"%m/%d/%Y %I:%M %p")
+    date_joined = instance.date_joined
+    date_joined = timezone.localtime(date_joined)
+    date_joined = date_joined.strftime("%m/%d/%Y %I:%M %p")
+    date_joined = datetime.strptime(date_joined,"%m/%d/%Y %I:%M %p")
+    difference = today - date_joined
+    difference = difference.total_seconds()
+    
+    #convert to a minute
+    difference = difference / 60
+    if difference <= 1:
+        #send the email
+        html_message = render_to_string("predictions/welcome-mail.html",{"username":instance.username})
+        plain_message = strip_tags(html_message)
+        #check if the user has an email address
+        if instance.email != "":
+            send_mail(message=plain_message, from_email=settings.EMAIL_HOST_USER,subject=f"Welcome to Frankly Prediction {instance.username.upper()}",recipient_list=[instance.email],fail_silently=False,html_message=html_message)
+        else:
+            return ""
 
         #check if one has been sent before
         header = f"Welcome {instance.username}"
         message = "Welcome to the Prediction app,we hope you enjoy this platform.Take a tour and if our help is needed contact support"
-        
-        send_notification(header,[instance],message)
 
+        send_notification(header,[instance],message)
 @receiver(pre_delete,sender=User)
 def user_delete_handler(sender,instance,**kwargs):
     header = f"Welcome {instance.username}"

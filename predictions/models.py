@@ -268,8 +268,8 @@ class SocialLinks(models.Model):
 
 class PaymentLinks(models.Model):
     header = models.CharField(max_length=300)
-    first_payment_link = models.CharField()
-    second_payment_link = models.CharField()
+    first_payment_link = models.CharField(max_length=200)
+    second_payment_link = models.CharField(max_length=200)
     first_price = models.FloatField(default=15.00)
     second_price = models.FloatField(default=150.00)
     objects = models.Manager()
@@ -293,7 +293,7 @@ class Testimonials(models.Model):
     )
     body = models.TextField()
     recipient_user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="testimonial")
-    ratings = models.CharField(choices=RATINGS,default="5 STARS")
+    ratings = models.CharField(choices=RATINGS,default="5 STARS",max_length=20)
     objects = models.Manager()
 
     class Meta:
