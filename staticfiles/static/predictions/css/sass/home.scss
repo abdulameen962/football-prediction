@@ -139,14 +139,12 @@
         @include flex(yes);
         div.predict-table {
             width: 100%;
-            margin: 40px 0px;
+            margin: 15px 0px;
             @include respond(phone) {
                 margin: 15px 0px;
             }
             div.league {
-                @include respond(lphone) {
-                    margin-top: 30px;
-                }
+                margin-top: 30px;
                 div.table-container {
                     @include patientbottom;
                     padding-left: 0px;
@@ -342,7 +340,7 @@
                 div.splide_single {
                     max-width: 550px;
                     padding: 20px 0px;
-                    @include respond(lphone) {
+                    @include respond(tab) {
                         max-width: 100%;
                     }
                     div.text_body {
@@ -407,7 +405,7 @@
                 button.next {
                     left: 550px;
                     @include respond(tab) {
-                        left: 260px;
+                        left: 95%;
                     }
                     @include respond(lphone) {
                         left: 88%;

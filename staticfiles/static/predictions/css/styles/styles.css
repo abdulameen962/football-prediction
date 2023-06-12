@@ -770,29 +770,28 @@ div.predictions {
   flex-direction: column; }
   div.predictions div.predict-table {
     width: 100%;
-    margin: 40px 0px; }
+    margin: 15px 0px; }
     @media screen and (min-width: 0em) and (max-width: 479px) {
       div.predictions div.predict-table {
         margin: 15px 0px; } }
-    @media screen and (min-width: 0px) and (max-width: 740px) {
-      div.predictions div.predict-table div.league {
-        margin-top: 30px; } }
-    div.predictions div.predict-table div.league div.table-container {
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-      background: white;
-      padding: 20px 15px;
-      padding-left: 0px;
-      padding-right: 0px;
-      margin-bottom: 0px;
-      padding-bottom: 0px;
-      margin-top: 10px; }
-      div.predictions div.predict-table div.league div.table-container svg {
-        transform: scale(0.9); }
-    div.predictions div.predict-table div.league h3 img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%; }
+    div.predictions div.predict-table div.league {
+      margin-top: 30px; }
+      div.predictions div.predict-table div.league div.table-container {
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+        background: white;
+        padding: 20px 15px;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        margin-top: 10px; }
+        div.predictions div.predict-table div.league div.table-container svg {
+          transform: scale(0.9); }
+      div.predictions div.predict-table div.league h3 img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%; }
     div.predictions div.predict-table div.more {
       margin-top: 20px; }
 
@@ -982,7 +981,7 @@ div.testimonials_container {
       div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single {
         max-width: 550px;
         padding: 20px 0px; }
-        @media screen and (min-width: 0px) and (max-width: 740px) {
+        @media screen and (min-width: 0px) and (max-width: 991px) {
           div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single {
             max-width: 100%; } }
         div.testimonials_container section.testimonial-slider li.splide__slide div.splide_single div.text_body {
@@ -1040,7 +1039,7 @@ div.testimonials_container {
         left: 550px; }
         @media screen and (min-width: 0px) and (max-width: 991px) {
           div.testimonials_container section.testimonial-slider div.arrows button.next {
-            left: 260px; } }
+            left: 95%; } }
         @media screen and (min-width: 0px) and (max-width: 740px) {
           div.testimonials_container section.testimonial-slider div.arrows button.next {
             left: 88%; } }
